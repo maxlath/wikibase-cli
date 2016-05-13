@@ -1,0 +1,76 @@
+#!/usr/bin/env node
+var args = process.argv.slice(2)
+var id = args[0]
+var prop = args[1]
+
+Promise = require('bluebird')
+
+if ( /^\w{2}$/.test(prop) ) {
+  var lang = prop
+  prop = null
+} else {
+  var lang = args[2] || 'en'
+}
+
+requireLangProps = (lang) => require(`./props/${lang}.json`)
+
+try {
+  propsSync = requireLangProps(lang)
+  var propsPromise = Promise.resolve( propsSync )
+} catch (err) {
+  console.log(`missing '${lang}' props: fetching`)
+  var fetchLangProps = require('./lib/fetch_lang_props')
+  var propsPromise = fetchLangProps(lang).then(() => requireLangProps(lang))
+}
+
+if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
+if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
+
+var copy = require('./lib/copy')
+var breq = require('bluereq')
+var logError = require('./lib/log_error')
+var exist = require('./lib/exist')
+
+var wdk = require('wikidata-sdk')
+require('colors')
+
+var url = wdk.getEntities({
+  props: 'claims',
+  ids: id
+})
+
+var parseRes = function (res, props) {
+  var entity = res.body.entities && res.body.entities[id]
+
+  var logProp = function (k, v) {
+    var label = props[k]
+    console.log(k.grey, v, label && label.grey || '')
+  }
+
+  if (exist(entity)) {
+    var claims = wdk.simplifyClaims(entity.claims)
+    if (exist(prop)) {
+      var value = claims[prop]
+      if (value != null) {
+        logProp(prop, claims[prop])
+        copy(claims[prop].toString())
+      } else {
+        label = props[prop]
+        console.log('no statement found'.yellow, label)
+      }
+    } else {
+      var k, v
+      for (k in claims) {
+        v = claims[k]
+        logProp(k, v)
+      }
+    }
+  } else {
+    console.log('error: ', res.body)
+  }
+}
+
+
+Promise.all([ breq.get(url), propsPromise ])
+.spread(parseRes)
+.catch(logError)

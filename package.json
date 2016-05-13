@@ -8,7 +8,8 @@
     "wikiqid": "./bin/wikiqid"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "mkdir -p bin/props"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/maxlath/wikidata-cli#readme",
   "dependencies": {
+    "bluebird": "^3.3.5",
     "bluereq": "^2.1.0",
     "colors": "^1.1.2",
     "copy-paste": "^1.2.0",
