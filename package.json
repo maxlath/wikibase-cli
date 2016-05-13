@@ -5,6 +5,7 @@
   "main": "index.js",
   "bin": {
     "qlabel": "./bin/qlabel",
+    "qclaims": "./bin/qclaims",
     "wikiqid": "./bin/wikiqid"
   },
   "scripts": {
