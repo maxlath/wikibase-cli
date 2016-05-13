@@ -2,7 +2,7 @@
 
 // allow to pass a title without having to put it in ""
 var args = process.argv.slice(2)
-var wdk = require('..')
+var wdk = require('wikidata-sdk')
 var copy = require('./lib/copy')
 var breq = require('bluereq')
 var logError = require('./lib/log_error')
