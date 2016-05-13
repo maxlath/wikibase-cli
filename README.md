@@ -33,8 +33,20 @@ qlabel Q1103345 de
 # => Cluetrain-Manifest
 ```
 
+### qclaims
+A quick way to access the claims of an entity
+```sh
+# all Q2001's claims
+qclaims Q2001
+# or just his place of birth
+qclaims Q2001 P19
+# or in another language than English
+qclaims Q2001 fr
+qclaims Q2001 P19 fr
+```
+
 ### wikiqid
-This one is kind of the other way around: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
+This one is kind of the inverse of qlabel: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh
 wikiqid Cantabria
 # => Q3946
