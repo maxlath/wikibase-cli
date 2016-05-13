@@ -1,7 +1,7 @@
 {
   "name": "wikidata-cli",
   "version": "1.0.0",
-  "description": "command line tools to interact with Wikidata",
+  "description": "command-line tools to interact with Wikidata",
   "main": "index.js",
   "bin": {
     "qlabel": "./bin/qlabel",
