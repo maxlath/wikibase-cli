@@ -7,6 +7,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
 - [Installation](#installation)
 - [Commands](#commands)
   - [qlabel](#qlabel)
+  - [qclaims](#qclaims)
   - [wikiqid](#wikiqid)
 
 ## Dependencies
