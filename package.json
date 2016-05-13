@@ -1,0 +1,33 @@
+{
+  "name": "wikidata-cli",
+  "version": "1.0.0",
+  "description": "command line tools to interact with Wikidata",
+  "main": "index.js",
+  "bin": {
+    "qlabel": "./bin/qlabel",
+    "wikiqid": "./bin/wikiqid"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maxlath/wikidata-cli.git"
+  },
+  "keywords": [
+    "wikidata",
+    "cli"
+  ],
+  "author": "maxlath",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxlath/wikidata-cli/issues"
+  },
+  "homepage": "https://github.com/maxlath/wikidata-cli#readme",
+  "dependencies": {
+    "bluereq": "^2.1.0",
+    "colors": "^1.1.2",
+    "copy-paste": "^1.2.0",
+    "lodash": "^4.12.0"
+  }
+}
