@@ -15,9 +15,10 @@ module.exports = function (lang) {
   }
 
   var file = `${lang}.json`
+  var dir = __dirname.replace('lib', 'props')
 
   return breq.get(`${base}/${file}`)
   .then((res) => JSON.stringify(res.body, null, 2) )
-  .then(writeFileAsync.bind(null, `bin/props/${file}`))
+  .then(writeFileAsync.bind(null, `${dir}/${file}`))
   .tap(console.log.bind(console, `${lang} props fetched`))
 }
