@@ -1,4 +1,4 @@
-var availableLangs = ['en', 'fr', 'de']
+var availableLangs = ['de', 'en', 'es', 'fr', 'it', 'nl']
 var breq = require('bluereq')
 require('colors')
 var bluebird = require('bluebird')
