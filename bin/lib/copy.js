@@ -1,29 +1,24 @@
 var copy = require('copy-paste').copy
-var exec = require('child_process').exec
-
-// Force colors as playing with /dev/tty might disable it
-require('colors').enabled = true
+var tty = require('./direct_tty')
 var label = 'copied to Clipboard: '.green
-var options = ''
 
 module.exports = function (text) {
   copy(text)
 
   // If stdout isn't the terminal
-  // write a copy of the text to the terminal anyway
+  // write an extract of the text to the terminal
   if (!(process.stdout.isTTY)) {
     if (text.length > 20) {
       label += text.substring(0,20) + '...'
     } else {
       label += text
     }
-  } else {
-    options = '-n'
+    label += '\n'
   }
 
-  // Write directly to the terminal to avoid passing
-  // "copied to Clipboard:" to process.stdout
-  exec(`echo ${options} ${label} > /dev/tty`, function () {
+  tty.write(label, function () {
+    // Using console.log instead of process.stdout.write
+    // as it will block and only once done exiting the process
     console.log(text)
     process.exit(0)
   })
