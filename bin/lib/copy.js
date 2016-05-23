@@ -21,6 +21,8 @@ module.exports = function (text) {
     options = '-n'
   }
 
+  // Write directly to the terminal to avoid passing
+  // "copied to Clipboard:" to process.stdout
   exec(`echo ${options} ${label} > /dev/tty`, function () {
     console.log(text)
     process.exit(0)
