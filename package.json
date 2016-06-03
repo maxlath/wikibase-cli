@@ -27,11 +27,11 @@
   },
   "homepage": "https://github.com/maxlath/wikidata-cli#readme",
   "dependencies": {
-    "bluebird": "^3.3.5",
-    "bluereq": "^2.1.0",
+    "bluebird": "^3.4.0",
+    "bluereq": "^2.1.1",
     "colors": "^1.1.2",
-    "copy2cb": "^1.0.0",
+    "copy2cb": "^1.0.1",
     "lodash": "^4.12.0",
-    "wikidata-sdk": "^3.0.0"
+    "wikidata-sdk": "^3.1.0"
   }
 }
