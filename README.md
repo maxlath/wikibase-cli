@@ -9,6 +9,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [qlabel](#qlabel)
   - [qclaims](#qclaims)
   - [wikiqid](#wikiqid)
+  - [wdsparl](#wdsparl)
 
 ## Dependencies
 * [NodeJs](https://nodejs.org)
@@ -59,6 +60,22 @@ By default, it will look at the English Wikipedia, but you can specify another l
 wikiqid science politique fr
 # => Q36442
 ```
+
+### wdsparl
+A command to run a SPARQL query and get its JSON output
+
+From this SPARQL query file: `./path/to/query.rq`
+```sparql
+SELECT ?work WHERE {
+  ?work wdt:P50 wd:Q42 .
+}
+```
+get its output from your terminal like so:
+
+```sh
+wdsparql ./path/to/query.rq > ./results.json
+```
+
 
 # License
 [MIT](LICENSE.md)

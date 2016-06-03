@@ -1,0 +1,16 @@
+#!/usr/bin/env node
+var path = process.argv.slice(2)[0]
+var wdk = require('wikidata-sdk')
+var request = require('request')
+var fs = require('fs')
+
+var sparql = fs.readFileSync(path, { encoding: 'utf-8' })
+var url = wdk.sparqlQuery(sparql)
+
+request(url, function (err, res) {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log(res.body)
+  }
+})
