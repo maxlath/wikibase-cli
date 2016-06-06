@@ -10,16 +10,24 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [qclaims](#qclaims)
   - [wikiqid](#wikiqid)
   - [wdsparl](#wdsparl)
+- [See Also](#see-also)
+  - [wikidata-filter](#wikidata-filter)
+
+-------------
 
 ## Dependencies
 * [NodeJs](https://nodejs.org)
 (recommended way to install it: use the awesome [NVM](https://github.com/creationix/nvm))
+
+-------------
 
 ## Installation
 ```sh
 npm install -g wikidata-cli
 ```
 Installing globally allows to make those commands accessible from your shell `$PATH`
+
+-------------
 
 ## Commands
 
@@ -29,7 +37,7 @@ Working with Wikidata, we often end up with obscure ids. We can always look-up t
 qlabel Q1103345
 # => The Cluetrain Manifesto
 ```
-By default, the result is in English, but we can pass a 2-letters language code as second argument
+By default, the result uses your environment local language (`process.env.LANG`), but we can pass a 2-letters language code as second argument
 ```sh
 qlabel Q1103345 de
 # => Cluetrain-Manifest
@@ -42,7 +50,7 @@ A quick way to access the claims of an entity
 qclaims Q2001
 # or just his place of birth
 qclaims Q2001 P19
-# or in another language than English
+# or by specifying another language than your local language
 qclaims Q2001 fr
 qclaims Q2001 P19 fr
 ```
@@ -55,7 +63,7 @@ wikiqid Cantabria
 wikiqid New Delhi
 # => Q987
 ```
-By default, it will look at the English Wikipedia, but you can specify another language by passing a 2-letters language code as last argument
+By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code as last argument
 ```sh
 wikiqid science politique fr
 # => Q36442
@@ -76,6 +84,14 @@ get its output from your terminal like so:
 wdsparql ./path/to/query.rq > ./results.json
 ```
 
+-------------
 
-# License
+## See Also
+Commands that got their own modules:
+### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
+a command-line tool to filter a Wikidata dump by claim
+
+-------------
+
+## License
 [MIT](LICENSE.md)
