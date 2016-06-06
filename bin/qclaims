@@ -2,6 +2,7 @@
 var args = process.argv.slice(2)
 var id = args[0]
 var prop = args[1]
+var localLang = require('./lib/local_lang')
 
 Promise = require('bluebird')
 
@@ -9,7 +10,7 @@ if ( /^\w{2}$/.test(prop) ) {
   var lang = prop
   prop = null
 } else {
-  var lang = args[2] || 'en'
+  var lang = args[2] || localLang || 'en'
 }
 
 requireLangProps = (lang) => require(`./props/${lang}.json`)

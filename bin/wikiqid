@@ -6,6 +6,7 @@ var wdk = require('wikidata-sdk')
 var copy = require('./lib/copy')
 var breq = require('bluereq')
 var logError = require('./lib/log_error')
+var localLang = require('./lib/local_lang')
 var _ = require('lodash')
 
 var last = args.slice(-1)[0]
@@ -13,7 +14,7 @@ var lang
 if (last.length === 2) {
   lang = args.pop()
 }
-lang = lang || 'en'
+lang = lang ||  localLang || 'en'
 
 var title = args.join(' ')
 

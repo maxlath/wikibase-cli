@@ -4,9 +4,10 @@ var wdk = require('wikidata-sdk')
 var copy = require('./lib/copy')
 var breq = require('bluereq')
 var logError = require('./lib/log_error')
+var localLang = require('./lib/local_lang')
 
 var id = args[0]
-var lang = args[1] || 'en'
+var lang = args[1] || localLang || 'en'
 id = wdk.normalizeId(id)
 
 var languages = [lang]
