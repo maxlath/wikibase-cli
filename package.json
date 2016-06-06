@@ -6,7 +6,8 @@
   "bin": {
     "qlabel": "./bin/qlabel",
     "qclaims": "./bin/qclaims",
-    "wikiqid": "./bin/wikiqid"
+    "wikiqid": "./bin/wikiqid",
+    "wdsparql": "./bin/wdsparql"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
