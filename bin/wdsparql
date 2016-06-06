@@ -1,5 +1,18 @@
 #!/usr/bin/env node
-var path = process.argv.slice(2)[0]
+var simplifyResults = false
+var args = process.argv.slice(2)
+
+args = args.filter(function (arg) {
+  if (arg === '-s' || arg === '--simplify' ) {
+    simplifyResults = true
+    return false
+  } else {
+    return true
+  }
+})
+
+path = args[0]
+
 var wdk = require('wikidata-sdk')
 var request = require('request')
 var fs = require('fs')
@@ -11,6 +24,10 @@ request(url, function (err, res) {
   if (err) {
     console.log(err)
   } else {
-    console.log(res.body)
+    results = res.body
+    if (simplifyResults) {
+      results = JSON.stringify(wdk.simplifySparqlResults(results), null, 2)
+    }
+    process.stdout.write(results)
   }
 })

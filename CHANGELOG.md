@@ -1,6 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 1.3.1 - 2016-06-06
+* Added a new option to [wdsparql](https://github.com/maxlath/wikidata-cli#wdsparql):
+
+  `--simplify`, which simplifies the query results using [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+
 ## 1.2.1 - 2016-06-03
 * Commands use the environment local language as default instead of English
 

@@ -84,6 +84,13 @@ get its output from your terminal like so:
 wdsparql ./path/to/query.rq > ./results.json
 ```
 
+**Options**
+* `-s, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+
+```sh
+wdsparql -s ./path/to/query.rq > ./simplified_results.json
+```
+
 -------------
 
 ## See Also
