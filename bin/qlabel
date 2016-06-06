@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 var args = process.argv.slice(2)
 var wdk = require('wikidata-sdk')
-var copy = require('./lib/copy')
+var copy = require('../lib/copy')
 var breq = require('bluereq')
-var logError = require('./lib/log_error')
-var localLang = require('./lib/local_lang')
+var logError = require('../lib/log_error')
+var localLang = require('../lib/local_lang')
 
 var id = args[0]
 var lang = args[1] || localLang || 'en'
