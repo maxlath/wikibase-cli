@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 1.4.0 - 2016-06-18
+* Added [wdprops](https://github.com/maxlath/wikidata-cli#wdprops), a command to get the list of all Wikidata properties
+
 ## 1.3.1 - 2016-06-06
 * Added a new option to [wdsparql](https://github.com/maxlath/wikidata-cli#wdsparql):
 
