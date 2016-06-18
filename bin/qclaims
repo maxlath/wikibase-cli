@@ -13,16 +13,7 @@ if ( /^\w{2}$/.test(prop) ) {
   var lang = args[2] || localLang || 'en'
 }
 
-requireLangProps = (lang) => require(`../props/${lang}.json`)
-
-try {
-  propsSync = requireLangProps(lang)
-  var propsPromise = Promise.resolve( propsSync )
-} catch (err) {
-  console.log(`missing '${lang}' props: fetching`)
-  var fetchLangProps = require('../lib/fetch_lang_props')
-  var propsPromise = fetchLangProps(lang).then(() => requireLangProps(lang))
-}
+var propsPromise = require('../lib/get_lang_props')(lang)
 
 if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
 if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }

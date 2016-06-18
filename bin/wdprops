@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+const getLangProps = require('../lib/get_lang_props')
+var localLang = require('../lib/local_lang')
+var lang = process.argv.slice(2)[0] || localLang || 'en'
+
+const writeResultsToStdout = function (results) {
+  console.log(JSON.stringify(results, null, 2))
+}
+
+getLangProps(lang)
+.then(writeResultsToStdout)
+.catch(console.error.bind(console, 'wdlangsproprs error'))

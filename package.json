@@ -7,7 +7,9 @@
     "qlabel": "./bin/qlabel",
     "qclaims": "./bin/qclaims",
     "wikiqid": "./bin/wikiqid",
-    "wdsparql": "./bin/wdsparql"
+    "wdprops": "./bin/wdprops",
+    "wdsparql": "./bin/wdsparql",
+    "wdsparqlsimplify": "./bin/wdsparqlsimplify"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,7 +30,7 @@
   },
   "homepage": "https://github.com/maxlath/wikidata-cli#readme",
   "dependencies": {
-    "bluebird": "^3.4.0",
+    "bluebird": "^3.4.1",
     "bluereq": "^2.1.1",
     "colors": "^1.1.2",
     "copy2cb": "^1.0.1",
