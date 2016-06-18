@@ -11,6 +11,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [wikiqid](#wikiqid)
   - [wdprops](#wdprops)
   - [wdsparl](#wdsparl)
+  - [wdsparqlsimplify](#wdsparqlsimplify)
 - [See Also](#see-also)
   - [wikidata-filter](#wikidata-filter)
 
@@ -115,6 +116,13 @@ wdsparql ./path/to/query.rq > ./results.json
 
 ```sh
 wdsparql -s ./path/to/query.rq > ./simplified_results.json
+```
+
+### wdsparqlsimplify
+A command to apply [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function function to a query results file. Kind of the isolated second step of the `wdsparql --simplify` command:
+```sh
+wdsparql ./path/to/query.rq > ./results.json
+wdsparqlsimplify ./results.json > ./simplified_results.json
 ```
 
 -------------

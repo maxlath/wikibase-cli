@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+var path = process.argv.slice(2)[0]
+var fs = require('fs')
+var wdk = require('wikidata-sdk')
+var results = JSON.parse(fs.readFileSync(path, { encoding: 'utf-8' }))
+
+var json = JSON.stringify(wdk.simplifySparqlResults(results), null, 2)
+process.stdout.write(json)
