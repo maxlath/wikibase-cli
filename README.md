@@ -132,6 +132,10 @@ Commands that got their own modules:
 ### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
 a command-line tool to filter a Wikidata dump by claim
 
+### [wikidata-agent](https://github.com/maxlath/wikidata-agent)
+a small server to edit Wikidata from the terminal:
+`curl -X POST http://localhost:4115/claim -d 'entity=Q4115189&property=P2002&value=Zorg'`
+
 -------------
 
 ## License
