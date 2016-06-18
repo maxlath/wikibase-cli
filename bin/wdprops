@@ -9,4 +9,3 @@ const writeResultsToStdout = function (results) {
 
 getLangProps(lang)
 .then(writeResultsToStdout)
-.catch(console.error.bind(console, 'wdlangsproprs error'))
