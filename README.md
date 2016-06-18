@@ -9,6 +9,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [qlabel](#qlabel)
   - [qclaims](#qclaims)
   - [wikiqid](#wikiqid)
+  - [wdprops](#wdprops)
   - [wdsparl](#wdsparl)
 - [See Also](#see-also)
   - [wikidata-filter](#wikidata-filter)
@@ -68,6 +69,31 @@ By default, it will look at the Wikipedia corresponding to your environment loca
 wikiqid science politique fr
 # => Q36442
 ```
+
+### wdprops
+A command to access the list of all Wikidata properties in a given language (by default the environment local language)
+
+* Get the list of all Wikidata properties in your environment local language:
+```sh
+wdprops
+```
+Output an JSON object of the kind:
+```
+[...]
+  "P2897": "identifiant Eldoblaje Movie",
+  "P2898": null,
+  "P2899": "âge minimal",
+[...]
+```
+NB: properties without a label in the requested language are set to `null`, as you can see above for P2898 in French
+
+* Get the list of all Wikidata properties in another language
+```
+# here swedish
+wdprops sv
+```
+
+This command first tries to find the list in the props folder (created at project root), and request them to query.wikidata.org if missing.
 
 ### wdsparl
 A command to run a SPARQL query and get its JSON output
