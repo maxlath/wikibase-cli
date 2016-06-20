@@ -8,7 +8,12 @@ var localLang = require('../lib/local_lang')
 
 var id = args[0]
 var lang = args[1] || localLang || 'en'
-id = wdk.normalizeId(id)
+try {
+  id = wdk.normalizeId(id)
+} catch (err) {
+  err.context = {id: id, lang: lang, args: args}
+  error_.log(err)
+}
 
 var languages = [lang]
 if (lang !== 'en') {
