@@ -5,7 +5,7 @@ const args = process.argv.slice(2)
 const wdk = require('wikidata-sdk')
 const copy = require('../lib/copy')
 const breq = require('bluereq')
-const logError = require('../lib/log_error')
+const error_ = require('../lib/error')
 const localLang = require('../lib/local_lang')
 const _ = require('lodash')
 
@@ -40,6 +40,9 @@ url = wdk.getWikidataIdsFromSitelinks(title, lang)
 
 function parseIds (res) {
   const entities = res.body.entities
+  if (entities == null) {
+    throw error_.new('received an empty response', res.body)
+  }
   const ids = Object.keys(entities)
   if (ids.length === 1 && ids[0] !== '-1') {
     id = ids[0]
@@ -49,7 +52,7 @@ function parseIds (res) {
     // copy and output the corresponding id
     copy(id)
   } else {
-    console.error('id not found'.red, res.body)
+    throw error_.new('id not found', res.body)
   }
 }
 
@@ -61,4 +64,4 @@ function formatDescriptions (descriptions) {
 
 breq.get(url)
 .then(parseIds)
-.catch(logError)
+.catch(error_.log)

@@ -3,7 +3,7 @@ var args = process.argv.slice(2)
 var wdk = require('wikidata-sdk')
 var copy = require('../lib/copy')
 var breq = require('bluereq')
-var logError = require('../lib/log_error')
+var error_ = require('../lib/error')
 var localLang = require('../lib/local_lang')
 
 var id = args[0]
@@ -34,4 +34,4 @@ function parseLabel (res) {
 
 breq.get(url)
 .then(parseLabel)
-.catch(logError)
+.catch(error_.log)

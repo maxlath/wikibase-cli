@@ -20,7 +20,7 @@ if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
 
 var copy = require('../lib/copy')
 var breq = require('bluereq')
-var logError = require('../lib/log_error')
+var error_ = require('../lib/error')
 var exist = require('../lib/exist')
 
 var wdk = require('wikidata-sdk')
@@ -65,4 +65,4 @@ var parseRes = function (res, props) {
 
 Promise.all([ breq.get(url), propsPromise ])
 .spread(parseRes)
-.catch(logError)
+.catch(error_.log)
