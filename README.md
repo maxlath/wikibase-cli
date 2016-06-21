@@ -89,7 +89,7 @@ Output an JSON object of the kind:
 NB: properties without a label in the requested language are set to `null`, as you can see above for P2898 in French
 
 * Get the list of all Wikidata properties in another language
-```
+```sh
 # here swedish
 wdprops sv
 ```
