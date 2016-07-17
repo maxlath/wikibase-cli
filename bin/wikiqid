@@ -26,7 +26,8 @@ if (title.length === 0) {
 // parse the url if a wikipedia url was provided as title
 const re = /https:\/\/\w{2,4}\.wikipedia\.org\/wiki\//
 if (title.match(re)){
-  title = title.replace('https://fr.wikipedia.org/wiki/', '')
+  lang = title.replace(/https:\/\/(\w{2,4}).wikipedia.org\/wiki\/.*/, '$1')
+  title = title.replace(/https:\/\/\w{2,4}.wikipedia.org\/wiki\/(.*)/, '$1')
   title = global.decodeURIComponent(title)
 }
 

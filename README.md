@@ -71,6 +71,12 @@ wikiqid science politique fr
 # => Q36442
 ```
 
+You can also pass it full Wikipedia urls
+```sh
+wikiqid https://en.wikipedia.org/wiki/Friedrich_Nietzsche
+# => Q9358
+```
+
 ### wdprops
 A command to access the list of all Wikidata properties in a given language (by default the environment local language)
 
