@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 1.7.0 - 2016-07-24
+* Added [qdata](https://github.com/maxlath/wikidata-cli#qdata), a command to get the data of a given entity
+
+## 1.6.0 - 2016-07-17
+* [wikiqid](https://github.com/maxlath/wikidata-cli#wikiqid) accepts full wikipedia urls
+
 ## 1.5.0 - 2016-06-18
 * Added [wdsparqlsimplify](https://github.com/maxlath/wikidata-cli#wdsparqlsimplify), a command to get the list of all Wikidata properties
 
