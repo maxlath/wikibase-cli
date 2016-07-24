@@ -8,6 +8,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
 - [Commands](#commands)
   - [qlabel](#qlabel)
   - [qclaims](#qclaims)
+  - [qdata](#qdata)
   - [wikiqid](#wikiqid)
   - [wdprops](#wdprops)
   - [wdsparl](#wdsparl)
@@ -55,6 +56,18 @@ qclaims Q2001 P19
 # or by specifying another language than your local language
 qclaims Q2001 fr
 qclaims Q2001 P19 fr
+```
+
+### qdata
+A quick way to access an entities data
+```sh
+qdata Q1496
+```
+This simply outputs the result of `https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q1496`, parsed to keep only what is relevant to the requested entity (here Q1496).
+The output is valid json, so it lets you the possibility to pipe it to a JSON parser such as [jsondepth](https://www.npmjs.com/package/jsondepth):
+```sh
+qdata Q1496 | jd labels.pt
+# => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
 ### wikiqid

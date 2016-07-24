@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+var id = process.argv.slice(2)[0]
+
+if (!/^Q[0-9]+$/.test(id)) {
+  throw new Error('invalid wikidata Q id')
+}
+
+var breq = require('bluereq')
+var url = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + id
+
+breq.get(url)
+.then(function(res) {
+  var entity = res.body.entities && res.body.entities[id]
+  if (entity != null) {
+    return process.stdout.write(JSON.stringify(entity, null, 4) + '\n')
+  } else {
+    return console.log('error: ', res.body)
+  }
+})
+.catch(console.log)
