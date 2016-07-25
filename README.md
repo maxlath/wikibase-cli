@@ -116,7 +116,7 @@ wdprops sv
 
 This command first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
 
-#### wdsparl reset
+#### wdprops reset
 This means that after a while, your local version will miss new and updated properties: this can be solved by running `wdprops reset`
 
 ### wdsparl
