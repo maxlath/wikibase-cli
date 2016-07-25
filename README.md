@@ -11,6 +11,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [qdata](#qdata)
   - [wikiqid](#wikiqid)
   - [wdprops](#wdprops)
+    - [wdprops reset](#wdprops-reset)
   - [wdsparl](#wdsparl)
   - [wdsparqlsimplify](#wdsparqlsimplify)
 - [See Also](#see-also)
@@ -113,7 +114,10 @@ NB: properties without a label in the requested language are set to `null`, as y
 wdprops sv
 ```
 
-This command first tries to find the list in the props folder (created at project root), and request them to query.wikidata.org if missing.
+This command first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
+
+#### wdsparl reset
+This means that after a while, your local version will miss new and updated properties: this can be solved by running `wdprops reset`
 
 ### wdsparl
 A command to run a SPARQL query and get its JSON output
