@@ -15,3 +15,4 @@ const writeResultsToStdout = function (results) {
 
 getLangProps(lang)
 .then(writeResultsToStdout)
+.catch((err)=> console.log(err.stack))
