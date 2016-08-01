@@ -16,6 +16,8 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [wdsparqlsimplify](#wdsparqlsimplify)
 - [See Also](#see-also)
   - [wikidata-filter](#wikidata-filter)
+  - [wikidata-agent](#wikidata-agent)
+  - [wikidata-taxonomy](#wikidata-taxonomy)
 
 -------------
 
@@ -158,6 +160,9 @@ a command-line tool to filter a Wikidata dump by claim
 ### [wikidata-agent](https://github.com/maxlath/wikidata-agent)
 a small server to edit Wikidata from the terminal:
 `curl -X POST http://localhost:4115/claim -d 'entity=Q4115189&property=P2002&value=Zorg'`
+
+### [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy)
+command-line tool to extract taxonomies from Wikidata
 
 -------------
 
