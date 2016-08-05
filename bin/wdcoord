@@ -1,0 +1,64 @@
+#!/usr/bin/env node
+
+var chalk = require('chalk');
+
+// print error message to STDERR and exit
+function error(msg) {
+  console.error(chalk.red(msg))
+  process.exit(1)
+}
+
+function wdcoord(id, env) {
+  var breq = require('bluereq')
+  var url = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + id + "&props=claims";
+
+  breq.get(url)
+  .then(function(res) {
+    var entities = res.body.entities
+    var claims = entities && entities[id] && entities[id].claims
+    if (claims == null) {
+      error('item or claims not found!')
+    }
+    var location = claims['P625']
+    if (!location || !location.length) return
+
+    // emit all coordinates (ignoring rank!)
+    location.forEach(function(stm) {
+      var value = stm.mainsnak.datavalue.value
+      printCoords(value, env.format)
+    })
+
+    return
+  })
+  .catch(function(msg) {
+    error("HTTP request error"+"\n"+msg) 
+  })
+}
+
+function printCoords(coords, format) {
+  var data
+  if (format == 'json') {
+    data = JSON.stringify(coords) + "\n"
+  } else {
+    data = coords.latitude + " " + coords.longitude + "\n"
+  }
+  process.stdout.write(data)
+}
+
+var program = require('commander')
+
+program
+  .arguments('<id>')
+  .option('-j, --json', 'print Wikidata JSON values')
+  .description('get geographic coordinates of a Wikidata item')
+  .action(function(id, env) {
+    if (!/^Q[0-9]+$/.test(id)) {
+      error('invalid wikidata Q id!')
+    }
+    var format = 'text'
+    if (env.json) format = 'json'
+    wdcoord(id, { format: format })
+  })
+  .parse(process.argv)
+
+if (!program.args.length) program.help()
