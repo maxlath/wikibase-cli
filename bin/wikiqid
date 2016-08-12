@@ -8,6 +8,7 @@ const breq = require('bluereq')
 const error_ = require('../lib/error')
 const localLang = require('../lib/local_lang')
 const _ = require('lodash')
+const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 
 const last = args.slice(-1)[0]
 var lang
@@ -37,7 +38,6 @@ if (title.match(re)){
 // Might need to be removed :/
 title = title[0].toUpperCase() + title.slice(1)
 
-url = wdk.getWikidataIdsFromSitelinks(title, lang)
 
 function parseIds (res) {
   const entities = res.body.entities
@@ -63,6 +63,10 @@ function formatDescriptions (descriptions) {
     .join('\n')
 }
 
-breq.get(url)
+getRedirectedWikipediaTitle(lang, title)
+.then((trueTitle) => {
+  const url = wdk.getWikidataIdsFromSitelinks(trueTitle, lang)
+  return breq.get(url)
+})
 .then(parseIds)
 .catch(error_.log)
