@@ -6,6 +6,7 @@
   "bin": {
     "qlabel": "./bin/qlabel",
     "qclaims": "./bin/qclaims",
+    "qdata": "./bin/qdata",
     "wikiqid": "./bin/wikiqid",
     "wdprops": "./bin/wdprops",
     "wdsparql": "./bin/wdsparql",
