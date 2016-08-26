@@ -1,7 +1,15 @@
 #!/usr/bin/env node
+const program = require('commander')
+const strings = require('../lib/strings')
 
-// allow to pass a title without having to put it in ""
-const args = process.argv.slice(2)
+program
+.arguments(strings.wikiqid.args)
+.description(strings.wikiqid.description)
+.parse(process.argv)
+
+const args = program.args
+if (args.length === 0) return program.help()
+
 const wdk = require('wikidata-sdk')
 const copy = require('../lib/copy')
 const breq = require('bluereq')
@@ -12,17 +20,14 @@ const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_tit
 
 const last = args.slice(-1)[0]
 var lang
+
 if (last.length === 2) {
   lang = args.pop()
 }
-lang = lang ||  localLang || 'en'
+lang = lang || localLang || 'en'
 
+// allow to pass a title without having to put it in ""
 var title = args.join(' ')
-
-if (title.length === 0) {
-  console.error('missing title'.red)
-  return
-}
 
 // parse the url if a wikipedia url was provided as title
 const re = /https:\/\/\w{2,4}\.wikipedia\.org\/wiki\//

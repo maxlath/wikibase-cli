@@ -1,7 +1,14 @@
 #!/usr/bin/env node
-var args = process.argv.slice(2)
-var id = args[0]
-var prop = args[1]
+const program = require('commander')
+const strings = require('../lib/strings')
+
+program
+.arguments(strings.claims.args)
+.description(strings.claims.description)
+.parse(process.argv)
+
+var id = program.args[0]
+var prop = program.args[1]
 var localLang = require('../lib/local_lang')
 
 Promise = require('bluebird')
@@ -10,8 +17,10 @@ if ( /^\w{2}$/.test(prop) ) {
   var lang = prop
   prop = null
 } else {
-  var lang = args[2] || localLang || 'en'
+  var lang = program.args[2] || localLang || 'en'
 }
+
+if (!(id && lang)) return program.help()
 
 var propsPromise = require('../lib/get_lang_props')(lang)
 

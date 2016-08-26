@@ -1,5 +1,14 @@
 #!/usr/bin/env node
-var args = process.argv.slice(2)
+const program = require('commander')
+const strings = require('../lib/strings')
+
+program
+.arguments(strings.label.args)
+.description(strings.label.description)
+.parse(process.argv)
+
+var args = program.args
+
 var wdk = require('wikidata-sdk')
 var copy = require('../lib/copy')
 var breq = require('bluereq')
@@ -8,6 +17,9 @@ var localLang = require('../lib/local_lang')
 
 var id = args[0]
 var lang = args[1] || localLang || 'en'
+
+if (!(id && lang)) return program.help()
+
 try {
   id = wdk.normalizeId(id)
 } catch (err) {

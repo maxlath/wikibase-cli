@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+const program = require('commander')
+const pkg = require('../package.json')
+const strings = require('../lib/strings')
+
+program
+.version(pkg.version)
+// TODO: add subcommands aliases when commander will have published this feature
+.command(`label ${strings.label.args}`, strings.label.description)
+.command(`claims ${strings.claims.args}`, strings.claims.description)
+.command(`data ${strings.data.args}`, strings.data.description)
+.command(`props ${strings.props.args}`, strings.props.description)
+.command(`wikiqid ${strings.wikiqid.args}`, strings.wikiqid.description)
+.command(`sparql ${strings.sparql.args}`, strings.sparql.description)
+.parse(process.argv)

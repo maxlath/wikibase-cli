@@ -1,22 +1,20 @@
 #!/usr/bin/env node
-var simplifyResults = false
-var args = process.argv.slice(2)
+const program = require('commander')
+const strings = require('../lib/strings')
 
-args = args.filter(function (arg) {
-  if (arg === '-s' || arg === '--simplify' ) {
-    simplifyResults = true
-    return false
-  } else {
-    return true
-  }
-})
+program
+.arguments(strings.sparql.args)
+.description(strings.sparql.description)
+.option('-s, --simplify', 'output simplified results')
+.parse(process.argv)
 
-path = args[0]
+var path = program.args[0]
+
+if (!path) return program.help()
 
 var wdk = require('wikidata-sdk')
 var request = require('request')
 var fs = require('fs')
-
 var sparql = fs.readFileSync(path, { encoding: 'utf-8' })
 var url = wdk.sparqlQuery(sparql)
 
@@ -25,7 +23,7 @@ request(url, function (err, res) {
     console.log(err)
   } else {
     results = res.body
-    if (simplifyResults) {
+    if (program.simplified) {
       results = JSON.stringify(wdk.simplifySparqlResults(results), null, 2)
     }
     process.stdout.write(results)

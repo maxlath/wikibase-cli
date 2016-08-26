@@ -4,13 +4,7 @@
   "description": "command-line tools to interact with Wikidata",
   "main": "index.js",
   "bin": {
-    "qlabel": "./bin/qlabel",
-    "qclaims": "./bin/qclaims",
-    "qdata": "./bin/qdata",
-    "wikiqid": "./bin/wikiqid",
-    "wdprops": "./bin/wdprops",
-    "wdsparql": "./bin/wdsparql",
-    "wdsparqlsimplify": "./bin/wdsparqlsimplify"
+    "wd": "./bin/wd"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -34,6 +28,7 @@
     "bluebird": "^3.4.1",
     "bluereq": "^2.1.1",
     "colors": "^1.1.2",
+    "commander": "^2.9.0",
     "copy2cb": "^1.0.1",
     "lodash": "^4.12.0",
     "request": "^2.72.0",
