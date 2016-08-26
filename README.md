@@ -10,6 +10,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [qclaims](#qclaims)
   - [qdata](#qdata)
   - [wikiqid](#wikiqid)
+  - [wdcoord](#wdcoord)
   - [wdprops](#wdprops)
     - [wdprops reset](#wdprops-reset)
   - [wdsparl](#wdsparl)
@@ -91,6 +92,14 @@ You can also pass it full Wikipedia urls
 ```sh
 wikiqid https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
+```
+
+### wdcoord
+A command to the the geographic coordinates (latitude and longitude) of a Wikidata item.
+
+```sh
+wdcoord Q2112
+# => 52.016666666667 8.5166666666667
 ```
 
 ### wdprops
