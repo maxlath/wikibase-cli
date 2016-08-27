@@ -159,6 +159,17 @@ wd open P659
 wd open https://inventaire.io/entity/wd:Q33977
 # opens https://wikidata.org/wiki/Q33977
 ```
+
+**Options**
+* `-p, --wikipedia`: open the Wiki**p**edia article instead
+* `-l, --lang`: specify
+```sh
+wd open -p Q123
+# opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
+wd open -p -l sv Q123
+# opens https://sv.wikipedia.org/wiki/September instead
+```
+
 -------------
 
 ## Pre-2.0.0 API

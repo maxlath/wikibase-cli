@@ -5,17 +5,20 @@ const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
 const localLang = require('../lib/local_lang')
 const open = require('opn')
+  const getSitelinkUrl = require('../lib/get_sitelink_url')
 
 program
 .arguments(strings.open.args)
 .description(strings.open.description)
+.option('-p, --wikipedia', 'open the Wikipedia article instead')
+.option('-l, --lang <lang>', 'specify for which language the sitelink should be picked')
 .parse(process.argv)
 
 const args = program.args
 if (args.length === 0) return program.help()
 
+const lang = program.lang || localLang || 'en'
 const idString = args[0]
-const lang = args[1] || localLang || 'en'
 
 // Accept any string that might contain a Wikidata id and keep only the id
 // Useful to parse urls containing Wikidata ids
@@ -29,8 +32,17 @@ if (!match) {
 
 const id = match[0]
 
-if (id[0] === 'Q') {
-  open(`https://wikidata.org/wiki/${id}`)
+if (program.wikipedia) {
+  getSitelinkUrl(id, lang, 'wiki')
+  .then(open)
+  .catch((err) => {
+    console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
+    open(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
+  })
 } else {
-  open(`https://www.wikidata.org/wiki/Property:${id}`)
+  if (id[0] === 'Q') {
+    open(`https://wikidata.org/wiki/${id}`)
+  } else {
+    open(`https://www.wikidata.org/wiki/Property:${id}`)
+  }
 }
