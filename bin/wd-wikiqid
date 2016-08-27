@@ -5,6 +5,7 @@ const strings = require('../lib/strings')
 program
 .arguments(strings.wikiqid.args)
 .description(strings.wikiqid.description)
+.option('-l, --lang <lang>', 'specify from which language the title comes')
 .parse(process.argv)
 
 const args = program.args
@@ -19,12 +20,7 @@ const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 
 const last = args.slice(-1)[0]
-var lang
-
-if (last.length === 2) {
-  lang = args.pop()
-}
-lang = lang || localLang || 'en'
+var lang = program.lang || localLang || 'en'
 
 // allow to pass a title without having to put it in ""
 var title = args.join(' ')

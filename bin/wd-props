@@ -10,11 +10,12 @@ program
 .arguments(strings.props.args)
 .description(strings.props.description)
 .option('-r, --reset', 'clear properties cache')
+.option('-l, --lang <lang>', 'specify the properties labels language')
 .parse(process.argv)
 
 if (program.reset) return resetProperties()
 
-var lang = program.args[0] || localLang || 'en'
+const lang = program.lang || localLang || 'en'
 
 const writeResultsToStdout = function (results) {
   console.log(JSON.stringify(results, null, 2))

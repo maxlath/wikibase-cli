@@ -81,13 +81,17 @@ wd wikiqid Cantabria
 wd wikiqid New Delhi
 # => Q987
 ```
-By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code as last argument
+
+**Options**
+
+* `-l, --lang`: specify from which language the title comes
+By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code
 ```sh
-wd wikiqid science politique fr
+wd wikiqid -l fr science politique
 # => Q36442
 ```
 
-You can also pass it full Wikipedia urls
+You can also pass it full Wikipedia urls and let it find the language from there
 ```sh
 wd wikiqid https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
@@ -111,9 +115,11 @@ Output a JSON object of the kind:
 NB: properties without a label in the requested language are set to `null`, as you can see above for P2898 in French
 
 * Get the list of all Wikidata properties in another language
+**Options**
+* `-l, --lang`: specify the properties labels language
 ```sh
-# here swedish
-wd props sv
+wd props -l sv
+# outputs the properties in Swedish
 ```
 
 This command first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
@@ -162,10 +168,12 @@ wd open https://inventaire.io/entity/wd:Q33977
 
 **Options**
 * `-p, --wikipedia`: open the Wiki**p**edia article instead
-* `-l, --lang`: specify
 ```sh
 wd open -p Q123
 # opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
+```
+* `-l, --lang`: specify which Wikipedia edition should be targeted
+```sh
 wd open -p -l sv Q123
 # opens https://sv.wikipedia.org/wiki/September instead
 ```
