@@ -12,4 +12,5 @@ program
 .command(`props ${strings.props.args}`, strings.props.description)
 .command(`wikiqid ${strings.wikiqid.args}`, strings.wikiqid.description)
 .command(`sparql ${strings.sparql.args}`, strings.sparql.description)
+.command(`open ${strings.open.args}`, strings.open.description)
 .parse(process.argv)

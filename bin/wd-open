@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+const program = require('commander')
+const strings = require('../lib/strings')
+const wdk = require('wikidata-sdk')
+const error_ = require('../lib/error')
+const localLang = require('../lib/local_lang')
+const open = require('opn')
+
+program
+.arguments(strings.open.args)
+.description(strings.open.description)
+.parse(process.argv)
+
+const args = program.args
+if (args.length === 0) return program.help()
+
+const idString = args[0]
+const lang = args[1] || localLang || 'en'
+
+// Accept any string that might contain a Wikidata id and keep only the id
+// Useful to parse urls containing Wikidata ids
+// Ex: https://inventaire.io/entity/wd:Q33977
+const match = idString.match(/(Q|P)\d+/)
+
+if (!match) {
+  console.error('Wikidata entity or property id not found')
+  process.exit(1)
+}
+
+const id = match[0]
+
+if (id[0] === 'Q') {
+  open(`https://wikidata.org/wiki/${id}`)
+} else {
+  open(`https://www.wikidata.org/wiki/Property:${id}`)
+}

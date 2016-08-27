@@ -12,6 +12,7 @@ For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wiki
   - [wd wikiqid](#wd-wikiqid)
   - [wd props](#wd-props)
   - [wd sparl](#wd-sparl)
+  - [wd open](#wd-open)
 - [Pre-2.0.0 API](#pre-200-api)
 - [See Also](#see-also)
   - [wikidata-filter](#wikidata-filter)
@@ -142,6 +143,21 @@ wd sparql ./path/to/query.rq > ./results.json
 
 ```sh
 wd sparql -s ./path/to/query.rq > ./simplified_results.json
+```
+
+### wd open
+A command to open an entity's or property's page on Wikidata in a browser (yep, you can be that lazy)
+
+```sh
+wd open Q123
+# opens https://wikidata.org/wiki/Q123 in your default browser
+
+wd open P659
+# opens https://www.wikidata.org/wiki/Property:P659
+
+# also working with any string that matches /(Q|P)\d+/
+wd open https://inventaire.io/entity/wd:Q33977
+# opens https://wikidata.org/wiki/Q33977
 ```
 -------------
 
