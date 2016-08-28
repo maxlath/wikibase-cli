@@ -45,7 +45,6 @@ wd label Q1103345
 ```
 
 **Options**
-
 * `-l, --lang`: specify the label's language
 
 By default, the result uses your environment local language (`process.env.LANG`), but you can pass a 2-letters language code as second argument
@@ -63,9 +62,13 @@ A quick way to access the claims of an entity
 wd claims Q2001
 # or just his place of birth
 wd claims Q2001 P19
-# or by specifying another language than your local language
-wd claims Q2001 fr
-wd claims Q2001 P19 fr
+```
+
+**Options**
+* `-l, --lang`: specify the properties labels' language
+```sh
+wd claims Q2001 -l es
+wd claims Q2001 P19 --lang ru
 ```
 
 ### wd data

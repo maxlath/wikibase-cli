@@ -5,58 +5,54 @@ const strings = require('../lib/strings')
 program
 .arguments(strings.claims.args)
 .description(strings.claims.description)
+.option('-l, --lang <lang>', "specify the properties labels' language")
 .parse(process.argv)
 
 var id = program.args[0]
 var prop = program.args[1]
-var localLang = require('../lib/local_lang')
+const localLang = require('../lib/local_lang')
 
 Promise = require('bluebird')
 
-if ( /^\w{2}$/.test(prop) ) {
-  var lang = prop
-  prop = null
-} else {
-  var lang = program.args[2] || localLang || 'en'
-}
+const lang = program.lang || localLang || 'en'
 
 if (!(id && lang)) return program.help()
 
-var propsPromise = require('../lib/get_lang_props')(lang)
+const propsPromise = require('../lib/get_lang_props')(lang)
 
 if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
 if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
 
-var copy = require('../lib/copy')
-var breq = require('bluereq')
-var error_ = require('../lib/error')
-var exist = require('../lib/exist')
+const copy = require('../lib/copy')
+const breq = require('bluereq')
+const error_ = require('../lib/error')
+const exist = require('../lib/exist')
 
-var wdk = require('wikidata-sdk')
+const wdk = require('wikidata-sdk')
 require('colors')
 
-var url = wdk.getEntities({
+const url = wdk.getEntities({
   props: 'claims',
   ids: id
 })
 
-var parseRes = function (res, props) {
-  var entity = res.body.entities && res.body.entities[id]
+const parseRes = function (res, props) {
+  const entity = res.body.entities && res.body.entities[id]
 
-  var logProp = function (k, v) {
-    var label = props[k]
+  const logProp = function (k, v) {
+    const label = props[k]
     console.log(k.grey, v, label && label.grey || '')
   }
 
   if (exist(entity)) {
-    var claims = wdk.simplifyClaims(entity.claims)
+    const claims = wdk.simplifyClaims(entity.claims)
     if (exist(prop)) {
-      var value = claims[prop]
+      const value = claims[prop]
       if (value != null) {
         logProp(prop, claims[prop])
         copy(claims[prop].toString())
       } else {
-        label = props[prop]
+        const label = props[prop]
         console.log('no statement found'.yellow, label)
       }
     } else {
