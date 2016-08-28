@@ -11,8 +11,8 @@ var id = program.args[0]
 
 if (!id) return program.help()
 
-if (!/^Q[0-9]+$/.test(id)) {
-  throw new Error('invalid wikidata Q id')
+if (!/^(Q|P)[0-9]+$/.test(id)) {
+  throw new Error('invalid wikidata entity or property id')
 }
 
 var breq = require('bluereq')
