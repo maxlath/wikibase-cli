@@ -43,10 +43,17 @@ Working with Wikidata, we often end up with obscure ids. We can always look-up t
 wd label Q1103345
 # => The Cluetrain Manifesto
 ```
-By default, the result uses your environment local language (`process.env.LANG`), but we can pass a 2-letters language code as second argument
+
+**Options**
+
+* `-l, --lang`: specify the label's language
+
+By default, the result uses your environment local language (`process.env.LANG`), but you can pass a 2-letters language code as second argument
 ```sh
-wd label Q1103345 de
+wd label Q1103345 -l de
 # => Cluetrain-Manifest
+wd label Q123 -l zh
+# => 9月
 ```
 
 ### wd claims

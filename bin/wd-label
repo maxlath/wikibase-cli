@@ -5,18 +5,19 @@ const strings = require('../lib/strings')
 program
 .arguments(strings.label.args)
 .description(strings.label.description)
+.option('-l, --lang <lang>', "specify the label's language")
 .parse(process.argv)
 
-var args = program.args
+const args = program.args
 
-var wdk = require('wikidata-sdk')
-var copy = require('../lib/copy')
-var breq = require('bluereq')
-var error_ = require('../lib/error')
-var localLang = require('../lib/local_lang')
+const wdk = require('wikidata-sdk')
+const copy = require('../lib/copy')
+const breq = require('bluereq')
+const error_ = require('../lib/error')
+const localLang = require('../lib/local_lang')
 
-var id = args[0]
-var lang = args[1] || localLang || 'en'
+const id = args[0]
+const lang = program.lang || localLang || 'en'
 
 if (!(id && lang)) return program.help()
 
@@ -27,21 +28,21 @@ try {
   error_.log(err)
 }
 
-var languages = [lang]
+const languages = [lang]
 if (lang !== 'en') {
   // always request the English label as a fallback
   languages.push('en')
 }
 
-var url = wdk.getEntities(id, languages, 'labels')
+const url = wdk.getEntities(id, languages, 'labels')
 
 function parseLabel (res) {
-  var entity = res.body.entities[id]
+  const entity = res.body.entities[id]
   if (entity.missing != null) {
     console.error('entity not found'.red, id)
     return
   }
-  var label = entity.labels[lang] || entity.labels['en']
+  const label = entity.labels[lang] || entity.labels['en']
   if (label != null) {
     copy(label.value)
   } else {
