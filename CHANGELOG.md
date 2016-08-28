@@ -1,6 +1,19 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 2.0.0 - 2016-08-26
+* Added a help menu: `wd help`
+* Renamed `qlabel` -> `wd label`
+* Renamed `qclaims` -> `wd claims`
+* Renamed `qdata` -> `wd data`
+* Renamed `wdprops` -> `wd props`
+* Renamed `wdprops reset` -> `wd props --reset`
+* Renamed `wikiqid` -> `wd wikiqid`
+* Renamed `wdsparql` -> `wd sparql`
+* Removed `wdsparqlsimplify`: use `wd sparql -s`
+* Replaced all language options by a uniformized `-l, --lang` option
+* Added `ẁd open`
+
 ## 1.7.0 - 2016-07-24
 * Added [qdata](https://github.com/maxlath/wikidata-cli#qdata), a command to get the data of a given entity
 
@@ -8,7 +21,7 @@
 * [wikiqid](https://github.com/maxlath/wikidata-cli#wikiqid) accepts full wikipedia urls
 
 ## 1.5.0 - 2016-06-18
-* Added [wdsparqlsimplify](https://github.com/maxlath/wikidata-cli#wdsparqlsimplify), a command to get the list of all Wikidata properties
+* Added [wdsparqlsimplify](https://github.com/maxlath/wikidata-cli#wdsparqlsimplify), like `wdsparql` but with simplified results out of the box
 
 ## 1.4.0 - 2016-06-18
 * Added [wdprops](https://github.com/maxlath/wikidata-cli#wdprops), a command to get the list of all Wikidata properties
