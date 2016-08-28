@@ -50,7 +50,7 @@ function parseIds (res) {
     id = ids[0]
     const descriptions = formatDescriptions(entities[id].descriptions)
     // log descriptions has a confirmation that we found the right entity
-    console.log(descriptions.grey)
+    console.log(descriptions)
     // copy and output the corresponding id
     copy(id)
   } else {

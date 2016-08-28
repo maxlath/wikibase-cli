@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const program = require('commander')
+const chalk   = require('chalk')
 const strings = require('../lib/strings')
 
 program
@@ -41,7 +42,7 @@ const parseRes = function (res, props) {
 
   const logProp = function (k, v) {
     const label = props[k]
-    console.log(k.grey, v, label && label.grey || '')
+    console.log(chalk.dim(k), v, label && chalk.dim(label) || '')
   }
 
   if (exist(entity)) {

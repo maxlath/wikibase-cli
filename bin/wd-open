@@ -26,8 +26,7 @@ const idString = args[0]
 const match = idString.match(/(Q|P)\d+/)
 
 if (!match) {
-  console.error('Wikidata entity or property id not found')
-  process.exit(1)
+  error_.log('Wikidata entity or property id not found', true)
 }
 
 const id = match[0]

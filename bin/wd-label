@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander')
 const strings = require('../lib/strings')
+const chalk   = require('chalk')
 
 program
 .arguments(strings.label.args)
@@ -39,14 +40,14 @@ const url = wdk.getEntities(id, languages, 'labels')
 function parseLabel (res) {
   const entity = res.body.entities[id]
   if (entity.missing != null) {
-    console.error('entity not found'.red, id)
+    console.error(chalk.red('entity not found: %s'), id)
     return
   }
   const label = entity.labels[lang] || entity.labels['en']
   if (label != null) {
     copy(label.value)
   } else {
-    console.error('entity label not found'.red)
+    console.error(chalk.red('entity label not found'))
   }
 }
 
