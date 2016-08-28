@@ -28,9 +28,7 @@ const copy = require('../lib/copy')
 const breq = require('bluereq')
 const error_ = require('../lib/error')
 const exist = require('../lib/exist')
-
 const wdk = require('wikidata-sdk')
-require('colors')
 
 const url = wdk.getEntities({
   props: 'claims',
