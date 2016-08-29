@@ -1,18 +1,19 @@
 # Wikidata-CLI
-Command-line tools to make working with [wikidata](https://wikidata.org) zuper easy.<br>
-For most, those tools are just [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk) functions wrapped for the command-line needs.
+The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikidata](https://wikidata.org)<br>
 
 ## Summary
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Commands](#commands)
-  - [wd label](#wd-label)
-  - [wd claims](#wd-claims)
-  - [wd data](#wd-data)
-  - [wd wikiqid](#wd-wikiqid)
-  - [wd props](#wd-props)
-  - [wd sparl](#wd-sparl)
-  - [wd open](#wd-open)
+  - [Read opeartions](#read-operations)
+    - [wd label](#wd-label)
+    - [wd claims](#wd-claims)
+    - [wd data](#wd-data)
+    - [wd wikiqid](#wd-wikiqid)
+    - [wd props](#wd-props)
+    - [wd sparl](#wd-sparl)
+    - [wd open](#wd-open)
+  - [Write opeartions](#write-operations)
 - [Pre-2.0.0 API](#pre-200-api)
 - [See Also](#see-also)
   - [wikidata-filter](#wikidata-filter)
@@ -37,7 +38,9 @@ Installing globally allows to make the command `wd` accessible from your shell `
 
 ## Commands
 
-### wd label
+### Read operations
+
+#### wd label
 Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label
 ```sh
 wd label Q1103345
@@ -55,7 +58,7 @@ wd label Q123 -l zh
 # => 9月
 ```
 
-### wd claims
+#### wd claims
 A quick way to access the claims of an entity
 ```sh
 # all Q2001's claims
@@ -71,7 +74,7 @@ wd claims Q2001 -l es
 wd claims Q2001 P19 --lang ru
 ```
 
-### wd data
+#### wd data
 A quick way to access an entities data
 ```sh
 wd data Q1496
@@ -83,7 +86,7 @@ wd data Q1496 | jd labels.pt
 # => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
-### wd wikiqid
+#### wd wikiqid
 This one is kind of the inverse of qlabel: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh
 wd wikiqid Cantabria
@@ -107,7 +110,7 @@ wd wikiqid https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
 ```
 
-### wd props
+#### wd props
 A command to access the list of all Wikidata properties in a given language (by default the environment local language)
 
 * Get the list of all Wikidata properties in your environment local language:
@@ -139,7 +142,7 @@ This means that after a while, your local version will miss new and updated prop
 **Options**
 * `-r, --reset`: clear properties cache
 
-### wd sparl
+#### wd sparl
 A command to run a SPARQL query and get its JSON output
 
 From this SPARQL query file: `./path/to/query.rq`
@@ -161,7 +164,7 @@ wd sparql ./path/to/query.rq > ./results.json
 wd sparql -s ./path/to/query.rq > ./simplified_results.json
 ```
 
-### wd open
+#### wd open
 A command to open an entity's or property's page on Wikidata in a browser (yep, you can be that lazy)
 
 ```sh
@@ -188,6 +191,9 @@ wd open -p -l sv Q123
 # opens https://sv.wikipedia.org/wiki/September instead
 ```
 
+### Write operations
+[Coming soon](https://github.com/maxlath/wikidata-cli/issues/11). Meanwhile you can use [wikidata-agent](https://github.com/maxlath/wikidata-agent)
+
 -------------
 
 ## Pre-2.0.0 API
@@ -210,7 +216,9 @@ Removed: use [wd sparql](#wd-sparql) --simplify
 -------------
 
 ## See Also
-Commands that got their own modules:
+### [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk)
+a javascript tool suite to query and work with wikidata data, heavily used by wikidata-cli
+
 ### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
 a command-line tool to filter a Wikidata dump by claim
 
