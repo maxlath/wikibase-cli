@@ -177,7 +177,8 @@ Options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 
 ```sh
-wd sparql -s ./path/to/query.rq > ./simplified_results.json
+wd sparql ./path/to/query.rq > ./results.json
+wd sparql -r ./path/to/query.rq > ./raw_sparql_results.json
 ```
 
 #### wd graph
@@ -187,7 +188,12 @@ A command to generate and run a simple SPARQL query, passing one or two of the e
 * `-o, --object`
 
 ```sh
+# what is the entity id matching the twitter username (P2002) "timberners_lee"?
 wd graph --property P2002 --object timberners_lee
+# which works have exoplanets (Q44559) for main subject (P921)?
+wd graph --property P921 --object Q44559 --labels
+# or with the short options syntax
+wd graph -p P921 -o Q44559 -a
 ```
 
 Other Options:
@@ -254,7 +260,7 @@ Renamed [wd wikiqid](#wd-wikiqid)
 ###wdsparql
 Renamed [wd sparql](#wd-sparql)
 ###wdsparqlsimplify
-Removed: use [wd sparql](#wd-sparql) --simplify
+Removed: [wd sparql](#wd-sparql) get simplified results by default: use the --raw option to disable this behavior
 
 -------------
 
