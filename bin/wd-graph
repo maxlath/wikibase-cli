@@ -13,7 +13,7 @@ program
 .option('-s, --subject <subject>', 'set a subject')
 .option('-p, --property <property>', 'set a property')
 .option('-o, --object <object>', 'set an object')
-.option('-i, --simplify', 'output simplified results')
+.option('-r, --raw', 'raw SPARQL results')
 .option('-a, --labels', 'requests results labels')
 .option('-l, --lang <lang>', "specify the labels' language")
 .option('-t, --limit <num>', 'set the request results limit (defaults to 1000)')
@@ -74,4 +74,4 @@ if (program.debug) {
   console.log(chalk.dim('Generated SPARQL:'), sparql)
 }
 
-makeSparqlQuery(sparql, program.simplify, program.debug)
+makeSparqlQuery(sparql, !program.raw, program.debug)

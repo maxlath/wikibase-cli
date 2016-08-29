@@ -174,7 +174,7 @@ wd sparql ./path/to/query.rq > ./results.json
 ```
 
 Options:
-* `-i, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 
 ```sh
 wd sparql -s ./path/to/query.rq > ./simplified_results.json
@@ -191,7 +191,7 @@ wd graph --property P2002 --object timberners_lee
 ```
 
 Other Options:
-* `-i, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
 * `-t, --limit <num>`: set the request results limit (defaults to 1000)

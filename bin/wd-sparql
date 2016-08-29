@@ -5,8 +5,7 @@ const strings = require('../lib/strings')
 program
 .arguments(strings.sparql.args)
 .description(strings.sparql.description)
-// using -i instead of -s to keep consistant with wd-graph
-.option('-i, --simplify', 'output simplified results')
+.option('-r, --raw', 'raw SPARQL results')
 .option('-d, --debug', 'log the generated request')
 .parse(process.argv)
 
@@ -18,4 +17,4 @@ const fs = require('fs')
 const sparql = fs.readFileSync(path, { encoding: 'utf-8' })
 const makeSparqlQuery = require('../lib/make_sparql_query')
 
-makeSparqlQuery(sparql, program.simplify, program.debug)
+makeSparqlQuery(sparql, !program.raw, program.debug)
