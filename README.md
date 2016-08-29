@@ -5,7 +5,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Commands](#commands)
-  - [Read opeartions](#read-operations)
+  - [Read operations](#read-operations)
     - [wd label](#wd-label)
     - [wd claims](#wd-claims)
     - [wd data](#wd-data)
