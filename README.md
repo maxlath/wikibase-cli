@@ -12,7 +12,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd wikiqid](#wd-wikiqid)
     - [wd props](#wd-props)
     - [wd sparl](#wd-sparl)
-    - [wd graph](#wd-graph)
+    - [wd query](#wd-query)
     - [wd open](#wd-open)
   - [Write opeartions](#write-operations)
 - [API changes](#api-changes)
@@ -181,7 +181,7 @@ wd sparql ./path/to/query.rq > ./results.json
 wd sparql -r ./path/to/query.rq > ./raw_sparql_results.json
 ```
 
-#### wd graph
+#### wd query
 A command to generate and run a simple SPARQL query, passing one or two of the elements that make a statement:
 * `-s, --subject`
 * `-p, --property`
@@ -189,11 +189,11 @@ A command to generate and run a simple SPARQL query, passing one or two of the e
 
 ```sh
 # what is the entity id matching the twitter username (P2002) "timberners_lee"?
-wd graph --property P2002 --object timberners_lee
+wd query --property P2002 --object timberners_lee
 # which works have exoplanets (Q44559) for main subject (P921)?
-wd graph --property P921 --object Q44559 --labels
+wd query --property P921 --object Q44559 --labels
 # or with the short options syntax
-wd graph -p P921 -o Q44559 -a
+wd query -p P921 -o Q44559 -a
 ```
 
 Other Options:
