@@ -12,6 +12,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd wikiqid](#wd-wikiqid)
     - [wd props](#wd-props)
     - [wd sparl](#wd-sparl)
+    - [wd graph](#wd-graph)
     - [wd open](#wd-open)
   - [Write opeartions](#write-operations)
 - [Pre-2.0.0 API](#pre-200-api)
@@ -158,10 +159,37 @@ wd sparql ./path/to/query.rq > ./results.json
 ```
 
 **Options**
-* `-s, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+* `-i, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 
 ```sh
 wd sparql -s ./path/to/query.rq > ./simplified_results.json
+```
+
+#### wd graph
+A command to generate and run a simple SPARQL query, passing one or two of the elements that make a statement:
+* `-s, --subject`
+* `-p, --property`
+* `-o, --object`
+
+```sh
+wd graph --property P2002 --object timberners_lee
+```
+
+**Other Options**
+* `-i, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+* `-a, --labels`: requests results labels
+* `-l, --lang <lang>`: specify the labels' language
+* `-t, --limit <num>`: set the request results limit (defaults to 1000)
+* `-d, --debug`: log the generated request
+
+```sh
+wd open -p Q123
+# opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
+```
+* `-l, --lang`: specify which Wikipedia edition should be targeted
+```sh
+wd open -p -l sv Q123
+# opens https://sv.wikipedia.org/wiki/September instead
 ```
 
 #### wd open
