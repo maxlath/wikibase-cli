@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 3.0.0 - 2016-08-29
+* Renamed `wd graph` -> `wd query`
+
+## 2.1.0 - 2016-08-29
+* Added `wd graph`
+
 ## 2.0.0 - 2016-08-26
 * Added a help menu: `wd help`
 * Renamed `qlabel` -> `wd label`

@@ -15,7 +15,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd graph](#wd-graph)
     - [wd open](#wd-open)
   - [Write opeartions](#write-operations)
-- [Pre-2.0.0 API](#pre-200-api)
+- [API changes](#api-changes)
 - [See Also](#see-also)
   - [wikidata-filter](#wikidata-filter)
   - [wikidata-agent](#wikidata-agent)
@@ -245,7 +245,9 @@ wd open -p -l sv Q123
 
 -------------
 
-## Pre-2.0.0 API
+## API changes
+
+**1.x.x -> 2.0.0**
 
 ###qlabel
 Renamed [wd label](#wd-label)
@@ -260,7 +262,12 @@ Renamed [wd wikiqid](#wd-wikiqid)
 ###wdsparql
 Renamed [wd sparql](#wd-sparql)
 ###wdsparqlsimplify
-Removed: [wd sparql](#wd-sparql) get simplified results by default: use the --raw option to disable this behavior
+Removed: use [wd sparql](#wd-sparql) instead, it now get simplified results by default. Use the --raw option to disable this behavior
+
+**2.x.x -> 3.0.0**
+
+###wd-graph
+Renamed [wd query](#wd-query)
 
 -------------
 
