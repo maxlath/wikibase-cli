@@ -48,7 +48,7 @@ wd label Q1103345
 # => The Cluetrain Manifesto
 ```
 
-**Options**
+Options:
 * `-l, --lang`: specify the label's language
 
 By default, the result uses your environment local language (`process.env.LANG`), but you can pass a 2-letters language code as second argument
@@ -68,7 +68,7 @@ wd claims Q2001
 wd claims Q2001 P19
 ```
 
-**Options**
+Options:
 * `-l, --lang`: specify the properties labels' language
 ```sh
 wd claims Q2001 -l es
@@ -96,7 +96,7 @@ wd wikiqid New Delhi
 # => Q987
 ```
 
-**Options**
+Options:
 
 * `-l, --lang`: specify from which language the title comes
 By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code
@@ -118,7 +118,7 @@ A command to access the list of all Wikidata properties in a given language (by 
 ```sh
 wd props
 ```
-Output a JSON object of the kind:
+Outputs a JSON object of the kind:
 ```
 [...]
   "P2897": "identifiant Eldoblaje Movie",
@@ -128,8 +128,23 @@ Output a JSON object of the kind:
 ```
 NB: properties without a label in the requested language are set to `null`, as you can see above for P2898 in French
 
+This is especially convenient when you're looking for a property:
+```sh
+# look for a property dealing with images
+wd props |grep image
+```
+Outputs:
+```
+  "P18": "image",
+  "P41": "flag image",
+  "P94": "coat of arms image",
+  "P154": "logo image",
+  "P158": "seal image",
+[...]
+```
+
 * Get the list of all Wikidata properties in another language
-**Options**
+Options:
 * `-l, --lang`: specify the properties labels language
 ```sh
 wd props -l sv
@@ -140,7 +155,7 @@ This command first tries to find the list in the `props` folder (created at wiki
 
 This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` options
 
-**Options**
+Options:
 * `-r, --reset`: clear properties cache
 
 #### wd sparl
@@ -158,7 +173,7 @@ get its output from your terminal like so:
 wd sparql ./path/to/query.rq > ./results.json
 ```
 
-**Options**
+Options:
 * `-i, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 
 ```sh
@@ -175,7 +190,7 @@ A command to generate and run a simple SPARQL query, passing one or two of the e
 wd graph --property P2002 --object timberners_lee
 ```
 
-**Other Options**
+Other Options:
 * `-i, --simplify`: output the results simplifed by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
@@ -207,7 +222,7 @@ wd open https://inventaire.io/entity/wd:Q33977
 # opens https://wikidata.org/wiki/Q33977
 ```
 
-**Options**
+Options:
 * `-p, --wikipedia`: open the Wiki**p**edia article instead
 ```sh
 wd open -p Q123
