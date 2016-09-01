@@ -1,23 +1,19 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
-const localLang = require('../lib/local_lang')
 const open = require('opn')
-  const getSitelinkUrl = require('../lib/get_sitelink_url')
+const getSitelinkUrl = require('../lib/get_sitelink_url')
 
-program
-.arguments(strings.open.args)
-.description(strings.open.description)
+program.
 .option('-p, --wikipedia', 'open the Wikipedia article instead')
-.option('-l, --lang <lang>', 'specify for which language the sitelink should be picked')
-.parse(process.argv)
+.process('open')
 
 const args = program.args
 if (args.length === 0) return program.help()
 
-const lang = program.lang || localLang || 'en'
+const lang = program.lang
 const idString = args[0]
 
 // Accept any string that might contain a Wikidata id and keep only the id

@@ -1,12 +1,8 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 
-program
-.arguments(strings.wikiqid.args)
-.description(strings.wikiqid.description)
-.option('-l, --lang <lang>', 'specify from which language the title comes')
-.parse(process.argv)
+program.process('wikiqid')
 
 const args = program.args
 if (args.length === 0) return program.help()
@@ -15,12 +11,11 @@ const wdk = require('wikidata-sdk')
 const copy = require('../lib/copy')
 const breq = require('bluereq')
 const error_ = require('../lib/error')
-const localLang = require('../lib/local_lang')
 const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 
 const last = args.slice(-1)[0]
-var lang = program.lang || localLang || 'en'
+var lang = program.lang
 
 // allow to pass a title without having to put it in ""
 var title = args.join(' ')

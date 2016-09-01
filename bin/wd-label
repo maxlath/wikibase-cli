@@ -1,13 +1,9 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 const chalk   = require('chalk')
 
-program
-.arguments(strings.label.args)
-.description(strings.label.description)
-.option('-l, --lang <lang>', "specify the label's language")
-.parse(process.argv)
+program.process('label')
 
 const args = program.args
 
@@ -15,10 +11,9 @@ const wdk = require('wikidata-sdk')
 const copy = require('../lib/copy')
 const breq = require('bluereq')
 const error_ = require('../lib/error')
-const localLang = require('../lib/local_lang')
 
 const id = args[0]
-const lang = program.lang || localLang || 'en'
+const lang = program.lang
 
 if (!(id && lang)) return program.help()
 

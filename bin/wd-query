@@ -1,29 +1,25 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 const wdk = require('wikidata-sdk')
 const chalk   = require('chalk')
 const makeSparqlQuery = require('../lib/make_sparql_query')
-const localLang = require('../lib/local_lang')
 const formatStatementElementValue = require('../lib/format_statement_element_value')
 
 program
-.arguments(strings.query.args)
-.description(strings.query.description)
 .option('-s, --subject <subject>', 'set a subject')
 .option('-p, --property <property>', 'set a property')
 .option('-o, --object <object>', 'set an object')
 .option('-r, --raw', 'raw SPARQL results')
 .option('-a, --labels', 'requests results labels')
-.option('-l, --lang <lang>', "specify the labels' language")
 .option('-t, --limit <num>', 'set the request results limit (defaults to 1000)')
 .option('-d, --debug', 'log the generated request')
-.parse(process.argv)
+.process('query')
 
 if (process.argv.length === 2) return program.help()
 
 const includeLabels = program.labels
-var lang = program.lang || localLang || 'en'
+var lang = program.lang
 
 if (!(program.subject || program.property || program.object)) {
   console.log("At least one statement element should be set: subject (-s), property (-p), or object (-o)")

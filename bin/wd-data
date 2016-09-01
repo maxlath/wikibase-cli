@@ -1,11 +1,8 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 
-program
-.arguments(strings.data.args)
-.description(strings.data.description)
-.parse(process.argv)
+program.process('data')
 
 var id = program.args[0]
 
