@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const strings = require('../lib/strings')
 const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
 const open = require('opn')

@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const strings = require('../lib/strings')
 const chalk   = require('chalk')
 
 program.process('label')

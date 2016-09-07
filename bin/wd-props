@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const strings = require('../lib/strings')
-
 const getLangProps = require('../lib/get_lang_props')
-var resetProperties = require('../lib/reset_properties')
+const resetProperties = require('../lib/reset_properties')
 
 program
 .option('-r, --reset', 'clear properties cache')
