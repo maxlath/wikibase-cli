@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 const strings = require('../lib/strings')
+const chalk = require('chalk')
 
 program.process('wikiqid')
 
@@ -45,7 +46,7 @@ function parseIds (res) {
     id = ids[0]
     const descriptions = formatDescriptions(entities[id].descriptions)
     // log descriptions has a confirmation that we found the right entity
-    console.log(descriptions)
+    console.log(chalk.dim(descriptions))
     // copy and output the corresponding id
     copy(id)
   } else {
