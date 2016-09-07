@@ -7,8 +7,9 @@
     "wd": "./bin/wd"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "ava",
     "postinstall": "mkdir -p props",
+    "prepublish": "npm test",
     "lint": "standard"
   },
   "repository": {
@@ -37,6 +38,8 @@
     "wikidata-sdk": "^3.2.3"
   },
   "devDependencies": {
+    "ava": "^0.16.0",
+    "execa": "^0.4.0",
     "git-hooks": "^1.1.1",
     "standard": "^8.0.0"
   }
