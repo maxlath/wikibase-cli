@@ -203,16 +203,6 @@ Other Options:
 * `-t, --limit <num>`: set the request results limit (defaults to 1000)
 * `-d, --debug`: log the generated request
 
-```sh
-wd open -p Q123
-# opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
-```
-* `-l, --lang`: specify which Wikipedia edition should be targeted
-```sh
-wd open -p -l sv Q123
-# opens https://sv.wikipedia.org/wiki/September instead
-```
-
 #### wd open
 A command to open an entity's or property's page on Wikidata in a browser (yep, you can be that lazy)
 
