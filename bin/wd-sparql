@@ -1,13 +1,11 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 
 program
-.arguments(strings.sparql.args)
-.description(strings.sparql.description)
 .option('-r, --raw', 'raw SPARQL results')
 .option('-d, --debug', 'log the generated request')
-.parse(process.argv)
+.process('sparql')
 
 const path = program.args[0]
 

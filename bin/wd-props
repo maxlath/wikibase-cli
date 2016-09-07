@@ -1,21 +1,17 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const strings = require('../lib/strings')
 
 const getLangProps = require('../lib/get_lang_props')
-var localLang = require('../lib/local_lang')
 var resetProperties = require('../lib/reset_properties')
 
 program
-.arguments(strings.props.args)
-.description(strings.props.description)
 .option('-r, --reset', 'clear properties cache')
-.option('-l, --lang <lang>', 'specify the properties labels language')
-.parse(process.argv)
+.process('props')
 
 if (program.reset) return resetProperties()
 
-const lang = program.lang || localLang || 'en'
+const lang = program.lang
 
 const writeResultsToStdout = function (results) {
   console.log(JSON.stringify(results, null, 2))

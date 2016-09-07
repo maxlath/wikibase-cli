@@ -1,21 +1,16 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('../lib/program')
 const chalk   = require('chalk')
 const strings = require('../lib/strings')
 
-program
-.arguments(strings.claims.args)
-.description(strings.claims.description)
-.option('-l, --lang <lang>', "specify the properties labels' language")
-.parse(process.argv)
+program.process('claims')
 
 var id = program.args[0]
 var prop = program.args[1]
-const localLang = require('../lib/local_lang')
 
 Promise = require('bluebird')
 
-const lang = program.lang || localLang || 'en'
+const lang = program.lang
 
 if (!(id && lang)) return program.help()
 
