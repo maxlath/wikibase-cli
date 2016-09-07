@@ -6,7 +6,7 @@ const error_ = require('../lib/error')
 const open = require('opn')
 const getSitelinkUrl = require('../lib/get_sitelink_url')
 
-program.
+program
 .option('-p, --wikipedia', 'open the Wikipedia article instead')
 .process('open')
 
