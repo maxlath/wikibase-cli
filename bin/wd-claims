@@ -8,7 +8,7 @@ program.process('claims')
 var id = program.args[0]
 var prop = program.args[1]
 
-Promise = require('bluebird')
+const bluebird = require('bluebird')
 
 const lang = program.lang
 
@@ -62,6 +62,6 @@ const parseRes = function (res, props) {
 }
 
 
-Promise.all([ breq.get(url), propsPromise ])
+bluebird.all([ breq.get(url), propsPromise ])
 .spread(parseRes)
 .catch(error_.log)
