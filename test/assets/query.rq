@@ -1,0 +1,3 @@
+SELECT ?subject
+WHERE { ?subject wdt:P31 wd:Q44559 . }
+LIMIT 5
