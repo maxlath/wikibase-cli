@@ -8,7 +8,7 @@ const args = program.args
 
 const wdk = require('wikidata-sdk')
 const copy = require('../lib/copy')
-const breq = require('bluereq')
+const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 
 const id = args[0]
@@ -31,8 +31,8 @@ if (lang !== 'en') {
 
 const url = wdk.getEntities(id, languages, 'labels')
 
-function parseLabel (res) {
-  const entity = res.body.entities[id]
+function parseLabel (body) {
+  const entity = body.entities[id]
   if (entity.missing != null) {
     console.error(chalk.red('entity not found: %s'), id)
     return
@@ -45,6 +45,6 @@ function parseLabel (res) {
   }
 }
 
-breq.get(url)
+lightGet(url)
 .then(parseLabel)
 .catch(error_.log)

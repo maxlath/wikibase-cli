@@ -9,7 +9,7 @@ if (args.length === 0) return program.help()
 
 const wdk = require('wikidata-sdk')
 const copy = require('../lib/copy')
-const breq = require('bluereq')
+const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
@@ -35,10 +35,10 @@ if (title.match(re)){
 title = title[0].toUpperCase() + title.slice(1)
 
 
-function parseIds (res) {
-  const entities = res.body.entities
+function parseIds (body) {
+  const entities = body.entities
   if (entities == null) {
-    throw error_.new('received an empty response', res.body)
+    throw error_.new('received an empty response', body)
   }
   const ids = Object.keys(entities)
   if (ids.length === 1 && ids[0] !== '-1') {
@@ -49,7 +49,7 @@ function parseIds (res) {
     // copy and output the corresponding id
     copy(id)
   } else {
-    throw error_.new('id not found', res.body)
+    throw error_.new('id not found', body)
   }
 }
 
@@ -62,7 +62,7 @@ function formatDescriptions (descriptions) {
 getRedirectedWikipediaTitle(lang, title)
 .then((trueTitle) => {
   const url = wdk.getWikidataIdsFromSitelinks(trueTitle, lang)
-  return breq.get(url)
+  return lightGet(url)
 })
 .then(parseIds)
 .catch(error_.log)

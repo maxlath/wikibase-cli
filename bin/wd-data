@@ -3,7 +3,7 @@ const program = require('../lib/program')
 
 program.process('data')
 
-var id = program.args[0]
+const id = program.args[0]
 
 if (!id) return program.help()
 
@@ -11,16 +11,16 @@ if (!/^(Q|P)[0-9]+$/.test(id)) {
   throw new Error('invalid wikidata entity or property id')
 }
 
-var breq = require('bluereq')
-var url = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + id
+const lightGet = require('../lib/light_get')
+const url = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + id
 
-breq.get(url)
-.then(function(res) {
-  var entity = res.body.entities && res.body.entities[id]
+lightGet(url)
+.then(function(body) {
+  const entity = body.entities && body.entities[id]
   if (entity != null) {
     return process.stdout.write(JSON.stringify(entity, null, 4) + '\n')
   } else {
-    return console.log('error: ', res.body)
+    return console.log('error: ', body)
   }
 })
 .catch(console.log)

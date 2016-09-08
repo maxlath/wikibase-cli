@@ -7,8 +7,6 @@ program.process('claims')
 var id = program.args[0]
 var prop = program.args[1]
 
-const bluebird = require('bluebird')
-
 const lang = program.lang
 
 if (!(id && lang)) return program.help()
@@ -19,7 +17,7 @@ if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
 if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
 
 const copy = require('../lib/copy')
-const breq = require('bluereq')
+const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const exist = require('../lib/exist')
 const wdk = require('wikidata-sdk')
@@ -29,8 +27,10 @@ const url = wdk.getEntities({
   ids: id
 })
 
-const parseRes = function (res, props) {
-  const entity = res.body.entities && res.body.entities[id]
+const parseRes = function (res) {
+  const body = res[0]
+  const props = res[1]
+  const entity = body.entities && res.body.entities[id]
 
   const logProp = function (k, v) {
     const label = props[k]
@@ -61,6 +61,6 @@ const parseRes = function (res, props) {
 }
 
 
-bluebird.all([ breq.get(url), propsPromise ])
-.spread(parseRes)
+Promise.all([ lightGet(url), propsPromise ])
+.then(parseRes)
 .catch(error_.log)
