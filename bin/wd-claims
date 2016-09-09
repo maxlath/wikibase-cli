@@ -30,7 +30,7 @@ const url = wdk.getEntities({
 const parseRes = function (res) {
   const body = res[0]
   const props = res[1]
-  const entity = body.entities && res.body.entities[id]
+  const entity = body.entities && body.entities[id]
 
   const logProp = function (k, v) {
     const label = props[k]
@@ -56,7 +56,7 @@ const parseRes = function (res) {
       }
     }
   } else {
-    console.log('error: ', res.body)
+    console.log('error: ', body)
   }
 }
 
