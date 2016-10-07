@@ -58,7 +58,7 @@ if (includeLabels) {
   }`
 }
 
-const limit = program.limit || 1000
+const limit = program.limit || 1000
 
 const sparql = `
 SELECT ${select}
