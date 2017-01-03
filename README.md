@@ -62,7 +62,7 @@ Installing globally allows to make the command `wd` accessible from your shell `
 Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label
 ```sh
 wd label Q1103345
-# => The Cluetrain Manifesto
+# => The Cluetrain Manifesto
 ```
 
 Options:
@@ -71,7 +71,7 @@ Options:
 By default, the result uses your environment local language (`process.env.LANG`), but you can pass a 2-letters language code as second argument
 ```sh
 wd label Q1103345 -l de
-# => Cluetrain-Manifest
+# => Cluetrain-Manifest
 wd label Q123 -l zh
 # => 9月
 ```
@@ -101,14 +101,14 @@ This simply outputs the result of `https://www.wikidata.org/w/api.php?action=wbg
 The output is valid json, so it lets you the possibility to pipe it to a JSON parser such as [jsondepth](https://www.npmjs.com/package/jsondepth):
 ```sh
 wd data Q1496 | jd labels.pt
-# => { language: 'pt', value: 'Fernão de Magalhães' }
+# => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
 #### wd wikiqid
 This one is kind of the inverse of qlabel: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh
 wd wikiqid Cantabria
-# => Q3946
+# => Q3946
 wd wikiqid New Delhi
 # => Q987
 ```
@@ -165,7 +165,7 @@ Options:
 * `-l, --lang`: specify the properties labels language
 ```sh
 wd props -l sv
-# outputs the properties in Swedish
+# outputs the properties in Swedish
 ```
 
 This command first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
@@ -225,26 +225,26 @@ A command to open an entity's or property's page on Wikidata in a browser (yep, 
 
 ```sh
 wd open Q123
-# opens https://wikidata.org/wiki/Q123 in your default browser
+# opens https://wikidata.org/wiki/Q123 in your default browser
 
 wd open P659
 # opens https://www.wikidata.org/wiki/Property:P659
 
-# also working with any string that matches /(Q|P)\d+/
+# also working with any string that matches /(Q|P)\d+/
 wd open https://inventaire.io/entity/wd:Q33977
-# opens https://wikidata.org/wiki/Q33977
+# opens https://wikidata.org/wiki/Q33977
 ```
 
 Options:
 * `-p, --wikipedia`: open the Wiki**p**edia article instead
 ```sh
 wd open -p Q123
-# opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
+# opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
 ```
 * `-l, --lang`: specify which Wikipedia edition should be targeted
 ```sh
 wd open -p -l sv Q123
-# opens https://sv.wikipedia.org/wiki/September instead
+# opens https://sv.wikipedia.org/wiki/September instead
 ```
 
 ### Write operations
