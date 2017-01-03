@@ -10,6 +10,10 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Summary
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+
+
 - [Dependencies](#dependencies)
 - [Installation](#installation)
 - [Commands](#commands)
@@ -22,12 +26,17 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd sparl](#wd-sparl)
     - [wd query](#wd-query)
     - [wd open](#wd-open)
-  - [Write opeartions](#write-operations)
+  - [Write operations](#write-operations)
 - [API changes](#api-changes)
 - [See Also](#see-also)
+  - [wikidata-sdk](#wikidata-sdk)
   - [wikidata-filter](#wikidata-filter)
   - [wikidata-agent](#wikidata-agent)
   - [wikidata-taxonomy](#wikidata-taxonomy)
+- [License](#license)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 
 -------------
 
