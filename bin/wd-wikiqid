@@ -34,8 +34,7 @@ if (title.match(re)){
 // Might need to be removed :/
 title = title[0].toUpperCase() + title.slice(1)
 
-
-function parseIds (body) {
+function parseIds (context, body) {
   const entities = body.entities
   if (entities == null) {
     throw error_.new('received an empty response', body)
@@ -49,7 +48,8 @@ function parseIds (body) {
     // copy and output the corresponding id
     copy(id)
   } else {
-    throw error_.new('id not found', body)
+    titles = context.join(' / ')
+    throw error_.new(`id not found (${titles})`, body)
   }
 }
 
@@ -63,6 +63,6 @@ getRedirectedWikipediaTitle(lang, title)
 .then((trueTitle) => {
   const url = wdk.getWikidataIdsFromSitelinks(trueTitle, lang)
   return lightGet(url)
+  .then(parseIds.bind(null, [title, trueTitle]))
 })
-.then(parseIds)
 .catch(error_.log)
