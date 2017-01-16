@@ -9,7 +9,6 @@ test('wd sparql: display help', t => {
 test('wd sparql <file>', t => {
   return execa.shell('../bin/wd sparql ./assets/query.rq')
   .then(res => {
-    t.true(res.stdout[0] === '[')
-    t.deepEqual(res.stdout.split('"Q47304"').length, 2)
+    t.is(res.stdout.split('Q47304').length, 2)
   })
 })

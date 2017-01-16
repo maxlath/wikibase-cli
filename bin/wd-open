@@ -1,14 +1,15 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
+
+program
+.option('-p, --wikipedia', 'open the Wikipedia article instead')
+.process('open')
+
 const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
 const open = require('opn')
 const getSitelinkUrl = require('../lib/get_sitelink_url')
 const parseId = require('../lib/tolerant_id_parser')
-
-program
-.option('-p, --wikipedia', 'open the Wikipedia article instead')
-.process('open')
 
 const args = program.args
 if (args.length === 0) return program.help()

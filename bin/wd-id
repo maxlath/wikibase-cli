@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const chalk = require('chalk')
 
 program.process('id')
+
+const chalk = require('chalk')
 
 const args = program.args
 if (args.length === 0) return program.help()

@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const { dim, yellow } = require('chalk')
-const parseId = require('../lib/tolerant_id_parser')
 
 program.process('claims')
 
+const { dim, yellow } = require('chalk')
+const parseId = require('../lib/tolerant_id_parser')
 var id = parseId(program.args[0])
 var prop = parseId(program.args[1])
 const { lang, verbose } = program

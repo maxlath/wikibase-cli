@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const parseId = require('../lib/tolerant_id_parser')
 
 program.process('data')
 
+const parseId = require('../lib/tolerant_id_parser')
 const id = parseId(program.args[0])
 
 if (!id) return program.help()

@@ -1,9 +1,5 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const wdk = require('wikidata-sdk')
-const chalk   = require('chalk')
-const makeSparqlQuery = require('../lib/make_sparql_query')
-const formatStatementElementValue = require('../lib/format_statement_element_value')
 
 program
 .option('-s, --subject <subject>', 'set a subject')
@@ -12,8 +8,13 @@ program
 .option('-r, --raw', 'raw SPARQL results')
 .option('-a, --labels', 'requests results labels')
 .option('-t, --limit <num>', 'set the request results limit (defaults to 1000)')
-.option('-d, --debug', 'log the generated request')
 .process('query')
+
+const wdk = require('wikidata-sdk')
+const { dim } = require('chalk')
+const formatStatementElementValue = require('../lib/format_statement_element_value')
+const makeSparqlQuery = require('../lib/make_sparql_query')
+const output = require('../lib/output')(program)
 
 if (process.argv.length === 2) return program.help()
 
@@ -65,8 +66,6 @@ SELECT ${select}
 WHERE { ${triple} }
 LIMIT ${limit}`
 
-if (program.debug) {
-  console.log(chalk.dim('Generated SPARQL:'), sparql)
-}
+output(`${dim('Generated SPARQL:')} ${sparql}`, true, true)
 
-makeSparqlQuery(sparql, !program.raw, program.debug)
+makeSparqlQuery(sparql)

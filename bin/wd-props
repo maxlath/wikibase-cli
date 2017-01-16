@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const getLangProps = require('../lib/get_lang_props')
-const resetProperties = require('../lib/reset_properties')
 
 program
 .option('-r, --reset', 'clear properties cache')
 .process('props')
+
+const getLangProps = require('../lib/get_lang_props')
+const resetProperties = require('../lib/reset_properties')
 
 if (program.reset) return resetProperties()
 

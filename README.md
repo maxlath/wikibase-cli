@@ -198,6 +198,7 @@ wd sparql ./path/to/query.rq > ./results.json
 ```
 
 Options:
+* `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 
 ```sh
@@ -225,7 +226,7 @@ Other Options:
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
 * `-t, --limit <num>`: set the request results limit (defaults to 1000)
-* `-d, --debug`: log the generated request
+* `-v, --verbose`: log the generated request
 
 #### wd open
 A command to open an entity's or property's page on Wikidata in a browser (yep, you can be that lazy)

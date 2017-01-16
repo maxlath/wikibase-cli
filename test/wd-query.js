@@ -9,7 +9,6 @@ test('wd query: display help', t => {
 test('wd query -p [prop] -o [obj] -t [limit]', t => {
   return execa.shell('../bin/wd query -p P31 -o Q44559 --limit 5')
   .then(res => {
-    t.true(res.stdout[0] === '[')
-    t.deepEqual(res.stdout.split('"Q47304"').length, 2)
+    t.is(res.stdout.split('Q47304').length, 2)
   })
 })

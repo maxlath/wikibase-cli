@@ -1,16 +1,16 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const chalk   = require('chalk')
 
 program.process('label')
 
-const args = program.args
-
+const chalk   = require('chalk')
 const wdk = require('wikidata-sdk')
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const parseId = require('../lib/tolerant_id_parser')
 const output = require('../lib/output')(program)
+
+const { args } = program
 
 var id = parseId(args[0])
 output(`found id: ${id}`, true)

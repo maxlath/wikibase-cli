@@ -3,7 +3,6 @@ const program = require('../lib/program')
 
 program
 .option('-r, --raw', 'raw SPARQL results')
-.option('-d, --debug', 'log the generated request')
 .process('sparql')
 
 const path = program.args[0]
@@ -14,4 +13,4 @@ const fs = require('fs')
 const sparql = fs.readFileSync(path, { encoding: 'utf-8' })
 const makeSparqlQuery = require('../lib/make_sparql_query')
 
-makeSparqlQuery(sparql, !program.raw, program.debug)
+makeSparqlQuery(sparql)
