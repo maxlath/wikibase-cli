@@ -14,7 +14,7 @@ const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 
 const last = args.slice(-1)[0]
-var { lang } = program
+var { lang } = program
 const output = require('../lib/output')(program)
 
 // allow to pass a title without having to put it in ""

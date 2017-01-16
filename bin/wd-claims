@@ -7,7 +7,7 @@ program.process('claims')
 
 var id = parseId(program.args[0])
 var prop = parseId(program.args[1])
-const { lang, verbose } = program
+const { lang, verbose } = program
 const output = require('../lib/output')(program)
 
 if (!(id && lang)) return program.help()
