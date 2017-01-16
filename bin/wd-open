@@ -4,6 +4,7 @@ const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
 const open = require('opn')
 const getSitelinkUrl = require('../lib/get_sitelink_url')
+const parseId = require('../lib/tolerant_id_parser')
 
 program
 .option('-p, --wikipedia', 'open the Wikipedia article instead')
@@ -13,18 +14,11 @@ const args = program.args
 if (args.length === 0) return program.help()
 
 const lang = program.lang
-const idString = args[0]
+const id = parseId(args[0])
 
-// Accept any string that might contain a Wikidata id and keep only the id
-// Useful to parse urls containing Wikidata ids
-// Ex: https://inventaire.io/entity/wd:Q33977
-const match = idString.match(/(Q|P)\d+/)
-
-if (!match) {
+if (!id) {
   error_.log('Wikidata entity or property id not found', true)
 }
-
-const id = match[0]
 
 if (program.wikipedia) {
   getSitelinkUrl(id, lang, 'wiki')

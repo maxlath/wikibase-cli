@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 const { dim, yellow } = require('chalk')
+const parseId = require('../lib/tolerant_id_parser')
 
 program.process('claims')
 
-var id = program.args[0]
-var prop = program.args[1]
+var id = parseId(program.args[0])
+var prop = parseId(program.args[1])
 const { lang, verbose } = program
 const output = require('../lib/output')(program)
 
@@ -34,7 +35,7 @@ const parseRes = function (res) {
   const logProp = function (k, v, optional) {
     const propLabel = dim(verbose ? ` (${props[k]})` : '')
     const value = v.toString().replace(/,/g, ' ')
-    output(`${dim(k)}${propLabel} ${value}`, optional)
+    output(`${dim(k)}${propLabel} ${value}`, optional, true)
   }
 
   if (exist(entity)) {
