@@ -7,12 +7,12 @@ program.process('label')
 const args = program.args
 
 const wdk = require('wikidata-sdk')
-const copy = require('../lib/copy')
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
+const output = require('../lib/output')(program)
 
 var id = args[0]
-const lang = program.lang
+const { lang } = program
 
 if (!(id && lang)) return program.help()
 
@@ -39,7 +39,7 @@ function parseLabel (body) {
   }
   const label = entity.labels[lang] || entity.labels['en']
   if (label != null) {
-    copy(label.value)
+    output(label.value)
   } else {
     console.error(chalk.red('entity label not found'))
   }

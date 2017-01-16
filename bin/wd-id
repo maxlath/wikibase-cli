@@ -2,20 +2,20 @@
 const program = require('../lib/program')
 const chalk = require('chalk')
 
-program.process('wikiqid')
+program.process('id')
 
 const args = program.args
 if (args.length === 0) return program.help()
 
 const wdk = require('wikidata-sdk')
-const copy = require('../lib/copy')
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 
 const last = args.slice(-1)[0]
-var lang = program.lang
+var { lang } = program
+const output = require('../lib/output')(program)
 
 // allow to pass a title without having to put it in ""
 var title = args.join(' ')
@@ -43,10 +43,8 @@ function parseIds (context, body) {
   if (ids.length === 1 && ids[0] !== '-1') {
     id = ids[0]
     const descriptions = formatDescriptions(entities[id].descriptions)
-    // log descriptions has a confirmation that we found the right entity
-    console.log(chalk.dim(descriptions))
-    // copy and output the corresponding id
-    copy(id)
+    output(chalk.dim(descriptions), true)
+    output(id)
   } else {
     titles = context.join(' / ')
     throw error_.new(`id not found (${titles})`, body)

@@ -8,5 +8,5 @@ test('wd label: display help', t => {
 
 test('wd label <entity>', t => {
   return execa.shell('../bin/wd label Q123456')
-  .then(res => t.deepEqual(res.stdout, 'Friedrichshafen'))
+  .then(res => t.is(res.stdout, 'Friedrichshafen'))
 })

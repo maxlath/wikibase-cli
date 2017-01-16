@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const chalk   = require('chalk')
+const { dim, yellow } = require('chalk')
 
 program.process('claims')
 
 var id = program.args[0]
 var prop = program.args[1]
-
-const lang = program.lang
+const { lang, verbose } = program
+const output = require('../lib/output')(program)
 
 if (!(id && lang)) return program.help()
 
@@ -16,7 +16,6 @@ const propsPromise = require('../lib/get_lang_props')(lang)
 if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
 if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
 
-const copy = require('../lib/copy')
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const exist = require('../lib/exist')
@@ -32,9 +31,10 @@ const parseRes = function (res) {
   const props = res[1]
   const entity = body.entities && body.entities[id]
 
-  const logProp = function (k, v) {
-    const label = props[k]
-    console.log(chalk.dim(k), v, label && chalk.dim(label) || '')
+  const logProp = function (k, v, optional) {
+    const propLabel = dim(verbose ? ` (${props[k]})` : '')
+    const value = v.toString().replace(/,/g, ' ')
+    output(`${dim(k)}${propLabel} ${value}`, optional)
   }
 
   if (exist(entity)) {
@@ -42,17 +42,17 @@ const parseRes = function (res) {
     if (exist(prop)) {
       const value = claims[prop]
       if (value != null) {
-        logProp(prop, claims[prop])
-        copy(claims[prop].toString())
+        logProp(prop, claims[prop], true)
+        output(claims[prop])
       } else {
         const label = props[prop]
-        console.log('no statement found'.yellow, label)
+        console.log(yellow('no statement found'), label)
       }
     } else {
       var k, v
       for (k in claims) {
         v = claims[k]
-        logProp(k, v)
+        logProp(k, v, false)
       }
     }
   } else {

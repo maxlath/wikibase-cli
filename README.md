@@ -21,7 +21,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd label](#wd-label)
     - [wd claims](#wd-claims)
     - [wd data](#wd-data)
-    - [wd wikiqid](#wd-wikiqid)
+    - [wd id](#wd-id)
     - [wd props](#wd-props)
     - [wd sparl](#wd-sparl)
     - [wd query](#wd-query)
@@ -66,6 +66,7 @@ wd label Q1103345
 ```
 
 Options:
+* `-c, --clipboard`: copy the result to clipboard
 * `-l, --lang`: specify the label's language
 
 By default, the result uses your environment local language (`process.env.LANG`), but you can pass a 2-letters language code as second argument
@@ -86,11 +87,16 @@ wd claims Q2001 P19
 ```
 
 Options:
+* `-v, --verbose`: make results more verbose
 * `-l, --lang`: specify the properties labels' language
 ```sh
 wd claims Q2001 -l es
 wd claims Q2001 P19 --lang ru
 ```
+
+Options when passing both an id an property:
+* `-c, --clipboard`: copy the result to clipboard
+* `-j, --json`: format the result as JSON
 
 #### wd data
 A quick way to access an entities data
@@ -104,27 +110,28 @@ wd data Q1496 | jd labels.pt
 # => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
-#### wd wikiqid
-This one is kind of the inverse of qlabel: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
+#### wd id
+This one is kind of the inverse of `wd label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh
-wd wikiqid Cantabria
+wd id Cantabria
 # => Q3946
-wd wikiqid New Delhi
+wd id New Delhi
 # => Q987
 ```
 
 Options:
-
+* `-v, --verbose`: make results more verbose
+* `-c, --clipboard`: copy the result to clipboard
 * `-l, --lang`: specify from which language the title comes
 By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code
 ```sh
-wd wikiqid -l fr science politique
+wd id -l fr science politique
 # => Q36442
 ```
 
-You can also pass it full Wikipedia urls and let it find the language from there
+You can also pass it full Wikipedia urls and let it deduce the language from there
 ```sh
-wd wikiqid https://en.wikipedia.org/wiki/Friedrich_Nietzsche
+wd id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
 ```
 
@@ -253,6 +260,8 @@ wd open -p -l sv Q123
 -------------
 
 ## API changes
+
+see [CHANGELOG](CHANGELOG.md) for details
 
 **1.x.x -> 2.0.0**
 

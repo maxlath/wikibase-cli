@@ -29,10 +29,11 @@
   "homepage": "https://github.com/maxlath/wikidata-cli#readme",
   "dependencies": {
     "chalk": "^1.1.3",
-    "commander": "^2.9.0",
+    "commander": "git+https://github.com/tj/commander.js.git",
     "copy2cb": "^1.0.1",
     "lodash": "^4.12.0",
     "opn": "^4.0.2",
+    "shell-quote": "^1.6.1",
     "wikidata-sdk": "~4.0.5"
   },
   "devDependencies": {
