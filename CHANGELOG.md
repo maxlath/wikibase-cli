@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.0.0 - 2017-01-21
+* Make results minimalist unless bassed the `-v, --verbose` option. Could be considered a breaking change as one might have built on the default verbose outputs.
+* Not copying results to clipboard anymore, unless passed the `-c, --clipboard` option
+* Format outputs for the shell by default, unless passed the `-j, --json` option
+* Renamed `wd wikiqid` to `wd id`. Using [github#master version of commander to be able to set wikiqid as an alias](https://github.com/tj/commander.js/issues/402) to avoid making it a breaking change.
+
 ## 3.0.0 - 2016-08-29
 * Renamed `wd graph` -> `wd query`
 
