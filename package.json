@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "ava",
-    "postinstall": "mkdir -p props && chown -R 666 props",
+    "postinstall": "mkdir -p props",
     "prepublish": "npm test",
     "lint": "standard",
     "update-toc": "doctoc README.md"
