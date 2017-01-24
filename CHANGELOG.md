@@ -2,16 +2,16 @@
 *versions follow [SemVer](http://semver.org)*
 
 ## 4.1.0 - 2017-01-24
-* `wd open` opens a search page when no entity or property id can be found in the input
+* [`wd open`](https://github.com/maxlath/wikidata-cli#wd-open) opens a search page when no entity or property id can be found in the input
 
 ## 4.0.0 - 2017-01-21
 * Make results minimalist unless bassed the `-v, --verbose` option. Could be considered a breaking change as one might have built on the default verbose outputs.
 * Not copying results to clipboard anymore, unless passed the `-c, --clipboard` option
 * Format outputs for the shell by default, unless passed the `-j, --json` option
-* Renamed `wd wikiqid` to `wd id`. Using [github#master version of commander to be able to set wikiqid as an alias](https://github.com/tj/commander.js/issues/402) to avoid making it a breaking change.
+* Renamed `wd wikiqid` to [`wd id`](https://github.com/maxlath/wikidata-cli#wd-id). Using [github#master version of commander to be able to set wikiqid as an alias](https://github.com/tj/commander.js/issues/402) to avoid making it a breaking change.
 
 ## 3.0.0 - 2016-08-29
-* Renamed `wd graph` -> `wd query`
+* Renamed `wd graph` -> [`wd query`](https://github.com/maxlath/wikidata-cli#wd-query)
 
 ## 2.1.0 - 2016-08-29
 * Added `wd graph`
