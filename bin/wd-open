@@ -17,10 +17,6 @@ if (args.length === 0) return program.help()
 const lang = program.lang
 const id = parseId(args[0])
 
-if (!id) {
-  error_.log('Wikidata entity or property id not found', true)
-}
-
 if (program.wikipedia) {
   getSitelinkUrl(id, lang, 'wiki')
   .then(open)
@@ -28,10 +24,18 @@ if (program.wikipedia) {
     console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
     open(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
   })
+  return
+}
+
+if (!id) {
+  const search = encodeURIComponent(args.join(' '))
+  console.log('search', search)
+  open(`https://www.wikidata.org/w/index.php?title=Special:Search&search=${search}`)
+  return
+}
+
+if (id[0] === 'Q') {
+  open(`https://wikidata.org/wiki/${id}`)
 } else {
-  if (id[0] === 'Q') {
-    open(`https://wikidata.org/wiki/${id}`)
-  } else {
-    open(`https://www.wikidata.org/wiki/Property:${id}`)
-  }
+  open(`https://www.wikidata.org/wiki/Property:${id}`)
 }

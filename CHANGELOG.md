@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.1.0 - 2017-01-24
+* `wd open` opens a search page when no entity or property id can be found in the input
+
 ## 4.0.0 - 2017-01-21
 * Make results minimalist unless bassed the `-v, --verbose` option. Could be considered a breaking change as one might have built on the default verbose outputs.
 * Not copying results to clipboard anymore, unless passed the `-c, --clipboard` option
@@ -24,7 +27,7 @@
 * Renamed `wdsparql` -> `wd sparql`
 * Removed `wdsparqlsimplify`: use `wd sparql -s`
 * Replaced all language options by a uniformized `-l, --lang` option
-* Added `ẁd open`
+* Added `wd open`
 
 ## 1.7.0 - 2016-07-24
 * Added [qdata](https://github.com/maxlath/wikidata-cli#qdata), a command to get the data of a given entity

@@ -26,6 +26,8 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd sparl](#wd-sparl)
     - [wd query](#wd-query)
     - [wd open](#wd-open)
+      - [open entities and properties pages](#open-entities-and-properties-pages)
+      - [open a search page](#open-a-search-page)
   - [Write operations](#write-operations)
 - [API changes](#api-changes)
 - [See Also](#see-also)
@@ -229,8 +231,9 @@ Other Options:
 * `-v, --verbose`: log the generated request
 
 #### wd open
-A command to open an entity's or property's page on Wikidata in a browser (yep, you can be that lazy)
+A command to open a pages on Wikidata in a browser from the command line (yep, you can be that lazy)
 
+##### open entities and properties pages
 ```sh
 wd open Q123
 # opens https://wikidata.org/wiki/Q123 in your default browser
@@ -253,6 +256,12 @@ wd open -p Q123
 ```sh
 wd open -p -l sv Q123
 # opens https://sv.wikipedia.org/wiki/September instead
+```
+
+##### open a search page
+```sh
+wd open Dan Simmons
+# opens https://www.wikidata.org/w/index.php?title=Special:Search&search=Dan%20Simmons
 ```
 
 ### Write operations
