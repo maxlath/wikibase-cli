@@ -15,3 +15,8 @@ test('wd claims <id> <property>', t => {
   return execa.shell('../bin/wd claims Q3521413 P31')
   .then(res => t.is(res.stdout, 'Q11424'))
 })
+
+test('wd claims returns shell-friendly results when possible', t => {
+  return execa.shell('../bin/wd claims Q90 P625')
+  .then(res => t.is(res.stdout, '48.856577777778 2.3518277777778'))
+})
