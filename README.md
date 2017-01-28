@@ -109,7 +109,7 @@ wd coord Q2112
 ```
 
 #### wd data
-A quick way to access an entities data
+A quick way to access an entity's raw JSON data
 ```sh
 wd data Q1496
 ```
