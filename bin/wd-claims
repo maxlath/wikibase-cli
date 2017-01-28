@@ -50,9 +50,8 @@ const parseRes = function (res) {
         console.log(yellow('no statement found'), label)
       }
     } else {
-      var k, v
-      for (k in claims) {
-        v = claims[k]
+      for (let k in claims) {
+        let v = claims[k]
         logProp(k, v, false)
       }
     }
