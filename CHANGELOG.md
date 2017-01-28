@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.2.0 - 2017-01-28
+* Added [`wd coord`](https://github.com/maxlath/wikidata-cli#wd-coord)
+
 ## 4.1.0 - 2017-01-24
 * [`wd open`](https://github.com/maxlath/wikidata-cli#wd-open) opens a search page when no entity or property id can be found in the input
 
