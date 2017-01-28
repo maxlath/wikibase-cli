@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+// wd-coord is a simple alias of wd claims with the property set to P625
+
+const program = require('../lib/program')
+program.process('coord')
+if (program.args.length === 0) return program.help()
+
+const execa = require('execa')
+// Use the raw args to let wd claims re-parse the options
+const args = program.rawArgs.slice(2).join(' ')
+  // Whatever the arguments, inject the property P625 just after
+  // whatever is likely to be parsed as a Qid
+  .replace(/(Q\d+[^\s]*)/, '$1 P625')
+
+// Sub shell seem to disable chalk colors unless passed FORCE_COLOR
+const env = 'export FORCE_COLOR=true'
+
+execa.shell(`${env}; ./bin/wd claims ${args}`)
+.then(res => console.log(res.stdout))
+.catch(console.error)

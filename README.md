@@ -100,6 +100,14 @@ Options when passing both an id an property:
 * `-c, --clipboard`: copy the result to clipboard
 * `-j, --json`: format the result as JSON
 
+#### wd coord
+A command to output the geographic coordinates (latitude and longitude) of an entity
+
+```sh
+wd coord Q2112
+# => 52.016666666667 8.5166666666667
+```
+
 #### wd data
 A quick way to access an entities data
 ```sh

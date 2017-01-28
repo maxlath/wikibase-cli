@@ -10,6 +10,7 @@ const id = require('../configs/id')
 const sparql = require('../configs/sparql')
 const query = require('../configs/query')
 const open = require('../configs/open')
+const coord = require('../configs/coord')
 
 program
 .version(pkg.version)
@@ -22,4 +23,5 @@ program
 .command(`sparql ${sparql.args}`, sparql.description)
 .command(`query ${query.args}`, query.description)
 .command(`open ${open.args}`, open.description)
+.command(`coord ${coord.args}`, coord.description)
 .parse(process.argv)
