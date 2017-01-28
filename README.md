@@ -20,6 +20,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
   - [Read operations](#read-operations)
     - [wd label](#wd-label)
     - [wd claims](#wd-claims)
+    - [wd coord](#wd-coord)
     - [wd data](#wd-data)
     - [wd id](#wd-id)
     - [wd props](#wd-props)
