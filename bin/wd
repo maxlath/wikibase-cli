@@ -14,7 +14,6 @@ const coord = require('../configs/coord')
 
 program
 .version(pkg.version)
-// TODO: add subcommands aliases when commander will have published this feature
 .command(`label ${label.args}`, label.description)
 .command(`claims ${claims.args}`, claims.description)
 .command(`data ${data.args}`, data.description)
