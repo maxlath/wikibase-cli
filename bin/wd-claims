@@ -12,6 +12,10 @@ const output = require('../lib/output')(program)
 
 if (!(id && lang)) return program.help()
 
+// Working around a weird behavior of commander that inverts arguments
+// when an option is passed before
+if (id && prop && id[0] === 'P' && prop[0] === 'Q') [ id, prop ] = [ prop, id ]
+
 const propsPromise = require('../lib/get_lang_props')(lang)
 
 if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
