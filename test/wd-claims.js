@@ -23,5 +23,5 @@ test('wd claims returns shell-friendly results when possible', t => {
 
 test('wd claims accepts options before', t => {
   return execa.shell('../bin/wd claims -c Q90 P625')
-  .then(res => t.true(res.stdout.match(/48/)))
+  .then(res => t.is(res.stdout, '48.856577777778 2.3518277777778'))
 })

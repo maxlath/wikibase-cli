@@ -7,6 +7,6 @@ test('wd coord: display help', t => {
 })
 
 test('wd coord <id>', t => {
-  return execa.shell('../bin/wd claims Q90 P625')
+  return execa.shell('../bin/wd coord Q90')
   .then(res => t.is(res.stdout, '48.856577777778 2.3518277777778'))
 })
