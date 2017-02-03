@@ -7,7 +7,6 @@ program
 
 const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
-const open = require('opn')
 const getSitelinkUrl = require('../lib/get_sitelink_url')
 const parseId = require('../lib/tolerant_id_parser')
 
@@ -17,26 +16,30 @@ if (args.length === 0) return program.help()
 const lang = program.lang
 const id = parseId(args[0])
 
+// When run with option -c,--clipboard, don't open the generated url,
+// simply copy it to the clipboard
+const handle = program.clipboard ? require('../lib/copy') : require('opn')
+
 if (!id) {
   const search = encodeURIComponent(args.join(' '))
   if (program.wikipedia) {
     // TODO: fix issue with the order of arguments when the option -p is before the search terms
-    open(`https://${lang}.wikipedia.org/w/index.php?title=Special:Search&search=${search}`)
+    handle(`https://${lang}.wikipedia.org/w/index.php?title=Special:Search&search=${search}`)
   } else {
-    open(`https://www.wikidata.org/w/index.php?title=Special:Search&search=${search}`)
+    handle(`https://www.wikidata.org/w/index.php?title=Special:Search&search=${search}`)
   }
   return
 }
 
 if (program.wikipedia) {
   getSitelinkUrl(id, lang, 'wiki')
-  .then(open)
+  .then(handle)
   .catch((err) => {
     console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
-    open(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
+    handle(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
   })
 } else if (id[0] === 'Q') {
-  open(`https://wikidata.org/wiki/${id}`)
+  handle(`https://wikidata.org/wiki/${id}`)
 } else {
-  open(`https://www.wikidata.org/wiki/Property:${id}`)
+  handle(`https://www.wikidata.org/wiki/Property:${id}`)
 }
