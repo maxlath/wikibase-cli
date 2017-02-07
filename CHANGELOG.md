@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.3.0 - 2017-02-07
+* Added [`wd props --type`](https://github.com/maxlath/wikidata-cli#get-the-list-of-all-wikidata-properties-and-their-data-types)
+
 ## 4.2.0 - 2017-01-28
 * Added [`wd coord`](https://github.com/maxlath/wikidata-cli#wd-coord)
 
