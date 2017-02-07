@@ -2,6 +2,7 @@
 const program = require('../lib/program')
 
 program
+.option('-t, --type', 'include properties types')
 .option('-r, --reset', 'clear properties cache')
 .process('props')
 
@@ -10,12 +11,12 @@ const resetProperties = require('../lib/reset_properties')
 
 if (program.reset) return resetProperties()
 
-const lang = program.lang
+const { lang, type:includeTypes } = program
 
 const writeResultsToStdout = function (results) {
   console.log(JSON.stringify(results, null, 2))
 }
 
-getLangProps(lang)
+getLangProps(lang, includeTypes)
 .then(writeResultsToStdout)
 .catch(console.error)
