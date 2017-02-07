@@ -8,15 +8,13 @@ program
 
 const getLangProps = require('../lib/get_lang_props')
 const resetProperties = require('../lib/reset_properties')
+const formatOneLinePerProperty = require('../lib/format_one_line_per_property')
 
 if (program.reset) return resetProperties()
 
 const { lang, type:includeTypes } = program
 
-const writeResultsToStdout = function (results) {
-  console.log(JSON.stringify(results, null, 2))
-}
-
 getLangProps(lang, includeTypes)
-.then(writeResultsToStdout)
+.then(formatOneLinePerProperty)
+.then(console.log)
 .catch(console.error)
