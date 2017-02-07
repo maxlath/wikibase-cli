@@ -24,6 +24,9 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
     - [wd data](#wd-data)
     - [wd id](#wd-id)
     - [wd props](#wd-props)
+      - [Get the list of all Wikidata properties in your environment local language](#get-the-list-of-all-wikidata-properties-in-your-environment-local-language)
+      - [Get the list of all Wikidata properties in another language](#get-the-list-of-all-wikidata-properties-in-another-language)
+      - [Get the list of all Wikidata properties and their data types](#get-the-list-of-all-wikidata-properties-and-their-data-types)
     - [wd sparl](#wd-sparl)
     - [wd query](#wd-query)
     - [wd open](#wd-open)
@@ -149,7 +152,7 @@ wd id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 #### wd props
 A command to access the list of all Wikidata properties in a given language (by default the environment local language)
 
-* Get the list of all Wikidata properties in your environment local language:
+##### Get the list of all Wikidata properties in your environment local language
 ```sh
 wd props
 ```
@@ -170,17 +173,19 @@ wd props |grep image
 ```
 Outputs:
 ```
+{
+  "P6": "head of government",
+  "P10": "video",
+  "P14": "graphic symbol of thoroughfare",
+  "P15": "route map",
+  "P16": "highway system",
+  "P17": "country",
   "P18": "image",
-  "P41": "flag image",
-  "P94": "coat of arms image",
-  "P154": "logo image",
-  "P158": "seal image",
 [...]
 ```
 
-* Get the list of all Wikidata properties in another language
-Options:
-* `-l, --lang`: specify the properties labels language
+##### Get the list of all Wikidata properties in another language
+Option: `-l, --lang`: specify the properties labels language
 ```sh
 wd props -l sv
 # outputs the properties in Swedish
@@ -190,8 +195,28 @@ This command first tries to find the list in the `props` folder (created at wiki
 
 This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` options
 
-Options:
-* `-r, --reset`: clear properties cache
+Option: `-r, --reset`: clear properties cache
+
+##### Get the list of all Wikidata properties and their data types
+
+Every property accepts values of a precise type, one of `CommonsMedia`, `ExternalId`, `String`, `WikibaseItem`, `Time`, `GlobeCoordinate`, `Monolingualtext`, `Quantity`, `Url`, `WikibaseProperty`, or `Math`
+
+Option: `-t, --type`: include properties types
+```sh
+wd props --type
+```
+Outputs:
+```
+{
+  "P6": { "type": "WikibaseItem", "label": "head of government" },
+  "P10": { "type": "CommonsMedia", "label": "video" },
+  "P14": { "type": "CommonsMedia", "label": "graphic symbol of thoroughfare" },
+  "P15": { "type": "CommonsMedia", "label": "route map" },
+  "P16": { "type": "WikibaseItem", "label": "highway system" },
+  "P17": { "type": "WikibaseItem", "label": "country" },
+  "P18": { "type": "CommonsMedia", "label": "image" },
+[...]
+```
 
 #### wd sparl
 A command to run a SPARQL query and get its JSON output
