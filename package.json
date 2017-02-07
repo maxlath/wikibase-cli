@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/maxlath/wikidata-cli#readme",
   "dependencies": {
+    "ava": "^0.18.1",
     "chalk": "^1.1.3",
     "commander": "git+https://github.com/tj/commander.js.git",
     "copy2cb": "^1.0.1",
