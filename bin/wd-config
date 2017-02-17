@@ -1,0 +1,52 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+program.process('config')
+const error_ = require('../lib/error')
+const valueParsers = require('../lib/value_parsers')
+const fs = require('fs')
+
+// Commander doesn't seem to like when arguments have the same name as options
+// so we role our own argument parser here
+const args = process.argv.slice(2)
+if (args.length === 0) return program.help()
+
+const parameters = {
+  clipboard: {
+    type: 'boolean',
+    default: false
+  }
+}
+
+parametersKeys = Object.keys(parameters)
+
+var [ key, value ] = args
+
+// Reject invalid key
+if (!parametersKeys.includes(key)) return error_.bundle('unknown parameter', key)
+
+const configFilePath = require('../lib/config_file_path')
+const param = parameters[key]
+const config = require(configFilePath)
+
+// Get
+if (value == null) {
+  const currentValue = config[key]
+  if (currentValue != null) {
+    console.log(config[key])
+  } else {
+    console.log(param.default)
+  }
+  return
+}
+
+// Set
+value = valueParsers[param.type](value)
+
+// Reject invalid value
+if (typeof value !== param.type) {
+  return error_.bundle('invalid parameter', value)
+}
+
+// Update config
+config[key] = value
+fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2))

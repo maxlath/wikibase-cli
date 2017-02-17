@@ -11,7 +11,8 @@ const cmds = {
   sparql: require('../configs/sparql'),
   query: require('../configs/query'),
   open: require('../configs/open'),
-  coord: require('../configs/coord')
+  coord: require('../configs/coord'),
+  config: require('../configs/config')
 }
 
 const cmdsList = Object.keys(cmds)
@@ -27,6 +28,7 @@ program
 .command(`query ${cmds.query.args}`, cmds.query.description)
 .command(`open ${cmds.open.args}`, cmds.open.description)
 .command(`coord ${cmds.coord.args}`, cmds.coord.description)
+.command(`config ${cmds.config.args}`, cmds.config.description)
 .parse(process.argv)
 
 const commandName = program.args[0]
