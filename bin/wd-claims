@@ -39,7 +39,9 @@ const parseRes = function (res) {
   const logProp = function (k, v, optional) {
     const propLabel = dim(verbose ? ` (${props[k]})` : '')
     const value = v.toString().replace(/,/g, ' ')
-    output(`${dim(k)}${propLabel} ${value}`, optional, true)
+    // Do not use 'output' as those data are already formated/colored
+    // and are not designed to be added to the clipboard
+    console.log(`${dim(k)}${propLabel} ${value}`)
   }
 
   if (exist(entity)) {
@@ -47,7 +49,6 @@ const parseRes = function (res) {
     if (exist(prop)) {
       const value = claims[prop]
       if (value != null) {
-        logProp(prop, claims[prop], true)
         output(claims[prop])
       } else {
         const label = props[prop]
