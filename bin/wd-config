@@ -20,6 +20,11 @@ const parameters = {
   clipboard: {
     type: 'boolean',
     default: false
+  },
+  lang: {
+    type: 'lang',
+    default: require('../lib/local_lang'),
+    test: (str) => typeof str === 'string' && str.length <= 3
   }
 }
 
@@ -49,7 +54,8 @@ if (value == null) {
 value = valueParsers[param.type](value)
 
 // Reject invalid value
-if (typeof value !== param.type) {
+const valid = param.test ? param.test(value) : typeof value === param.type
+if (!valid) {
   return error_.bundle('invalid parameter', value)
 }
 

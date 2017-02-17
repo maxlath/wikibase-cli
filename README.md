@@ -311,18 +311,29 @@ Allows to persist options
 wd config <key> [value]
 ```
 ##### read options
-```
-// output the current config and the help menu
+```sh
+# output the current config and the help menu
 wd config
-// output the config value for the key 'clipboard'
+# output the config value for the key 'clipboard'
 wd config clipboard
 ```
 ##### write options
-```
+```sh
 wd config clipboard true
 ```
 ##### options
-* `clipboard`: copy the result to clipboard, when the command offers this option (same as allows passing `-c,--clipboard`)
+###### clipboard
+copy the result to clipboard, when the command offers this option (same as allows passing `-c,--clipboard`)
+```sh
+# Default: false
+wd config clipboard true
+```
+###### lang
+set the prefered language (same as allows passing `-l,--lang`)
+```sh
+# Default: process.env.LANG.slice(0, 2)
+wd config lang nl
+```
 
 -------------
 
