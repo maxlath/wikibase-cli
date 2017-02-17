@@ -303,34 +303,6 @@ wd open Dan Simmons
 
 -------------
 
-## API changes
-
-see [CHANGELOG](CHANGELOG.md) for details
-
-**1.x.x -> 2.0.0**
-
-###qlabel
-Renamed [wd label](#wd-label)
-###qclaims
-Renamed [wd claims](#wd-claims)
-###qdata
-Renamed [wd data](#wd-data)
-###wdprops
-Renamed [wd props](#wd-props)
-###wikiqid
-Renamed [wd wikiqid](#wd-wikiqid)
-###wdsparql
-Renamed [wd sparql](#wd-sparql)
-###wdsparqlsimplify
-Removed: use [wd sparql](#wd-sparql) instead, it now get simplified results by default. Use the --raw option to disable this behavior
-
-**2.x.x -> 3.0.0**
-
-###wd-graph
-Renamed [wd query](#wd-query)
-
--------------
-
 ## See Also
 ### [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk)
 a javascript tool suite to query and work with wikidata data, heavily used by wikidata-cli
