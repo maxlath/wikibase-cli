@@ -2,25 +2,37 @@
 const program = require('commander')
 const pkg = require('../package.json')
 
-const label = require('../configs/label')
-const claims = require('../configs/claims')
-const data = require('../configs/data')
-const props = require('../configs/props')
-const id = require('../configs/id')
-const sparql = require('../configs/sparql')
-const query = require('../configs/query')
-const open = require('../configs/open')
-const coord = require('../configs/coord')
+const cmds = {
+  label: require('../configs/label'),
+  claims: require('../configs/claims'),
+  data: require('../configs/data'),
+  props: require('../configs/props'),
+  id: require('../configs/id'),
+  sparql: require('../configs/sparql'),
+  query: require('../configs/query'),
+  open: require('../configs/open'),
+  coord: require('../configs/coord')
+}
+
+const cmdsList = Object.keys(cmds)
 
 program
 .version(pkg.version)
-.command(`label ${label.args}`, label.description)
-.command(`claims ${claims.args}`, claims.description)
-.command(`data ${data.args}`, data.description)
-.command(`props ${props.args}`, props.description)
-.command(`id ${id.args}`, id.description).alias('wikiqid')
-.command(`sparql ${sparql.args}`, sparql.description)
-.command(`query ${query.args}`, query.description)
-.command(`open ${open.args}`, open.description)
-.command(`coord ${coord.args}`, coord.description)
+.command(`label ${cmds.label.args}`, cmds.label.description)
+.command(`claims ${cmds.claims.args}`, cmds.claims.description)
+.command(`data ${cmds.data.args}`, cmds.data.description)
+.command(`props ${cmds.props.args}`, cmds.props.description)
+.command(`id ${cmds.id.args}`, cmds.id.description).alias('wikiqid')
+.command(`sparql ${cmds.sparql.args}`, cmds.sparql.description)
+.command(`query ${cmds.query.args}`, cmds.query.description)
+.command(`open ${cmds.open.args}`, cmds.open.description)
+.command(`coord ${cmds.coord.args}`, cmds.coord.description)
 .parse(process.argv)
+
+const commandName = program.args[0]
+
+if (!cmdsList.includes(commandName)) {
+  console.error('unknown command')
+  program.help()
+  process.exit(1)
+}
