@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander')
 const pkg = require('../package.json')
+const { red } = require('chalk')
 
 const cmds = {
   label: require('../configs/label'),
@@ -34,7 +35,7 @@ program
 const commandName = program.args[0]
 
 if (!cmdsList.includes(commandName)) {
-  console.error('unknown command')
+  console.error(red('unknown command'))
   program.help()
   process.exit(1)
 }
