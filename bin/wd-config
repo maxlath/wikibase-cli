@@ -5,39 +5,28 @@ const error_ = require('../lib/error')
 const valueParsers = require('../lib/value_parsers')
 const fs = require('fs')
 const { green } = require('chalk')
+const parameters = require('../lib/config/parameters')
+const parametersKeys = Object.keys(parameters)
+const configFilePath = require('../lib/config/file_path')
+const rawConfig = require(configFilePath)
+const config = require('../lib/config/config')
 
 // Commander doesn't seem to like when arguments have the same name as options
 // so we role our own argument parser here
 const args = process.argv.slice(2)
 if (args.length === 0) {
-  const currentConfig = JSON.stringify(require('../lib/config'), null, 2)
+  const currentConfig = JSON.stringify(config, null, 2)
   console.log(`${green('Current config:')}\n\n${currentConfig}\n`)
   program.help()
   return
 }
-
-const parameters = {
-  clipboard: {
-    type: 'boolean',
-    default: false
-  },
-  lang: {
-    type: 'lang',
-    default: require('../lib/local_lang'),
-    test: (str) => typeof str === 'string' && str.length <= 3
-  }
-}
-
-parametersKeys = Object.keys(parameters)
 
 var [ key, value ] = args
 
 // Reject invalid key
 if (!parametersKeys.includes(key)) return error_.bundle('unknown parameter', key)
 
-const configFilePath = require('../lib/config_file_path')
 const param = parameters[key]
-const config = require(configFilePath)
 
 // Get
 if (value == null) {
@@ -60,5 +49,5 @@ if (!valid) {
 }
 
 // Update config
-config[key] = value
+rawConfig[key] = value
 fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2))
