@@ -37,6 +37,9 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [read options](#read-options)
       - [write options](#write-options)
       - [options](#options)
+        - [clipboard](#clipboard)
+        - [lang](#lang)
+        - [verbose](#verbose)
 - [See Also](#see-also)
   - [wikidata-sdk](#wikidata-sdk)
   - [wikidata-filter](#wikidata-filter)
@@ -333,6 +336,12 @@ set the prefered language (same as allows passing `-l,--lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wd config lang nl
+```
+###### verbose
+set commands to verbose (same as allows passing `-v,--verbose`)
+```sh
+# Default: false
+wd config verbose true
 ```
 
 -------------
