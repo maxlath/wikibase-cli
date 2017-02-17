@@ -4,11 +4,17 @@ program.process('config')
 const error_ = require('../lib/error')
 const valueParsers = require('../lib/value_parsers')
 const fs = require('fs')
+const { green } = require('chalk')
 
 // Commander doesn't seem to like when arguments have the same name as options
 // so we role our own argument parser here
 const args = process.argv.slice(2)
-if (args.length === 0) return program.help()
+if (args.length === 0) {
+  const currentConfig = JSON.stringify(require('../lib/config'), null, 2)
+  console.log(`${green('Current config:')}\n\n${currentConfig}\n`)
+  program.help()
+  return
+}
 
 const parameters = {
   clipboard: {

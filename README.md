@@ -312,7 +312,7 @@ wd config <key> [value]
 ```
 ##### read options
 ```
-// output the help menu and the current config
+// output the current config and the help menu
 wd config
 // output the config value for the key 'clipboard'
 wd config clipboard
