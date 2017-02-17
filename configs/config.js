@@ -5,6 +5,7 @@ module.exports = {
     lang: false
   },
   examples: [
-    { args: 'clipboard true', comment: 'always activate the clipboard when possible' }
+    { args: 'clipboard true', comment: 'always activate the clipboard when possible' },
+    { args: 'lang nl', comment: 'set prefered language to Dutch' }
   ]
 }
