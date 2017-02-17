@@ -33,7 +33,10 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [open entities and properties pages](#open-entities-and-properties-pages)
       - [open a search page](#open-a-search-page)
   - [Write operations](#write-operations)
-- [API changes](#api-changes)
+    - [wd config](#wd-config)
+      - [read options](#read-options)
+      - [write options](#write-options)
+      - [options](#options)
 - [See Also](#see-also)
   - [wikidata-sdk](#wikidata-sdk)
   - [wikidata-filter](#wikidata-filter)
@@ -300,6 +303,26 @@ wd open Dan Simmons
 
 ### Write operations
 [Coming soon](https://github.com/maxlath/wikidata-cli/issues/11). Meanwhile you can use [wikidata-agent](https://github.com/maxlath/wikidata-agent)
+
+
+#### wd config
+Allows to persist options
+```sh
+wd config <key> [value]
+```
+##### read options
+```
+// output the help menu and the current config
+wd config
+// output the config value for the key 'clipboard'
+wd config clipboard
+```
+##### write options
+```
+wd config clipboard true
+```
+##### options
+* `clipboard`: copy the result to clipboard, when the command offers this option (same as allows passing `-c,--clipboard`)
 
 -------------
 
