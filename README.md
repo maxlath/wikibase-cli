@@ -331,6 +331,12 @@ copy the result to clipboard, when the command offers this option (same as allow
 # Default: false
 wd config clipboard true
 ```
+###### json
+format output as JSON when possible (same as allows passing `-j,--json`)
+```sh
+# Default: false
+wd config json true
+```
 ###### lang
 set the prefered language (same as allows passing `-l,--lang`)
 ```sh
