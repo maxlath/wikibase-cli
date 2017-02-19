@@ -34,6 +34,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [open a search page](#open-a-search-page)
   - [Write operations](#write-operations)
     - [wd add-claim](#wd-add-claim)
+      - [with a reference](#with-a-reference)
   - [Config](#config)
     - [read options](#read-options)
     - [write options](#write-options)
@@ -315,8 +316,19 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 Add a claim to an entity
 ```sh
 wd add-claim <entity> <property> <value>
-# add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
+# Add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
 wd add-claim Q4115189 P2002 bulgroz
+# The same but using the command alias
+wd ac Q4115189 P2002 bulgroz
+# The same but passing a reference as 4th argument:
+# Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
+wd ac Q4115189 P527 Q34679
+```
+##### with a reference
+Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.org/wiki/Property:P854)), or the id of the project it is imported from ([P143](https://www.wikidata.org/wiki/Property:P143))
+``` sh
+# this will be interpreted as being imported from Wikipedia in Uyghur (Q60856)
+wd ac Q4115189 P527 Q34679 Q60856
 ```
 
 ### Config
