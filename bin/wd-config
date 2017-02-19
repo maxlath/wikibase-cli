@@ -1,14 +1,8 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 program.process('config')
-const error_ = require('../lib/error')
-const valueParsers = require('../lib/value_parsers')
-const fs = require('fs')
 const { green } = require('chalk')
-const parameters = require('../lib/config/parameters')
-const parametersKeys = Object.keys(parameters)
-const configFilePath = require('../lib/config/file_path')
-const rawConfig = require(configFilePath)
+const fileOps = require('../lib/config/file_operations')
 const config = require('../lib/config/config')
 
 // Commander doesn't seem to like when arguments have the same name as options
@@ -23,31 +17,8 @@ if (args.length === 0) {
 
 var [ key, value ] = args
 
-// Reject invalid key
-if (!parametersKeys.includes(key)) return error_.bundle('unknown parameter', key)
-
-const param = parameters[key]
-
-// Get
 if (value == null) {
-  const currentValue = config[key]
-  if (currentValue != null) {
-    console.log(config[key])
-  } else {
-    console.log(param.default)
-  }
-  return
+  console.log(fileOps.get(key))
+} else {
+  fileOps.set(key, value)
 }
-
-// Set
-value = valueParsers[param.type](value)
-
-// Reject invalid value
-const valid = param.test ? param.test(value) : typeof value === param.type
-if (!valid) {
-  return error_.bundle('invalid parameter', value)
-}
-
-// Update config
-rawConfig[key] = value
-fs.writeFileSync(configFilePath, JSON.stringify(config, null, 2))
