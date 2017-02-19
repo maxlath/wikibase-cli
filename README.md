@@ -44,8 +44,8 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [verbose](#verbose)
 - [See Also](#see-also)
   - [wikidata-sdk](#wikidata-sdk)
+  - [wikidata-edit](#wikidata-edit)
   - [wikidata-filter](#wikidata-filter)
-  - [wikidata-agent](#wikidata-agent)
   - [wikidata-taxonomy](#wikidata-taxonomy)
 - [License](#license)
 
@@ -363,17 +363,16 @@ wd config verbose true
 
 ## See Also
 ### [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk)
-a javascript tool suite to query and work with wikidata data, heavily used by wikidata-cli
+A javascript tool suite to query and work with Wikidata data, heavily used by wikidata-cli
+
+### [wikidata-edit](https://www.npmjs.com/package/wikidata-edit)
+Edit Wikidata from NodeJS, used in wikidata-cli for all [write operations](#write-operations)
 
 ### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
-a command-line tool to filter a Wikidata dump by claim
-
-### [wikidata-agent](https://github.com/maxlath/wikidata-agent)
-a small server to edit Wikidata from the terminal:
-`curl -X POST http://localhost:4115/claim -d 'entity=Q4115189&property=P2002&value=Zorg'`
+A command-line tool to filter a Wikidata dump by claim
 
 ### [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy)
-command-line tool to extract taxonomies from Wikidata
+A command-line tool to extract taxonomies from Wikidata
 
 -------------
 
