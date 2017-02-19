@@ -33,6 +33,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [open entities and properties pages](#open-entities-and-properties-pages)
       - [open a search page](#open-a-search-page)
   - [Write operations](#write-operations)
+    - [wd add-claim](#wd-add-claim)
   - [Config](#config)
     - [read options](#read-options)
     - [write options](#write-options)
