@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.4.0 - 2017-02-09
+* Added [`wd add-claim`](https://github.com/maxlath/wikidata-cli#wd-add-claim)
+* Added [`wd config`](https://github.com/maxlath/wikidata-cli#config)
+
 ## 4.3.0 - 2017-02-07
 * Added [`wd props --type`](https://github.com/maxlath/wikidata-cli#get-the-list-of-all-wikidata-properties-and-their-data-types)
 
