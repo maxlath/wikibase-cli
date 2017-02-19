@@ -1,0 +1,38 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+const wdEdit = require('wikidata-edit')
+const { red } = require('chalk')
+
+program
+.process('add-claim')
+
+const config = require('../lib/config/config')
+const { yellow } = require('chalk')
+
+const addClaim = () => {
+  const [ entity, property, value ] = program.args
+  const { verbose } = program
+  const wdEditConfig = {
+    username: config.username,
+    password: config.password,
+    verbose
+  }
+  return wdEdit(wdEditConfig).claim.add(entity, property, value)
+  .then(res => {
+    if (program) console.log(res)
+  })
+  .catch(err => {
+    console.error(red(err.message))
+    process.exit(1)
+  })
+}
+
+if (!(config.username && config.password)) {
+  console.log(yellow('This operation requires to set your Wikidata crendentials'))
+  require('../lib/edit/init_credentials')()
+  .then(addClaim)
+  .catch(console.error)
+} else {
+  addClaim()
+  .catch(console.error)
+}

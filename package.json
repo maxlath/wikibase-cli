@@ -35,7 +35,9 @@
     "lodash": "^4.12.0",
     "mkdirp": "^0.5.1",
     "opn": "^4.0.2",
+    "prompt": "^1.0.0",
     "shell-quote": "^1.6.1",
+    "wikidata-edit": "^1.0.0",
     "wikidata-sdk": "~4.0.5"
   },
   "devDependencies": {
