@@ -33,13 +33,14 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [open entities and properties pages](#open-entities-and-properties-pages)
       - [open a search page](#open-a-search-page)
   - [Write operations](#write-operations)
-    - [wd config](#wd-config)
-      - [read options](#read-options)
-      - [write options](#write-options)
-      - [options](#options)
-        - [clipboard](#clipboard)
-        - [lang](#lang)
-        - [verbose](#verbose)
+  - [Config](#config)
+    - [read options](#read-options)
+    - [write options](#write-options)
+    - [options](#options)
+      - [clipboard](#clipboard)
+      - [json](#json)
+      - [lang](#lang)
+      - [verbose](#verbose)
 - [See Also](#see-also)
   - [wikidata-sdk](#wikidata-sdk)
   - [wikidata-filter](#wikidata-filter)
@@ -307,43 +308,42 @@ wd open Dan Simmons
 ### Write operations
 [Coming soon](https://github.com/maxlath/wikidata-cli/issues/11). Meanwhile you can use [wikidata-agent](https://github.com/maxlath/wikidata-agent)
 
-
-#### wd config
+### Config
 Allows to persist options
 ```sh
 wd config <key> [value]
 ```
-##### read options
+#### read options
 ```sh
 # output the current config and the help menu
 wd config
 # output the config value for the key 'clipboard'
 wd config clipboard
 ```
-##### write options
+#### write options
 ```sh
 wd config clipboard true
 ```
-##### options
-###### clipboard
+#### options
+##### clipboard
 copy the result to clipboard, when the command offers this option (same as allows passing `-c,--clipboard`)
 ```sh
 # Default: false
 wd config clipboard true
 ```
-###### json
+##### json
 format output as JSON when possible (same as allows passing `-j,--json`)
 ```sh
 # Default: false
 wd config json true
 ```
-###### lang
+##### lang
 set the prefered language (same as allows passing `-l,--lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wd config lang nl
 ```
-###### verbose
+##### verbose
 set commands to verbose (same as allows passing `-v,--verbose`)
 ```sh
 # Default: false
