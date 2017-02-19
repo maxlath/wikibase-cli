@@ -17,7 +17,9 @@ if (args.length === 0) {
 
 var [ key, value ] = args
 
-if (value == null) {
+if (key === 'clear') {
+  fileOps.clear()
+} else if (value == null) {
   console.log(fileOps.get(key))
 } else {
   fileOps.set(key, value)
