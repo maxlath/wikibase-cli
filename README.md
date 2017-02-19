@@ -306,7 +306,15 @@ wd open Dan Simmons
 ```
 
 ### Write operations
-[Coming soon](https://github.com/maxlath/wikidata-cli/issues/11). Meanwhile you can use [wikidata-agent](https://github.com/maxlath/wikidata-agent)
+Those command modify Wikidata so you will be asked your Wikidata **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikidata-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wd config clear` once you're done.
+
+#### wd add-claim
+Add a claim to an entity
+```sh
+wd add-claim <entity> <property> <value>
+// add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
+wd add-claim Q4115189 P2002 bulgroz
+```
 
 ### Config
 Allows to persist options
