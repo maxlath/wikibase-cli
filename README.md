@@ -371,8 +371,12 @@ Edit Wikidata from NodeJS, used in wikidata-cli for all [write operations](#writ
 ### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
 A command-line tool to filter a Wikidata dump by claim
 
+### [wikidata-subset-search-engine](https://github.com/inventaire/wikidata-subset-search-engine) Tools to setup an ElasticSearch instance fed with subsets of Wikidata
+
 ### [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy)
 A command-line tool to extract taxonomies from Wikidata
+
+### [Other Wikidata external tools](https://www.wikidata.org/wiki/Wikidata:Tools/External_tools)
 
 -------------
 
