@@ -313,7 +313,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 Add a claim to an entity
 ```sh
 wd add-claim <entity> <property> <value>
-// add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
+# add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
 wd add-claim Q4115189 P2002 bulgroz
 ```
 
