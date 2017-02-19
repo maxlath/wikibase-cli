@@ -10,14 +10,14 @@ const config = require('../lib/config/config')
 const { yellow } = require('chalk')
 
 const addClaim = () => {
-  const [ entity, property, value ] = program.args
+  const [ entity, property, value, reference ] = program.args
   const { verbose } = program
   const wdEditConfig = {
     username: config.username,
     password: config.password,
     verbose
   }
-  return wdEdit(wdEditConfig).claim.add(entity, property, value)
+  return wdEdit(wdEditConfig).claim.add(entity, property, value, reference)
   .then(res => {
     if (program) console.log(res)
   })
