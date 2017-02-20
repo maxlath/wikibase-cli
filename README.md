@@ -339,7 +339,7 @@ wd ac <entity> <property> <value>
 
 Example:
 ```sh
-# Add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
+# Add the Twitter account (P2002) 'bulgroz' to the Sandbox (Q4115189) entity
 wd add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
 wd ac Q4115189 P2002 bulgroz
