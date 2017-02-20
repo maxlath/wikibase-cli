@@ -27,7 +27,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [Get the list of all Wikidata properties in your environment local language](#get-the-list-of-all-wikidata-properties-in-your-environment-local-language)
       - [Get the list of all Wikidata properties in another language](#get-the-list-of-all-wikidata-properties-in-another-language)
       - [Get the list of all Wikidata properties and their data types](#get-the-list-of-all-wikidata-properties-and-their-data-types)
-    - [wd sparl](#wd-sparl)
+    - [wd sparql](#wd-sparql)
     - [wd query](#wd-query)
     - [wd open](#wd-open)
       - [open entities and properties pages](#open-entities-and-properties-pages)
@@ -231,7 +231,7 @@ Outputs:
 [...]
 ```
 
-#### wd sparl
+#### wd sparql
 A command to run a SPARQL query and get its JSON output
 
 From this SPARQL query file: `./path/to/query.rq`
