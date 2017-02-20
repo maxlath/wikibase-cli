@@ -1,2 +1,2 @@
 #!/usr/bin/env node
-require('../lib/edit/edit_command')('set-label', 'label', 'set')
+require('../lib/edit/edit_command')('label', 'set')

@@ -354,6 +354,23 @@ Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.o
 wd ac Q4115189 P527 Q34679 Q60856
 ```
 
+#### wd add-reference
+
+Add a reference to an claim
+```sh
+wd add-reference <claim-guid> <URL or project entity id>
+# Alias:
+wd ar <claim-guid> <URL or project entity id>
+```
+
+Example:
+```sh
+# /!\ be ware of the '$' sign that might need escaping
+wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" 'https://example.org/rise-and-box-of-the-holy-sand-box'
+# or
+wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' 'https://example.org/rise-and-box-of-the-holy-sand-box'
+```
+
 ### Config
 Allows to persist options
 ```sh

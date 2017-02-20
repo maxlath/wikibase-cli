@@ -15,6 +15,7 @@ const cmds = {
   coord: require('../configs/coord'),
   'set-label': require('../configs/set-label'),
   'add-claim': require('../configs/add-claim'),
+  'add-reference': require('../configs/add-reference'),
   config: require('../configs/config')
 }
 
@@ -33,6 +34,7 @@ program
 .command(`coord ${cmds.coord.args}`, cmds.coord.description)
 .command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')
 .command(`add-claim ${cmds['add-claim'].args}`, cmds['add-claim'].description).alias('ac')
+.command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
 .command(`config ${cmds.config.args}`, cmds.config.description)
 .parse(process.argv)
 
