@@ -49,7 +49,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
   - [wikidata-sdk](#wikidata-sdk)
   - [wikidata-edit](#wikidata-edit)
   - [wikidata-filter](#wikidata-filter)
-  - [wikidata-subset-search-engine Tools to setup an ElasticSearch instance fed with subsets of Wikidata](#wikidata-subset-search-engine-tools-to-setup-an-elasticsearch-instance-fed-with-subsets-of-wikidata)
+  - [wikidata-subset-search-engine](#wikidata-subset-search-engine)
   - [wikidata-taxonomy](#wikidata-taxonomy)
   - [Other Wikidata external tools](#other-wikidata-external-tools)
 - [You may also like](#you-may-also-like)
@@ -427,7 +427,8 @@ Edit Wikidata from NodeJS, used in wikidata-cli for all [write operations](#writ
 ### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
 A command-line tool to filter a Wikidata dump by claim
 
-### [wikidata-subset-search-engine](https://github.com/inventaire/wikidata-subset-search-engine) Tools to setup an ElasticSearch instance fed with subsets of Wikidata
+### [wikidata-subset-search-engine](https://github.com/inventaire/wikidata-subset-search-engine)
+Tools to setup an ElasticSearch instance fed with subsets of Wikidata
 
 ### [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy)
 A command-line tool to extract taxonomies from Wikidata
