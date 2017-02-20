@@ -35,6 +35,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
   - [Write operations](#write-operations)
     - [wd add-claim](#wd-add-claim)
       - [with a reference](#with-a-reference)
+    - [wd set-label](#wd-set-label)
   - [Config](#config)
     - [read options](#read-options)
     - [write options](#write-options)
@@ -312,10 +313,31 @@ wd open Dan Simmons
 ### Write operations
 Those command modify Wikidata so you will be asked your Wikidata **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikidata-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wd config clear` once you're done.
 
+#### wd set-label
+
+Set a label on an entity in a given language
+```sh
+wd set-label <entity> <language> <label>
+# Alias:
+wd sl <entity> <language> <label>
+```
+Example:
+```sh
+# Set the label 'Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
+wd set-label Q4115189 fr "Bac à sable bulgroz"
+```
+
 #### wd add-claim
+
 Add a claim to an entity
 ```sh
 wd add-claim <entity> <property> <value>
+# Alias:
+wd ac <entity> <property> <value>
+```
+
+Example:
+```sh
 # Add the Twitter account (P2002) 'Zorglub' to the Sandbox (Q4115189) entity
 wd add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
@@ -324,6 +346,7 @@ wd ac Q4115189 P2002 bulgroz
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
 wd ac Q4115189 P527 Q34679
 ```
+
 ##### with a reference
 Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.org/wiki/Property:P854)), or the id of the project it is imported from ([P143](https://www.wikidata.org/wiki/Property:P143))
 ``` sh
