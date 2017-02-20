@@ -1,7 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
-## 4.4.0 - 2017-02-09
+## 4.5.0 - 2017-02-20
+* Added [`wd set-label`](https://github.com/maxlath/wikidata-cli#wd-set-label)
+* Added [`wd add-reference`](https://github.com/maxlath/wikidata-cli#wd-add-reference)
+
+## 4.4.0 - 2017-02-19
 * Added [`wd add-claim`](https://github.com/maxlath/wikidata-cli#wd-add-claim)
 * Added [`wd config`](https://github.com/maxlath/wikidata-cli#config)
 
