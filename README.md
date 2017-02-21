@@ -296,6 +296,7 @@ wd open https://inventaire.io/entity/wd:Q33977
 
 Options:
 * `-p, --wikipedia`: open the Wiki**p**edia article instead
+* `-u, --url`: simply generate the url, don't open it in a browser
 ```sh
 wd open -p Q123
 # opens https://fr.wikipedia.org/wiki/Septembre because my system language is French

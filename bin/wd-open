@@ -3,12 +3,15 @@ const program = require('../lib/program')
 
 program
 .option('-p, --wikipedia', 'open the Wikipedia article instead')
+.option('-u, --url', 'simply generate the url')
 .process('open')
 
 const wdk = require('wikidata-sdk')
 const error_ = require('../lib/error')
 const getSitelinkUrl = require('../lib/get_sitelink_url')
 const parseId = require('../lib/tolerant_id_parser')
+const copy = require('../lib/copy')
+const open = require('opn')
 
 const args = program.args
 if (args.length === 0) return program.help()
@@ -16,9 +19,16 @@ if (args.length === 0) return program.help()
 const lang = program.lang
 const id = parseId(args[0])
 
-// When run with option -c,--clipboard, don't open the generated url,
-// simply copy it to the clipboard
-const handle = program.clipboard ? require('../lib/copy') : require('opn')
+const { url:urlOnly, clipboard } = program
+
+const handle = (url) => {
+  if (urlOnly) {
+    clipboard ? copy(url) : console.log(url)
+  } else {
+    if (clipboard) copy(url)
+    open(url)
+  }
+}
 
 if (!id) {
   const search = encodeURIComponent(args.join(' '))
