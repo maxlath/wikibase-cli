@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.6.0 - 2017-02-20
+* Added option `-u,--url` to [`wd open`](https://github.com/maxlath/wikidata-cli#wd-open)
+
 ## 4.5.0 - 2017-02-20
 * Added [`wd set-label`](https://github.com/maxlath/wikidata-cli#wd-set-label)
 * Added [`wd add-reference`](https://github.com/maxlath/wikidata-cli#wd-add-reference)
