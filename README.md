@@ -305,6 +305,8 @@ wd open -p Q123
 ```sh
 wd open -p -l sv Q123
 # opens https://sv.wikipedia.org/wiki/September instead
+wd open -p -l sv Q123 -u
+# outputs https://sv.wikipedia.org/wiki/September without opening it in the browser
 ```
 
 ##### open a search page
