@@ -46,12 +46,6 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [lang](#lang)
       - [verbose](#verbose)
 - [See Also](#see-also)
-  - [wikidata-sdk](#wikidata-sdk)
-  - [wikidata-edit](#wikidata-edit)
-  - [wikidata-filter](#wikidata-filter)
-  - [wikidata-subset-search-engine](#wikidata-subset-search-engine)
-  - [wikidata-taxonomy](#wikidata-taxonomy)
-  - [Other Wikidata external tools](#other-wikidata-external-tools)
 - [You may also like](#you-may-also-like)
 - [License](#license)
 
@@ -421,23 +415,13 @@ wd config verbose true
 -------------
 
 ## See Also
-### [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk)
-A javascript tool suite to query and work with Wikidata data, heavily used by wikidata-cli
-
-### [wikidata-edit](https://www.npmjs.com/package/wikidata-edit)
-Edit Wikidata from NodeJS, used in wikidata-cli for all [write operations](#write-operations)
-
-### [wikidata-filter](https://npmjs.com/package/wikidata-filter)
-A command-line tool to filter a Wikidata dump by claim
-
-### [wikidata-subset-search-engine](https://github.com/inventaire/wikidata-subset-search-engine)
-Tools to setup an ElasticSearch instance fed with subsets of Wikidata
-
-### [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy)
-A command-line tool to extract taxonomies from Wikidata
-
-### [Other Wikidata external tools](https://www.wikidata.org/wiki/Wikidata:Tools/External_tools)
-
+* [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk): A javascript tool suite to query and work with Wikidata data, heavily used by wikidata-cli
+* [wikidata-edit](https://www.npmjs.com/package/wikidata-edit): Edit Wikidata from NodeJS, used in wikidata-cli for all [write operations](#write-operations)
+* [wikidata-filter](https://npmjs.com/package/wikidata-filter): A command-line tool to filter a Wikidata dump by claim
+* [wikidata-subset-search-engine](https://github.com/inventaire/wikidata-subset-search-engine): Tools to setup an ElasticSearch instance fed with subsets of Wikidata
+* [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy): A command-line tool to extract taxonomies from Wikidata
+* [import-wikidata-dump-to-couchdb](https://github.com/maxlath/import-wikidata-dump-to-couchdb): Import a subset or a full Wikidata dump into a CouchDB database
+* [Other Wikidata external tools](https://www.wikidata.org/wiki/Wikidata:Tools/External_tools)
 -------------
 
 ## You may also like
