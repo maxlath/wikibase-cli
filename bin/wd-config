@@ -17,7 +17,9 @@ if (args.length === 0) {
 
 var [ key, value ] = args
 
-if (key === 'clear') {
+if (key === 'path') {
+  console.log(fileOps.configFilePath)
+} else if (key === 'clear') {
   fileOps.clear()
 } else if (value == null) {
   console.log(fileOps.get(key))
