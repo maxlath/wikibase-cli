@@ -13,7 +13,8 @@ if (!/^(Q|P)[0-9]+$/.test(id)) {
 }
 
 const lightGet = require('../lib/light_get')
-const url = "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=" + id
+const wdk = require('../lib/customized_wdk')(program)
+const url = wdk('getEntities', id)
 
 lightGet(url)
 .then(function(body) {

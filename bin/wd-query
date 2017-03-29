@@ -10,7 +10,6 @@ program
 .option('-t, --limit <num>', 'set the request results limit (defaults to 1000)')
 .process('query')
 
-const wdk = require('wikidata-sdk')
 const { dim } = require('chalk')
 const formatStatementElementValue = require('../lib/format_statement_element_value')
 const makeSparqlQuery = require('../lib/make_sparql_query')

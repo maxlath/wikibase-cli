@@ -391,29 +391,45 @@ wd config clipboard true
 ```
 #### options
 ##### clipboard
-copy the result to clipboard, when the command offers this option (same as allows passing `-c,--clipboard`)
+copy the result to clipboard, when the command offers this option (same as `-c,--clipboard`)
 ```sh
 # Default: false
 wd config clipboard true
 ```
 ##### json
-format output as JSON when possible (same as allows passing `-j,--json`)
+format output as JSON when possible (same as `-j,--json`)
 ```sh
 # Default: false
 wd config json true
 ```
 ##### lang
-set the prefered language (same as allows passing `-l,--lang`)
+set the prefered language (same as `-l,--lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wd config lang nl
 ```
 ##### verbose
-set commands to verbose (same as allows passing `-v,--verbose`)
+set commands to verbose (same as `-v,--verbose`)
 ```sh
 # Default: false
 wd config verbose true
 ```
+##### custom Wikibase instance
+You may want to use those commands against a different [Wikibase](http://wikiba.se) than `wikidata.org` (same as `-i,--instance`)
+```sh
+# Default: https://wikidata.org/w/api.php
+wd config instance https://mywikibase.instance/w/api.php
+# Come back to the default setting
+wd config instance default
+```
+You're all set to make requests against your custom instance:
+```sh
+wd label Q1
+wd claims Q1
+wd data Q1
+wd open Q1
+```
+TODO: also allow to use a custom SPARQL endpoint
 
 #### maintenance
 ##### get config file path

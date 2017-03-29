@@ -24,9 +24,9 @@ if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const exist = require('../lib/exist')
-const wdk = require('wikidata-sdk')
+const wdk = require('../lib/customized_wdk')(program)
 
-const url = wdk.getEntities({
+const url = wdk('getEntities', {
   props: 'claims',
   ids: id
 })

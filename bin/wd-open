@@ -6,12 +6,12 @@ program
 .option('-u, --url', 'simply generate the url')
 .process('open')
 
-const wdk = require('wikidata-sdk')
-const error_ = require('../lib/error')
-const getSitelinkUrl = require('../lib/get_sitelink_url')
+const getSitelinkUrl = require('../lib/get_sitelink_url')(program)
 const parseId = require('../lib/tolerant_id_parser')
 const copy = require('../lib/copy')
 const open = require('opn')
+const customWikibaseInstance = require('../lib/custom_wikibase_instance')
+const { hasCustomInstance, customizeHost } = customWikibaseInstance(program)
 
 const args = program.args
 if (args.length === 0) return program.help()
@@ -22,6 +22,7 @@ const id = parseId(args[0])
 const { url:urlOnly, clipboard } = program
 
 const handle = (url) => {
+  if (hasCustomInstance) url = customizeHost(url)
   if (urlOnly) {
     clipboard ? copy(url) : console.log(url)
   } else {
@@ -36,7 +37,7 @@ if (!id) {
     // TODO: fix issue with the order of arguments when the option -p is before the search terms
     handle(`https://${lang}.wikipedia.org/w/index.php?title=Special:Search&search=${search}`)
   } else {
-    handle(`https://www.wikidata.org/w/index.php?title=Special:Search&search=${search}`)
+    handle(`https://wikidata.org/w/index.php?title=Special:Search&search=${search}`)
   }
   return
 }

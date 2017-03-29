@@ -4,7 +4,7 @@ const program = require('../lib/program')
 program.process('label')
 
 const chalk   = require('chalk')
-const wdk = require('wikidata-sdk')
+const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
 const parseId = require('../lib/tolerant_id_parser')
@@ -24,7 +24,7 @@ if (lang !== 'en') {
   languages.push('en')
 }
 
-const url = wdk.getEntities(id, languages, 'labels')
+const url = wdk('getEntities', id, languages, 'labels')
 
 function parseLabel (body) {
   const entity = body.entities[id]
