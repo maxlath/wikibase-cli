@@ -1,6 +1,6 @@
 module.exports = {
   args: '<entity>',
-  description: 'display the entity or property label',
+  description: "display the entity's label",
   options: {
     lang: true
   },

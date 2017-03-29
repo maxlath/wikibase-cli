@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
+const wdk = require('wikidata-sdk')
 
 program.process('data')
 
@@ -8,9 +9,7 @@ const id = parseId(program.args[0])
 
 if (!id) return program.help()
 
-if (!/^(Q|P)[0-9]+$/.test(id)) {
-  throw new Error('invalid wikidata entity or property id')
-}
+if (!wdk.isEntityId(id)) throw new Error('invalid entity id')
 
 const lightGet = require('../lib/light_get')
 const wdk = require('../lib/customized_wdk')(program)
