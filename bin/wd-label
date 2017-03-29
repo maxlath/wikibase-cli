@@ -18,13 +18,6 @@ const { lang } = program
 
 if (!(id && lang)) return program.help()
 
-try {
-  id = wdk.normalizeId(id)
-} catch (err) {
-  err.context = {id: id, lang: lang, args: args}
-  error_.log(err)
-}
-
 const languages = [lang]
 if (lang !== 'en') {
   // always request the English label as a fallback
