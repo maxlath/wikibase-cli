@@ -60,7 +60,7 @@ function formatDescriptions (descriptions) {
 
 getRedirectedWikipediaTitle(lang, title)
 .then((trueTitle) => {
-  const url = wdk('getWikidataIdsFromSitelinks', trueTitle, lang)
+  const url = wdk.customize('getWikidataIdsFromSitelinks', trueTitle, lang)
   return lightGet(url)
   .then(parseIds.bind(null, [title, trueTitle]))
 })

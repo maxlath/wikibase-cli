@@ -26,7 +26,7 @@ const error_ = require('../lib/error')
 const exist = require('../lib/exist')
 const wdk = require('../lib/customized_wdk')(program)
 
-const url = wdk('getEntities', {
+const url = wdk.customize('getEntities', {
   props: 'claims',
   ids: id
 })

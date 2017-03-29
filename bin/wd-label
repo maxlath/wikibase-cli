@@ -24,7 +24,7 @@ if (lang !== 'en') {
   languages.push('en')
 }
 
-const url = wdk('getEntities', id, languages, 'labels')
+const url = wdk.customize('getEntities', id, languages, 'labels')
 
 function parseLabel (body) {
   const entity = body.entities[id]

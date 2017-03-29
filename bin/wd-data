@@ -14,7 +14,7 @@ if (!/^(Q|P)[0-9]+$/.test(id)) {
 
 const lightGet = require('../lib/light_get')
 const wdk = require('../lib/customized_wdk')(program)
-const url = wdk('getEntities', id)
+const url = wdk.customize('getEntities', id)
 
 lightGet(url)
 .then(function(body) {
