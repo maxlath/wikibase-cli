@@ -45,6 +45,8 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [json](#json)
       - [lang](#lang)
       - [verbose](#verbose)
+      - [custom Wikibase instance](#custom-wikibase-instance)
+      - [custom SPARQL endpoint](#custom-sparql-endpoint)
     - [maintenance](#maintenance)
       - [get config file path](#get-config-file-path)
       - [clear config](#clear-config)
@@ -429,7 +431,19 @@ wd claims Q1
 wd data Q1
 wd open Q1
 ```
-TODO: also allow to use a custom SPARQL endpoint
+
+##### custom SPARQL endpoint
+You can also set a custom SPARQL endpoint (same as `-e,--sparql-endpoint`)
+```sh
+# Default: https://query.wikidata.org/sparql
+wd config sparql-endpoint https://example.com/sparql
+# Come back to the default setting
+wd config sparql-endpoint default
+```
+You're all set to make requests against your custom instance:
+```sh
+wd query --property P2002 --object timberners_lee
+```
 
 #### maintenance
 ##### get config file path

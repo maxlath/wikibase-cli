@@ -11,7 +11,7 @@ const parseId = require('../lib/tolerant_id_parser')
 const copy = require('../lib/copy')
 const open = require('opn')
 const customWikibaseInstance = require('../lib/custom_wikibase_instance')
-const { hasCustomInstance, customizeHost } = customWikibaseInstance(program)
+const { isCustomized, customizeHost } = customWikibaseInstance(program)
 
 const args = program.args
 if (args.length === 0) return program.help()
@@ -22,7 +22,7 @@ const id = parseId(args[0])
 const { url:urlOnly, clipboard } = program
 
 const handle = (url) => {
-  if (hasCustomInstance) url = customizeHost(url)
+  if (isCustomized) url = customizeHost(url)
   if (urlOnly) {
     clipboard ? copy(url) : console.log(url)
   } else {
