@@ -4,19 +4,19 @@ const pkg = require('../package.json')
 const { red } = require('chalk')
 
 const cmds = {
-  label: require('../configs/label'),
-  claims: require('../configs/claims'),
-  data: require('../configs/data'),
-  props: require('../configs/props'),
-  id: require('../configs/id'),
-  sparql: require('../configs/sparql'),
-  query: require('../configs/query'),
-  open: require('../configs/open'),
-  coord: require('../configs/coord'),
-  'set-label': require('../configs/set-label'),
-  'add-claim': require('../configs/add-claim'),
-  'add-reference': require('../configs/add-reference'),
-  config: require('../configs/config')
+  label: require('../metadata/label'),
+  claims: require('../metadata/claims'),
+  data: require('../metadata/data'),
+  props: require('../metadata/props'),
+  id: require('../metadata/id'),
+  sparql: require('../metadata/sparql'),
+  query: require('../metadata/query'),
+  open: require('../metadata/open'),
+  coord: require('../metadata/coord'),
+  'set-label': require('../metadata/set-label'),
+  'add-claim': require('../metadata/add-claim'),
+  'add-reference': require('../metadata/add-reference'),
+  config: require('../metadata/config')
 }
 
 const cmdsList = Object.keys(cmds)
