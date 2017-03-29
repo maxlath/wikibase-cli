@@ -48,8 +48,6 @@ if (program.wikipedia) {
     console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
     handle(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
   })
-} else if (id[0] === 'Q') {
-  handle(`https://wikidata.org/wiki/${id}`)
 } else {
-  handle(`https://www.wikidata.org/wiki/Property:${id}`)
+  handle(`https://wikidata.org/entity/${id}`)
 }
