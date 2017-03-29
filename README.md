@@ -45,6 +45,9 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
       - [json](#json)
       - [lang](#lang)
       - [verbose](#verbose)
+    - [maintenance](#maintenance)
+      - [get config file path](#get-config-file-path)
+      - [clear config](#clear-config)
 - [See Also](#see-also)
 - [You may also like](#you-may-also-like)
 - [License](#license)
@@ -410,6 +413,16 @@ set commands to verbose (same as allows passing `-v,--verbose`)
 ```sh
 # Default: false
 wd config verbose true
+```
+
+#### maintenance
+##### get config file path
+```sh
+wd config path
+```
+##### clear config
+```sh
+wd config clear
 ```
 
 -------------
