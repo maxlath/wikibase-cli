@@ -6,7 +6,7 @@ const logClaims = require('../lib/log_claims')
 const { bgGreen, bgBlue } = require('chalk')
 const getLangProps = require('../lib/get_lang_props')
 const _ = require('lodash')
-const mainProps = ['P31', 'P279' ]
+const { mainProps } = require('../lib/properties')
 const error_ = require('../lib/error')
 
 const parser = function (entity, options) {
@@ -18,10 +18,9 @@ const parser = function (entity, options) {
   const description = entityAttributeParser(entity, 'description', lang)
   console.log(bgBlue('Description'), description)
 
-  const claims = wdk.simplifyClaims(_.pick(entity.claims, mainProps))
-
-  // Make logClaims log labels
-  program.verbose = true
+  var { claims } = entity
+  claims = program.verbose ? claims : _.pick(claims, mainProps)
+  claims = wdk.simplifyClaims(claims)
 
   return getLangProps(lang)
   .then(logClaims.bind(null, program, claims))

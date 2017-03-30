@@ -85,11 +85,15 @@ Installing globally allows to make the command `wd` accessible from your shell `
 Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label, a description, and some claims to know what we are dealing with.
 ```sh
 wd summary Q27477672
-# => Label anthropomorphic comic / Description comic book genre / P31 Q20087698 / P279 Q10493450
+# Label anthropomorphic comic
+# Description comic book genre
+# instance of (P31):  comic genre (Q20087698)
+# subclass of (P279): animal comic (Q10493450)
 ```
 
 Options:
 * `-l, --lang`: specify the summary's language
+* `-v, --verbose`: log all claims
 
 #### wd label
 ```sh
