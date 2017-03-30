@@ -18,6 +18,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 - [Installation](#installation)
 - [Commands](#commands)
   - [Read operations](#read-operations)
+    - [wd summary](#wd-summary)
     - [wd label](#wd-label)
     - [wd description](#wd-description)
     - [wd claims](#wd-claims)
@@ -78,8 +79,17 @@ Installing globally allows to make the command `wd` accessible from your shell `
 
 ### Read operations
 
+#### wd summary
+Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label, a description, and some claims to know what we are dealing with.
+```sh
+wd summary Q27477672
+# => Label anthropomorphic comic / Description comic book genre / P31 Q20087698 / P279 Q10493450
+```
+
+Options:
+* `-l, --lang`: specify the summary's language
+
 #### wd label
-Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label
 ```sh
 wd label Q1103345
 # => The Cluetrain Manifesto
@@ -89,7 +99,6 @@ Options:
 * `-c, --clipboard`: copy the result to clipboard
 * `-l, --lang`: specify the label's language
 
-By default, the result uses your environment local language (`process.env.LANG`), but you can pass a 2-letters language code as second argument
 ```sh
 wd label Q1103345 -l de
 # => Cluetrain-Manifest

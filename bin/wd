@@ -4,6 +4,7 @@ const pkg = require('../package.json')
 const { red } = require('chalk')
 
 const cmds = {
+  summary: require('../metadata/summary'),
   label: require('../metadata/label'),
   description: require('../metadata/description'),
   claims: require('../metadata/claims'),
@@ -24,6 +25,7 @@ const cmdsList = Object.keys(cmds)
 
 program
 .version(pkg.version)
+.command(`summary ${cmds.summary.args}`, cmds.summary.description)
 .command(`label ${cmds.label.args}`, cmds.label.description)
 .command(`description ${cmds.description.args}`, cmds.description.description)
 .command(`claims ${cmds.claims.args}`, cmds.claims.description)

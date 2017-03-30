@@ -1,0 +1,24 @@
+#!/usr/bin/env node
+const entityDataParser = require('../lib/entity_data_parser')
+const entityAttributeParser = require('../lib/entity_attribute_parser')
+const wdk = require('wikidata-sdk')
+const logClaims = require('../lib/log_claims')
+const { bgGreen, bgBlue } = require('chalk')
+const getLangProps = require('../lib/get_lang_props')
+
+const parser = function (entity, options) {
+  const { lang, program } = options
+
+  const label = entityAttributeParser(entity, 'label', lang)
+  console.log(bgGreen('Label'), label)
+
+  const description = entityAttributeParser(entity, 'description', lang)
+  console.log(bgBlue('Description'), description)
+
+  const claims = wdk.simplifyClaims(entity.claims)
+
+  return getLangProps(lang)
+  .then(logClaims.bind(null, program, claims))
+}
+
+entityDataParser({ commandName: 'summary', parser })

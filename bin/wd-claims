@@ -5,6 +5,7 @@ program.process('claims')
 
 const { dim, yellow } = require('chalk')
 const parseId = require('../lib/tolerant_id_parser')
+const logClaims = require('../lib/log_claims')
 var id = parseId(program.args[0])
 var prop = parseId(program.args[1])
 const { lang, verbose } = program
@@ -32,17 +33,8 @@ const url = wdk.customize('getEntities', {
 })
 
 const parseRes = function (res) {
-  const body = res[0]
-  const props = res[1]
+  const [ body, props ] = res
   const entity = body.entities && body.entities[id]
-
-  const logProp = function (k, v, optional) {
-    const propLabel = dim(verbose ? ` (${props[k]})` : '')
-    const value = v.toString().replace(/,/g, ' ')
-    // Do not use 'output' as those data are already formated/colored
-    // and are not designed to be added to the clipboard
-    console.log(`${dim(k)}${propLabel} ${value}`)
-  }
 
   if (exist(entity)) {
     const claims = wdk.simplifyClaims(entity.claims)
@@ -55,16 +47,12 @@ const parseRes = function (res) {
         console.log(yellow('no statement found'), label)
       }
     } else {
-      for (let k in claims) {
-        let v = claims[k]
-        logProp(k, v, false)
-      }
+      logClaims(program, claims, props)
     }
   } else {
     console.log('error: ', body)
   }
 }
-
 
 Promise.all([ lightGet(url), propsPromise ])
 .then(parseRes)
