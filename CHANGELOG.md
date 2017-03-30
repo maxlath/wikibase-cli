@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.7.0 - 2017-03-30
+* Added [`wd summary`](https://github.com/maxlath/wikidata-cli#wd-summary)
+* Added [`wd description`](https://github.com/maxlath/wikidata-cli#wd-description)
+
 ## 4.6.0 - 2017-02-20
 * Added option `-u,--url` to [`wd open`](https://github.com/maxlath/wikidata-cli#wd-open)
 
