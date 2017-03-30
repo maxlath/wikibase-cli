@@ -19,6 +19,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 - [Commands](#commands)
   - [Read operations](#read-operations)
     - [wd label](#wd-label)
+    - [wd description](#wd-description)
     - [wd claims](#wd-claims)
     - [wd coord](#wd-coord)
     - [wd data](#wd-data)
@@ -95,6 +96,14 @@ wd label Q1103345 -l de
 wd label Q123 -l zh
 # => 9月
 ```
+
+#### wd description
+```sh
+wd description Q1103345
+```
+Options:
+* `-c, --clipboard`: copy the result to clipboard
+* `-l, --lang`: specify the description's language
 
 #### wd claims
 A quick way to access the claims of an entity
