@@ -5,6 +5,9 @@ const wdk = require('wikidata-sdk')
 const logClaims = require('../lib/log_claims')
 const { bgGreen, bgBlue } = require('chalk')
 const getLangProps = require('../lib/get_lang_props')
+const _ = require('lodash')
+const mainProps = ['P31', 'P279' ]
+const error_ = require('../lib/error')
 
 const parser = function (entity, options) {
   const { lang, program } = options
@@ -15,10 +18,14 @@ const parser = function (entity, options) {
   const description = entityAttributeParser(entity, 'description', lang)
   console.log(bgBlue('Description'), description)
 
-  const claims = wdk.simplifyClaims(entity.claims)
+  const claims = wdk.simplifyClaims(_.pick(entity.claims, mainProps))
+
+  // Make logClaims log labels
+  program.verbose = true
 
   return getLangProps(lang)
   .then(logClaims.bind(null, program, claims))
+  .catch(error_.log)
 }
 
 entityDataParser({ commandName: 'summary', parser })

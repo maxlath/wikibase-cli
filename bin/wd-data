@@ -14,7 +14,7 @@ const lightGet = require('../lib/light_get')
 const url = wdk.customize('getEntities', id)
 
 lightGet(url)
-.then(function(body) {
+.then(body => {
   const entity = body.entities && body.entities[id]
   if (entity != null) {
     return process.stdout.write(JSON.stringify(entity, null, 4) + '\n')

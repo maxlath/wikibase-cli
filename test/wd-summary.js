@@ -1,6 +1,8 @@
 const test = require('ava')
 const execa = require('execa')
-const Q4167410EnglishSummary = 'Label Friedrichshafen\nDescription Wikipedia disambiguation page\nP31 Q4167410'
+const Q123456EnglishSummary = `Label Friedrichshafen
+Description Wikipedia disambiguation page
+instance of (P31): Wikimedia disambiguation page (Q4167410)`
 
 test('wd summary: display help', t => {
   return execa.shell('./bin/wd summary')
@@ -9,10 +11,10 @@ test('wd summary: display help', t => {
 
 test('wd summary <entity>', t => {
   return execa.shell('./bin/wd summary Q123456 -l en')
-  .then(res => t.is(res.stdout, Q4167410EnglishSummary))
+  .then(res => t.is(res.stdout, Q123456EnglishSummary))
 })
 
 test('wd summary <entity> should be tolerant on input', t => {
   return execa.shell('./bin/wd summary -l en azfzafzafazQ123456fazafazfz')
-  .then(res => t.is(res.stdout, Q4167410EnglishSummary))
+  .then(res => t.is(res.stdout, Q123456EnglishSummary))
 })
