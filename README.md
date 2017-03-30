@@ -80,6 +80,8 @@ Installing globally allows to make the command `wd` accessible from your shell `
 ### Read operations
 
 #### wd summary
+![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
+
 Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label, a description, and some claims to know what we are dealing with.
 ```sh
 wd summary Q27477672
