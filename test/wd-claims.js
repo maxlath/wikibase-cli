@@ -8,7 +8,7 @@ test('wd claims: display help', t => {
 
 test('wd claims <id>', t => {
   return execa.shell('./bin/wd claims Q3521413')
-  .then(res => t.is(res.stdout.split('P31 Q11424').length, 2))
+  .then(res => t.is(res.stdout.split('film (Q11424)').length, 2))
 })
 
 test('wd claims <id> <property>', t => {

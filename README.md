@@ -126,7 +126,6 @@ wd claims Q2001 P19
 ```
 
 Options:
-* `-v, --verbose`: make results more verbose
 * `-l, --lang`: specify the properties labels' language
 ```sh
 wd claims Q2001 -l es
