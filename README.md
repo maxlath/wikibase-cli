@@ -160,6 +160,13 @@ wd data Q1496 | jd labels.pt
 # => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
+**multiple entities**
+You can also request several entities at once by passing several ids
+```sh
+wd data Q1496 Q123
+# => array of entities
+```
+
 #### wd id
 This one is kind of the inverse of `wd label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh

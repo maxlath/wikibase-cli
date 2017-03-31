@@ -2,24 +2,31 @@
 const program = require('../lib/program')
 program.process('data')
 const wdk = require('../lib/customized_wdk')(program)
+const _ = require('lodash')
+const error_ = require('../lib/error')
 
 const parseId = require('../lib/tolerant_id_parser')
-const id = parseId(program.args[0])
+const ids = program.args.map(parseId)
 
-if (!id) return program.help()
+if (!(ids && ids.length > 0)) return program.help()
 
-if (!wdk.isEntityId(id)) throw new Error('invalid entity id')
+const requestedIdsLenght = ids.length
+
+ids.forEach(id => {
+  if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+})
 
 const lightGet = require('../lib/light_get')
-const url = wdk.customize('getEntities', id)
+const url = wdk.customize('getEntities', ids)
+const logJSON = (data) => console.log(JSON.stringify(data, null, 2))
 
 lightGet(url)
 .then(body => {
-  const entity = body.entities && body.entities[id]
-  if (entity != null) {
-    return process.stdout.write(JSON.stringify(entity, null, 4) + '\n')
+  const entities = _.values(body.entities)
+  if (requestedIdsLenght === 1) {
+    logJSON(entities[0])
   } else {
-    return console.log('error: ', body)
+    logJSON(entities)
   }
 })
-.catch(console.log)
+.catch(error_.log)

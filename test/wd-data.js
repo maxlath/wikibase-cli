@@ -18,3 +18,14 @@ test('wd data <entity>', t => {
     dataAttrs.forEach((attr) => t.true(attributes.indexOf(attr) > -1))
   })
 })
+
+test('wd data should accept several ids', t => {
+  return execa.shell('./bin/wd data Q123456 Q123')
+  .then(res => {
+    t.true(res.stdout.startsWith('['))
+    const entities = JSON.parse(res.stdout)
+    const dataAttrs = Object.keys(entities[0])
+    t.deepEqual(attributes.length, dataAttrs.length)
+    dataAttrs.forEach((attr) => t.true(attributes.indexOf(attr) > -1))
+  })
+})
