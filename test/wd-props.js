@@ -22,3 +22,11 @@ test('wd props --type', t => {
     t.is(data.P6.type, 'WikibaseItem')
   })
 })
+
+test('wd props should be able to query a custom SPARQL endpoint', t => {
+  t.plan(1)
+  return execa.shell('./bin/wd props --sparql-endpoint https://example.coool')
+  .catch(err => {
+    t.true(err.message.match(/ENOTFOUND example\.coool/) != null)
+  })
+})

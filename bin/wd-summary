@@ -22,7 +22,7 @@ const parser = function (entity, options) {
   claims = program.verbose ? claims : _.pick(claims, mainProps)
   claims = wdk.simplifyClaims(claims)
 
-  return getLangProps(lang)
+  return getLangProps(program)
   .then(logClaims.bind(null, program, claims))
   .catch(error_.log)
 }

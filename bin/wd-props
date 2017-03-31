@@ -9,12 +9,11 @@ program
 const getLangProps = require('../lib/get_lang_props')
 const resetProperties = require('../lib/reset_properties')
 const formatOneLinePerProperty = require('../lib/format_one_line_per_property')
+const error_ = require('../lib/error')
 
 if (program.reset) return resetProperties()
 
-const { lang, type:includeTypes } = program
-
-getLangProps(lang, includeTypes)
+getLangProps(program)
 .then(formatOneLinePerProperty)
 .then(console.log)
-.catch(console.error)
+.catch(error_.log)
