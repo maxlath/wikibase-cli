@@ -6,6 +6,7 @@ const _ = require('lodash')
 const error_ = require('../lib/error')
 
 const parseId = require('../lib/tolerant_id_parser')
+const logNdjson = require('../lib/log_ndjson')
 const ids = program.args.map(parseId)
 
 if (!(ids && ids.length > 0)) return program.help()
@@ -18,15 +19,14 @@ ids.forEach(id => {
 
 const lightGet = require('../lib/light_get')
 const url = wdk.customize('getEntities', ids)
-const logJSON = (data) => console.log(JSON.stringify(data, null, 2))
 
 lightGet(url)
 .then(body => {
   const entities = _.values(body.entities)
   if (requestedIdsLenght === 1) {
-    logJSON(entities[0])
+    console.log(JSON.stringify(entities[0]))
   } else {
-    logJSON(entities)
+    logNdjson(entities)
   }
 })
 .catch(error_.log)
