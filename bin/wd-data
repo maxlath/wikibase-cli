@@ -1,6 +1,10 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
+program.option('-s, --simplify', 'get simplified entities data')
 program.process('data')
+
+const { simplify } = program
+
 const wdk = require('../lib/customized_wdk')(program)
 const _ = require('lodash')
 const error_ = require('../lib/error')
@@ -22,7 +26,8 @@ const url = wdk.customize('getEntities', ids)
 
 lightGet(url)
 .then(body => {
-  const entities = _.values(body.entities)
+  var entities = _.values(body.entities)
+  if (simplify) entities = entities.map(wdk.simplify.entity)
   if (requestedIdsLenght === 1) {
     console.log(JSON.stringify(entities[0]))
   } else {

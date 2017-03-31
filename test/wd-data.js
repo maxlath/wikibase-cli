@@ -29,3 +29,34 @@ test('wd data should accept several ids', t => {
     dataAttrs.forEach((attr) => t.true(attributes.indexOf(attr) > -1))
   })
 })
+
+test('wd data should output entities as ndjson', t => {
+  return execa.shell('./bin/wd data Q123456 Q1512522')
+  .then(res => {
+    t.is(res.stdout.split('\n').length, 4)
+  })
+})
+
+test('wd data should simplify entity when requested', t => {
+  return execa.shell('./bin/wd data Q1512522 --simplify')
+  .then(res => {
+    const entity = JSON.parse(res.stdout)
+    t.is(typeof entity.labels.de, 'string')
+    t.is(typeof entity.descriptions.de, 'string')
+    t.is(typeof entity.aliases.de[0], 'string')
+    t.is(typeof entity.claims.P31[0], 'string')
+    t.is(typeof entity.sitelinks.dewiki, 'string')
+  })
+})
+
+test('wd data should simplify entities when requested', t => {
+  return execa.shell('./bin/wd data Q1512522 Q123456 --simplify')
+  .then(res => {
+    const entity = JSON.parse(res.stdout)[0]
+    t.is(typeof entity.labels.de, 'string')
+    t.is(typeof entity.descriptions.de, 'string')
+    t.is(typeof entity.aliases.de[0], 'string')
+    t.is(typeof entity.claims.P31[0], 'string')
+    t.is(typeof entity.sitelinks.dewiki, 'string')
+  })
+})
