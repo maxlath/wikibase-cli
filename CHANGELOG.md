@@ -1,8 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.8.0 - 2017-03-31
+* Added multiple entities mode to [`wd data`](https://github.com/maxlath/wikidata-cli#wd-data)
+* Added `simplify` option to [`wd data`](https://github.com/maxlath/wikidata-cli#wd-data)
+* Output [`wd data`](https://github.com/maxlath/wikidata-cli#wd-data) data as Wikidata-Dump-style line delimited JSON to make filterable by [`wikidata-filter`](https://github.com/maxlath/wikidata-filter)
+
 ## 4.7.0 - 2017-03-30
-* Added [`wd summary`](https://github.com/maxlath/wikidata-cli#wd-summary)
 * Added [`wd description`](https://github.com/maxlath/wikidata-cli#wd-description)
 
 ## 4.6.0 - 2017-02-20
