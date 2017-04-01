@@ -10,7 +10,7 @@
     "test": "ava",
     "prepublish": "npm test",
     "lint": "standard",
-    "update-toc": "doctoc README.md"
+    "update-toc": "doctoc README.md docs/*md"
   },
   "repository": {
     "type": "git",
