@@ -41,31 +41,31 @@ wd config clipboard true
 ```
 #### options
 ##### clipboard
-copy command results to the clipboard, when this option is available (same as `-c,--clipboard`)
+copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
 ```sh
 # Default: false
 wd config clipboard true
 ```
 ##### json
-format the output of commands as JSON, when possible (same as `-j,--json`)
+format the output of commands as JSON, when possible (same as `-j, --json`)
 ```sh
 # Default: false
 wd config json true
 ```
 ##### lang
-set the prefered language (same as `-l,--lang`)
+set the prefered language (same as `-l, --lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wd config lang nl
 ```
 ##### verbose
-set commands to print verbose output (same as `-v,--verbose`)
+set commands to print verbose output (same as `-v, --verbose`)
 ```sh
 # Default: false
 wd config verbose true
 ```
 ##### custom Wikibase instance
-You may want to use those commands against a different [Wikibase](http://wikiba.se) than `wikidata.org` (same as `-i,--instance`)
+You may want to use those commands against a different [Wikibase](http://wikiba.se) than `wikidata.org` (same as `-i, --instance`)
 ```sh
 # Default: https://wikidata.org/w/api.php
 wd config instance https://mywikibase.instance/w/api.php
@@ -81,7 +81,7 @@ wd open Q1
 ```
 
 ##### custom SPARQL endpoint
-You can also set a custom SPARQL endpoint (same as `-e,--sparql-endpoint`)
+You can also set a custom SPARQL endpoint (same as `-e, --sparql-endpoint`)
 ```sh
 # Default: https://query.wikidata.org/sparql
 wd config sparql-endpoint https://example.com/sparql
