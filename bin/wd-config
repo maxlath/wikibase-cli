@@ -10,7 +10,7 @@ const config = require('../lib/config/config')
 const args = process.argv.slice(2)
 if (args.length === 0) {
   // Hiding password
-  config.password = config.password.replace(/./g, '*')
+  if (config.password) config.password = config.password.replace(/./g, '*')
   const currentConfig = JSON.stringify(config, null, 2)
   console.log(`${green('Current config:')}\n\n${currentConfig}\n`)
   program.help()
