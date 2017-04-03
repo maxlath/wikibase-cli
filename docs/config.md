@@ -41,13 +41,13 @@ wd config clipboard true
 ```
 #### options
 ##### clipboard
-copy the result to clipboard, when the command offers this option (same as `-c,--clipboard`)
+copy command results to the clipboard, when this option is available (same as `-c,--clipboard`)
 ```sh
 # Default: false
 wd config clipboard true
 ```
 ##### json
-format output as JSON when possible (same as `-j,--json`)
+format the output of commands as JSON, when possible (same as `-j,--json`)
 ```sh
 # Default: false
 wd config json true
@@ -59,7 +59,7 @@ set the prefered language (same as `-l,--lang`)
 wd config lang nl
 ```
 ##### verbose
-set commands to verbose (same as `-v,--verbose`)
+set commands to print verbose output (same as `-v,--verbose`)
 ```sh
 # Default: false
 wd config verbose true
