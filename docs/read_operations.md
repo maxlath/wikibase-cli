@@ -51,7 +51,7 @@ wd label Q1103345
 ```
 
 Options:
-* `-c, --clipboard`: copy the result to clipboard
+* `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang`: specify the label's language
 
 ```sh
@@ -66,7 +66,7 @@ wd label Q123 -l zh
 wd description Q1103345
 ```
 Options:
-* `-c, --clipboard`: copy the result to clipboard
+* `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang`: specify the description's language
 
 #### wd claims
@@ -86,7 +86,7 @@ wd claims Q2001 P19 --lang ru
 ```
 
 Options when passing both an id an property:
-* `-c, --clipboard`: copy the result to clipboard
+* `-c, --clipboard`: copy the command's result to clipboard
 * `-j, --json`: format the result as JSON
 
 #### wd coord
@@ -132,8 +132,8 @@ wd id New Delhi
 ```
 
 Options:
-* `-v, --verbose`: make results more verbose
-* `-c, --clipboard`: copy the result to clipboard
+* `-v, --verbose`: make the output more verbose
+* `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang`: specify from which language the title comes
 By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code
 ```sh
@@ -255,7 +255,7 @@ wd query --property P921 --object Q44559 --labels
 wd query -p P921 -o Q44559 -a
 ```
 
-Other Options:
+Other options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
