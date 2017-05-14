@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.9.0 - 2017-05-14
+* Added [`wd set-description`](https://github.com/maxlath/wikidata-cli#wd-set-description)
+
 ## 4.8.0 - 2017-03-31
 * Added multiple entities mode to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data)
 * Added `simplify` option to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data)
