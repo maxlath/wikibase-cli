@@ -16,6 +16,7 @@ const cmds = {
   open: require('../metadata/open'),
   coord: require('../metadata/coord'),
   'set-label': require('../metadata/set-label'),
+  'set-description': require('../metadata/set-description'),
   'add-claim': require('../metadata/add-claim'),
   'add-reference': require('../metadata/add-reference'),
   config: require('../metadata/config')
@@ -37,6 +38,7 @@ program
 .command(`open ${cmds.open.args}`, cmds.open.description).alias('o')
 .command(`coord ${cmds.coord.args}`, cmds.coord.description)
 .command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')
+.command(`set-description ${cmds['set-description'].args}`, cmds['set-description'].description).alias('sd')
 .command(`add-claim ${cmds['add-claim'].args}`, cmds['add-claim'].description).alias('ac')
 .command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
 .command(`config ${cmds.config.args}`, cmds.config.description).alias('c')

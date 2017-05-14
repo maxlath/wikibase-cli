@@ -9,6 +9,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 
 
 - [wd set-label](#wd-set-label)
+- [wd set-description](#wd-set-description)
 - [wd add-claim](#wd-add-claim)
   - [with a reference](#with-a-reference)
 - [wd add-reference](#wd-add-reference)
@@ -27,6 +28,20 @@ Example:
 ```sh
 # Set the label 'Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
 wd set-label Q4115189 fr "Bac à sable bulgroz"
+```
+
+#### wd set-description
+
+Set a description on an entity in a given language
+```sh
+wd set-description <entity> <language> <description>
+# Alias:
+wd sd <entity> <language> <description>
+```
+Example:
+```sh
+# Set the description 'description du Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
+wd set-description Q4115189 fr "description du Bac à sable bulgroz"
 ```
 
 #### wd add-claim

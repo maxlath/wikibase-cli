@@ -38,7 +38,7 @@
     "opn": "^4.0.2",
     "prompt": "^1.0.0",
     "shell-quote": "^1.6.1",
-    "wikidata-edit": "^1.2.5",
+    "wikidata-edit": "^1.4.0",
     "wikidata-sdk": "^5.1.3"
   },
   "devDependencies": {
