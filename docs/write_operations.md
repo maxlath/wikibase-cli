@@ -12,6 +12,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 - [wd set-description](#wd-set-description)
 - [wd add-claim](#wd-add-claim)
   - [with a reference](#with-a-reference)
+- [wd remove-claim](#wd-remove-claim)
 - [wd add-reference](#wd-add-reference)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -71,6 +72,24 @@ Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.o
 wd ac Q4115189 P527 Q34679 Q60856
 ```
 
+#### wd remove-claim
+Remove a claim
+```sh
+wd remove-claim <guid>
+# Alias:
+wd rc <guid>
+```
+
+Example:
+```sh
+# /!\ beware of the '$' sign that might need escaping
+wd remove-claim "Q71\$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7"
+# or simply
+wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
+# or several at a time (required to be claims on the same entity)
+wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
+```
+
 #### wd add-reference
 
 Add a reference to an claim
@@ -82,8 +101,8 @@ wd ar <claim-guid> <URL or project entity id>
 
 Example:
 ```sh
-# /!\ be ware of the '$' sign that might need escaping
+# /!\ beware of the '$' sign that might need escaping
 wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" 'https://example.org/rise-and-box-of-the-holy-sand-box'
-# or
+# or simply
 wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' 'https://example.org/rise-and-box-of-the-holy-sand-box'
 ```
