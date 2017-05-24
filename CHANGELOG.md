@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.10.0 - 2017-05-24
+* Added [`wd remove-description`](https://github.com/maxlath/wikidata-cli#wd-remove-description)
+
 ## 4.9.0 - 2017-05-14
 * Added [`wd set-description`](https://github.com/maxlath/wikidata-cli#wd-set-description)
 
