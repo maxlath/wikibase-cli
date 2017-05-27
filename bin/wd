@@ -18,6 +18,7 @@ const cmds = {
   'set-label': require('../metadata/set-label'),
   'set-description': require('../metadata/set-description'),
   'add-claim': require('../metadata/add-claim'),
+  'update-claim': require('../metadata/update-claim'),
   'remove-claim': require('../metadata/remove-claim'),
   'add-reference': require('../metadata/add-reference'),
   config: require('../metadata/config')
@@ -41,6 +42,7 @@ program
 .command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')
 .command(`set-description ${cmds['set-description'].args}`, cmds['set-description'].description).alias('sd')
 .command(`add-claim ${cmds['add-claim'].args}`, cmds['add-claim'].description).alias('ac')
+.command(`update-claim ${cmds['update-claim'].args}`, cmds['update-claim'].description).alias('uc')
 .command(`remove-claim ${cmds['remove-claim'].args}`, cmds['remove-claim'].description).alias('rc')
 .command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
 .command(`config ${cmds.config.args}`, cmds.config.description).alias('c')

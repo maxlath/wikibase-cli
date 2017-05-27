@@ -12,6 +12,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 - [wd set-description](#wd-set-description)
 - [wd add-claim](#wd-add-claim)
   - [with a reference](#with-a-reference)
+- [wd update-claim](#wd-update-claim)
 - [wd remove-claim](#wd-remove-claim)
 - [wd add-reference](#wd-add-reference)
 
@@ -70,6 +71,12 @@ Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.o
 ``` sh
 # this will be interpreted as being imported from Wikipedia in Uyghur (Q60856)
 wd ac Q4115189 P527 Q34679 Q60856
+```
+
+#### wd update-claim
+```sh
+# change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
+wd update-claim Q4115189 P2002 Zorglub Bulgroz
 ```
 
 #### wd remove-claim
