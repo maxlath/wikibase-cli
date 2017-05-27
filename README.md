@@ -15,6 +15,8 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 
 
 - [Dependencies](#dependencies)
+  - [General](#general)
+  - [Per feature](#per-feature)
 - [Installation](#installation)
 - [Commands](#commands)
   - [Read operations](#read-operations)
