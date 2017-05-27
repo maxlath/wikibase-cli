@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.12.0 - 2017-05-24
+* Added [`wd update-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-update-claim)
+
 ## 4.10.0 - 2017-05-24
 * Added [`wd remove-description`](https://github.com/maxlath/wikidata-cli#wd-remove-description)
 
