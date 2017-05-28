@@ -6,7 +6,9 @@ module.exports = {
   },
   examples: [
     { args: 'clipboard true', comment: 'always copy results to the clipboard when possible' },
-    { args: 'lang nl', comment: 'set prefered language to Dutch' }
+    { args: 'lang nl', comment: 'set prefered language to Dutch' },
+    { args: 'path', comment: 'get configuration path' },
+    { args: 'clear', comment: 'clear configuration' }
   ],
   doc: 'https://github.com/maxlath/wikidata-cli/blob/master/docs/config.md'
 }
