@@ -66,6 +66,8 @@ wd ac Q4115189 P2002 bulgroz
 wd ac Q4115189 P527 Q34679
 ```
 
+Alternative: [QuickStatements](https://tools.wmflabs.org/wikidata-todo/quick_statements.php), especially fit for large batches
+
 ##### with a reference
 Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.org/wiki/Property:P854)), or the id of the project it is imported from ([P143](https://www.wikidata.org/wiki/Property:P143))
 ``` sh
