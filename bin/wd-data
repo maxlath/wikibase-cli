@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 program.option('-s, --simplify', 'get simplified entities data')
+program.option('-p, --props <props>', 'request only certain properties')
 program.process('data')
 
 const { simplify } = program
+const props = program.props && program.props.replace(/,/g, '|')
 
 const wdk = require('../lib/customized_wdk')(program)
 const _ = require('lodash')
@@ -22,7 +24,7 @@ ids.forEach(id => {
 })
 
 const lightGet = require('../lib/light_get')
-const url = wdk.customize('getEntities', ids)
+const url = wdk.customize('getEntities', { ids, props })
 
 lightGet(url)
 .then(body => {

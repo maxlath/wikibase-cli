@@ -14,6 +14,7 @@
 - [wd data](#wd-data)
   - [multiple entities](#multiple-entities)
   - [simplified entities](#simplified-entities)
+  - [filtered properties](#filtered-properties)
 - [wd id](#wd-id)
 - [wd props](#wd-props)
   - [Get the list of all Wikidata properties in your environment local language](#get-the-list-of-all-wikidata-properties-in-your-environment-local-language)
@@ -120,6 +121,12 @@ wd data Q1496 Q123
 You can request entities to be simplified, using [wikidata-sdk `simplify.entity` function](https://github.com/maxlath/wikidata-sdk)[https://github.com/maxlath/wikidata-sdk#simplify-entity]
 ```sh
 wd data --simplify Q515168
+```
+
+##### filtered properties
+Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
+```sh
+wd data --props labels,claims,sitelinks Q515168
 ```
 
 #### wd id

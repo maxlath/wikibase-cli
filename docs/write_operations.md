@@ -48,7 +48,8 @@ wd set-description Q4115189 fr "description du Bac à sable bulgroz"
 
 #### wd add-claim
 
-Add a claim to an entity
+Add a claim to an entity.<br>
+
 ```sh
 wd add-claim <entity> <property> <value>
 # Alias:

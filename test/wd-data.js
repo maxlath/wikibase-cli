@@ -60,3 +60,15 @@ test('wd data should simplify entities when requested', t => {
     t.is(typeof entity.sitelinks.dewiki, 'string')
   })
 })
+
+test('wd data should return only the desired props when requested', t => {
+  return execa.shell('./bin/wd data Q1512522 --props labels,aliases')
+  .then(res => {
+    const entity = JSON.parse(res.stdout)
+    t.is(typeof entity.labels, 'object')
+    t.is(typeof entity.descriptions, 'undefined')
+    t.is(typeof entity.aliases, 'object')
+    t.is(typeof entity.claims, 'undefined')
+    t.is(typeof entity.sitelinks, 'undefined')
+  })
+})
