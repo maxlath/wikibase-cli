@@ -9,6 +9,7 @@ const cmds = {
   description: require('../metadata/description'),
   claims: require('../metadata/claims'),
   data: require('../metadata/data'),
+  revisions: require('../metadata/revisions'),
   props: require('../metadata/props'),
   id: require('../metadata/id'),
   sparql: require('../metadata/sparql'),
@@ -33,6 +34,7 @@ program
 .command(`description ${cmds.description.args}`, cmds.description.description).alias('desc')
 .command(`claims ${cmds.claims.args}`, cmds.claims.description).alias('c')
 .command(`data ${cmds.data.args}`, cmds.data.description).alias('d')
+.command(`revisions ${cmds.revisions.args}`, cmds.revisions.description).alias('r')
 .command(`props ${cmds.props.args}`, cmds.props.description).alias('p')
 .command(`id ${cmds.id.args}`, cmds.id.description).alias('wikiqid')
 .command(`sparql ${cmds.sparql.args}`, cmds.sparql.description)

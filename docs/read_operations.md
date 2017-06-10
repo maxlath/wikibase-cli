@@ -15,6 +15,7 @@
   - [multiple entities](#multiple-entities)
   - [simplified entities](#simplified-entities)
   - [filtered properties](#filtered-properties)
+- [wd revisions](#wd-revisions)
 - [wd id](#wd-id)
 - [wd props](#wd-props)
   - [Get the list of all Wikidata properties in your environment local language](#get-the-list-of-all-wikidata-properties-in-your-environment-local-language)
@@ -127,6 +128,13 @@ wd data --simplify Q515168
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
 ```sh
 wd data --props labels,claims,sitelinks Q515168
+```
+
+#### wd revisions
+Get entities revisions data
+```sh
+wd revisions Q3548931
+wd r Q3548931
 ```
 
 #### wd id
