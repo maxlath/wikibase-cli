@@ -137,6 +137,11 @@ wd revisions Q3548931
 wd r Q3548931
 ```
 
+Options:
+* `-s, --start`: specify a start time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
+* `-e, --end`: specify an end time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
+* `-l, --limit`: specify a limit number of revision (default and max = 500)
+
 #### wd id
 This one is kind of the inverse of `wd label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh
