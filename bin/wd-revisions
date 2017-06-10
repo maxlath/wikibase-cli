@@ -2,6 +2,7 @@
 const program = require('../lib/program')
 program.option('-s, --start <date>', 'start date')
 program.option('-e, --end <date>', 'end date')
+program.option('-l, --limit <num>', 'end date')
 program.process('revisions')
 
 const wdk = require('../lib/customized_wdk')(program)
@@ -20,12 +21,13 @@ ids.forEach(id => {
 })
 
 const query = {}
-var { start, end, verbose } = program
+var { start, end, limit, verbose } = program
 if (isPositiveIntegerString(start)) start = parseInt(start)
 if (isPositiveIntegerString(end)) end = parseInt(end)
 
 query.start = start
 query.end = end
+query.limit = limit
 
 const getAndLogRevisions = (id) => {
   const url = wdk.customize('getRevisions', id, query)
