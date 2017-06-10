@@ -1,10 +1,13 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
-## 4.13.0 - 2017-05-29
+## 4.13.0 - 2017-06-10
+* Added [`wd revisions`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-revisions)
+
+## 4.12.0 - 2017-05-29
 * Add option [`-p,--props` to `wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#filtered-properties)
 
-## 4.12.0 - 2017-05-24
+## 4.11.0 - 2017-05-24
 * Added [`wd update-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-update-claim)
 
 ## 4.10.0 - 2017-05-24
