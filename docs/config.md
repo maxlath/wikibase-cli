@@ -28,43 +28,43 @@ wd config <key> [value]
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-#### read options
+### read options
 ```sh
 # output the current config and the help menu
 wd config
 # output the config value for the key 'clipboard'
 wd config clipboard
 ```
-#### write options
+### write options
 ```sh
 wd config clipboard true
 ```
-#### options
-##### clipboard
+### options
+#### clipboard
 copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
 ```sh
 # Default: false
 wd config clipboard true
 ```
-##### json
+#### json
 format the output of commands as JSON, when possible (same as `-j, --json`)
 ```sh
 # Default: false
 wd config json true
 ```
-##### lang
+#### lang
 set the prefered language (same as `-l, --lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wd config lang nl
 ```
-##### verbose
+#### verbose
 set commands to print verbose output (same as `-v, --verbose`)
 ```sh
 # Default: false
 wd config verbose true
 ```
-##### custom Wikibase instance
+#### custom Wikibase instance
 You may want to use those commands against a different [Wikibase](http://wikiba.se) than `wikidata.org` (same as `-i, --instance`)
 ```sh
 # Default: https://wikidata.org/w/api.php
@@ -80,7 +80,7 @@ wd data Q1
 wd open Q1
 ```
 
-##### custom SPARQL endpoint
+#### custom SPARQL endpoint
 You can also set a custom SPARQL endpoint (same as `-e, --sparql-endpoint`)
 ```sh
 # Default: https://query.wikidata.org/sparql
@@ -93,12 +93,12 @@ You're all set to make requests against your custom instance:
 wd query --property P2002 --object timberners_lee
 ```
 
-#### maintenance
-##### get config file path
+### maintenance
+#### get config file path
 ```sh
 wd config path
 ```
-##### clear config
+#### clear config
 ```sh
 wd config clear
 ```

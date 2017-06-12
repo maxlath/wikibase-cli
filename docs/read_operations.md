@@ -30,7 +30,7 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-#### wd summary
+### wd summary
 ![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
 
 Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label, a description, and some claims to know what we are dealing with.
@@ -46,7 +46,7 @@ Options:
 * `-l, --lang`: specify the summary's language
 * `-v, --verbose`: log all claims
 
-#### wd label
+### wd label
 ```sh
 wd label Q1103345
 # => The Cluetrain Manifesto
@@ -63,7 +63,7 @@ wd label Q123 -l zh
 # => 9月
 ```
 
-#### wd description
+### wd description
 ```sh
 wd description Q1103345
 ```
@@ -71,7 +71,7 @@ Options:
 * `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang`: specify the description's language
 
-#### wd claims
+### wd claims
 A quick way to access the claims of an entity
 ```sh
 # all Q2001's claims
@@ -91,7 +91,7 @@ Options when passing both an id an property:
 * `-c, --clipboard`: copy the command's result to clipboard
 * `-j, --json`: format the result as JSON
 
-#### wd coord
+### wd coord
 A command to output the geographic coordinates (latitude and longitude) of an entity
 
 ```sh
@@ -99,7 +99,7 @@ wd coord Q2112
 # => 52.016666666667 8.5166666666667
 ```
 
-#### wd data
+### wd data
 A quick way to access an entity's raw JSON data
 ```sh
 wd data Q1496
@@ -111,26 +111,26 @@ wd data Q1496 | jd labels.pt
 # => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
-##### multiple entities
+#### multiple entities
 You can also request several entities at once by passing several ids
 ```sh
 wd data Q1496 Q123
 # => array of entities
 ```
 
-##### simplified entities
+#### simplified entities
 You can request entities to be simplified, using [wikidata-sdk `simplify.entity` function](https://github.com/maxlath/wikidata-sdk)[https://github.com/maxlath/wikidata-sdk#simplify-entity]
 ```sh
 wd data --simplify Q515168
 ```
 
-##### filtered properties
+#### filtered properties
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
 ```sh
 wd data --props labels,claims,sitelinks Q515168
 ```
 
-#### wd revisions
+### wd revisions
 Get entities revisions data
 ```sh
 wd revisions Q3548931
@@ -142,7 +142,7 @@ Options:
 * `-e, --end`: specify an end time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
 * `-l, --limit`: specify a limit number of revision (default and max = 500)
 
-#### wd id
+### wd id
 This one is kind of the inverse of `wd label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
 ```sh
 wd id Cantabria
@@ -167,10 +167,10 @@ wd id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
 ```
 
-#### wd props
+### wd props
 A command to access the list of all Wikidata properties in a given language (by default the environment local language)
 
-##### Get the list of all Wikidata properties in your environment local language
+#### Get the list of all Wikidata properties in your environment local language
 ```sh
 wd props
 ```
@@ -202,7 +202,7 @@ Outputs:
 [...]
 ```
 
-##### Get the list of all Wikidata properties in another language
+#### Get the list of all Wikidata properties in another language
 Option: `-l, --lang`: specify the properties labels language
 ```sh
 wd props -l sv
@@ -215,7 +215,7 @@ This means that after a while, your local version will miss new and updated prop
 
 Option: `-r, --reset`: clear properties cache
 
-##### Get the list of all Wikidata properties and their data types
+#### Get the list of all Wikidata properties and their data types
 
 Every property accepts values of a precise type, one of `CommonsMedia`, `ExternalId`, `String`, `WikibaseItem`, `Time`, `GlobeCoordinate`, `Monolingualtext`, `Quantity`, `Url`, `WikibaseProperty`, or `Math`
 
@@ -236,7 +236,7 @@ Outputs:
 [...]
 ```
 
-#### wd sparql
+### wd sparql
 A command to run a SPARQL query and get its JSON output
 
 From this SPARQL query file: `./path/to/query.rq`
@@ -260,7 +260,7 @@ wd sparql ./path/to/query.rq > ./results.json
 wd sparql -r ./path/to/query.rq > ./raw_sparql_results.json
 ```
 
-#### wd query
+### wd query
 A command to generate and run a simple SPARQL query, passing one or two of the elements that make a statement:
 * `-s, --subject`
 * `-p, --property`
@@ -282,10 +282,10 @@ Other options:
 * `-t, --limit <num>`: set the request results limit (defaults to 1000)
 * `-v, --verbose`: log the generated request
 
-#### wd open
+### wd open
 A command to open a pages on Wikidata in a browser from the command line (yep, you can be that lazy)
 
-##### open entities and properties pages
+#### open entities and properties pages
 ```sh
 wd open Q123
 # opens https://wikidata.org/wiki/Q123 in your default browser
@@ -313,7 +313,7 @@ wd open -p -l sv Q123 -u
 # outputs https://sv.wikipedia.org/wiki/September without opening it in the browser
 ```
 
-##### open a search page
+#### open a search page
 ```sh
 wd open Dan Simmons
 # opens https://www.wikidata.org/w/index.php?title=Special:Search&search=Dan%20Simmons

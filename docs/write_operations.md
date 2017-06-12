@@ -18,7 +18,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-#### wd set-label
+### wd set-label
 
 Set a label on an entity in a given language
 ```sh
@@ -32,7 +32,7 @@ Example:
 wd set-label Q4115189 fr "Bac à sable bulgroz"
 ```
 
-#### wd set-description
+### wd set-description
 
 Set a description on an entity in a given language
 ```sh
@@ -46,7 +46,7 @@ Example:
 wd set-description Q4115189 fr "description du Bac à sable bulgroz"
 ```
 
-#### wd add-claim
+### wd add-claim
 
 Add a claim to an entity.<br>
 
@@ -69,20 +69,20 @@ wd ac Q4115189 P527 Q34679
 
 Alternative: [QuickStatements](https://tools.wmflabs.org/wikidata-todo/quick_statements.php), especially fit for large batches
 
-##### with a reference
+#### with a reference
 Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.org/wiki/Property:P854)), or the id of the project it is imported from ([P143](https://www.wikidata.org/wiki/Property:P143))
 ``` sh
 # this will be interpreted as being imported from Wikipedia in Uyghur (Q60856)
 wd ac Q4115189 P527 Q34679 Q60856
 ```
 
-#### wd update-claim
+### wd update-claim
 ```sh
 # change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
 wd update-claim Q4115189 P2002 Zorglub Bulgroz
 ```
 
-#### wd remove-claim
+### wd remove-claim
 Remove a claim
 ```sh
 wd remove-claim <guid>
@@ -100,7 +100,7 @@ wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
 wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
 ```
 
-#### wd add-reference
+### wd add-reference
 
 Add a reference to an claim
 ```sh
