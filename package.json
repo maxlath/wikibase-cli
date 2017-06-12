@@ -11,7 +11,7 @@
     "postinstall": "check-node-version --node '>= 6.4.0'",
     "prepublish": "npm test",
     "lint": "standard",
-    "update-toc": "doctoc README.md docs/*md"
+    "update-toc": "doctoc docs/*md"
   },
   "repository": {
     "type": "git",

@@ -10,24 +10,17 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Summary
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
 - [Dependencies](#dependencies)
   - [General](#general)
   - [Per feature](#per-feature)
 - [Installation](#installation)
 - [Commands](#commands)
-  - [Read operations](#read-operations)
-  - [Write operations](#write-operations)
-  - [Config](#config)
+  - [Read operations](docs/read_operations.md)
+  - [Write operations](docs/write_operations.md)
+  - [Config](docs/config.md)
 - [See Also](#see-also)
 - [You may also like](#you-may-also-like)
 - [License](#license)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 
 ## Dependencies
 ### General
