@@ -7,6 +7,7 @@ const cmds = {
   summary: require('../metadata/summary'),
   label: require('../metadata/label'),
   description: require('../metadata/description'),
+  aliases: require('../metadata/aliases'),
   claims: require('../metadata/claims'),
   data: require('../metadata/data'),
   revisions: require('../metadata/revisions'),
@@ -32,6 +33,7 @@ program
 .command(`summary ${cmds.summary.args}`, cmds.summary.description).alias('s')
 .command(`label ${cmds.label.args}`, cmds.label.description).alias('l')
 .command(`description ${cmds.description.args}`, cmds.description.description).alias('desc')
+.command(`aliases ${cmds.aliases.args}`, cmds.aliases.description).alias('a')
 .command(`claims ${cmds.claims.args}`, cmds.claims.description).alias('c')
 .command(`data ${cmds.data.args}`, cmds.data.description).alias('d')
 .command(`revisions ${cmds.revisions.args}`, cmds.revisions.description).alias('r')
