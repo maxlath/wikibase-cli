@@ -10,6 +10,9 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 
 - [wd set-label](#wd-set-label)
 - [wd set-description](#wd-set-description)
+- [wd add-alias](#wd-add-alias)
+- [wd remove-alias](#wd-remove-alias)
+- [wd set-alias](#wd-set-alias)
 - [wd add-claim](#wd-add-claim)
   - [with a reference](#with-a-reference)
 - [wd update-claim](#wd-update-claim)
@@ -44,6 +47,33 @@ Example:
 ```sh
 # Set the description 'description du Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
 wd set-description Q4115189 fr "description du Bac à sable bulgroz"
+```
+
+### wd add-alias
+Add one or several aliases to the list of aliases of an entity in a given language
+```sh
+# Add an alias
+wd add-alias Q4115189 fr foo
+# Add several aliases separated by a pipe
+wd add-alias Q4115189 fr "foo|bar"
+```
+
+### wd remove-alias
+Remove one or several aliases from the list of aliases of an entity in a given language
+```sh
+# Remove an alias
+wd remove-alias Q4115189 fr foo
+# Remove several aliases separated by a pipe
+wd remove-alias Q4115189 fr "foo|bar"
+```
+
+### wd set-alias
+Set the list of aliases of an entity in a given language
+```sh
+# Replace all Q4115189's French alias by 'foo'
+wd set-alias Q4115189 fr foo
+# Replace all Q4115189's French alias by 'foo' and 'bar'
+wd set-alias Q4115189 fr "foo|bar"
 ```
 
 ### wd add-claim
