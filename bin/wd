@@ -15,6 +15,7 @@ const cmds = {
   id: require('../metadata/id'),
   sparql: require('../metadata/sparql'),
   query: require('../metadata/query'),
+  search: require('../metadata/search'),
   open: require('../metadata/open'),
   coord: require('../metadata/coord'),
   'set-label': require('../metadata/set-label'),
@@ -44,6 +45,7 @@ program
 .command(`id ${cmds.id.args}`, cmds.id.description).alias('wikiqid')
 .command(`sparql ${cmds.sparql.args}`, cmds.sparql.description)
 .command(`query ${cmds.query.args}`, cmds.query.description).alias('q')
+.command(`search ${cmds.search.args}`, cmds.search.description).alias('f')
 .command(`open ${cmds.open.args}`, cmds.open.description).alias('o')
 .command(`coord ${cmds.coord.args}`, cmds.coord.description)
 .command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')

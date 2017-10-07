@@ -1,0 +1,41 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program
+.process('search')
+
+const search = program.args[0]
+
+if (!(search && search.length > 0)) return program.help()
+
+const { lang:language, json } = program
+const wdk = require('../lib/customized_wdk')(program)
+const lightGet = require('../lib/light_get')
+const { grey } = require('chalk')
+const { padEnd } = require('lodash')
+
+const url = wdk.customize('searchEntities', { search, language })
+
+lightGet(url)
+.then(body => {
+  const results = body.search.filter(filterOutSpecialPages)
+  if (json) {
+    console.log(JSON.stringify(results, null, 2))
+    return
+  }
+
+  results
+  // Keep only the 10 best results among the up to 20 returned
+  .slice(0, 10)
+  .forEach((result, index) => {
+    const { id, label, description } = result
+    let text = padEnd(id, 11) + label
+    if (description && description.length > 0) text += ' ' + grey(description)
+    console.log(text)
+  })
+})
+
+const filterOutSpecialPages = result => {
+  result.description = result.description || ''
+  return !result.description.match(/(Wikim(e|é)dia|Wikip(e|é)dia)/)
+}

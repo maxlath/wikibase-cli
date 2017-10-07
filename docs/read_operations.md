@@ -30,6 +30,25 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+### wd search
+```sh
+wd search Ligo
+# Q255371    Laser — Interferometer Gravitational-Wave Observatory gravitational-wave detector
+# Q18461808  Ligo — Italian town
+# Q36946800  Ligo — family name
+# Q30026643  Ligonchio — chief town of the homonym municipality
+# Q30026645  Ligosullo — chief town of the homonym municipality
+# Q18494373  Ligone (Santa Maria)
+# Q2520468   Ligonier
+# Q70330     Ligornetto
+# Q785105    Ligonier, Pennsylvania — borough of Pennsylvania
+# Q1781427   Ligorio López — Mexican footballer
+```
+
+Options:
+* `-l, --lang`: specify the results labels and descriptions language
+* `-j, --json`: format the result as JSON
+
 ### wd summary
 ![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
 
