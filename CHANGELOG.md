@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.15.0 - 2017-10-07
+* Added [`wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search)
+
 ## 4.14.0 - 2017-09-11
 * Added [`wd aliases`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-aliases)
 * Added [`wd add-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-add-alias)
