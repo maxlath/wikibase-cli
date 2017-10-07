@@ -6,6 +6,7 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
+- [wd search](#wd-search)
 - [wd summary](#wd-summary)
 - [wd label](#wd-label)
 - [wd description](#wd-description)
