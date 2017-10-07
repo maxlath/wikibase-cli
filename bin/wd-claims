@@ -19,8 +19,8 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') [ id, prop ] = [ prop, id ]
 
 const propsPromise = require('../lib/get_lang_props')(program)
 
-if (/^[0-9]+$/.test(id)) { id = `Q${id}` }
-if (/^[0-9]+$/.test(prop)) { prop = `P${prop}` }
+if (/^[0-9]+$/.test(id)) id = `Q${id}`
+if (/^[0-9]+$/.test(prop)) prop = `P${prop}`
 
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')

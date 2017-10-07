@@ -29,7 +29,7 @@ query.start = start
 query.end = end
 query.limit = limit
 
-const getAndLogRevisions = (id) => {
+const getAndLogRevisions = id => {
   const url = wdk.customize('getRevisions', id, query)
   if (verbose) console.log(`revision query: ${id}`, url)
   return lightGet(url)

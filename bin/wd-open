@@ -13,7 +13,7 @@ const open = require('opn')
 const customWikibaseInstance = require('../lib/custom_wikibase_instance')
 const { isCustomized, customizeHost } = customWikibaseInstance(program)
 
-const args = program.args
+const { args } = program
 if (args.length === 0) return program.help()
 
 const lang = program.lang
@@ -21,7 +21,7 @@ const id = parseId(args[0])
 
 const { url:urlOnly, clipboard } = program
 
-const handle = (url) => {
+const handle = url => {
   if (isCustomized) url = customizeHost(url)
   if (urlOnly) {
     clipboard ? copy(url) : console.log(url)
@@ -45,7 +45,7 @@ if (!id) {
 if (program.wikipedia) {
   getSitelinkUrl(id, lang, 'wiki')
   .then(handle)
-  .catch((err) => {
+  .catch(err => {
     console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
     handle(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
   })
