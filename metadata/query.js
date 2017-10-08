@@ -13,6 +13,6 @@ module.exports = {
     { args: '-s Q15228 -o Q177499 -a', comment: 'find out which property link The Lord of The Ring (Q15228) and Gandalf (Q177499)' },
     { args: '-s Q177499 -a', comment: 'get the properties and objects for all the triples (subject, property, object) having Gandalf (Q177499) as subject' },
     { args: '-p P31 -o Q44559 --limit 5', comment: 'use the limit option to get only 5 instances of exoplanets (Q44559)' },
-    { args: '-p P31 -o Q44559 --limit 5 --debug', comment: 'use the debug option to see the generated SPARQL and the generated query URL' }
+    { args: '-p P31 -o Q44559 --limit 5 --verbose', comment: 'use the verbose option to see the generated SPARQL and the generated query URL' }
   ]
 }
