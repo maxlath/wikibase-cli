@@ -40,6 +40,9 @@ function setElement (elName) {
   } else {
     select += `?${elName} `
     if (includeLabels) select += `?${elName}Label `
+    // If the property isn't set, specify that we want only direct/truthy claims
+    // and not every statements and qualifiers
+    if (elName === 'property') triple += ' ?prop wikibase:directClaim ?property .'
   }
 }
 
