@@ -15,7 +15,7 @@ test('wd data <entity>', t => {
     const data = JSON.parse(res.stdout)
     const dataAttrs = Object.keys(data)
     t.deepEqual(attributes.length, dataAttrs.length)
-    dataAttrs.forEach((attr) => t.true(attributes.indexOf(attr) > -1))
+    dataAttrs.forEach(attr => t.true(attributes.indexOf(attr) > -1))
   })
 })
 
@@ -26,7 +26,7 @@ test('wd data should accept several ids', t => {
     const entities = JSON.parse(res.stdout)
     const dataAttrs = Object.keys(entities[0])
     t.deepEqual(attributes.length, dataAttrs.length)
-    dataAttrs.forEach((attr) => t.true(attributes.indexOf(attr) > -1))
+    dataAttrs.forEach(attr => t.true(attributes.indexOf(attr) > -1))
   })
 })
 
