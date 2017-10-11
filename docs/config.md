@@ -52,6 +52,13 @@ wd config username myusername
 wd config password myuserpassword
 ```
 
+### bot
+Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
+```sh
+# Default: false
+wd config bot true
+```
+
 ### lang
 set the prefered language (same as `-l, --lang`)
 ```sh
