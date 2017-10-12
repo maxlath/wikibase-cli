@@ -8,6 +8,7 @@ module.exports = {
     { args: 'Q44559', comment: 'open https://www.wikidata.org/wiki/Q44559 in your default browser' },
     { args: 'Q44559 --wikipedia', comment: 'open the article on Exoplanets in Wikipedia' },
     { args: 'Q44559 --wikipedia --lang pt', comment: 'open the article on Exoplanets in the Portugese Wikipedia' },
-    { args: 'Q44559 --url', comment: 'outputs the URL without opening the browser' }
+    { args: 'Q44559 --url', comment: 'outputs the URL without opening the browser' },
+    { args: 'Q44559 Q255371 Q7259', comment: 'open several pages at once' }
   ]
 }

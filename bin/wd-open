@@ -17,7 +17,7 @@ const { args } = program
 if (args.length === 0) return program.help()
 
 const lang = program.lang
-const id = parseId(args[0])
+const ids = args.map(parseId)
 
 const { url:urlOnly, clipboard } = program
 
@@ -31,7 +31,7 @@ const handle = url => {
   }
 }
 
-if (!id) {
+if (!ids) {
   const search = encodeURIComponent(args.join(' '))
   if (program.wikipedia) {
     // TODO: fix issue with the order of arguments when the option -p is before the search terms
@@ -42,13 +42,17 @@ if (!id) {
   return
 }
 
-if (program.wikipedia) {
-  getSitelinkUrl(id, lang, 'wiki')
-  .then(handle)
-  .catch(err => {
-    console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
-    handle(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
-  })
-} else {
-  handle(`https://wikidata.org/entity/${id}`)
+const openId = id => {
+  if (program.wikipedia) {
+    getSitelinkUrl(id, lang, 'wiki')
+    .then(handle)
+    .catch(err => {
+      console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
+      handle(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
+    })
+  } else {
+    handle(`https://wikidata.org/entity/${id}`)
+  }
 }
+
+ids.forEach(openId)
