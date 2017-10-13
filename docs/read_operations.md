@@ -47,7 +47,7 @@ wd search Ligo
 ```
 
 Options:
-* `-l, --lang`: specify the results labels and descriptions language
+* `-l, --lang <lang>`: specify the results labels and descriptions language
 * `-j, --json`: format the result as JSON
 
 ### wd summary
@@ -63,7 +63,7 @@ wd summary Q27477672
 ```
 
 Options:
-* `-l, --lang`: specify the summary's language
+* `-l, --lang <lang>`: specify the summary's language
 * `-v, --verbose`: log all claims
 
 ### wd label
@@ -74,7 +74,7 @@ wd label Q1103345
 
 Options:
 * `-c, --clipboard`: copy the command's result to the clipboard
-* `-l, --lang`: specify the label's language
+* `-l, --lang <lang>`: specify the label's language
 
 ```sh
 wd label Q1103345 -l de
@@ -89,7 +89,7 @@ wd description Q1103345
 ```
 Options:
 * `-c, --clipboard`: copy the command's result to the clipboard
-* `-l, --lang`: specify the description's language
+* `-l, --lang <lang>`: specify the description's language
 
 ### wd claims
 A quick way to access the claims of an entity
@@ -101,7 +101,7 @@ wd claims Q2001 P19
 ```
 
 Options:
-* `-l, --lang`: specify the properties labels' language
+* `-l, --lang <lang>`: specify the properties labels' language
 ```sh
 wd claims Q2001 -l es
 wd claims Q2001 P19 --lang ru
@@ -158,9 +158,9 @@ wd r Q3548931
 ```
 
 Options:
-* `-s, --start`: specify a start time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
-* `-e, --end`: specify an end time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
-* `-l, --limit`: specify a limit number of revision (default and max = 500)
+* `-s, --start <time>`: specify a start time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
+* `-e, --end <time>`: specify an end time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
+* `-l, --limit <time>`: specify a limit number of revision (default and max = 500)
 
 ### wd id
 This one is kind of the inverse of `wd label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
@@ -174,7 +174,7 @@ wd id New Delhi
 Options:
 * `-v, --verbose`: make the output more verbose
 * `-c, --clipboard`: copy the command's result to the clipboard
-* `-l, --lang`: specify from which language the title comes
+* `-l, --lang <lang>`: specify from which language the title comes
 By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code
 ```sh
 wd id -l fr science politique
@@ -223,7 +223,7 @@ Outputs:
 ```
 
 #### Get the list of all Wikidata properties in another language
-Option: `-l, --lang`: specify the properties labels language
+Option: `-l, --lang <lang>`: specify the properties labels language
 ```sh
 wd props -l sv
 # outputs the properties in Swedish
@@ -325,7 +325,7 @@ Options:
 wd open -p Q123
 # opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
 ```
-* `-l, --lang`: specify which Wikipedia edition should be targeted
+* `-l, --lang <lang>`: specify which Wikipedia edition should be targeted
 ```sh
 wd open -p -l sv Q123
 # opens https://sv.wikipedia.org/wiki/September instead
