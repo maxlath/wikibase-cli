@@ -9,6 +9,10 @@ const _ = require('lodash')
 const { mainProps } = require('../lib/properties')
 const error_ = require('../lib/error')
 
+const options = [
+  [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']
+]
+
 const parser = function (entity, options) {
   const { lang, program } = options
 
@@ -19,7 +23,8 @@ const parser = function (entity, options) {
   console.log(bgBlue('Description'), description)
 
   var { claims } = entity
-  claims = program.verbose ? claims : _.pick(claims, mainProps)
+  const properties = program.properties.split(',') || []
+  claims = program.verbose ? claims : _.pick(claims, mainProps.concat(properties))
   claims = wdk.simplifyClaims(claims)
 
   return getLangProps(program)
@@ -27,4 +32,4 @@ const parser = function (entity, options) {
   .catch(error_.log)
 }
 
-entityDataParser({ commandName: 'summary', parser })
+entityDataParser({ commandName: 'summary', parser, options })

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 program.option('-s, --simplify', 'get simplified entities data')
-program.option('-p, --props <props>', 'request only certain properties')
+program.option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 program.process('data')
 
 const { simplify } = program
