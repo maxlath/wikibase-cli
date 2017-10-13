@@ -34,6 +34,7 @@
 * Output [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) data as Wikidata-Dump-style line delimited JSON to make filterable by [`wikidata-filter`](https://github.com/maxlath/wikidata-filter)
 
 ## 4.7.0 - 2017-03-30
+* Added [`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-summary)
 * Added [`wd description`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-description)
 
 ## 4.6.0 - 2017-02-20
