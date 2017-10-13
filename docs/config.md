@@ -12,12 +12,13 @@ wd config <key> [value]
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [read options](#read-options)
-- [write options](#write-options)
+- [get options](#get-options)
+- [set options](#set-options)
 - [options](#options)
-  - [clipboard](#clipboard)
-  - [json](#json)
+  - [username and password](#username-and-password)
   - [lang](#lang)
+  - [json](#json)
+  - [clipboard](#clipboard)
   - [verbose](#verbose)
   - [custom Wikibase instance](#custom-wikibase-instance)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
@@ -28,43 +29,65 @@ wd config <key> [value]
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-### read options
+## get options
 ```sh
 # output the current config and the help menu
 wd config
 # output the config value for the key 'clipboard'
 wd config clipboard
 ```
-### write options
+
+## set options
 ```sh
 wd config clipboard true
 ```
-### options
-#### clipboard
-copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
+
+## options
+
+### username and password
+Required for [write operations](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md)
+(Alternatively, we might be able to use OAuth once [this issue](https://github.com/maxlath/wikidata-cli/issues/25) is resolved)
+```sh
+wd config username myusername
+wd config password myuserpassword
+```
+
+### bot
+Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
 ```sh
 # Default: false
-wd config clipboard true
+wd config bot true
 ```
-#### json
-format the output of commands as JSON, when possible (same as `-j, --json`)
-```sh
-# Default: false
-wd config json true
-```
-#### lang
+
+### lang
 set the prefered language (same as `-l, --lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wd config lang nl
 ```
-#### verbose
+
+### json
+format the output of commands as JSON, when possible (same as `-j, --json`)
+```sh
+# Default: false
+wd config json true
+```
+
+### clipboard
+copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
+```sh
+# Default: false
+wd config clipboard true
+```
+
+### verbose
 set commands to print verbose output (same as `-v, --verbose`)
 ```sh
 # Default: false
 wd config verbose true
 ```
-#### custom Wikibase instance
+
+### custom Wikibase instance
 You may want to use those commands against a different [Wikibase](http://wikiba.se) than `wikidata.org` (same as `-i, --instance`)
 ```sh
 # Default: https://wikidata.org/w/api.php
@@ -80,7 +103,7 @@ wd data Q1
 wd open Q1
 ```
 
-#### custom SPARQL endpoint
+### custom SPARQL endpoint
 You can also set a custom SPARQL endpoint (same as `-e, --sparql-endpoint`)
 ```sh
 # Default: https://query.wikidata.org/sparql
@@ -93,12 +116,14 @@ You're all set to make requests against your custom instance:
 wd query --property P2002 --object timberners_lee
 ```
 
-### maintenance
-#### get config file path
+## maintenance
+
+### get config file path
 ```sh
 wd config path
 ```
-#### clear config
+
+### clear config
 ```sh
 wd config clear
 ```
