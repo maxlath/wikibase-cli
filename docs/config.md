@@ -16,6 +16,7 @@ wd config <key> [value]
 - [set options](#set-options)
 - [options](#options)
   - [username and password](#username-and-password)
+  - [bot](#bot)
   - [lang](#lang)
   - [json](#json)
   - [clipboard](#clipboard)

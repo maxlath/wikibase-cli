@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.16.0 - 2017-10-13
+* Added [bot](https://github.com/maxlath/wikidata-cli/blob/master/docs/config.md#bot) support
+
 ## 4.15.0 - 2017-10-07
 * Added [`wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search)
 
