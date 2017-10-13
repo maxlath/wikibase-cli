@@ -63,6 +63,7 @@ wd summary Q27477672
 ```
 
 Options:
+* `-p, --properties <properties>`: request additional properties (separated by a comma)
 * `-l, --lang <lang>`: specify the summary's language
 * `-v, --verbose`: log all claims
 
