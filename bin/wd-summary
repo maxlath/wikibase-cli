@@ -23,7 +23,7 @@ const parser = function (entity, options) {
   console.log(bgBlue('Description'), description)
 
   var { claims } = entity
-  const properties = program.properties.split(',') || []
+  const properties = (program.properties && program.properties.split(',')) || []
   claims = program.verbose ? claims : _.pick(claims, mainProps.concat(properties))
   claims = wdk.simplifyClaims(claims)
 
