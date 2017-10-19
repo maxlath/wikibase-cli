@@ -17,7 +17,7 @@ const { args } = program
 if (args.length === 0) return program.help()
 
 const lang = program.lang
-const ids = args.map(parseId)
+const ids = args.map(parseId).filter(id => id != null)
 
 const { url:urlOnly, clipboard } = program
 
@@ -31,7 +31,7 @@ const handle = url => {
   }
 }
 
-if (!ids) {
+if (!ids || ids.length === 0) {
   const search = encodeURIComponent(args.join(' '))
   if (program.wikipedia) {
     // TODO: fix issue with the order of arguments when the option -p is before the search terms
