@@ -207,8 +207,10 @@ NB: properties without a label in the requested language are set to `null`, as y
 
 This is especially convenient when you're looking for a property:
 ```sh
-# look for a property dealing with images
-wd props |grep image
+# look for a property having "image" in its label (case insensitive)
+wd props | grep -i image
+# which can actually be done by passing the pattern as additional arguments
+wd props image
 ```
 Outputs:
 ```
