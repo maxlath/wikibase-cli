@@ -20,6 +20,7 @@ let filter
 if (pattern && pattern.length > 0) {
   const filterRegex = new RegExp(pattern, 'i')
   filter = value => {
+    if (value == null) return false
     if (typeof value === 'object') value = value.value
     return value.match(filterRegex) != null
   }
