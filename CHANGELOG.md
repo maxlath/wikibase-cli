@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.18.0 - 2017-10-13
+* Let [`wd props`](https://github.com/maxlath/wikidata-cli#wd-props) accept additional arguments to filter matching properties
+
 ## 4.17.0 - 2017-10-13
 * Added [`wd summary --properties` option](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-summary)
 
