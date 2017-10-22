@@ -10,11 +10,17 @@ const search = program.args.join(' ')
 if (!(search && search.length > 0)) return program.help()
 
 const { lang:language, json } = program
+
+const { red, grey } = require('chalk')
+const valide = require('../lib/valide')
+if (!valide.lang(language)) {
+  console.error(red(`invalid language: ${language}`))
+  process.exit(1)
+}
+
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
-const { grey } = require('chalk')
 const { padEnd } = require('lodash')
-
 const url = wdk.customize('searchEntities', { search, language })
 
 lightGet(url)
