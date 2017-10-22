@@ -2,7 +2,12 @@ module.exports = {
   args: '<file.rq>',
   description: 'run a SPARQL query and get its JSON output',
   options: {
-    lang: false
+    lang: false,
+    verbose: true,
+    clipboard: true,
+    json: true,
+    instance: false,
+    sparqlEndpoint: true
   },
   examples: [
     { args: './path/to/query.rq', comment: 'make a SPARQL request to query.wikidata.org from a file' },

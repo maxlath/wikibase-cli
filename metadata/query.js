@@ -2,7 +2,12 @@ module.exports = {
   args: '',
   description: "generate and run a simple SPARQL query by passing a statement's subject, property, or object, or a couple of those",
   options: {
-    lang: true
+    lang: false,
+    verbose: false,
+    clipboard: false,
+    json: false,
+    instance: false,
+    sparqlEndpoint: true
   },
   examples: [
     { args: '--property P2002 --object timberners_lee', comment: 'find out which entity as the twitter username (P2002) "timberners_lee"' },

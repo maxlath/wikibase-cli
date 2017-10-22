@@ -2,7 +2,12 @@ module.exports = {
   args: '<entity>',
   description: "open the entity's page on Wikidata website",
   options: {
-    lang: true
+    lang: true,
+    verbose: true,
+    clipboard: true,
+    json: false,
+    instance: true,
+    sparqlEndpoint: false
   },
   examples: [
     { args: 'Q44559', comment: 'open https://www.wikidata.org/wiki/Q44559 in your default browser' },

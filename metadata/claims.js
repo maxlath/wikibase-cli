@@ -2,7 +2,12 @@ module.exports = {
   args: '<entity> [property]',
   description: 'display the claims of an entity',
   options: {
-    lang: true
+    lang: true,
+    verbose: true,
+    clipboard: true,
+    json: true,
+    instance: true,
+    sparqlEndpoint: true
   },
   examples: [
     { args: 'Q123', comment: 'fetch all claims for the entity Q123' },

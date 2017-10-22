@@ -2,7 +2,12 @@ module.exports = {
   args: '',
   description: 'output the list of all Wikidata properties',
   options: {
-    lang: true
+    lang: true,
+    verbose: true,
+    clipboard: true,
+    json: true,
+    instance: true,
+    sparqlEndpoint: true
   },
   examples: [
     { args: '', comment: 'output all the properties' },

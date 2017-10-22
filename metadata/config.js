@@ -2,7 +2,12 @@ module.exports = {
   args: '<key> [value]',
   description: 'get and set configuration parameters',
   options: {
-    lang: false
+    lang: false,
+    verbose: false,
+    clipboard: false,
+    json: false,
+    instance: false,
+    sparqlEndpoint: false
   },
   examples: [
     { args: 'clipboard true', comment: 'always copy results to the clipboard when possible' },

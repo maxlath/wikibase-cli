@@ -13,10 +13,9 @@ const open = require('opn')
 const customWikibaseInstance = require('../lib/custom_wikibase_instance')
 const { isCustomized, customizeHost } = customWikibaseInstance(program)
 
-const { args } = program
+const { args, lang } = program
 if (args.length === 0) return program.help()
 
-const lang = program.lang
 const ids = args.map(parseId).filter(id => id != null)
 
 const { url:urlOnly, clipboard } = program

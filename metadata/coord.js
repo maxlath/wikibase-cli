@@ -1,7 +1,12 @@
 module.exports = {
   args: '<entity>',
   options: {
-    lang: false
+    lang: false,
+    verbose: false,
+    clipboard: true,
+    json: true,
+    instance: true,
+    sparqlEndpoint: false
   },
   description: 'display the geographic coordinates (latitude and longitude) of an entity (P625)',
   examples: [

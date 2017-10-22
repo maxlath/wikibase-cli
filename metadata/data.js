@@ -2,7 +2,12 @@ module.exports = {
   args: '<entity>',
   description: "output the entity's data",
   options: {
-    lang: false
+    lang: false,
+    verbose: false,
+    clipboard: false,
+    json: false,
+    instance: true,
+    sparqlEndpoint: false
   },
   examples: [
     { args: 'Q123', comment: "fetch Q123's raw data" },
