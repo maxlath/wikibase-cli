@@ -23,6 +23,8 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
   - [wd remove-claim](#wd-remove-claim)
 - [references](#references)
   - [wd add-reference](#wd-add-reference)
+- [item](#item)
+  - [wd create-item](#wd-create-item)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -155,4 +157,21 @@ Example:
 wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" 'https://example.org/rise-and-box-of-the-holy-sand-box'
 # or simply
 wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' 'https://example.org/rise-and-box-of-the-holy-sand-box'
+```
+
+### item
+#### wd create-item
+
+Create a new item
+
+```sh
+# pass data as JSON
+# /!\ Do not run this example command as it would create a junk item
+wd create-item '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+
+# pass data as a JSON file path
+wd create-item ./new_item_data.json
+
+# Alias:
+wd ci <entity-data>
 ```
