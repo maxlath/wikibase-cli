@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 4.19.0 - 2017-10-29
+* Added [`wd create-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-create-item)
+
 ## 4.18.0 - 2017-10-13
 * Let [`wd props`](https://github.com/maxlath/wikidata-cli#wd-props) accept additional arguments to filter matching properties
 
@@ -14,10 +17,10 @@
 * Added [`wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search)
 
 ## 4.14.0 - 2017-09-11
-* Added [`wd aliases`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-aliases)
-* Added [`wd add-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-add-alias)
-* Added [`wd remove-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-remove-alias)
-* Added [`wd set-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-set-alias)
+* Added [`wd aliases`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-aliases)
+* Added [`wd add-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-alias)
+* Added [`wd remove-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-remove-alias)
+* Added [`wd set-alias`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-set-alias)
 
 ## 4.13.0 - 2017-06-10
 * Added [`wd revisions`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-revisions)
