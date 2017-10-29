@@ -2,10 +2,10 @@
 const program = require('commander')
 const fs = require('fs')
 const { red } = require('chalk')
-let arg = process.argv.slice(2)[0]
-let data
 
-if (arg) {
+program.customArgsParser = args => {
+  let arg = args[0]
+  let data
   try {
     // Accept the item data as a JSON string
     if (arg[0] === '{') {
@@ -14,9 +14,9 @@ if (arg) {
     } else {
       data = fs.readFileSync(arg).toString()
     }
-    program._customArgs = [ JSON.parse(data) ]
+    return [ JSON.parse(data) ]
   } catch (err) {
-    console.error(red('the argument should be a valid JSON or a JSON file path'))
+    console.error(red('the argument should be a valid JSON or a JSON file path'), arg)
     process.exit(1)
   }
 }
