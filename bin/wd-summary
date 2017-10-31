@@ -3,17 +3,17 @@ const entityDataParser = require('../lib/entity_data_parser')
 const entityAttributeParser = require('../lib/entity_attribute_parser')
 const wdk = require('wikidata-sdk')
 const logClaims = require('../lib/log_claims')
-const { bgGreen, bgBlue } = require('chalk')
+const { bgGreen, bgBlue, dim } = require('chalk')
 const getLangProps = require('../lib/get_lang_props')
 const _ = require('lodash')
 const { mainProps } = require('../lib/properties')
 const error_ = require('../lib/error')
 
-const options = [
+const programOptions = [
   [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']
 ]
 
-const parser = function (entity, options) {
+const parseEntity = (entity, options) => {
   const { lang, program } = options
 
   const label = entityAttributeParser(entity, 'label', lang)
@@ -32,4 +32,29 @@ const parser = function (entity, options) {
   .catch(error_.log)
 }
 
-entityDataParser({ commandName: 'summary', parser, options })
+const parser = options => entities => {
+  const entitiesList = Object.values(entities)
+  const multiEntities = entitiesList.length > 0
+  let firstLogged = false
+
+  // Log entities sequentially as properties still need an async operation
+  const parseNext = () => {
+    const nextEntity = entitiesList.shift()
+    if (!nextEntity) return
+
+    if (firstLogged) {
+      // Add a line between summaries
+      console.log('')
+    } else {
+      firstLogged = true
+    }
+
+    if (multiEntities) console.log(dim('id'), nextEntity.id)
+    return parseEntity(nextEntity, options)
+    .then(parseNext)
+  }
+
+  return parseNext()
+}
+
+entityDataParser({ commandName: 'summary', parser, programOptions })

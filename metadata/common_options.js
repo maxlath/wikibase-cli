@@ -9,9 +9,9 @@ module.exports = {
   },
   entityAttributeCommands: {
     lang: true,
-    verbose: true,
+    verbose: false,
     clipboard: true,
-    json: true,
+    json: false,
     instance: true,
     sparqlEndpoint: false
   }

@@ -10,6 +10,7 @@
 - [wd summary](#wd-summary)
 - [wd label](#wd-label)
 - [wd description](#wd-description)
+- [wd aliases](#wd-aliases)
 - [wd claims](#wd-claims)
 - [wd coord](#wd-coord)
 - [wd data](#wd-data)
@@ -60,6 +61,7 @@ wd summary Q27477672
 # Description comic book genre
 # instance of (P31):  comic genre (Q20087698)
 # subclass of (P279): animal comic (Q10493450)
+wd summary Q18120925 Q22117436 Q22117437
 ```
 
 Options:
@@ -71,6 +73,7 @@ Options:
 ```sh
 wd label Q1103345
 # => The Cluetrain Manifesto
+wd label Q18120925 Q22117436 Q22117437
 ```
 
 Options:
@@ -87,10 +90,20 @@ wd label Q123 -l zh
 ### wd description
 ```sh
 wd description Q1103345
+wd description Q18120925 Q22117436 Q22117437
 ```
 Options:
 * `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang <lang>`: specify the description's language
+
+### wd aliases
+```sh
+wd aliases Q1103345
+wd aliases Q18120925 Q22117436 Q22117437
+```
+Options:
+* `-c, --clipboard`: copy the command's result to the clipboard
+* `-l, --lang <lang>`: specify the aliases's language
 
 ### wd claims
 A quick way to access the claims of an entity
