@@ -13,7 +13,13 @@ const programOptions = [
   [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']
 ]
 
+
 const parseEntity = (entity, options) => {
+  if (entity.missing != null) {
+    console.log(dim('missing'))
+    return Promise.resolve()
+  }
+
   const { lang, program } = options
 
   const label = entityAttributeParser(entity, 'label', lang)
@@ -50,8 +56,8 @@ const parser = options => entities => {
     }
 
     if (multiEntities) console.log(dim('id'), nextEntity.id)
-    return parseEntity(nextEntity, options)
-    .then(parseNext)
+
+    return parseEntity(nextEntity, options).then(parseNext)
   }
 
   return parseNext()
