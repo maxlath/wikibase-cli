@@ -157,18 +157,25 @@ wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821
 
 Add a reference to an claim
 ```sh
-wd add-reference <claim-guid> <URL or project entity id>
+wd add-reference <claim-guid> <property> <value>
 # Alias:
-wd ar <claim-guid> <URL or project entity id>
+wd ar <claim-guid> <property> <value>
 ```
 
 Examples:
 ```sh
+# Add a reference URL (P854) to this claim
 # /!\ beware of the '$' sign that might need escaping
-wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" 'https://example.org/rise-and-box-of-the-holy-sand-box'
+wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
 # or simply
-wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' 'https://example.org/rise-and-box-of-the-holy-sand-box'
+wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
+# Reference the claim as imported from (P143) Wikipedia in Uyghur (Q60856)
+wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
+# or simply
+wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 ```
+
+See [*add claim with a reference*](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
 ### item
 #### wd create-item
