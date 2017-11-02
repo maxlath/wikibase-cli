@@ -186,6 +186,23 @@ wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 
 See [*add claim with a reference*](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
+#### wd remove-reference
+
+Remove a reference from a claim
+```sh
+wd remove-reference <claim-guid> <references-hashes>
+# Alias:
+wd rr <claim-guid> <references-hashes>
+```
+
+Examples:
+```sh
+# Remove a reference from this claim
+wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3'
+# Remove several references from this claim by passing the reference hashes as one argument made of several pipe-separated hashes
+wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
+```
+
 ### item
 See [Wikidata:Glossary#Item](https://www.wikidata.org/wiki/Wikidata:Glossary#Item)
 
