@@ -18,6 +18,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
   - [wd set-alias](#wd-set-alias)
 - [claims](#claims)
   - [wd add-claim](#wd-add-claim)
+    - [rich values](#rich-values)
     - [with a reference](#with-a-reference)
   - [wd update-claim](#wd-update-claim)
   - [wd remove-claim](#wd-remove-claim)
@@ -37,7 +38,7 @@ wd set-label <entity> <language> <label>
 # Alias:
 wd sl <entity> <language> <label>
 ```
-Example:
+Examples:
 ```sh
 # Set the label 'Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
 wd set-label Q4115189 fr "Bac à sable bulgroz"
@@ -52,7 +53,7 @@ wd set-description <entity> <language> <description>
 # Alias:
 wd sd <entity> <language> <description>
 ```
-Example:
+Examples:
 ```sh
 # Set the description 'description du Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
 wd set-description Q4115189 fr "description du Bac à sable bulgroz"
@@ -90,6 +91,7 @@ wd set-alias Q4115189 fr "foo|bar"
 #### wd add-claim
 
 Add a claim to an entity.<br>
+*Alternative*: [QuickStatements](https://tools.wmflabs.org/wikidata-todo/quick_statements.php)
 
 ```sh
 wd add-claim <entity> <property> <value>
@@ -97,18 +99,17 @@ wd add-claim <entity> <property> <value>
 wd ac <entity> <property> <value>
 ```
 
-Example:
+Examples:
 ```sh
 # Add the Twitter account (P2002) 'bulgroz' to the Sandbox (Q4115189) entity
 wd add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
 wd ac Q4115189 P2002 bulgroz
-# The same but passing a reference as 4th argument:
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
 wd ac Q4115189 P527 Q34679
 ```
 
-##### Rich values
+##### rich values
 Some values like monolingual text or quatities with a unit require to pass more data than a simple primitive value. This can be done by passing an object, either in a JSON or a query string format:
 ```sh
 # Add the statement that the Sandbox (Q4115189) has for title (P1476) "bac à sable" in French
@@ -118,13 +119,13 @@ wd ac Q4115189 P1476 '{"text":"bac à sable", "language":"fr"}'
 wd ac Q4115189 P1476 'text=bac à sable&language=fr'
 ```
 
-Alternative: [QuickStatements](https://tools.wmflabs.org/wikidata-todo/quick_statements.php), especially fit for large batches
-
 ##### with a reference
-Simply add a 4th argument, either a reference URL ([P854](https://www.wikidata.org/wiki/Property:P854)), or the id of the project it is imported from ([P143](https://www.wikidata.org/wiki/Property:P143))
+Workflow example to add a claim with a reference, relying on the [jsondepth](https://github.com/maxlath/jsondepth) parser (hereafter referenced as `jd`). See [`wd add-reference`](#wd-add-reference) for more details.
 ``` sh
-# this will be interpreted as being imported from Wikipedia in Uyghur (Q60856)
-wd ac Q4115189 P527 Q34679 Q60856
+wd ac Q4115189 P527 Q34679
+claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jd claim.id)
+# Add the reference that this claim is imported from (P143) Wikipedia in Uyghur (Q60856)
+wd add-reference $claim_guid P143 Q60856
 ```
 
 #### wd update-claim
@@ -141,7 +142,7 @@ wd remove-claim <guid>
 wd rc <guid>
 ```
 
-Example:
+Examples:
 ```sh
 # /!\ beware of the '$' sign that might need escaping
 wd remove-claim "Q71\$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7"
@@ -161,7 +162,7 @@ wd add-reference <claim-guid> <URL or project entity id>
 wd ar <claim-guid> <URL or project entity id>
 ```
 
-Example:
+Examples:
 ```sh
 # /!\ beware of the '$' sign that might need escaping
 wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" 'https://example.org/rise-and-box-of-the-holy-sand-box'
