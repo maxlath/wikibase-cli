@@ -30,6 +30,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ### labels
+See [Wikidata:Glossary#Label](https://www.wikidata.org/wiki/Wikidata:Glossary#Label)
 #### wd set-label
 
 Set a label on an entity in a given language
@@ -45,6 +46,8 @@ wd set-label Q4115189 fr "Bac à sable bulgroz"
 ```
 
 ### descriptions
+See [Wikidata:Glossary#Description](https://www.wikidata.org/wiki/Wikidata:Glossary#Description)
+
 #### wd set-description
 
 Set a description on an entity in a given language
@@ -60,6 +63,8 @@ wd set-description Q4115189 fr "description du Bac à sable bulgroz"
 ```
 
 ### aliases
+See [Wikidata:Glossary#Alias](https://www.wikidata.org/wiki/Wikidata:Glossary#Alias)
+
 #### wd add-alias
 Add one or several aliases to the list of aliases of an entity in a given language
 ```sh
@@ -88,6 +93,8 @@ wd set-alias Q4115189 fr "foo|bar"
 ```
 
 ### claims
+See [Wikidata:Glossary#Claim](https://www.wikidata.org/wiki/Wikidata:Glossary#Claim)
+
 #### wd add-claim
 
 Add a claim to an entity.<br>
@@ -153,6 +160,8 @@ wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821
 ```
 
 ### references
+See [Wikidata:Glossary#Reference](https://www.wikidata.org/wiki/Wikidata:Glossary#Reference)
+
 #### wd add-reference
 
 Add a reference to an claim
@@ -178,6 +187,8 @@ wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 See [*add claim with a reference*](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
 ### item
+See [Wikidata:Glossary#Item](https://www.wikidata.org/wiki/Wikidata:Glossary#Item)
+
 #### wd create-item
 
 Create a new item
