@@ -108,6 +108,16 @@ wd ac Q4115189 P2002 bulgroz
 wd ac Q4115189 P527 Q34679
 ```
 
+##### Rich values
+Some values like monolingual text or quatities with a unit require to pass more data than a simple primitive value. This can be done by passing an object, either in a JSON or a query string format:
+```sh
+# Add the statement that the Sandbox (Q4115189) has for title (P1476) "bac à sable" in French
+# JSON format
+wd ac Q4115189 P1476 '{"text":"bac à sable", "language":"fr"}'
+# query string format
+wd ac Q4115189 P1476 'text=bac à sable&language=fr'
+```
+
 Alternative: [QuickStatements](https://tools.wmflabs.org/wikidata-todo/quick_statements.php), especially fit for large batches
 
 ##### with a reference
