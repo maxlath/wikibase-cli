@@ -38,8 +38,8 @@
     "opn": "^4.0.2",
     "prompt": "^1.0.0",
     "shell-quote": "^1.6.1",
-    "wikidata-edit": "^1.8.2",
-    "wikidata-sdk": "^5.2.8"
+    "wikidata-edit": "^2.0.4",
+    "wikidata-sdk": "^5.2.9"
   },
   "devDependencies": {
     "ava": "^0.18.2",
