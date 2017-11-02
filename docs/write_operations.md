@@ -186,3 +186,22 @@ wd create-item ./new_item_data.json
 # Alias:
 wd ci <entity-data>
 ```
+
+See [`wikidata-edit` documentation on `entity.create`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
+
+#### wd edit-item
+
+Edit an existing item
+
+```sh
+# pass data as JSON
+wd edit-item '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+
+# pass data as a JSON file path
+wd edit-item ./existing_item_data.json
+
+# Alias:
+wd ei <entity-data>
+```
+
+See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the JSON format, especially on how to pass qualifiers and references.

@@ -28,6 +28,7 @@ const cmds = {
   'remove-claim': require('../metadata/remove-claim'),
   'add-reference': require('../metadata/add-reference'),
   'create-item': require('../metadata/create-item'),
+  'edit-item': require('../metadata/edit-item'),
   config: require('../metadata/config')
 }
 
@@ -59,6 +60,7 @@ program
 .command(`remove-claim ${cmds['remove-claim'].args}`, cmds['remove-claim'].description).alias('rc')
 .command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
 .command(`create-item ${cmds['create-item'].args}`, cmds['create-item'].description).alias('ci')
+.command(`edit-item ${cmds['edit-item'].args}`, cmds['edit-item'].description).alias('ei')
 .command(`config ${cmds.config.args}`, cmds.config.description).alias('c')
 .parse(process.argv)
 
