@@ -159,6 +159,92 @@ wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
 wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
 ```
 
+### qualifiers
+See [Wikidata:Glossary#Qualifier](https://www.wikidata.org/wiki/Wikidata:Glossary#Qualifier)
+
+#### wd add-qualifier
+
+Add a qualifier to a claim
+
+```sh
+wd add-qualifier <claim-guid> <property> <value>
+# Alias:
+wd aq <claim-guid> <property> <value>
+```
+
+Examples:
+
+```sh
+claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# entity qualifier
+wd add-qualifier $claim_guid P155 'Q13406268'
+
+# string qualifier
+wd aq $claim_guid P1545 'A-123'
+
+# time qualifier
+wd aq $claim_guid P580 '1802-02-26'
+
+# quantity qualifier
+wd aq $claim_guid P2130 123
+
+# quantity qualifier with a unit
+wd aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
+
+# monolingualtext qualifier
+wd aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
+```
+
+#### wd update-qualifier
+
+Update a qualifier from an existing value to a new value
+
+```sh
+wd update-qualifier <claim-guid> <property> <old-value> <new-value>
+# Alias:
+wd uq <claim-guid> <property> <old-value> <new-value>
+```
+
+Examples:
+
+```sh
+claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# entity qualifier
+wd update-qualifier $claim_guid P155 'Q13406268' 'Q3576110'
+
+# string qualifier
+wd uq $claim_guid P1545 'A-123' 'B-123'
+
+# time qualifier
+wd uq $claim_guid P580 '1802-02-26' '1802-02-27'
+
+# quantity qualifier
+wd uq $claim_guid P2130 123 124
+
+# quantity qualifier with a unit
+wd uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
+
+# monolingualtext qualifier
+wd uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
+```
+
+#### wd remove-qualifier
+
+```sh
+wd remove-qualifier <claim-guid> <qualifiers-hashes>
+# Alias:
+wd rq <claim-guid> <qualifiers-hashes>
+```
+
+Examples:
+```sh
+claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Remove a qualifier from this claim
+wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
+# Remove several qualifiers from this claim by passing the qualifier hashes as one argument made of several pipe-separated hashes
+wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
+```
+
 ### references
 See [Wikidata:Glossary#Reference](https://www.wikidata.org/wiki/Wikidata:Glossary#Reference)
 

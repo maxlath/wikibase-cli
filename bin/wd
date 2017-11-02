@@ -26,6 +26,9 @@ const cmds = {
   'add-claim': require('../metadata/add-claim'),
   'update-claim': require('../metadata/update-claim'),
   'remove-claim': require('../metadata/remove-claim'),
+  'add-qualifier': require('../metadata/add-qualifier'),
+  'update-qualifier': require('../metadata/update-qualifier'),
+  'remove-qualifier': require('../metadata/remove-qualifier'),
   'add-reference': require('../metadata/add-reference'),
   'remove-reference': require('../metadata/remove-reference'),
   'create-item': require('../metadata/create-item'),
@@ -59,6 +62,9 @@ program
 .command(`add-claim ${cmds['add-claim'].args}`, cmds['add-claim'].description).alias('ac')
 .command(`update-claim ${cmds['update-claim'].args}`, cmds['update-claim'].description).alias('uc')
 .command(`remove-claim ${cmds['remove-claim'].args}`, cmds['remove-claim'].description).alias('rc')
+.command(`add-qualifier ${cmds['add-qualifier'].args}`, cmds['add-qualifier'].description).alias('aq')
+.command(`update-qualifier ${cmds['update-qualifier'].args}`, cmds['update-qualifier'].description).alias('uq')
+.command(`remove-qualifier ${cmds['remove-qualifier'].args}`, cmds['remove-qualifier'].description).alias('rq')
 .command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
 .command(`remove-reference ${cmds['remove-reference'].args}`, cmds['remove-reference'].description).alias('rr')
 .command(`create-item ${cmds['create-item'].args}`, cmds['create-item'].description).alias('ci')
