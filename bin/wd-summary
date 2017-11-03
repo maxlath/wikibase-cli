@@ -40,7 +40,7 @@ const parseEntity = (entity, options) => {
 
 const parser = options => entities => {
   const entitiesList = Object.values(entities)
-  const multiEntities = entitiesList.length > 0
+  const multiEntities = entitiesList.length > 1
   let firstLogged = false
 
   // Log entities sequentially as properties still need an async operation
