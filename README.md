@@ -14,6 +14,8 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
   - [General](#general)
   - [Per feature](#per-feature)
 - [Installation](#installation)
+  - [Via NPM](#via-npm)
+  - [Via Docker](#via-docker)
 - [Commands](#commands)
   - [Read operations](docs/read_operations.md)
   - [Write operations](docs/write_operations.md)
@@ -30,10 +32,19 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 * to use the clipboard option: see [copy-paste](https://github.com/xavi-/node-copy-paste#node-copy-paste) dependencies
 
 ## Installation
+### via npm
 ```sh
 npm install -g wikidata-cli
 ```
 Installing globally allows to make the command `wd` accessible from your shell `$PATH`
+
+### via docker
+```sh
+# Might require to be run with sudo depending on your Docker installation
+docker run -t maxlath/wikidata-cli
+# You can make an alias out of it:
+alias wd="docker run -t maxlath/wikidata-cli"
+```
 
 ## Commands
 
