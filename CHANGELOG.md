@@ -1,7 +1,7 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
-## 5.0.0 - 2017-10-31
+## 5.0.0 - 2017-11-03
 * BREAKING CHANGE: [`wd add-reference`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-reference) expects a property to be explicity set
 * Entity attribute commands ([`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-summary), [`wd label`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-label), [`wd description`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-description), [`wd aliases`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-aliases)) can now request the attributes of several entities at once
 * [`wd add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-claim) accepts time values with month or day precision
