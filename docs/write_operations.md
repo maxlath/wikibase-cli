@@ -22,10 +22,16 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
     - [with a reference](#with-a-reference)
   - [wd update-claim](#wd-update-claim)
   - [wd remove-claim](#wd-remove-claim)
+- [qualifiers](#qualifiers)
+  - [wd add-qualifier](#wd-add-qualifier)
+  - [wd update-qualifier](#wd-update-qualifier)
+  - [wd remove-qualifier](#wd-remove-qualifier)
 - [references](#references)
   - [wd add-reference](#wd-add-reference)
+  - [wd remove-reference](#wd-remove-reference)
 - [item](#item)
   - [wd create-item](#wd-create-item)
+  - [wd edit-item](#wd-edit-item)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
