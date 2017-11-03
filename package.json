@@ -11,7 +11,8 @@
     "postinstall": "check-node-version --node '>= 6.4.0'",
     "prepublishOnly": "npm run lint && npm test",
     "lint": "standard",
-    "update-toc": "doctoc docs/*md"
+    "update-toc": "doctoc docs/*md",
+    "docker:publish": "./scripts/docker_publish"
   },
   "repository": {
     "type": "git",

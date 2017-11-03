@@ -1,0 +1,11 @@
+#!/usr/bin/env zsh
+
+set -eu
+
+version=$(node -p "require('./package.json').version")
+
+sudo docker build -t wikidata-cli .
+sudo docker tag wikidata-cli "maxlath/wikidata-cli:${version}"
+sudo docker push "maxlath/wikidata-cli:${version}"
+sudo docker tag wikidata-cli maxlath/wikidata-cli:latest
+sudo docker push maxlath/wikidata-cli:latest
