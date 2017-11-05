@@ -41,9 +41,9 @@ Installing globally allows to make the command `wikidata-cli` and its alias `wd`
 ### via docker
 ```sh
 # Might require to be run with sudo depending on your Docker installation
-docker run -t maxlath/wikidata-cli
+docker run --rm -t maxlath/wikidata-cli
 # You can make an alias out of it:
-alias wd="docker run -t maxlath/wikidata-cli"
+alias wd="docker run --rm -t maxlath/wikidata-cli"
 ```
 
 ## Commands
