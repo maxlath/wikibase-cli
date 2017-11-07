@@ -11,6 +11,7 @@ module.exports = {
   },
   examples: [
     { args: 'Q123', comment: 'fetch all claims for the entity Q123' },
-    { args: 'Q123 --lang de', comment: 'fetch all claims for the entity Q123 with properties labels in German' }
+    { args: 'Q123 --lang de', comment: 'fetch all claims for the entity Q123 with properties labels in German' },
+    { args: 'Q123 P31 --guid', comment: 'display Q123 P31 claims with their GUID' }
   ]
 }
