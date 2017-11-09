@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 5.1.0 - 2017-11-09
+* Added `keep` options to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#claims-simplification-keep-options)
+
 ## 5.0.0 - 2017-11-03
 * BREAKING CHANGE: [`wd add-reference`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-reference) expects a property to be explicity set
 * BREAKING CHANGE: [`wd add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-claim) now can't be passed a reference: the reference needs to be added separately. See [add claim with a reference](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference).
