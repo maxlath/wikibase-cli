@@ -39,7 +39,7 @@ const parseEntity = (entity, options) => {
 }
 
 const parser = options => entities => {
-  const entitiesList = Object.values(entities)
+  const entitiesList = _.values(entities)
   const multiEntities = entitiesList.length > 1
   let firstLogged = false
 
