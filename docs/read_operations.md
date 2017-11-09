@@ -16,6 +16,7 @@
 - [wd data](#wd-data)
   - [multiple entities](#multiple-entities)
   - [simplified entities](#simplified-entities)
+    - [claims simplification keep options](#claims-simplification-keep-options)
   - [filtered properties](#filtered-properties)
 - [wd revisions](#wd-revisions)
 - [wd id](#wd-id)
@@ -153,10 +154,26 @@ wd data Q1496 Q123
 ```
 
 #### simplified entities
-You can request entities to be simplified, using [wikidata-sdk `simplify.entity` function](https://github.com/maxlath/wikidata-sdk)[https://github.com/maxlath/wikidata-sdk#simplify-entity]
+You can request entities to be simplified, using [wikidata-sdk `simplify.entity` function](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_entities_data.md#simplify-entity)
 ```sh
 wd data --simplify Q515168
+# pass options to the simplify function
+wd data --simplify --keep ids,references,qualifiers,hashes,nontruthy Q123
 ```
+
+##### claims simplification keep options
+
+You can customize the output by passing the list of data elements to keep among `ids`, `references`, `qualifiers`, `hashes`, `nontruthy`
+
+```sh
+wd data --simplify --keep ids,references,qualifiers,hashes,nontruthy Q123
+# equivalent to
+wd data --simplify --keep all Q123
+# Can be useful to easily access claims ids
+wd d -sk ids Q123 | jd .claims.P138 -j
+```
+
+> See [`simplify.claims` options](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_claims.md#options) for behavior details
 
 #### filtered properties
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
@@ -289,7 +306,7 @@ wd sparql ./path/to/query.rq > ./results.json
 
 Options:
 * `-v, --verbose`: log the generated SPARQL
-* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 
 ```sh
 wd sparql ./path/to/query.rq > ./results.json
@@ -312,7 +329,7 @@ wd query -p P921 -o Q44559 -a
 ```
 
 Other options:
-* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk#simplify-sparql-results) function
+* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
 * `-t, --limit <num>`: set the request results limit (defaults to 1000)

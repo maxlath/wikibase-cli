@@ -40,7 +40,7 @@
     "prompt": "^1.0.0",
     "shell-quote": "^1.6.1",
     "wikidata-edit": "^2.0.6",
-    "wikidata-sdk": "^5.2.9"
+    "wikidata-sdk": "^5.3.1"
   },
   "devDependencies": {
     "ava": "^0.18.2",

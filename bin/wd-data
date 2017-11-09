@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 program.option('-s, --simplify', 'get simplified entities data')
+program.option('-k, --keep <props>', 'data to keep when simplifying claims')
 program.option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 program.process('data')
 
@@ -26,10 +27,15 @@ ids.forEach(id => {
 const lightGet = require('../lib/light_get')
 const url = wdk.customize('getEntities', { ids, props })
 
+const options = require('../lib/parse_simplify_options')(program.keep)
+
 lightGet(url)
 .then(body => {
   var entities = _.values(body.entities)
-  if (simplify) entities = entities.map(wdk.simplify.entity)
+  if (simplify) {
+    const options = require('../lib/parse_simplify_options')(program.keep)
+    entities = entities.map(entity => wdk.simplify.entity(entity, options))
+  }
   if (requestedIdsLenght === 1) {
     console.log(JSON.stringify(entities[0]))
   } else {
