@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 5.2.0 - 2017-11-29
+* Add option [`-v,--verbose` to `wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search) which passes the found ids to [`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-summary)
+
 ## 5.1.0 - 2017-11-09
 * Added `keep` options to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#claims-simplification-keep-options)
 
