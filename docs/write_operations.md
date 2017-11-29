@@ -56,6 +56,7 @@ See [Wikidata:Glossary#Description](https://www.wikidata.org/wiki/Wikidata:Gloss
 
 #### wd set-description
 
+
 Set a description on an entity in a given language
 ```sh
 wd set-description <entity> <language> <description>
@@ -74,6 +75,12 @@ See [Wikidata:Glossary#Alias](https://www.wikidata.org/wiki/Wikidata:Glossary#Al
 #### wd add-alias
 Add one or several aliases to the list of aliases of an entity in a given language
 ```sh
+wd add-alias <entity> <language> <alias>
+# Alias:
+wd aa <entity> <language> <alias>
+```
+
+```sh
 # Add an alias
 wd add-alias Q4115189 fr foo
 # Add several aliases separated by a pipe
@@ -83,6 +90,12 @@ wd add-alias Q4115189 fr "foo|bar"
 #### wd remove-alias
 Remove one or several aliases from the list of aliases of an entity in a given language
 ```sh
+wd remove-alias <entity> <language> <alias>
+# Alias:
+wd ra <entity> <language> <alias>
+```
+
+```sh
 # Remove an alias
 wd remove-alias Q4115189 fr foo
 # Remove several aliases separated by a pipe
@@ -91,6 +104,11 @@ wd remove-alias Q4115189 fr "foo|bar"
 
 #### wd set-alias
 Set the list of aliases of an entity in a given language
+```sh
+wd set-alias <entity> <language> <alias>
+# Alias:
+wd sa <entity> <language> <alias>
+```
 ```sh
 # Replace all Q4115189's French alias by 'foo'
 wd set-alias Q4115189 fr foo

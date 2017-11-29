@@ -6,13 +6,12 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [wd search](#wd-search)
 - [wd summary](#wd-summary)
+- [wd search](#wd-search)
 - [wd label](#wd-label)
 - [wd description](#wd-description)
 - [wd aliases](#wd-aliases)
 - [wd claims](#wd-claims)
-- [wd coord](#wd-coord)
 - [wd data](#wd-data)
   - [multiple entities](#multiple-entities)
   - [simplified entities](#simplified-entities)
@@ -33,7 +32,36 @@
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
+### wd summary
+![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
+
+Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label, a description, and some claims to know what we are dealing with.
+
+```sh
+wd summary <entities ids>
+# Alias:
+wd s <entities ids>
+```
+```sh
+wd summary Q27477672
+# Label anthropomorphic comic
+# Description comic book genre
+# instance of (P31):  comic genre (Q20087698)
+# subclass of (P279): animal comic (Q10493450)
+wd summary Q18120925 Q22117436 Q22117437
+```
+
+Options:
+* `-p, --properties <properties>`: request additional properties (separated by a comma)
+* `-l, --lang <lang>`: specify the summary's language
+* `-v, --verbose`: log all claims
+
 ### wd search
+```sh
+wd search <query>
+# Alias: (the s was already used by 'wd summary', so 'f' as 'find')
+wd f <query>
+```
 ```sh
 wd search Ligo
 # Q255371    Laser — Interferometer Gravitational-Wave Observatory gravitational-wave detector
@@ -56,25 +84,12 @@ Options:
 Verbose mode only:
 * `-p, --properties <properties>`: request additional properties (separated by a comma)
 
-### wd summary
-![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
-
-Working with Wikidata, we often end up with obscure ids. We can always look-up those ids labels on the website but that means loading pages and pages, when a small API call and parsing could return just what we need: a label, a description, and some claims to know what we are dealing with.
-```sh
-wd summary Q27477672
-# Label anthropomorphic comic
-# Description comic book genre
-# instance of (P31):  comic genre (Q20087698)
-# subclass of (P279): animal comic (Q10493450)
-wd summary Q18120925 Q22117436 Q22117437
-```
-
-Options:
-* `-p, --properties <properties>`: request additional properties (separated by a comma)
-* `-l, --lang <lang>`: specify the summary's language
-* `-v, --verbose`: log all claims
-
 ### wd label
+```sh
+wd label <entities ids>
+# Alias:
+wd l <entities ids>
+```
 ```sh
 wd label Q1103345
 # => The Cluetrain Manifesto
@@ -94,6 +109,11 @@ wd label Q123 -l zh
 
 ### wd description
 ```sh
+wd description <entities ids>
+# Alias: (the d was already used by 'wd data')
+wd desc <entities ids>
+```
+```sh
 wd description Q1103345
 wd description Q18120925 Q22117436 Q22117437
 ```
@@ -102,6 +122,11 @@ Options:
 * `-l, --lang <lang>`: specify the description's language
 
 ### wd aliases
+```sh
+wd aliases <entities ids>
+# Alias:
+wd a <entities ids>
+```
 ```sh
 wd aliases Q1103345
 wd aliases Q18120925 Q22117436 Q22117437
@@ -112,6 +137,11 @@ Options:
 
 ### wd claims
 A quick way to access the claims of an entity
+```sh
+wd claims <entities ids>
+# Alias:
+wd c <entities ids>
+```
 ```sh
 # all Q2001's claims
 wd claims Q2001
@@ -130,16 +160,13 @@ Options when passing both an id an property:
 * `-c, --clipboard`: copy the command's result to clipboard
 * `-j, --json`: format the result as JSON
 
-### wd coord
-A command to output the geographic coordinates (latitude and longitude) of an entity
-
-```sh
-wd coord Q2112
-# => 52.016666666667 8.5166666666667
-```
-
 ### wd data
 A quick way to access an entity's raw JSON data
+```sh
+wd data <entities ids>
+# Alias:
+wd d <entities ids>
+```
 ```sh
 wd data Q1496
 ```
@@ -188,6 +215,11 @@ wd data --props labels,claims,sitelinks Q515168
 ### wd revisions
 Get entities revisions data
 ```sh
+wd revisions <entities ids>
+# Alias:
+wd r <entities ids>
+```
+```sh
 wd revisions Q3548931
 wd r Q3548931
 ```
@@ -199,6 +231,9 @@ Options:
 
 ### wd id
 This one is kind of the inverse of `wd label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
+```sh
+wd id <article title or any Wikimedia project URL>
+```
 ```sh
 wd id Cantabria
 # => Q3946
@@ -224,6 +259,11 @@ wd id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 
 ### wd props
 A command to access the list of all Wikidata properties in a given language (by default the environment local language)
+```sh
+wd props [filter]
+# Alias:
+wd p [filter]
+```
 
 #### Get the list of all Wikidata properties in your environment local language
 ```sh
@@ -294,7 +334,11 @@ Outputs:
 ```
 
 ### wd sparql
+
 A command to run a SPARQL query and get its JSON output
+```sh
+wd sparql <sparql file path>
+```
 
 From this SPARQL query file: `./path/to/query.rq`
 ```sparql
@@ -318,6 +362,12 @@ wd sparql -r ./path/to/query.rq > ./raw_sparql_results.json
 ```
 
 ### wd query
+```sh
+wd query <options>
+# Alias:
+wd q <options>
+```
+
 A command to generate and run a simple SPARQL query, passing one or two of the elements that make a statement:
 * `-s, --subject`
 * `-p, --property`
@@ -340,6 +390,12 @@ Other options:
 * `-v, --verbose`: log the generated request
 
 ### wd open
+```sh
+wd open <entities ids>
+# Alias:
+wd o <entities ids>
+```
+
 A command to open a pages on Wikidata in a browser from the command line (yep, you can be that lazy)
 
 #### open entities and properties pages
