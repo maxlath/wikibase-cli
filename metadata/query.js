@@ -3,7 +3,7 @@ module.exports = {
   description: "generate and run a simple SPARQL query by passing a statement's subject, property, or object, or a couple of those",
   options: {
     lang: false,
-    verbose: false,
+    verbose: true,
     clipboard: false,
     json: false,
     instance: false,
