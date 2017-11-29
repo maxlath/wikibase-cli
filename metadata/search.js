@@ -3,7 +3,7 @@ module.exports = {
   description: 'search entities',
   options: {
     lang: true,
-    verbose: false,
+    verbose: true,
     clipboard: false,
     json: true,
     instance: true,

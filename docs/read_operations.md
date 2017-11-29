@@ -51,6 +51,10 @@ wd search Ligo
 Options:
 * `-l, --lang <lang>`: specify the results labels and descriptions language
 * `-j, --json`: format the result as JSON
+* `-v, --verbose`: pass the result ids to `wd summary`
+
+Verbose mode only:
+* `-p, --properties <properties>`: request additional properties (separated by a comma)
 
 ### wd summary
 ![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
