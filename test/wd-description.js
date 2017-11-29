@@ -8,10 +8,10 @@ test('wd description: display help', t => {
 
 test('wd description <entity>', t => {
   return execa.shell('./bin/wd description Q123456 -l en')
-  .then(res => t.is(res.stdout, 'Wikipedia disambiguation page'))
+  .then(res => t.is(res.stdout, 'Wikimedia disambiguation page'))
 })
 
 test('wd description <entity> should be tolerant on input', t => {
   return execa.shell('./bin/wd description  -l en azfzafzafazQ123456fazafazfz')
-  .then(res => t.is(res.stdout, 'Wikipedia disambiguation page'))
+  .then(res => t.is(res.stdout, 'Wikimedia disambiguation page'))
 })

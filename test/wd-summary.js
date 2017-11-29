@@ -1,7 +1,7 @@
 const test = require('ava')
 const execa = require('execa')
 const Q123456EnglishSummary = `Label Friedrichshafen
-Description Wikipedia disambiguation page
+Description Wikimedia disambiguation page
 instance of (P31): Wikimedia disambiguation page (Q4167410)`
 
 test('wd summary: display help', t => {
