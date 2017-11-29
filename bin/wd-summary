@@ -13,7 +13,6 @@ const programOptions = [
   [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']
 ]
 
-
 const parseEntity = (entity, options) => {
   if (entity.missing != null) {
     console.log(dim('missing'))
