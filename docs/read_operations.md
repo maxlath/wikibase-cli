@@ -337,11 +337,12 @@ Outputs:
 
 A command to run a SPARQL query and get its JSON output
 ```sh
-wd sparql <sparql file path>
+wd sparql <sparql or javascript file path>
 ```
 
-From this SPARQL query file: `./path/to/query.rq`
+From this SPARQL query file:
 ```sparql
+# query.rq
 SELECT ?work WHERE {
   ?work wdt:P50 wd:Q42 .
 }
@@ -350,6 +351,20 @@ get its output from your terminal like so:
 
 ```sh
 wd sparql ./path/to/query.rq > ./results.json
+```
+
+Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
+```js
+// query.js
+module.exports = authorId => {
+  return `SELECT ?item WHERE {
+    ?item wdt:P50 wd:${authorId} .
+  }`
+}
+```
+```sh
+wd sparql ./path/to/query.js Q535 > ./Q535_works.json
+wd sparql ./path/to/query.js Q5879 > ./Q5879_works.json
 ```
 
 Options:

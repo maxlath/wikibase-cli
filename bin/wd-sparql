@@ -1,5 +1,8 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
+const fs = require('fs')
+const error_ = require('../lib/error')
+const makeSparqlQuery = require('../lib/make_sparql_query')
 
 program
 .option('-r, --raw', 'raw SPARQL results')
@@ -9,8 +12,24 @@ const path = program.args[0]
 
 if (!path) return program.help()
 
-const fs = require('fs')
-const sparql = fs.readFileSync(path, { encoding: 'utf-8' })
-const makeSparqlQuery = require('../lib/make_sparql_query')
+const extension = path.split('.').slice(-1)[0]
+
+var sparql
+
+// Allow to pass a JS module that exports a function
+// to which is passed the remaining arguments
+// and from which the SPARQL request is generated
+if (extension === 'js') {
+  const absoluePath = require('path').resolve(process.cwd(), path)
+  const fnArgs = program.args.slice(1)
+  sparql = require('../lib/execute_function')(absoluePath, fnArgs)
+} else {
+  sparql = fs.readFileSync(path, { encoding: 'utf-8' })
+}
+
+if (!sparql.match('SELECT')) {
+  const err = error_.new("this doesn't look like SPARQL", { sparql })
+  error_.exit(err)
+}
 
 makeSparqlQuery(sparql)
