@@ -34,7 +34,7 @@ const parseEntity = (entity, options) => {
 
   return getLangProps(program)
   .then(logClaims.bind(null, program, claims))
-  .catch(error_.log)
+  .catch(error_.exit)
 }
 
 const parser = options => entities => {

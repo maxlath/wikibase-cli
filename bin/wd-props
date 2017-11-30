@@ -29,4 +29,4 @@ if (pattern && pattern.length > 0) {
 getLangProps(program)
 .then(formatOneLinePerProperty(filter))
 .then(console.log)
-.catch(error_.log)
+.catch(error_.exit)

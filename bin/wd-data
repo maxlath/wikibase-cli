@@ -42,4 +42,4 @@ lightGet(url)
     logNdjson(entities)
   }
 })
-.catch(error_.log)
+.catch(error_.exit)

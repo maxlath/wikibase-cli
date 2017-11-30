@@ -56,4 +56,4 @@ const parseRes = function (res) {
 
 Promise.all([ lightGet(url), propsPromise ])
 .then(parseRes)
-.catch(error_.log)
+.catch(error_.exit)
