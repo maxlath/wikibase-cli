@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 5.3.0 - 2017-11-30
+* Added the possibility to pass a JS file to [`wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql) to generate SPARQL requests from the command arguments
+
 ## 5.2.0 - 2017-11-29
 * Add option [`-v,--verbose` to `wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search) which passes the found ids to [`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-summary)
 
