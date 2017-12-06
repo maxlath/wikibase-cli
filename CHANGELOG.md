@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 5.4.0 - 2017-12-06
+* Added the command `wikidata-cli` as an alias to `wd`
+
 ## 5.3.0 - 2017-11-30
 * Added the possibility to pass a JS file to [`wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql) to generate SPARQL requests from the command arguments
 
