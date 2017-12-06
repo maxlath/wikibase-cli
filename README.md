@@ -36,7 +36,7 @@ The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interfac
 ```sh
 npm install -g wikidata-cli
 ```
-Installing globally allows to make the command `wd` accessible from your shell `$PATH`
+Installing globally allows to make the command `wikidata-cli` and its alias `wd` accessible from your shell `$PATH`
 
 ### via docker
 ```sh
