@@ -12,8 +12,12 @@ wd config <key> [value]
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [get options](#get-options)
-- [set options](#set-options)
+- [commands](#commands)
+  - [get](#get)
+  - [set](#set)
+  - [reset](#reset)
+  - [path](#path)
+  - [clear](#clear)
 - [options](#options)
   - [username and password](#username-and-password)
   - [bot](#bot)
@@ -23,14 +27,12 @@ wd config <key> [value]
   - [verbose](#verbose)
   - [custom Wikibase instance](#custom-wikibase-instance)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
-- [maintenance](#maintenance)
-  - [get config file path](#get-config-file-path)
-  - [clear config](#clear-config)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 
-## get options
+## commands
+### get
 ```sh
 # output the current config and the help menu
 wd config
@@ -38,9 +40,27 @@ wd config
 wd config clipboard
 ```
 
-## set options
+### set
 ```sh
 wd config clipboard true
+```
+
+### reset
+To reset an option to its current value without having to [`clear`](#clear) the whole config, pass it the value `default`
+```sh
+wd config instance default
+```
+
+### path
+get config file path
+```sh
+wd config path
+```
+
+### clear
+clear the whole config (use [`reset`](#reset) if you just want to reset one option)
+```sh
+wd config clear
 ```
 
 ## options
@@ -115,16 +135,4 @@ wd config sparql-endpoint default
 You're all set to make requests against your custom instance:
 ```sh
 wd query --property P2002 --object timberners_lee
-```
-
-## maintenance
-
-### get config file path
-```sh
-wd config path
-```
-
-### clear config
-```sh
-wd config clear
 ```
