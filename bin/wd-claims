@@ -6,8 +6,9 @@ program.process('claims')
 const { dim, yellow } = require('chalk')
 const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
-var id = parseId(program.args[0])
-var prop = parseId(program.args[1])
+var [ id, prop ] = program.args
+var id = parseId(id)
+var prop = prop && parseId(prop)
 const { lang, verbose } = program
 const output = require('../lib/output')(program)
 
