@@ -16,30 +16,24 @@ if (!(id && lang)) return program.help()
 
 // Working around a weird behavior of commander that inverts arguments
 // when an option is passed before
-if (id && prop && id[0] === 'P' && prop[0] === 'Q') [ id, prop ] = [ prop, id ]
+if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
+  [ id, prop ] = [ prop, id ]
+}
 
 const propsPromise = require('../lib/get_lang_props')(program)
-
-if (/^[0-9]+$/.test(id)) id = `Q${id}`
-if (/^[0-9]+$/.test(prop)) prop = `P${prop}`
-
 const lightGet = require('../lib/light_get')
 const error_ = require('../lib/error')
-const exist = require('../lib/exist')
 const wdk = require('../lib/customized_wdk')(program)
 
-const url = wdk.customize('getEntities', {
-  props: 'claims',
-  ids: id
-})
+const url = wdk.customize('getEntities', { props: 'claims', ids: id })
 
 const parseRes = function (res) {
   const [ body, props ] = res
   const entity = body.entities && body.entities[id]
 
-  if (exist(entity)) {
+  if (entity) {
     const claims = wdk.simplifyClaims(entity.claims)
-    if (exist(prop)) {
+    if (prop) {
       const value = claims[prop]
       if (value != null) {
         output(claims[prop])
