@@ -368,13 +368,13 @@ module.exports = authorId => {
 }
 ```
 ```sh
-wd sparql ./path/to/author_works.js Q535 > ./Q535_works.json
-wd sparql ./path/to/author_works.js Q5879 > ./Q5879_works.json
+wd sparql ./path/to/author_works.js Q535 --json > ./Q535_works.json
+wd sparql ./path/to/author_works.js Q5879 --json > ./Q5879_works.json
 ```
 
 You can use it to build [alias commands](https://en.wikipedia.org/wiki/Alias_%28command%29) for the requests you use often: the above can then be written
 ```sh
-alias authors_works="wd sparql ./path/to/author_works.js"
+alias authors_works="wd sparql ./path/to/author_works.js --json"
 authors_works Q535 > ./Q535_works.json
 authors_works Q5879 > ./Q5879_works.json
 ```
