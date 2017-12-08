@@ -1,9 +1,11 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-program.option('-s, --start <date>', 'start date')
-program.option('-e, --end <date>', 'end date')
-program.option('-l, --limit <num>', 'end date')
-program.process('revisions')
+
+program
+.option('-s, --start <date>', 'start date')
+.option('-e, --end <date>', 'end date')
+.option('-l, --limit <num>', 'end date')
+.process('revisions')
 
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
