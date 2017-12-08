@@ -372,6 +372,8 @@ wd sparql ./path/to/query.js Q535 > ./Q535_works.json
 wd sparql ./path/to/query.js Q5879 > ./Q5879_works.json
 ```
 
+**Demo**: [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
+
 Options:
 * `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function

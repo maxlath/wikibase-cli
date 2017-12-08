@@ -32,6 +32,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 - [item](#item)
   - [wd create-item](#wd-create-item)
   - [wd edit-item](#wd-edit-item)
+- [Demo](#demo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -349,3 +350,6 @@ wd ei <entity-data>
 ```
 
 See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the JSON format, especially on how to pass qualifiers and references.
+
+### Demo
+- [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
