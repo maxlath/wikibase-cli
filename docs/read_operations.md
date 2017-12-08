@@ -24,6 +24,8 @@
   - [Get the list of all Wikidata properties in another language](#get-the-list-of-all-wikidata-properties-in-another-language)
   - [Get the list of all Wikidata properties and their data types](#get-the-list-of-all-wikidata-properties-and-their-data-types)
 - [wd sparql](#wd-sparql)
+  - [static request from a SPARQL file](#static-request-from-a-sparql-file)
+  - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
 - [wd query](#wd-query)
 - [wd open](#wd-open)
   - [open entities and properties pages](#open-entities-and-properties-pages)
@@ -340,6 +342,8 @@ A command to run a SPARQL query and get its JSON output
 wd sparql <sparql or javascript file path>
 ```
 
+#### static request from a SPARQL file
+
 From this SPARQL query file:
 ```sparql
 # query.rq
@@ -353,6 +357,7 @@ get its output from your terminal like so:
 wd sparql ./path/to/query.rq > ./results.json
 ```
 
+#### dynamic request from a JS file
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
 // query.js
