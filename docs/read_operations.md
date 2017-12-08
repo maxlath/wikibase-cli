@@ -346,7 +346,7 @@ wd sparql <sparql or javascript file path>
 
 From this SPARQL query file:
 ```sparql
-# query.rq
+# author_works.rq
 SELECT ?work WHERE {
   ?work wdt:P50 wd:Q42 .
 }
@@ -354,13 +354,13 @@ SELECT ?work WHERE {
 get its output from your terminal like so:
 
 ```sh
-wd sparql ./path/to/query.rq > ./results.json
+wd sparql ./path/to/author_works.rq > ./results.json
 ```
 
 #### dynamic request from a JS file
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
-// query.js
+// author_works.js
 module.exports = authorId => {
   return `SELECT ?item WHERE {
     ?item wdt:P50 wd:${authorId} .
@@ -368,8 +368,15 @@ module.exports = authorId => {
 }
 ```
 ```sh
-wd sparql ./path/to/query.js Q535 > ./Q535_works.json
-wd sparql ./path/to/query.js Q5879 > ./Q5879_works.json
+wd sparql ./path/to/author_works.js Q535 > ./Q535_works.json
+wd sparql ./path/to/author_works.js Q5879 > ./Q5879_works.json
+```
+
+You can use it to build [alias commands](https://en.wikipedia.org/wiki/Alias_%28command%29) for the requests you use often: the above can then be written
+```sh
+alias authors_works="wd sparql ./path/to/author_works.js"
+authors_works Q535 > ./Q535_works.json
+authors_works Q5879 > ./Q5879_works.json
 ```
 
 **Demo**: [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
