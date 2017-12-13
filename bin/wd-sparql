@@ -3,6 +3,7 @@ const program = require('../lib/program')
 
 program
 .option('-r, --raw', 'get raw, non-simplified, SPARQL results')
+.option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed pariable as key (can't be used with the 'raw' option)")
 .process('sparql')
 
 const fs = require('fs')
@@ -27,9 +28,22 @@ if (extension === 'js') {
   sparql = fs.readFileSync(path, { encoding: 'utf-8' })
 }
 
-if (!sparql.match('SELECT')) {
+if (!sparql.replace('\n', ' ').match(/SELECT.*WHERE/i)) {
   const err = errors_.new("this doesn't look like SPARQL", { sparql })
   errors_.exit(err)
+}
+
+const { index } = program
+
+if (index) {
+  const variableMatch = ` ?${index} `
+  const selectSection = sparql.split(/WHERE/i)[0]
+  // If the variable can't be found in the SPARQL SELECT section
+  // we won't be able to index the results using it
+  if (!selectSection.match(variableMatch)) {
+    const err = errors_.new("the index variable can't be found in the SPARQL request", { sparql, index })
+    errors_.exit(err)
+  }
 }
 
 makeSparqlQuery(sparql)

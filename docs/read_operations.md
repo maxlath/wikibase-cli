@@ -384,10 +384,12 @@ authors_works Q5879 > ./Q5879_works.json
 Options:
 * `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
+* `-x, --index`: get the results indexed by one of the SELECTed variables
 
 ```sh
 wd sparql ./path/to/query.rq > ./results.json
-wd sparql -r ./path/to/query.rq > ./raw_sparql_results.json
+wd sparql ./path/to/query.rq --raw > ./raw_sparql_results.json
+wd sparql ./path/to/query.rq --index someVariableName > ./results_index.json
 ```
 
 ### wd query
