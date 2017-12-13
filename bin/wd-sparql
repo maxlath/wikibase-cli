@@ -2,7 +2,7 @@
 const program = require('../lib/program')
 
 program
-.option('-r, --raw', 'raw SPARQL results')
+.option('-r, --raw', 'get raw, non-simplified, SPARQL results')
 .process('sparql')
 
 const fs = require('fs')
