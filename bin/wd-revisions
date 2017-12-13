@@ -10,7 +10,7 @@ program
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const parseId = require('../lib/tolerant_id_parser')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 const logNdjson = require('../lib/log_ndjson')
 const { isPositiveIntegerString } = require('../lib/types')
 const _ = require('lodash')

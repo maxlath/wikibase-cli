@@ -10,7 +10,7 @@ if (args.length === 0) return program.help()
 
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 

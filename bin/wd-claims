@@ -22,7 +22,7 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
 
 const propsPromise = require('../lib/get_lang_props')(program)
 const lightGet = require('../lib/light_get')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 const wdk = require('../lib/customized_wdk')(program)
 
 const url = wdk.customize('getEntities', { props: 'claims', ids: id })

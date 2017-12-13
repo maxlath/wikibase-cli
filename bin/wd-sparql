@@ -7,7 +7,7 @@ program
 .process('sparql')
 
 const fs = require('fs')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const path = program.args[0]
 

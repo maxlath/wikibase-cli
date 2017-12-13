@@ -12,7 +12,7 @@ const props = program.props && program.props.replace(/,/g, '|')
 
 const wdk = require('../lib/customized_wdk')(program)
 const _ = require('lodash')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 
 const parseId = require('../lib/tolerant_id_parser')
 const logNdjson = require('../lib/log_ndjson')

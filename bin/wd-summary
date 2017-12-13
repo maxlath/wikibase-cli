@@ -7,7 +7,7 @@ const { bgGreen, bgBlue, dim } = require('chalk')
 const getLangProps = require('../lib/get_lang_props')
 const _ = require('lodash')
 const { mainProps } = require('../lib/properties')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 
 const programOptions = [
   [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']

@@ -9,7 +9,7 @@ program
 const getLangProps = require('../lib/get_lang_props')
 const resetProperties = require('../lib/reset_properties')
 const formatOneLinePerProperty = require('../lib/format_one_line_per_property')
-const errors_ = require('../lib/error')
+const errors_ = require('../lib/errors')
 
 if (program.reset) return resetProperties()
 
