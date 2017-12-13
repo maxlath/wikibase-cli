@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 5.6.0 - 2017-12-13
+* Add option [`-x, --index` to `wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql), returns the request results as an index instead of a list
+
+## 5.5.0 - 2017-12-08
+* `wd claims`, `wd data`, `wd open`, and `wd revisions` accept numeric ids, assume it's an item id (commit: 37afea9)
+
 ## 5.4.0 - 2017-12-06
 * Added the command `wikidata-cli` as an alias to `wd`
 
@@ -8,7 +14,7 @@
 * Added the possibility to pass a JS file to [`wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql) to generate SPARQL requests from the command arguments
 
 ## 5.2.0 - 2017-11-29
-* Add option [`-v,--verbose` to `wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search) which passes the found ids to [`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-summary)
+* Add option [`-v, --verbose` to `wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search) which passes the found ids to [`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-summary)
 
 ## 5.1.0 - 2017-11-09
 * Added `keep` options to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#claims-simplification-keep-options)
