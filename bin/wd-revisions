@@ -10,7 +10,7 @@ program
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const parseId = require('../lib/tolerant_id_parser')
-const error_ = require('../lib/error')
+const errors_ = require('../lib/error')
 const logNdjson = require('../lib/log_ndjson')
 const { isPositiveIntegerString } = require('../lib/types')
 const _ = require('lodash')
@@ -41,11 +41,11 @@ const getAndLogRevisions = id => {
 if (ids.length === 1) {
   getAndLogRevisions(ids[0])
   .then(data => console.log(JSON.stringify(data)))
-  .catch(error_.exit)
+  .catch(errors_.exit)
 } else {
   // Getting revisisions data individually to be able to pass parameters
   // cf https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md
   Promise.all(ids.map(getAndLogRevisions))
   .then(logNdjson)
-  .catch(error_.exit)
+  .catch(errors_.exit)
 }

@@ -7,7 +7,7 @@ const { bgGreen, bgBlue, dim } = require('chalk')
 const getLangProps = require('../lib/get_lang_props')
 const _ = require('lodash')
 const { mainProps } = require('../lib/properties')
-const error_ = require('../lib/error')
+const errors_ = require('../lib/error')
 
 const programOptions = [
   [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']
@@ -34,7 +34,7 @@ const parseEntity = (entity, options) => {
 
   return getLangProps(program)
   .then(logClaims.bind(null, program, claims))
-  .catch(error_.exit)
+  .catch(errors_.exit)
 }
 
 const parser = options => entities => {

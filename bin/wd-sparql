@@ -6,7 +6,7 @@ program
 .process('sparql')
 
 const fs = require('fs')
-const error_ = require('../lib/error')
+const errors_ = require('../lib/error')
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const path = program.args[0]
 
@@ -28,8 +28,8 @@ if (extension === 'js') {
 }
 
 if (!sparql.match('SELECT')) {
-  const err = error_.new("this doesn't look like SPARQL", { sparql })
-  error_.exit(err)
+  const err = errors_.new("this doesn't look like SPARQL", { sparql })
+  errors_.exit(err)
 }
 
 makeSparqlQuery(sparql)

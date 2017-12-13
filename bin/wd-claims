@@ -22,7 +22,7 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
 
 const propsPromise = require('../lib/get_lang_props')(program)
 const lightGet = require('../lib/light_get')
-const error_ = require('../lib/error')
+const errors_ = require('../lib/error')
 const wdk = require('../lib/customized_wdk')(program)
 
 const url = wdk.customize('getEntities', { props: 'claims', ids: id })
@@ -51,4 +51,4 @@ const parseRes = function (res) {
 
 Promise.all([ lightGet(url), propsPromise ])
 .then(parseRes)
-.catch(error_.exit)
+.catch(errors_.exit)

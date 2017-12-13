@@ -10,7 +10,7 @@ if (args.length === 0) return program.help()
 
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
-const error_ = require('../lib/error')
+const errors_ = require('../lib/error')
 const _ = require('lodash')
 const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
 
@@ -38,7 +38,7 @@ title = title[0].toUpperCase() + title.slice(1)
 function parseIds (context, body) {
   const entities = body.entities
   if (entities == null) {
-    throw error_.new('received an empty response', body)
+    throw errors_.new('received an empty response', body)
   }
   const ids = Object.keys(entities)
   if (ids.length === 1 && ids[0] !== '-1') {
@@ -48,7 +48,7 @@ function parseIds (context, body) {
     output(id)
   } else {
     titles = context.join(' / ')
-    throw error_.new(`id not found (${titles})`, body)
+    throw errors_.new(`id not found (${titles})`, body)
   }
 }
 
@@ -64,4 +64,4 @@ getRedirectedWikipediaTitle(lang, title)
   return lightGet(url)
   .then(parseIds.bind(null, [title, trueTitle]))
 })
-.catch(error_.exit)
+.catch(errors_.exit)
