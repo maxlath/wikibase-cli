@@ -23,6 +23,7 @@
   - [Get the list of all Wikidata properties in your environment local language](#get-the-list-of-all-wikidata-properties-in-your-environment-local-language)
   - [Get the list of all Wikidata properties in another language](#get-the-list-of-all-wikidata-properties-in-another-language)
   - [Get the list of all Wikidata properties and their data types](#get-the-list-of-all-wikidata-properties-and-their-data-types)
+  - [Get the list of all Wikidata properties of a given type](#get-the-list-of-all-wikidata-properties-of-a-given-type)
 - [wd sparql](#wd-sparql)
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
   - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
@@ -334,6 +335,14 @@ Outputs:
   "P18": { "type": "CommonsMedia", "label": "image" },
 [...]
 ```
+
+#### Get the list of all Wikidata properties of a given type
+Re-using the possibility to pass a pattern to match, you can pass a property type
+```sh
+wd props --type Url
+wd props --type CommonsMedia
+```
+NB: make sure to respect the case to get an exact match, otherwise it only match on the label.
 
 ### wd sparql
 

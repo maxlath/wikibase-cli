@@ -9,22 +9,15 @@ program
 const getLangProps = require('../lib/get_lang_props')
 const resetProperties = require('../lib/reset_properties')
 const formatOneLinePerProperty = require('../lib/format_one_line_per_property')
+const getPatternFilter = require('../lib/get_pattern_filter')
 const errors_ = require('../lib/errors')
 
 if (program.reset) return resetProperties()
 
-// Any additional arguments are interpreted as a pattern that properties should match
-// `wd props some pattern` <=> `wd props | grep -i "some pattern"`
+// Any additional arguments are interpreted as a pattern that properties
+// should match `wd props some pattern` <=> `wd props | grep -i "some pattern"`
 const pattern = program.args.join(' ')
-let filter
-if (pattern && pattern.length > 0) {
-  const filterRegex = new RegExp(pattern, 'i')
-  filter = value => {
-    if (value == null) return false
-    if (typeof value === 'object') value = value.value
-    return value.match(filterRegex) != null
-  }
-}
+const filter = getPatternFilter(pattern, program.type)
 
 getLangProps(program)
 .then(formatOneLinePerProperty(filter))
