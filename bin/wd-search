@@ -3,6 +3,7 @@ const program = require('../lib/program')
 
 program
 .option('-p, --properties <properties>', 'request additional properties (separated by a comma), verbose mode only')
+.option('-t, --limit <num>', 'set a custom limit (defaults to 10)')
 .process('search')
 
 // Accept several words without requiring those to be joined by quotes
@@ -11,6 +12,8 @@ const search = program.args.join(' ')
 if (!(search && search.length > 0)) return program.help()
 
 const { lang:language, json, verbose, properties } = program
+var { limit } = program
+limit = limit || 10
 
 const { red, grey } = require('chalk')
 const valide = require('../lib/valide')
@@ -22,7 +25,13 @@ if (!valide.lang(language)) {
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const { padEnd } = require('lodash')
-const url = wdk.customize('searchEntities', { search, language })
+
+const url = wdk.customize('searchEntities', {
+  search,
+  language,
+  // Fetch more in case we need to filter-out some results
+  limit: limit + 10
+})
 
 lightGet(url)
 .then(body => {
@@ -35,8 +44,7 @@ lightGet(url)
 
   const results = body.search
     .filter(filterOutSpecialPages)
-    // Keep only the 10 best results among the up to 20 returned
-    .slice(0, 10)
+    .slice(0, limit)
 
   if (json) {
     console.log(JSON.stringify(results, null, 2))
