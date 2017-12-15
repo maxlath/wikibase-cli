@@ -27,28 +27,18 @@ const wdk = require('../lib/customized_wdk')(program)
 
 const url = wdk.customize('getEntities', { props: 'claims', ids: id })
 
-const parseRes = function (res) {
-  const [ body, props ] = res
-  const entity = body.entities && body.entities[id]
-
-  if (entity) {
-    const claims = wdk.simplifyClaims(entity.claims)
-    if (prop) {
-      const value = claims[prop]
-      if (value != null) {
-        output(claims[prop])
-      } else {
-        const label = props[prop]
-        console.log(yellow('no statement found'), label)
-      }
-    } else {
-      logClaims(program, claims, props)
-    }
-  } else {
-    console.log('error: ', body)
-  }
-}
-
 Promise.all([ lightGet(url), propsPromise ])
-.then(parseRes)
+.then(([ body, props ]) => {
+  const entity = body.entities && body.entities[id]
+  if (!entity) return console.log('error: ', body)
+
+  const claims = wdk.simplifyClaims(entity.claims)
+  if (!prop) return logClaims(program, claims, props)
+
+  const value = claims[prop]
+  if (value != null) return output(claims[prop])
+
+  const label = props[prop]
+  console.log(yellow('no statement found'), label)
+})
 .catch(errors_.exit)
