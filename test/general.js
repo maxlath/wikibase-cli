@@ -11,4 +11,14 @@ describe('general', function () {
       done()
     })
   })
+
+  // Addressed by https://github.com/maxlath/commander.js/commit/1297ae6
+  it('should accepts options before arguments', done => {
+    execa.shell('./bin/wd claims -c Q90 P625')
+    .then(res => {
+      res.stdout.should.equal('48.856577777778 2.3518277777778')
+      done()
+    })
+    .catch(done)
+  })
 })

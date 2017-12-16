@@ -40,15 +40,6 @@ describe('wd claims', function () {
     .catch(done)
   })
 
-  it('should accepts options before arguments', done => {
-    execa.shell('./bin/wd claims -c Q90 P625')
-    .then(res => {
-      res.stdout.should.equal('48.856577777778 2.3518277777778')
-      done()
-    })
-    .catch(done)
-  })
-
   it('should filters properties from text', done => {
     const coords = '48.856577777778,2.3518277777778'
     execa.shell('./bin/wd claims Q90 coord')
