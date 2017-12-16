@@ -142,15 +142,21 @@ Options:
 ### wd claims
 A quick way to access the claims of an entity
 ```sh
-wd claims <entities ids>
+wd claims <entities ids> [property id or pattern]
 # Alias:
-wd c <entities ids>
+wd c <entities ids> [property id or pattern]
 ```
 ```sh
 # all Q2001's claims
 wd claims Q2001
 # or just his place of birth
 wd claims Q2001 P19
+# or just the claims from properties of type Url
+wd claims Q2001 Url
+# or just the claims from properties with labels matching "library"
+wd claims Q2001 library
+# or website, etc
+wd claims Q2001 website
 ```
 
 Options:
