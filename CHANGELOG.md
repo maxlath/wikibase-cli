@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 5.7.0 - 2017-12-16
+* Add option [`-t, --limit` to `wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search)
+* [`wd claims`](https://github.com/maxlath/wikidata-cli#wd-claims) accepts a filter pattern as second arguments, filtering claims by their properties type or label
+* [`wd props --type`](https://github.com/maxlath/wikidata-cli#wd-props) accepts an additional arguments to filter matching properties by property type
+* Add option [`-n, --no-cache` to `wd props`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-props)
+
 ## 5.6.0 - 2017-12-13
 * Add option [`-x, --index` to `wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql), returns the request results as an index instead of a list
 
