@@ -1,7 +1,15 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('wd open: display help', t => {
-  return execa.shell('./bin/wd open')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
+describe('wd open', function () {
+  this.timeout(10000)
+
+  it('should display help', done => {
+    execa.shell('./bin/wd open')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
+  })
 })

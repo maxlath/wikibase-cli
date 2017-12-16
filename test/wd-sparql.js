@@ -1,14 +1,23 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('wd sparql: display help', t => {
-  return execa.shell('./bin/wd sparql')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd claims', function () {
+  this.timeout(10000)
+  it('should display help', done => {
+    execa.shell('./bin/wd sparql')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
+  })
 
-test('wd sparql <file>', t => {
-  return execa.shell('./bin/wd sparql ./test/assets/query.rq')
-  .then(res => {
-    t.is(res.stdout.split('Q47304').length, 2)
+  it('should take a file path', done => {
+    execa.shell('./bin/wd sparql ./test/assets/query.rq')
+    .then(res => {
+      res.stdout.split('Q47304').length.should.equal(2)
+      done()
+    })
+    .catch(done)
   })
 })

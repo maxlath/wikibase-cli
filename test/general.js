@@ -1,9 +1,14 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('custom instance', t => {
-  return execa.shell('./bin/wd label Q123456 --instance https://wikiyou.lala')
-  .catch(err => {
-    t.true(err.stderr.match(/getaddrinfo ENOTFOUND wikiyou\.lala/) != null)
+describe('general', function () {
+  this.timeout(10000)
+
+  it('should allow to customize the instance', done => {
+    execa.shell('./bin/wd label Q123456 --instance https://wikiyou.lala')
+    .catch(err => {
+      err.stderr.match(/getaddrinfo ENOTFOUND wikiyou\.lala/).should.be.ok()
+      done()
+    })
   })
 })

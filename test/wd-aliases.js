@@ -1,17 +1,33 @@
-const test = require('ava')
+const should = require('should')
 const execa = require('execa')
 
-test('wd aliases: display help', t => {
-  return execa.shell('./bin/wd aliases')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd aliases', function () {
+  this.timeout(10000)
 
-test('wd aliases <entity>', t => {
-  return execa.shell('./bin/wd aliases Q123')
-  .then(res => t.true(res.stdout.split('Sept').length > 1))
-})
+  it('should display help', done => {
+    execa.shell('./bin/wd aliases')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
+  })
 
-test('wd aliases <entity> should be tolerant on input', t => {
-  return execa.shell('./bin/wd aliases azfzafzafazQ123fazafazfz')
-  .then(res => t.true(res.stdout.split('Sept').length > 1))
+  it('<entity>', done => {
+    execa.shell('./bin/wd aliases Q123')
+    .then(res => {
+      should(res.stdout.split('Sept').length > 1).be.true()
+      done()
+    })
+    .catch(done)
+  })
+
+  it('<entity> should be tolerant on input', done => {
+    execa.shell('./bin/wd aliases azfzafzafazQ123fazafazfz')
+    .then(res => {
+      should(res.stdout.split('Sept').length > 1).be.true()
+      done()
+    })
+    .catch(done)
+  })
 })

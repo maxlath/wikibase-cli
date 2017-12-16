@@ -1,15 +1,25 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('wd: display help', t => {
-  return execa.shell('./bin/wd')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd', function () {
+  this.timeout(10000)
 
-test('wd unknown command: log error and display help', t => {
-  return execa.shell('./bin/wd nop')
-  .then(res => {
-    t.is(res.stderr, 'unknown command')
-    t.deepEqual(res.stdout.split('Usage:').length, 2)
+  it('should display general help', done => {
+    execa.shell('./bin/wd')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
+  })
+
+  it('should log an error and display help when called with an unknown command', done => {
+    execa.shell('./bin/wd nop')
+    .then(res => {
+      res.stderr.should.equal('unknown command')
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
   })
 })

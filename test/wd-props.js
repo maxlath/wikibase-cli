@@ -1,32 +1,45 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('wd props --help: display help', t => {
-  return execa.shell('./bin/wd props --help')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd props', function () {
+  this.timeout(10000)
 
-test('wd props', t => {
-  return execa.shell('./bin/wd props')
-  .then(res => {
-    t.true(res.stdout.startsWith('{'))
-    t.true(res.stdout.split('"P6": "').length === 2)
+  it('should display help', done => {
+    execa.shell('./bin/wd props --help')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd props --type', t => {
-  return execa.shell('./bin/wd props --type -l en')
-  .then(res => {
-    const data = JSON.parse(res.stdout)
-    t.is(data.P6.label, 'head of government')
-    t.is(data.P6.type, 'WikibaseItem')
+  it('should output properties', done => {
+    execa.shell('./bin/wd props')
+    .then(res => {
+      res.stdout.startsWith('{').should.be.true()
+      res.stdout.split('"P6": "').length.should.equal(2)
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd props should be able to query a custom SPARQL endpoint', t => {
-  t.plan(1)
-  return execa.shell('./bin/wd props --sparql-endpoint https://example.coool')
-  .catch(err => {
-    t.true(err.message.match(/ENOTFOUND example\.coool/) != null)
+  it('should output properties with types', done => {
+    execa.shell('./bin/wd props --type -l en')
+    .then(res => {
+      const data = JSON.parse(res.stdout)
+      data.P6.label.should.equal('head of government')
+      data.P6.type.should.equal('WikibaseItem')
+      done()
+    })
+    .catch(done)
+  })
+
+  it('should be able to query a custom SPARQL endpoint', done => {
+    execa.shell('./bin/wd props --sparql-endpoint https://example.coool')
+    .catch(err => {
+      err.message.match(/ENOTFOUND example\.coool/).should.be.ok()
+      done()
+    })
+    .catch(done)
   })
 })

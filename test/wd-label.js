@@ -1,17 +1,33 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('wd label: display help', t => {
-  return execa.shell('./bin/wd label')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd label', function () {
+  this.timeout(10000)
 
-test('wd label <entity>', t => {
-  return execa.shell('./bin/wd label Q123456')
-  .then(res => t.is(res.stdout, 'Friedrichshafen'))
-})
+  it('should display help', done => {
+    execa.shell('./bin/wd label')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
+  })
 
-test('wd label <entity> should be tolerant on input', t => {
-  return execa.shell('./bin/wd label azfzafzafazQ123456fazafazfz')
-  .then(res => t.is(res.stdout, 'Friedrichshafen'))
+  it('<entity>', done => {
+    execa.shell('./bin/wd label Q123456')
+    .then(res => {
+      res.stdout.should.equal('Friedrichshafen')
+      done()
+    })
+    .catch(done)
+  })
+
+  it('<entity> should be tolerant on input', done => {
+    execa.shell('./bin/wd label azfzafzafazQ123456fazafazfz')
+    .then(res => {
+      res.stdout.should.equal('Friedrichshafen')
+      done()
+    })
+    .catch(done)
+  })
 })

@@ -1,17 +1,33 @@
-const test = require('ava')
+require('should')
 const execa = require('execa')
 
-test('wd description: display help', t => {
-  return execa.shell('./bin/wd description')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd description', function () {
+  this.timeout(10000)
 
-test('wd description <entity>', t => {
-  return execa.shell('./bin/wd description Q123456 -l en')
-  .then(res => t.is(res.stdout, 'Wikimedia disambiguation page'))
-})
+  it('should display help', done => {
+    execa.shell('./bin/wd description')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
+  })
 
-test('wd description <entity> should be tolerant on input', t => {
-  return execa.shell('./bin/wd description  -l en azfzafzafazQ123456fazafazfz')
-  .then(res => t.is(res.stdout, 'Wikimedia disambiguation page'))
+  it('<entity>', done => {
+    execa.shell('./bin/wd description Q123456 -l en')
+    .then(res => {
+      res.stdout.should.equal('Wikimedia disambiguation page')
+      done()
+    })
+    .catch(done)
+  })
+
+  it('<entity> should be tolerant on input', done => {
+    execa.shell('./bin/wd description  -l en azfzafzafazQ123456fazafazfz')
+    .then(res => {
+      res.stdout.should.equal('Wikimedia disambiguation page')
+      done()
+    })
+    .catch(done)
+  })
 })

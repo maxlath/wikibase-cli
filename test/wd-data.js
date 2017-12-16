@@ -1,74 +1,94 @@
-const test = require('ava')
+const should = require('should')
 const execa = require('execa')
 
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
-test('wd data: display help', t => {
-  return execa.shell('./bin/wd data')
-  .then(res => t.deepEqual(res.stdout.split('Usage:').length, 2))
-})
+describe('wd data', function () {
+  this.timeout(10000)
 
-test('wd data <entity>', t => {
-  return execa.shell('./bin/wd data Q123456')
-  .then(res => {
-    t.true(res.stdout.startsWith('{'))
-    const data = JSON.parse(res.stdout)
-    const dataAttrs = Object.keys(data)
-    t.deepEqual(attributes.length, dataAttrs.length)
-    dataAttrs.forEach(attr => t.true(attributes.indexOf(attr) > -1))
+  it('should display help', done => {
+    execa.shell('./bin/wd data')
+    .then(res => {
+      res.stdout.split('Usage:').length.should.equal(2)
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd data should accept several ids', t => {
-  return execa.shell('./bin/wd data Q123456 Q123')
-  .then(res => {
-    t.true(res.stdout.startsWith('['))
-    const entities = JSON.parse(res.stdout)
-    const dataAttrs = Object.keys(entities[0])
-    t.deepEqual(attributes.length, dataAttrs.length)
-    dataAttrs.forEach(attr => t.true(attributes.indexOf(attr) > -1))
+  it('<entity>', done => {
+    execa.shell('./bin/wd data Q123456')
+    .then(res => {
+      res.stdout.startsWith('{').should.be.true()
+      const data = JSON.parse(res.stdout)
+      const dataAttrs = Object.keys(data)
+      attributes.length.should.equal(dataAttrs.length)
+      dataAttrs.forEach(attr => should(attributes.indexOf(attr) > -1).be.true())
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd data should output entities as ndjson', t => {
-  return execa.shell('./bin/wd data Q123456 Q1512522')
-  .then(res => {
-    t.is(res.stdout.split('\n').length, 4)
+  it('should accept several ids', done => {
+    execa.shell('./bin/wd data Q123456 Q123')
+    .then(res => {
+      res.stdout.startsWith('[').should.be.true()
+      const entities = JSON.parse(res.stdout)
+      const dataAttrs = Object.keys(entities[0])
+      attributes.length.should.equal(dataAttrs.length)
+      dataAttrs.forEach(attr => should(attributes.indexOf(attr) > -1).be.true())
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd data should simplify entity when requested', t => {
-  return execa.shell('./bin/wd data Q1512522 --simplify')
-  .then(res => {
-    const entity = JSON.parse(res.stdout)
-    t.is(typeof entity.labels.de, 'string')
-    t.is(typeof entity.descriptions.de, 'string')
-    t.is(typeof entity.aliases.de[0], 'string')
-    t.is(typeof entity.claims.P31[0], 'string')
-    t.is(typeof entity.sitelinks.dewiki, 'string')
+  it('should output entities as ndjson', done => {
+    execa.shell('./bin/wd data Q123456 Q1512522')
+    .then(res => {
+      res.stdout.split('\n').length.should.equal(4)
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd data should simplify entities when requested', t => {
-  return execa.shell('./bin/wd data Q1512522 Q123456 --simplify')
-  .then(res => {
-    const entity = JSON.parse(res.stdout)[0]
-    t.is(typeof entity.labels.de, 'string')
-    t.is(typeof entity.descriptions.de, 'string')
-    t.is(typeof entity.aliases.de[0], 'string')
-    t.is(typeof entity.claims.P31[0], 'string')
-    t.is(typeof entity.sitelinks.dewiki, 'string')
+  it('should simplify entity when requested', done => {
+    execa.shell('./bin/wd data Q1512522 --simplify')
+    .then(res => {
+      const entity = JSON.parse(res.stdout)
+      entity.labels.de.should.be.a.String()
+      entity.descriptions.de.should.be.a.String()
+      entity.aliases.de[0].should.be.a.String()
+      entity.claims.P31[0].should.be.a.String()
+      entity.sitelinks.dewiki.should.be.a.String()
+      done()
+    })
+    .catch(done)
   })
-})
 
-test('wd data should return only the desired props when requested', t => {
-  return execa.shell('./bin/wd data Q1512522 --props labels,aliases')
-  .then(res => {
-    const entity = JSON.parse(res.stdout)
-    t.is(typeof entity.labels, 'object')
-    t.is(typeof entity.descriptions, 'undefined')
-    t.is(typeof entity.aliases, 'object')
-    t.is(typeof entity.claims, 'undefined')
-    t.is(typeof entity.sitelinks, 'undefined')
+  it('should simplify entities when requested', done => {
+    execa.shell('./bin/wd data Q1512522 Q123456 --simplify')
+    .then(res => {
+      const entity = JSON.parse(res.stdout)[0]
+      entity.labels.de.should.be.a.String()
+      entity.descriptions.de.should.be.a.String()
+      entity.aliases.de[0].should.be.a.String()
+      entity.claims.P31[0].should.be.a.String()
+      entity.sitelinks.dewiki.should.be.a.String()
+      done()
+    })
+    .catch(done)
+  })
+
+  it('should return only the desired props when requested', done => {
+    execa.shell('./bin/wd data Q1512522 --props labels,aliases')
+    .then(res => {
+      const entity = JSON.parse(res.stdout)
+      should(entity.labels).be.an.Object()
+      should(entity.descriptions).not.be.ok()
+      should(entity.aliases).be.an.Object()
+      should(entity.descriptions).not.be.ok()
+      should(entity.sitelinks).not.be.ok()
+      done()
+    })
+    .catch(done)
   })
 })
