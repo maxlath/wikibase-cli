@@ -32,8 +32,7 @@ const parseEntity = (entity, options) => {
   claims = program.verbose ? claims : _.pick(claims, mainProps.concat(properties))
   claims = wdk.simplifyClaims(claims)
 
-  return getLangProps(program)
-  .then(logClaims.bind(null, program, claims))
+  return logClaims(program, claims)
   .catch(errors_.exit)
 }
 

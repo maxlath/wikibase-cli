@@ -6,6 +6,9 @@ program.process('claims')
 const { dim, yellow } = require('chalk')
 const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
+const commonErrors = require('../lib/common_errors')
+const getLangProps = require('../lib/get_lang_props')
+
 var [ id, prop ] = program.args
 var id = id && parseId(id)
 var prop = prop && parseId(prop)
@@ -20,25 +23,28 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
   [ id, prop ] = [ prop, id ]
 }
 
-const propsPromise = require('../lib/get_lang_props')(program)
 const lightGet = require('../lib/light_get')
 const errors_ = require('../lib/errors')
 const wdk = require('../lib/customized_wdk')(program)
 
 const url = wdk.customize('getEntities', { props: 'claims', ids: id })
 
-Promise.all([ lightGet(url), propsPromise ])
-.then(([ body, props ]) => {
+lightGet(url)
+.then(body => {
   const entity = body.entities && body.entities[id]
   if (!entity) return console.log('error: ', body)
 
   const claims = wdk.simplifyClaims(entity.claims)
-  if (!prop) return logClaims(program, claims, props)
+  if (!prop) return logClaims(program, claims)
 
   const value = claims[prop]
   if (value != null) return output(claims[prop])
 
-  const label = props[prop]
-  console.log(yellow('no statement found'), label)
+  getLangProps(program)
+  .then(props => {
+    if (!props[prop]) return commonErrors.missingProperty(prop)
+    const { label } = props[prop]
+    console.log(yellow('no statement found'), label)
+  })
 })
 .catch(errors_.exit)
