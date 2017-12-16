@@ -320,7 +320,8 @@ This command first tries to find the list in the `props` folder (created at wiki
 
 This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` options
 
-Option: `-r, --reset`: clear properties cache
+Option: `-n, --no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
+Option: `-r, --reset`: clear cached properties, in all languages, and with or without types
 
 #### Get the list of all Wikidata properties and their data types
 

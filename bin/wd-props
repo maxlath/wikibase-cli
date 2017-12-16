@@ -3,8 +3,14 @@ const program = require('../lib/program')
 
 program
 .option('-t, --type', 'include properties types')
+.option('-n, --no-cache', 'ignore properties cache')
 .option('-r, --reset', 'clear properties cache')
 .process('props')
+
+// commander converts the no-cache option to a cache boolean
+// but that makes where program.cache is undefined (in other commands)
+// default to falsy, that is default to noCache=true
+program.noCache = !program.cache
 
 const getLangProps = require('../lib/get_lang_props')
 const resetProperties = require('../lib/reset_properties')
