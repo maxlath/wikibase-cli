@@ -12,17 +12,20 @@ program
 // default to falsy, that is default to noCache=true
 program.noCache = !program.cache
 
-const getLangProps = require('../lib/get_lang_props')
 const resetProperties = require('../lib/reset_properties')
+const getLangProps = require('../lib/get_lang_props')
 const formatOneLinePerProperty = require('../lib/format_one_line_per_property')
 const getPatternFilter = require('../lib/get_pattern_filter')
 const errors_ = require('../lib/errors')
+const { propTypes } = require('../lib/properties')
 
 if (program.reset) return resetProperties()
 
 // Any additional arguments are interpreted as a pattern that properties
 // should match `wd props some pattern` <=> `wd props | grep -i "some pattern"`
 const pattern = program.args.join(' ')
+// If the filter pattern is a property type, request types
+if (pattern in propTypes) program.type = true
 const filter = getPatternFilter(pattern, program.type)
 
 getLangProps(program)
