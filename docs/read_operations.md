@@ -83,7 +83,7 @@ Options:
 * `-l, --lang <lang>`: specify the results labels and descriptions language
 * `-t, --limit <num>`: set a custom limit (defaults to 10)
 * `-j, --json`: format the result as JSON
-* `-v, --verbose`: pass the result ids to `wd summary`
+* `-v, --verbose`: display rich results (aka summaries)
 
 Verbose mode only:
 * `-p, --properties <properties>`: request additional properties (separated by a comma)
