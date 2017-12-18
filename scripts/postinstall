@@ -1,0 +1,2 @@
+#!/usr/bin/env sh
+[ -z "$DISABLE_NODE_CHECK" ] && check-node-version --node '>= 6.4.0'

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "mocha",
-    "postinstall": "check-node-version --node '>= 6.4.0'",
+    "postinstall": "./scripts/postinstall",
     "prepublishOnly": "npm run lint && npm test",
     "lint": "standard",
     "update-toc": "doctoc docs/*md",
