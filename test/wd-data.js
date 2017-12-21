@@ -31,11 +31,13 @@ describe('wd data', function () {
   it('should accept several ids', done => {
     execa.shell('./bin/wd data Q123456 Q123')
     .then(res => {
-      res.stdout.startsWith('[').should.be.true()
-      const entities = JSON.parse(res.stdout)
-      const dataAttrs = Object.keys(entities[0])
-      attributes.length.should.equal(dataAttrs.length)
-      dataAttrs.forEach(attr => should(attributes.indexOf(attr) > -1).be.true())
+      const lines = res.stdout.split('\n')
+      lines.length.should.equal(2)
+      lines.forEach(line => {
+        Object.keys(JSON.parse(line)).forEach(attr => {
+          should(attributes.includes(attr)).be.true()
+        })
+      })
       done()
     })
     .catch(done)
@@ -44,7 +46,7 @@ describe('wd data', function () {
   it('should output entities as ndjson', done => {
     execa.shell('./bin/wd data Q123456 Q1512522')
     .then(res => {
-      res.stdout.split('\n').length.should.equal(4)
+      res.stdout.split('\n').length.should.equal(2)
       done()
     })
     .catch(done)
@@ -67,7 +69,7 @@ describe('wd data', function () {
   it('should simplify entities when requested', done => {
     execa.shell('./bin/wd data Q1512522 Q123456 --simplify')
     .then(res => {
-      const entity = JSON.parse(res.stdout)[0]
+      const entity = JSON.parse(res.stdout.split('\n')[0])
       entity.labels.de.should.be.a.String()
       entity.descriptions.de.should.be.a.String()
       entity.aliases.de[0].should.be.a.String()

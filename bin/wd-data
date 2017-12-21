@@ -20,28 +20,42 @@ const ids = program.args.map(parseId)
 
 if (!(ids && ids.length > 0)) return program.help()
 
-const requestedIdsLenght = ids.length
+const uniqueIdRequested = ids.length === 1
 
 ids.forEach(id => {
   if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
 })
 
 const lightGet = require('../lib/light_get')
-const url = wdk.customize('getEntities', { ids, props })
+const urls = wdk.customize('getManyEntities', { ids, props })
 
 const options = require('../lib/parse_simplify_options')(program.keep)
 
-lightGet(url)
-.then(body => {
-  var entities = _.values(body.entities)
-  if (simplify) {
-    const options = require('../lib/parse_simplify_options')(program.keep)
-    entities = entities.map(entity => wdk.simplify.entity(entity, options))
-  }
-  if (requestedIdsLenght === 1) {
-    console.log(JSON.stringify(entities[0]))
-  } else {
-    logNdjson(entities)
-  }
-})
-.catch(errors_.exit)
+// Fetch batches sequentially, and with some delay,
+// to be kind with the Wikidata API
+const getNextBatch = () => {
+  const url = urls.shift()
+
+  // If url is undefined, all the batches got fetched, we are done
+  if (url == null) return
+
+  lightGet(url)
+  .then(body => {
+    var entities = _.values(body.entities)
+    if (simplify) {
+      const options = require('../lib/parse_simplify_options')(program.keep)
+      entities = entities.map(entity => wdk.simplify.entity(entity, options))
+    }
+    if (uniqueIdRequested) {
+      console.log(JSON.stringify(entities[0]))
+    } else {
+      logNdjson(entities)
+    }
+  })
+  .then(delay(getNextBatch, 500))
+  .catch(errors_.exit)
+}
+
+const delay = (fn, ms) => () => setTimeout(getNextBatch, ms)
+
+getNextBatch()

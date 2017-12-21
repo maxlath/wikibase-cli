@@ -188,10 +188,10 @@ wd data Q1496 | jd labels.pt
 ```
 
 #### multiple entities
-You can also request several entities at once by passing several ids
+You can also request several entities at once by passing several ids.
+This outputs newline delimited JSON: one entity per-line, each line being valid JSON, but not the whole file as a whole.
 ```sh
 wd data Q1496 Q123
-# => array of entities
 ```
 
 #### simplified entities
