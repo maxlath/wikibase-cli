@@ -4,7 +4,7 @@ module.exports = {
   options: {
     lang: false,
     verbose: true,
-    clipboard: true,
+    clipboard: false,
     json: true,
     instance: false,
     sparqlEndpoint: true

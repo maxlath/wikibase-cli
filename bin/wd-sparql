@@ -46,4 +46,7 @@ if (index) {
   }
 }
 
+// Override config parameter, as it's unlikely to be the desired behavior
+program.clipboard = false
+
 makeSparqlQuery(sparql)
