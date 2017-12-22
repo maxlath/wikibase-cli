@@ -374,6 +374,17 @@ get its output from your terminal like so:
 wd sparql ./path/to/author_works.rq > ./results.json
 ```
 
+Options:
+* `-v, --verbose`: log the generated SPARQL
+* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
+* `-x, --index`: get the results indexed by one of the SELECTed variables
+
+```sh
+wd sparql ./path/to/query.rq > ./results.json
+wd sparql ./path/to/query.rq --raw > ./raw_sparql_results.json
+wd sparql ./path/to/query.rq --index someVariableName > ./results_index.json
+```
+
 #### dynamic request from a JS file
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
@@ -387,6 +398,9 @@ module.exports = authorId => {
 ```sh
 wd sparql ./path/to/author_works.js Q535 --json > ./Q535_works.json
 wd sparql ./path/to/author_works.js Q5879 --json > ./Q5879_works.json
+# This simple query could actually have been done using the `wd query` command
+wd query --property P50 --object Q5879
+# but, meh, let's keep it simple for the demo
 ```
 
 You can use it to build [alias commands](https://en.wikipedia.org/wiki/Alias_%28command%29) for the requests you use often: the above can then be written
@@ -398,15 +412,14 @@ authors_works Q5879 > ./Q5879_works.json
 
 **Demo**: [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
 
-Options:
-* `-v, --verbose`: log the generated SPARQL
-* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
-* `-x, --index`: get the results indexed by one of the SELECTed variables
+#### wellknown queries
+Some idiomatic queries than can't be done with [`wd query`](#wd-query) are included for convenience:
 
+#### all-instances
+Fetch instances and instances of sub-classes of a given item.
+Example, all the instances of languages (Q34770):
 ```sh
-wd sparql ./path/to/query.rq > ./results.json
-wd sparql ./path/to/query.rq --raw > ./raw_sparql_results.json
-wd sparql ./path/to/query.rq --index someVariableName > ./results_index.json
+wd sparql all-instances Q34770
 ```
 
 ### wd query

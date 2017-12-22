@@ -9,19 +9,26 @@ program
 const fs = require('fs')
 const errors_ = require('../lib/errors')
 const makeSparqlQuery = require('../lib/make_sparql_query')
+const wellknownQueries = require('../lib/wellknown_queries')
 const path = program.args[0]
 
 if (!path) return program.help()
 
 const extension = path.split('.').slice(-1)[0]
 
-var sparql
+var sparql, absoluePath
 
 // Allow to pass a JS module that exports a function
 // to which is passed the remaining arguments
 // and from which the SPARQL request is generated
 if (extension === 'js') {
-  const absoluePath = require('path').resolve(process.cwd(), path)
+  absoluePath = require('path').resolve(process.cwd(), path)
+// or pass the name of one of the wellknown queries
+} else if (wellknownQueries.list.includes(path)) {
+  absoluePath = wellknownQueries.getAbsolutePath(path)
+}
+
+if (absoluePath != null) {
   const fnArgs = program.args.slice(1)
   sparql = require('../lib/execute_function')(absoluePath, fnArgs)
 } else {
