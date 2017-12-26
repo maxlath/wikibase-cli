@@ -40,7 +40,7 @@
     "opn": "^4.0.2",
     "prompt": "^1.0.0",
     "shell-quote": "^1.6.1",
-    "wikidata-edit": "^2.0.8",
+    "wikidata-edit": "^2.0.10",
     "wikidata-sdk": "^5.3.1"
   },
   "devDependencies": {
