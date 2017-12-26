@@ -29,6 +29,6 @@ if (pattern in propTypes) program.type = true
 const filter = getPatternFilter(pattern, program.type)
 
 getLangProps(program)
-.then(formatOneLinePerProperty(filter))
+.then(formatOneLinePerProperty(pattern, filter))
 .then(console.log)
 .catch(errors_.exit)
