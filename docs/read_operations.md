@@ -193,6 +193,11 @@ This outputs newline delimited JSON: one entity per-line, each line being valid 
 ```sh
 wd data Q1496 Q123
 ```
+Alternatively, you can pass ids from stdin:
+```sh
+echo "Q1496 Q123" | wd data
+```
+This especially make sense when you have thousands of ids to pass, passing them as arguments would fail. See [`wd sparql all-instances` example](#all-instances).
 
 #### simplified entities
 You can request entities to be simplified, using [wikidata-sdk `simplify.entity` function](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_entities_data.md#simplify-entity)
@@ -420,6 +425,13 @@ Fetch instances and instances of sub-classes of a given item.
 Example, all the instances of languages (Q34770):
 ```sh
 wd sparql all-instances Q34770
+```
+This can be used to fetch the data associated with all the instances of a given item. For instance, to fetch all the painting's data, you could do:
+```sh
+# Get the ids of all the paintings
+wd sparql all-instances Q3305213 > ./paintings_ids
+# Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wd-data for details)
+cat ./paintings_ids | wd data --simplify -- > ./paintings.ndjson
 ```
 
 ### wd query

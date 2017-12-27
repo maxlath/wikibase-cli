@@ -1,19 +1,24 @@
 const should = require('should')
 const execa = require('execa')
+const _ = require('lodash')
 
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
 describe('wd data', function () {
   this.timeout(10000)
 
-  it('should display help', done => {
-    execa.shell('./bin/wd data')
-    .then(res => {
-      res.stdout.split('Usage:').length.should.equal(2)
-      done()
-    })
-    .catch(done)
-  })
+  // This test fails when run from a script as process.stdin.isTTY is undefined
+  // and the script thus will listen for stdin. But it works when run manually,
+  // and no other way to detect a stdin input was found
+
+  // it('should display help', done => {
+  //   execa.shell('./bin/wd data')
+  //   .then(res => {
+  //     res.stdout.split('Usage:').length.should.equal(2)
+  //     done()
+  //   })
+  //   .catch(done)
+  // })
 
   it('<entity>', done => {
     execa.shell('./bin/wd data Q123456')
@@ -89,6 +94,29 @@ describe('wd data', function () {
       should(entity.aliases).be.an.Object()
       should(entity.descriptions).not.be.ok()
       should(entity.sitelinks).not.be.ok()
+      done()
+    })
+    .catch(done)
+  })
+
+  it('should accept ids on stdin', done => {
+    execa.shell('echo "Q123456 Q123" | ./bin/wd data --props labels --simplify')
+    .then(res => {
+      const lines = res.stdout.split('\n')
+      lines.length.should.equal(2)
+      const entities = lines.map(JSON.parse.bind(JSON))
+      entities[0].id.should.equal('Q123456')
+      entities[1].id.should.equal('Q123')
+      entities.forEach(entity => {
+        should(entity.labels).be.an.Object()
+        _.values(entity.labels).forEach(label => {
+          label.should.be.a.String()
+        })
+        should(entity.descriptions).not.be.ok()
+        should(entity.aliases).not.be.ok()
+        should(entity.descriptions).not.be.ok()
+        should(entity.sitelinks).not.be.ok()
+      })
       done()
     })
     .catch(done)
