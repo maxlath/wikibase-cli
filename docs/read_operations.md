@@ -27,6 +27,8 @@
 - [wd sparql](#wd-sparql)
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
   - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
+  - [wellknown queries](#wellknown-queries)
+    - [all-instances](#all-instances)
 - [wd query](#wd-query)
 - [wd open](#wd-open)
   - [open entities and properties pages](#open-entities-and-properties-pages)
@@ -420,7 +422,7 @@ authors_works Q5879 > ./Q5879_works.json
 #### wellknown queries
 Some idiomatic queries than can't be done with [`wd query`](#wd-query) are included for convenience:
 
-#### all-instances
+##### all-instances
 Fetch instances and instances of sub-classes of a given item.
 Example, all the instances of languages (Q34770):
 ```sh
