@@ -16,7 +16,12 @@ const { isCustomized, customizeHost } = customWikibaseInstance(program)
 const { args, lang } = program
 if (args.length === 0) return program.help()
 
-const ids = args.map(parseId).filter(id => id != null)
+var ids
+try {
+  ids = args.map(parseId).filter(id => id != null)
+} catch (err) {
+  // invalid ids: trigger a search
+}
 
 const { url:urlOnly, clipboard } = program
 
