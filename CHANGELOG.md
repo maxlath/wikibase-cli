@@ -1,6 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 6.0.0 - 2017-12-16
+* BREAKING CHANGE: [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) and [`wd revisions`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-revisions) now output [newline delimited JSON](https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON), which is valid JSON if taken line by line, but not as a whole.
+* [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) can now fetch more than 50 entities at once and accepts ids from stdin
+* Added [`wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql) wellknown query: [`all-instances`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#all-instances)
+
 ## 5.7.0 - 2017-12-16
 * Add option [`-t, --limit` to `wd search`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-search)
 * [`wd claims`](https://github.com/maxlath/wikidata-cli#wd-claims) accepts a filter pattern as second arguments, filtering claims by their properties type or label
