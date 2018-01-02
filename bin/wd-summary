@@ -38,7 +38,6 @@ const parseEntity = (entity, options) => {
 
 const parser = options => entities => {
   const entitiesList = _.values(entities)
-  const multiEntities = entitiesList.length > 1
   let firstLogged = false
 
   // Log entities sequentially as properties still need an async operation
@@ -53,7 +52,7 @@ const parser = options => entities => {
       firstLogged = true
     }
 
-    if (multiEntities) console.log(dim('id'), nextEntity.id)
+    console.log(dim('id'), nextEntity.id)
 
     return parseEntity(nextEntity, options).then(parseNext)
   }
