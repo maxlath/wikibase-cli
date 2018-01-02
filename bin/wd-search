@@ -54,7 +54,7 @@ lightGet(url)
 
   const ids = results.map(result => result.id)
 
-  if (ids.lengh === 0) {
+  if (ids.length === 0) {
     console.error('no result')
     process.exit(1)
   }
