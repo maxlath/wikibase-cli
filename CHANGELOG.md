@@ -19,7 +19,7 @@
 * `wd claims`, `wd data`, `wd open`, and `wd revisions` accept numeric ids, assume it's an item id (commit: 37afea9)
 
 ## 5.4.0 - 2017-12-06
-* Added the command `wikidata-cli` as an alias to `wd`
+* Added the command `wikidata-cli` as an alias to `wd` [UPDATE: implementation failed, removed by d0df064]
 
 ## 5.3.0 - 2017-11-30
 * Added the possibility to pass a JS file to [`wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql) to generate SPARQL requests from the command arguments
