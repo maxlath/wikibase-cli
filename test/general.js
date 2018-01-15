@@ -4,6 +4,8 @@ const execa = require('execa')
 describe('general', function () {
   this.timeout(10000)
 
+  // This test may fail if your local network messes with the request
+  // Known case: public hotspot
   it('should allow to customize the instance', done => {
     execa.shell('./bin/wd label Q123456 --instance https://wikiyou.lala')
     .catch(err => {
