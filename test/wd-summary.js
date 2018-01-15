@@ -1,6 +1,7 @@
 require('should')
 const execa = require('execa')
-const Q123456EnglishSummary = `Label Friedrichshafen
+const Q123456EnglishSummary = `id Q123456
+Label Friedrichshafen
 Description Wikimedia disambiguation page
 instance of (P31): Wikimedia disambiguation page (Q4167410)`
 
