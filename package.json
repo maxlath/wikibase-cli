@@ -4,8 +4,7 @@
   "description": "The command-line interface to Wikidata",
   "main": "index.js",
   "bin": {
-    "wd": "./bin/wd",
-    "wikidata-cli": "./bin/wikidata-cli"
+    "wd": "./bin/wd"
   },
   "scripts": {
     "test": "mocha",
