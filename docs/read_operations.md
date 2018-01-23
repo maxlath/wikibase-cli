@@ -29,6 +29,7 @@
   - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
   - [wellknown queries](#wellknown-queries)
     - [all-instances](#all-instances)
+  - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [wd query](#wd-query)
 - [wd open](#wd-open)
   - [open entities and properties pages](#open-entities-and-properties-pages)
@@ -385,6 +386,7 @@ Options:
 * `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-x, --index`: get the results indexed by one of the SELECTed variables
+* `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see below for examples)
 
 ```sh
 wd sparql ./path/to/query.rq > ./results.json
@@ -434,6 +436,13 @@ This can be used to fetch the data associated with all the instances of a given 
 wd sparql all-instances Q3305213 > ./paintings_ids
 # Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wd-data for details)
 cat ./paintings_ids | wd data --simplify -- > ./paintings.ndjson
+```
+
+#### custom SPARQL endpoint
+The `wd sparql` command can actually be used with on other SPARQL endpoints:
+```sh
+wd sparql --sparql-endpoint http://data.bnf.fr/sparql bnf_request.rq
+wd sparql --sparql-endpoint http://live.dbpedia.org/sparql --raw --index item dbpedia_request.rq
 ```
 
 ### wd query
