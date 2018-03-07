@@ -142,13 +142,21 @@ wd ac Q4115189 P527 Q34679
 ```
 
 ##### rich values
-Some values like monolingual text or quatities with a unit require to pass more data than a simple primitive value. This can be done by passing an object, either in a JSON or a query string format:
+Some values like monolingual text, quatities with a unit, or time with a precision, require to pass more data than a simple primitive value. This can be done by passing an object, either in a JSON or a query string format:
+
+###### JSON format
 ```sh
-# Add the statement that the Sandbox (Q4115189) has for title (P1476) "bac à sable" in French
-# JSON format
-wd ac Q4115189 P1476 '{"text":"bac à sable", "language":"fr"}'
-# query string format
+wd ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
+wd ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
+# On precision, see https://www.wikidata.org/wiki/Help:Dates#Precision
+wd ac Q4115189 P578 '{"time":1800,"precision":7}'
+```
+
+###### query string format
+```sh
 wd ac Q4115189 P1476 'text=bac à sable&language=fr'
+wd ac Q4115189 P1106 'amount=123&unit=Q4916'
+wd ac Q4115189 P578 'time=1800&precision=7'
 ```
 
 ##### with a reference
