@@ -7,11 +7,12 @@ describe('general', function () {
   // This test may fail if your local network messes with the request
   // Known case: public hotspot
   it('should allow to customize the instance', done => {
-    execa.shell('./bin/wd label Q123456 --instance https://wikiyou.lala')
-    .catch(err => {
-      err.stderr.match(/getaddrinfo ENOTFOUND wikiyou\.lala/).should.be.ok()
+    execa.shell('./bin/wd label Item:Q11 --instance https://wikibase-registry.wmflabs.org/w/api.php')
+    .then(res => {
+      res.stdout.should.equal('Transform Map')
       done()
     })
+    .catch(done)
   })
 
   // Addressed by https://github.com/maxlath/commander.js/commit/1297ae6

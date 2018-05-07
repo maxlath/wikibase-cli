@@ -35,9 +35,10 @@ describe('wd props', function () {
   })
 
   it('should be able to query a custom SPARQL endpoint', done => {
-    execa.shell('./bin/wd props --sparql-endpoint https://example.coool')
-    .catch(err => {
-      err.message.match(/ENOTFOUND example\.coool/).should.be.ok()
+    execa.shell('./bin/wd props --sparql-endpoint https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql')
+    .then(res => {
+      const data = JSON.parse(res.stdout)
+      data['http://wikibase-registry.wmflabs.org/entity/P2'].should.equal('Main Page')
       done()
     })
     .catch(done)
