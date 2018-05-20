@@ -435,7 +435,7 @@ This can be used to fetch the data associated with all the instances of a given 
 # Get the ids of all the paintings
 wd sparql all-instances Q3305213 > ./paintings_ids
 # Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wd-data for details)
-cat ./paintings_ids | wd data --simplify -- > ./paintings.ndjson
+wd data --simplify < ./paintings_ids > ./paintings.ndjson
 ```
 
 #### custom SPARQL endpoint
