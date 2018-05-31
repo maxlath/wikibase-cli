@@ -12,7 +12,7 @@ const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const errors_ = require('../lib/errors')
 const _ = require('lodash')
-const getRedirectedWikipediaTitle = require('../lib/get_redirected_wikipedia_title')
+const getRedirectedSitelinkTitle = require('../lib/get_redirected_sitelink_title')
 
 const last = args.slice(-1)[0]
 var { lang } = program
@@ -22,10 +22,12 @@ const output = require('../lib/output')(program)
 var title = args.join(' ')
 
 // parse the url if a wikipedia url was provided as title
-const re = /https:\/\/\w{2,4}\.wikipedia\.org\/wiki\//
+const re = /https:\/\/\w{2,8}\.wik\w+\.org\/wiki\//
+var site, title
 if (title.match(re)){
-  lang = title.replace(/https:\/\/(\w{2,4}).wikipedia.org\/wiki\/.*/, '$1')
-  title = title.replace(/https:\/\/\w{2,4}.wikipedia.org\/wiki\/(.*)/, '$1')
+  [ lang, site, title ] = title
+    .replace(/https:\/\/(\w{2,8}).(wik\w+).org\/wiki\/(.*)/, '$1|$2|$3')
+    .split('|')
   title = global.decodeURIComponent(title)
 }
 
@@ -58,9 +60,10 @@ function formatDescriptions (descriptions) {
     .join('\n')
 }
 
-getRedirectedWikipediaTitle(lang, title)
+getRedirectedSitelinkTitle(lang, site, title)
 .then(trueTitle => {
-  const url = wdk.customize('getWikidataIdsFromSitelinks', trueTitle, lang)
+  const siteCode = `${lang}${site}`.replace('wikipedia', 'wiki')
+  const url = wdk.customize('getWikidataIdsFromSitelinks', trueTitle, siteCode)
   return lightGet(url)
   .then(parseIds.bind(null, [title, trueTitle]))
 })

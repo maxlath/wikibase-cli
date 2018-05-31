@@ -273,6 +273,8 @@ You can also pass it full Wikipedia urls and let it deduce the language from the
 ```sh
 wd id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
+wd id https://fr.wikisource.org/wiki/Auteur:George_Sand
+# => Q3816
 ```
 
 ### wd props
