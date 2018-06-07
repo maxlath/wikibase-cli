@@ -306,7 +306,7 @@ This is especially convenient when you're looking for a property:
 wd props photo
 ```
 Outputs:
-```
+```json
 {
   "P18": "image",
   "P344": "director of photography",
@@ -330,7 +330,18 @@ Outputs:
 }
 ```
 
-In case you want to match only on labels (ignoring descriptions, and aliases), you can use `grep`:
+Matching on labels, descriptions, and aliases can come very handy in cases such as the following:
+```sh
+wd props RSS
+```
+Output:
+```json
+{
+  "P1019": "feed URL"
+}
+```
+
+But in case you want to match only on labels (ignoring descriptions, and aliases), you can pass the pattern to `grep` instead:
 ```sh
 wd props | grep photo
 ```
