@@ -19,6 +19,8 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 - [claims](#claims)
   - [wd add-claim](#wd-add-claim)
     - [rich values](#rich-values)
+      - [JSON format](#json-format)
+      - [query string format](#query-string-format)
     - [with a reference](#with-a-reference)
   - [wd update-claim](#wd-update-claim)
   - [wd remove-claim](#wd-remove-claim)

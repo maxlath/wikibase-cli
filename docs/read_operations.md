@@ -20,10 +20,11 @@
 - [wd revisions](#wd-revisions)
 - [wd id](#wd-id)
 - [wd props](#wd-props)
-  - [Get the list of all Wikidata properties in your environment local language](#get-the-list-of-all-wikidata-properties-in-your-environment-local-language)
   - [Get the list of all Wikidata properties in another language](#get-the-list-of-all-wikidata-properties-in-another-language)
-  - [Get the list of all Wikidata properties and their data types](#get-the-list-of-all-wikidata-properties-and-their-data-types)
+  - [Get the list of all Wikidata properties with their types](#get-the-list-of-all-wikidata-properties-with-their-types)
   - [Get the list of all Wikidata properties of a given type](#get-the-list-of-all-wikidata-properties-of-a-given-type)
+  - [Get the list of all Wikidata properties with their labels, types, descriptions, and aliases](#get-the-list-of-all-wikidata-properties-with-their-labels-types-descriptions-and-aliases)
+  - [Reset properties](#reset-properties)
 - [wd sparql](#wd-sparql)
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
   - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
@@ -285,7 +286,7 @@ wd props [filter]
 wd p [filter]
 ```
 
-#### Get the list of all Wikidata properties in your environment local language
+By default, your config or environment language is used:
 ```sh
 wd props
 ```
@@ -301,22 +302,37 @@ NB: properties without a label in the requested language are set to `null`, as y
 
 This is especially convenient when you're looking for a property:
 ```sh
-# look for a property having "image" in its label (case insensitive)
-wd props | grep -i image
-# which can actually be done by passing the pattern as additional arguments
-wd props image
+# look for a property having "image" in its label, description or aliases (case insensitive unless the argument contains capitals)
+wd props photo
 ```
 Outputs:
 ```
 {
-  "P6": "head of government",
-  "P10": "video",
-  "P14": "graphic symbol of thoroughfare",
-  "P15": "route map",
-  "P16": "highway system",
-  "P17": "country",
   "P18": "image",
-[...]
+  "P344": "director of photography",
+  "P1259": "coordinates of the point of view",
+  "P1442": "image of grave",
+  "P1847": "Nasjonalbiblioteket photographer ID",
+  "P1947": "Mapillary ID",
+  "P1966": "Biblioteca Nacional de Chile catalogue number",
+  "P2033": "Category for pictures taken with camera",
+  "P2061": "aspect ratio",
+  "P2485": "Fashion Model Directory photographer ID",
+  "P2634": "model",
+  "P2750": "Photographers' Identities Catalog ID",
+  "P3269": "Fotografen.nl ID",
+  "P3293": "BALaT image ID",
+  "P4082": "image captured with",
+  "P4640": "photosphere image",
+  "P4759": "Luminous-Lint ID",
+  "P5023": "activity policy in this place",
+  "P5160": "Thesaurus For Graphic Materials ID"
+}
+```
+
+In case you want to match only on labels (ignoring descriptions, and aliases), you can use `grep`:
+```sh
+wd props | grep photo
 ```
 
 #### Get the list of all Wikidata properties in another language
@@ -326,14 +342,7 @@ wd props -l sv
 # outputs the properties in Swedish
 ```
 
-This command first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
-
-This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` options
-
-Option: `-n, --no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
-Option: `-r, --reset`: clear cached properties, in all languages, and with or without types
-
-#### Get the list of all Wikidata properties and their data types
+#### Get the list of all Wikidata properties with their types
 
 Every property accepts values of a precise type, one of `CommonsMedia`, `ExternalId`, `String`, `WikibaseItem`, `Time`, `GlobeCoordinate`, `Monolingualtext`, `Quantity`, `Url`, `WikibaseProperty`, or `Math`
 
@@ -344,13 +353,15 @@ wd props --type
 Outputs:
 ```
 {
-  "P6": { "type": "WikibaseItem", "label": "head of government" },
-  "P10": { "type": "CommonsMedia", "label": "video" },
-  "P14": { "type": "CommonsMedia", "label": "graphic symbol of thoroughfare" },
-  "P15": { "type": "CommonsMedia", "label": "route map" },
-  "P16": { "type": "WikibaseItem", "label": "highway system" },
-  "P17": { "type": "WikibaseItem", "label": "country" },
-  "P18": { "type": "CommonsMedia", "label": "image" },
+  "P6": { "label": "head of government", "type": "WikibaseItem" },
+  "P10": { "label": "video", "type": "CommonsMedia" },
+  "P14": { "label": "graphic symbol of thoroughfare", "type": "CommonsMedia" },
+  "P15": { "label": "route map", "type": "CommonsMedia" },
+  "P16": { "label": "highway system", "type": "WikibaseItem" },
+  "P17": { "label": "country", "type": "WikibaseItem" },
+  "P18": { "label": "image", "type": "CommonsMedia" },
+  "P19": { "label": "place of birth", "type": "WikibaseItem" },
+  "P20": { "label": "place of death", "type": "WikibaseItem" },
 [...]
 ```
 
@@ -360,7 +371,20 @@ Re-using the possibility to pass a pattern to match, you can pass a property typ
 wd props --type Url
 wd props --type CommonsMedia
 ```
-NB: make sure to respect the case to get an exact match, otherwise it only match on the label.
+NB: make sure to respect the case to get an exact match, otherwise it only match on the labels, descriptions and aliases.
+
+#### Get the list of all Wikidata properties with their labels, types, descriptions, and aliases
+```sh
+wd props --details
+```
+
+#### Reset properties
+`wd props` first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
+
+This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` or `--no-cache` options:
+
+Option: `-n, --no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
+Option: `-r, --reset`: clear cached properties, in all languages
 
 ### wd sparql
 
