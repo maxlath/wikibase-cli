@@ -1,6 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 6.1.0 - 2018-06-07
+* `wd props`:
+  * [allow to filter properties by matching on descriptions and aliases, instead of just labels](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-props)
+  * [added a `-d, --details` option to output properties with all the available data: labels, types, descriptions, aliases](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#get-the-list-of-all-wikidata-properties-with-their-labels-types-descriptions-and-aliases)
+
 ## 6.0.0 - 2017-12-16
 * BREAKING CHANGE: [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) and [`wd revisions`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-revisions) now output [newline delimited JSON](https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON), which is valid JSON if taken line by line, but not as a whole.
 * [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) can now fetch more than 50 entities at once and accepts ids from stdin
