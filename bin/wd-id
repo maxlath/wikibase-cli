@@ -60,6 +60,8 @@ function formatDescriptions (descriptions) {
     .join('\n')
 }
 
+site = site || 'wikipedia'
+
 getRedirectedSitelinkTitle(lang, site, title)
 .then(trueTitle => {
   const siteCode = `${lang}${site}`.replace('wikipedia', 'wiki')
