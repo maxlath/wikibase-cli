@@ -5,7 +5,7 @@ const _ = require('lodash')
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
 describe('wd data', function () {
-  this.timeout(10000)
+  this.timeout(20000)
 
   // This test fails when run from a script as process.stdin.isTTY is undefined
   // and the script thus will listen for stdin. But it works when run manually,
