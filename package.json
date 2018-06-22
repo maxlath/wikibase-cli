@@ -34,7 +34,6 @@
     "commander": "git+https://github.com/maxlath/commander.js.git#master",
     "copy2cb": "^1.0.4",
     "execa": "^0.10.0",
-    "jsondepth": "^1.9.1",
     "lodash": "^4.17.10",
     "mkdirp": "^0.5.1",
     "opn": "^5.3.0",
