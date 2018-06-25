@@ -38,7 +38,7 @@ describe('wd props', function () {
     execa.shell('./bin/wd props --sparql-endpoint https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql')
     .then(res => {
       const data = JSON.parse(res.stdout)
-      data['http://wikibase-registry.wmflabs.org/entity/P2'].should.equal('Main Page')
+      data['P2'].should.equal('Main Page')
       done()
     })
     .catch(done)
