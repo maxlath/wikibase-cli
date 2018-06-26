@@ -24,7 +24,7 @@ const parseEntity = (entity, options) => {
   console.log(bgGreen('Label'), label)
 
   const description = entityAttributeParser(entity, 'description', lang)
-  console.log(bgBlue('Description'), description)
+  if (description) console.log(bgBlue('Description'), description)
 
   var { claims } = entity
   const properties = (program.properties && program.properties.split(',')) || []
