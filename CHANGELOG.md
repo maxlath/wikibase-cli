@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 6.2.0 - 2018-06-26
+* Added the possibility to override config options with [environment variables](https://github.com/maxlath/wikidata-cli/blob/master/docs/config.md#environment-variables)
+
 ## 6.1.0 - 2018-06-07
 * `wd props`:
   * [allow to filter properties by matching on descriptions and aliases, instead of just labels](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-props)
