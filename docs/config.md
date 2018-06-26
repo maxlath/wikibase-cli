@@ -27,6 +27,7 @@ wd config <key> [value]
   - [verbose](#verbose)
   - [custom Wikibase instance](#custom-wikibase-instance)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
+- [environment variables](#environment-variables)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -138,3 +139,21 @@ You're all set to make requests against your custom instance:
 ```sh
 wd query --property P2002 --object timberners_lee
 ```
+
+## environment variables
+
+Alternatively to using `wd config`, you can set environment variables. Priority is given to the command line options, then environment variables, then config values.
+
+```sh
+export WD_INSTANCE=https://wikibase-registry.wmflabs.org/w/api.php ; wd label Q2
+# => Wikidata
+export WD_INSTANCE=https://www.wikidata.org/w/api.php ; wd label Q2
+# => Earth
+```
+
+Available variables:
+* `WD_CLIPBOARD`
+* `WD_JSON`
+* `WD_VERBOSE`
+* `WD_INSTANCE`
+* `WD_SPARQL_ENDPOINT`
