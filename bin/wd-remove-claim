@@ -1,2 +1,4 @@
 #!/usr/bin/env node
+const program = require('commander')
+program.customArgsParser = require('../lib/gather_inlined_args_in_an_array')
 require('../lib/edit/edit_command')('claim', 'remove')
