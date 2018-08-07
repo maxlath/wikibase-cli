@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 6.3.0 - 2018-08-07
+* Added support for 'novalue' and 'somevalue' snaktypes to [`add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#special-claim-snaktypes) and [`add-qualifier`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#special-qualifier-snaktypes)
+
 ## 6.2.0 - 2018-06-26
 * Added the possibility to override config options with [environment variables](https://github.com/maxlath/wikidata-cli/blob/master/docs/config.md#environment-variables)
 
