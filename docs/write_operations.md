@@ -22,10 +22,12 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
       - [JSON format](#json-format)
       - [query string format](#query-string-format)
     - [with a reference](#with-a-reference)
+    - [special claim snaktypes](#special-claim-snaktypes)
   - [wd update-claim](#wd-update-claim)
   - [wd remove-claim](#wd-remove-claim)
 - [qualifiers](#qualifiers)
   - [wd add-qualifier](#wd-add-qualifier)
+    - [special qualifier snaktypes](#special-qualifier-snaktypes)
   - [wd update-qualifier](#wd-update-qualifier)
   - [wd remove-qualifier](#wd-remove-qualifier)
 - [references](#references)
@@ -169,6 +171,13 @@ claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jd claim.id)
 wd add-reference $claim_guid P143 Q60856
 ```
 
+##### special claim snaktypes
+You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) claims by passing the desired snaktype in a JSON object as values:
+```sh
+wd ac Q4115189 P1106 '{"snaktype":"novalue"}'
+wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
+```
+
 #### wd update-claim
 ```sh
 # change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
@@ -227,6 +236,14 @@ wd aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
 
 # monolingualtext qualifier
 wd aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
+```
+
+##### special qualifier snaktypes
+You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) qualifiers by passing the desired snaktype in a JSON object as values:
+```sh
+claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+wd aq $claim_guid P1106 '{"snaktype":"novalue"}'
+wd aq $claim_guid P1106 '{"snaktype":"somevalue"}'
 ```
 
 #### wd update-qualifier
