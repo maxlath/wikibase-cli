@@ -9,7 +9,7 @@ describe('general', function () {
   it('should allow to customize the instance', done => {
     execa.shell('./bin/wd label Item:Q11 --instance https://wikibase-registry.wmflabs.org/w/api.php')
     .then(res => {
-      res.stdout.should.equal('Transform Map')
+      res.stdout.should.equal('TransforMap Base')
       done()
     })
     .catch(done)
