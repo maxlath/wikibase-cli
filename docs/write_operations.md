@@ -181,9 +181,27 @@ wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
 ```
 
 #### wd update-claim
+Update a claim value while keeping it's qualifiers and references
+```sh
+wd update-claim <entity-id> <property> <old-value> <new-value>
+# OR
+wd update-claim <guid> <new-value>
+# Alias:
+wd uc <entity-id> <property> <old-value> <new-value>
+wd uc <guid>
+```
+
+Examples:
 ```sh
 # change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
 wd update-claim Q4115189 P2002 Zorglub Bulgroz
+# or using the claim's guid
+wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
+
+# change a coordinate from Mars (Q112) to Venus (Q313)
+wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+# or using the claim's guid
+wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 ```
 
 #### wd remove-claim
