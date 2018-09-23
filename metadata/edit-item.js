@@ -10,6 +10,10 @@ module.exports = {
     {
       args: './existing_item_data.json',
       comment: 'pass data as a JSON file path'
+    },
+    {
+      args: './existing_item_data.json --instance http://some/wikibase/instance/w/api.php --sparql-endpoint http://some/sparql/endpoint',
+      comment: 'in case you use are not editing wikidata.org, make sure to specify the custom Wikibase instance and its SPARQL endpoint, as claims formatting and validation will depend on properties types that are retrieved from the SPARQL endpoint'
     }
   ]
 }

@@ -5,7 +5,7 @@ module.exports = {
     clipboard: false,
     json: false,
     instance: true,
-    sparqlEndpoint: false
+    sparqlEndpoint: true
   },
   entityAttributeCommands: {
     lang: true,
