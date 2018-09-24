@@ -2,25 +2,36 @@
 const program = require('../lib/program')
 
 program
+.option('-o, --open', 'open the found URL in a web browser')
 .process('hub')
 
-const { args, lang, json } = program
+const { args, lang, json, open } = program
 if (args.length === 0) return program.help()
 
 var argsString = args.join(' ')
 
 if (lang && !(/l(ang)?=/.test(argsString))) argsString += ` lang=${lang}`
 
-if (json) argsString += ` format=json`
+// Default to Wikidata instead of Wikipedia
+if (!(/s(ite)?=/.test(argsString))) argsString += ` site=wikidata`
+
+if (!open) argsString += ` format=json`
 
 const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 
-if (json) {
+if (open) {
+  require('opn')(url)
+} else {
+  const output = require('../lib/output')(program)
   require('../lib/heavy_get')(url)
   .get('body')
-  .then(body => console.log(JSON.stringify(body, null, 2)))
+  .then(body => {
+    if (json) return output(body)
+    const { url: destinationUrl } = body.destination
+    if (destinationUrl) return output(destinationUrl)
+    console.error('no result found')
+    process.exit(1)
+  })
   .catch(err => console.error('err', err))
-} else {
-  require('opn')(url)
 }
