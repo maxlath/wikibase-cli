@@ -35,6 +35,7 @@
 - [wd open](#wd-open)
   - [open entities and properties pages](#open-entities-and-properties-pages)
   - [open a search page](#open-a-search-page)
+- [wd hub](#wd-hub)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -517,7 +518,7 @@ wd open <entities ids>
 wd o <entities ids>
 ```
 
-A command to open a pages on Wikidata in a browser from the command line (yep, you can be that lazy)
+A command to open a pages on Wikidata in a browser from the command line (yep, you can be that lazy). For more sophisticated queries, see the [`wd hub`](#wd-hub)
 
 #### open entities and properties pages
 ```sh
@@ -551,4 +552,25 @@ wd open -p -l sv Q123 -u
 ```sh
 wd open Dan Simmons
 # opens https://www.wikidata.org/w/index.php?title=Special:Search&search=Dan%20Simmons
+```
+
+### wd hub
+```sh
+wd hub <query>
+# Alias:
+wd h <query>
+```
+
+A command to open web pages using the [Hub](https://tools.wmflabs.org/hub/). Pass arguments to the Hub as you would from a URL, replacing ? and & by spaces.
+
+Options:
+* `-l, --lang <lang>`: specify which language should be prefered
+* `-j, --json`: get the Hub redirection data instead of opening the page in browser
+
+Examples:
+```sh
+# Find the entity having 24597135 as VIAF id and open the corresponding page on inventaire.io
+wd hub viaf:24597135 site=inventaire
+# Get the image illustrating Q3 in 300px
+wd hub Q3 property=image width=300 --json | jd destination.url
 ```

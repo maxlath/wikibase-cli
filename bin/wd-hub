@@ -1,0 +1,26 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program
+.process('hub')
+
+const { args, lang, json } = program
+if (args.length === 0) return program.help()
+
+var argsString = args.join(' ')
+
+if (lang && !(/l(ang)?=/.test(argsString))) argsString += ` lang=${lang}`
+
+if (json) argsString += ` format=json`
+
+const query = encodeURIComponent(argsString)
+const url = `https://tools.wmflabs.org/hub/query?q=${query}`
+
+if (json) {
+  require('../lib/heavy_get')(url)
+  .get('body')
+  .then(body => console.log(JSON.stringify(body, null, 2)))
+  .catch(err => console.error('err', err))
+} else {
+  require('opn')(url)
+}
