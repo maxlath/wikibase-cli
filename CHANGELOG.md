@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 6.4.0 - 2018-09-24
+* Added [`wd hub`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-hub)
+
 ## 6.3.0 - 2018-08-07
 * Added support for 'novalue' and 'somevalue' snaktypes to [`add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#special-claim-snaktypes) and [`add-qualifier`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#special-qualifier-snaktypes)
 
