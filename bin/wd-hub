@@ -20,18 +20,26 @@ if (!open) argsString += ` format=json`
 const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 
+const notFound = context => {
+  const { red } = require('chalk')
+  console.error(red('no result found'), JSON.stringify(context, null, 2))
+  process.exit(1)
+}
+
 if (open) {
   require('opn')(url)
 } else {
   const output = require('../lib/output')(program)
   require('../lib/heavy_get')(url)
-  .get('body')
-  .then(body => {
+  .catch(err => err)
+  .then(res => {
+    const { body, statusCode } = res
+    if (statusCode === 404) return notFound(body)
+    if (statusCode && statusCode >= 400) throw res
     if (json) return output(body)
     const { url: destinationUrl } = body.destination
     if (destinationUrl) return output(destinationUrl)
-    console.error('no result found')
-    process.exit(1)
+    notFound(body)
   })
-  .catch(err => console.error('err', err))
+  .catch(console.error)
 }
