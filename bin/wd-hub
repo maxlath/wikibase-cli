@@ -5,7 +5,7 @@ program
 .option('-o, --open', 'open the found URL in a web browser')
 .process('hub')
 
-const { args, lang, json, open } = program
+const { args, lang, json, open, verbose } = program
 if (args.length === 0) return program.help()
 
 var argsString = args.join(' ')
@@ -21,8 +21,9 @@ const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 
 const notFound = context => {
-  const { red } = require('chalk')
-  console.error(red('no result found'), JSON.stringify(context, null, 2))
+  const { grey } = require('chalk')
+  console.error(grey('no result found'))
+  if (verbose) console.error(JSON.stringify(context, null, 2))
   process.exit(1)
 }
 
@@ -34,7 +35,7 @@ if (open) {
   .catch(err => err)
   .then(res => {
     const { body, statusCode } = res
-    if (statusCode === 404) return notFound(body)
+    if (statusCode === 400) return notFound(body)
     if (statusCode && statusCode >= 400) throw res
     if (json) return output(body)
     const { url: destinationUrl } = body.destination

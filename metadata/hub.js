@@ -3,7 +3,7 @@ module.exports = {
   description: 'Open a web page using the Hub, see documentation: https://tools.wmflabs.org/hub/',
   options: {
     lang: true,
-    verbose: false,
+    verbose: true,
     clipboard: true,
     json: true,
     instance: false,
