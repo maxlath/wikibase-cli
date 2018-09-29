@@ -27,9 +27,11 @@ This project is [funded by a Wikimedia Project Grant](https://meta.wikimedia.org
 - [License](#license)
 
 ## Dependencies
+
 ### General
-[NodeJs](https://nodejs.org) **>= v6.4.0**
-(recommended way to install it: use the awesome [NVM](https://github.com/creationix/nvm))
+* [NodeJs](https://nodejs.org) **>= v6.4.0** (recommended way to install it: use the awesome [NVM](https://github.com/creationix/nvm))
+* [Git](https://git-scm.com/)
+
 ### Per feature
 * to use the clipboard option: see [copy-paste](https://github.com/xavi-/node-copy-paste#node-copy-paste) dependencies
 
