@@ -5,6 +5,7 @@ program
 .option('-s, --simplify', 'get simplified entities data')
 .option('-k, --keep <props>', 'data to keep when simplifying claims')
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
+.option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl')
 .process('data')
 
 const parseId = require('../lib/tolerant_id_parser')

@@ -121,4 +121,13 @@ describe('wd data', function () {
     })
     .catch(done)
   })
+
+  it('should return ttl when requested', done => {
+    execa.shell('./bin/wd data Q1512522 --format ttl')
+    .then(res => {
+      res.stdout.should.startWith('@prefix rdf:')
+      done()
+    })
+    .catch(done)
+  })
 })
