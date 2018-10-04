@@ -237,16 +237,26 @@ wd data --props labels,claims,sitelinks Q515168
 #### alternative formats
 ##### ttl
 Entities can be requested in [Turtle](https://en.wikipedia.org/wiki/Turtle_(syntax))
+
 ```sh
 wd data --format ttl Q123 Q3548931 Q515168
 ```
-> NB: other options such as filtered properties will be ignored
 
-This can be used to generated partial Turtle dumps, if [Wikidata full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikidata API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
+Fetch many entities from a SPARQL request, using [`wd sparql`](#wd-sparql):
+```sh
+wd sparql ./some_request_that_select_entities.rq > entities_ids
+cat entities_ids | wd data --format ttl > entities.ttl
+```
+
+The same can be done using [`wd query`](#wd-query)
 ```sh
 wd query --property P50 --object Q237087 > fred_vargas_books_ids
 cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 ```
+
+> NB: other options such as filtered properties will be ignored
+
+This can be used to generated partial Turtle dumps, if [Wikidata full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikidata API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
 
 ### wd revisions
 Get entities revisions data
