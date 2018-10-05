@@ -568,7 +568,7 @@ wd convert P268 < ids_list
 wd sparql all-instances Q6465 | wd convert P2586
 ```
 
-> **NB**: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the data set your targetting, you should probably rather request all the ids at once using `wd query --property <your-property-id>`
+> **NB**: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the data set you're targetting, you should probably rather request all the ids at once using `wd query --property <your-property-id>`, passing the option ` --index object` if the data you have at hand is the external ids, and ` --index subject` if you are instead starting from the Wikidata ids.
 
 Other options:
 * `-v, --verbose`: log the generated request
