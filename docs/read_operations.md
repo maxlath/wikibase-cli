@@ -540,7 +540,7 @@ Other options:
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wd sparql`](#wd-sparql) for examples of how to use this option)
 
 ### wd convert
-Convert external ids to Wikidata ids and vice versa
+Convert batches of external ids to Wikidata ids and vice versa
 
 ```sh
 wd convert <property> <ids...>

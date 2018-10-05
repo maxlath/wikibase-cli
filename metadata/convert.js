@@ -1,6 +1,6 @@
 module.exports = {
   args: '',
-  description: 'convert external ids to Wikidata ids and vice versa',
+  description: 'convert batches of external ids to Wikidata ids and vice versa',
   options: {
     lang: false,
     verbose: true,
