@@ -559,7 +559,7 @@ wd convert P268 11865344k 11932251d
 # get the BNF ids corresponding to those Wikidata ids
 wd convert P268 Q45 Q140
 # the same but taking the ids from stdin
-echo Q45 Q140 | wd convert P268 < ids_list
+echo Q45 Q140 | wd convert P268
 # which can be a file
 cat ids_list | wd convert P268
 wd convert P268 < ids_list
