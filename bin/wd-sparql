@@ -10,6 +10,7 @@ const fs = require('fs')
 const errors_ = require('../lib/errors')
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const wellknownQueries = require('../lib/wellknown_queries')
+const output = require('../lib/output')(program)
 const path = program.args[0]
 
 if (!path) return program.help()
@@ -57,3 +58,4 @@ if (index) {
 program.clipboard = false
 
 makeSparqlQuery(sparql)
+.then(output)
