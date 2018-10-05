@@ -531,6 +531,12 @@ wd query --property P921 --object Q44559 --labels
 wd query -p P921 -o Q44559 -a
 ```
 
+This can also be used to get all the uses of a property
+```sh
+# Get all the subjects and objects linked by the property P2586
+wd query --property P2002 P2586
+```
+
 Other options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
@@ -560,6 +566,8 @@ wd convert P268 < ids_list
 # here, we get the INSEE department code (P2586) of all French departments (Q6465)
 wd sparql all-instances Q6465 | wd convert P2586
 ```
+
+> NB: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the data set your targetting, you should probably rather request all the ids at once using `wd query --property <your-property-id>`
 
 Other options:
 * `-v, --verbose`: log the generated request
