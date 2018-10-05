@@ -450,7 +450,7 @@ wd sparql ./path/to/author_works.rq > ./results.json
 Options:
 * `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
-* `-x, --index`: get the results indexed by one of the SELECTed variables
+* `-x, --index <variable>`: get the results indexed by one of the SELECTed variables
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see below for examples)
 
 ```sh
@@ -543,6 +543,7 @@ Other options:
 * `-l, --lang <lang>`: specify the labels' language
 * `-t, --limit <num>`: set the request results limit
 * `-v, --verbose`: log the generated request
+* `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wd sparql`](#wd-sparql) for examples of how to use this option)
 
 ### wd convert

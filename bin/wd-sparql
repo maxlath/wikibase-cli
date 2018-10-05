@@ -3,7 +3,7 @@ const program = require('../lib/program')
 
 program
 .option('-r, --raw', 'get raw, non-simplified, SPARQL results')
-.option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed pariable as key (can't be used with the 'raw' option)")
+.option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('sparql')
 
 const fs = require('fs')
