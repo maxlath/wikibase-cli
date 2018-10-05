@@ -34,6 +34,7 @@
     - [all-instances](#all-instances)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [wd query](#wd-query)
+- [wd convert](#wd-convert)
 - [wd open](#wd-open)
   - [open entities and properties pages](#open-entities-and-properties-pages)
   - [open a search page](#open-a-search-page)
@@ -536,6 +537,34 @@ Other options:
 * `-l, --lang <lang>`: specify the labels' language
 * `-t, --limit <num>`: set the request results limit (defaults to 1000)
 * `-v, --verbose`: log the generated request
+* `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wd sparql`](#wd-sparql) for examples of how to use this option)
+
+### wd convert
+Convert external ids to Wikidata ids and vice versa
+
+```sh
+wd convert <property> <ids...>
+```
+
+```sh
+# get the Wikidata ids corresponding to those BNF ids
+wd convert P268 11865344k 11932251d
+# get the BNF ids corresponding to those Wikidata ids
+wd convert P268 Q45 Q140
+# the same but taking the ids from stdin
+echo Q45 Q140 | wd convert P268 < ids_list
+# which can be a file
+cat ids_list | wd convert P268
+wd convert P268 < ids_list
+# or any command outputting a list of ids;
+# here, we get the INSEE department code (P2586) of all French departments (Q6465)
+wd sparql all-instances Q6465 | wd convert P2586
+```
+
+Other options:
+* `-v, --verbose`: log the generated request
+* `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wd sparql`](#wd-sparql) for examples of how to use this option)
+
 
 ### wd open
 ```sh
