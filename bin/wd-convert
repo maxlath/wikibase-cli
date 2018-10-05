@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program
+.process('convert')
+
+const [ property, ...ids ] = program.args
+
+if (!property) return program.help()
+
+const convertExternalIds = require('../lib/convert_external_ids')
+const errors_ = require('../lib/errors')
+
+if (ids.length > 0) {
+  convertExternalIds(property, ids)
+} else if (process.stdin.isTTY) {
+  const err = errors_.new("no ids provided", { property })
+  errors_.exit(err)
+} else {
+  require('../lib/get_stdin_input')()
+  .then(input => {
+    const ids = input.split(' ')
+    convertExternalIds(property, ids)
+  })
+}

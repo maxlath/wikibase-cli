@@ -71,3 +71,4 @@ LIMIT ${limit}`
 output(`${dim('Generated SPARQL:')} ${sparql}`, true, true)
 
 makeSparqlQuery(sparql)
+.then(output)

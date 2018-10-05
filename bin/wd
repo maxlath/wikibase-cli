@@ -15,6 +15,7 @@ const cmds = {
   id: require('../metadata/id'),
   sparql: require('../metadata/sparql'),
   query: require('../metadata/query'),
+  convert: require('../metadata/convert'),
   search: require('../metadata/search'),
   open: require('../metadata/open'),
   hub: require('../metadata/hub'),
@@ -52,6 +53,7 @@ program
 .command(`id ${cmds.id.args}`, cmds.id.description).alias('wikiqid')
 .command(`sparql ${cmds.sparql.args}`, cmds.sparql.description)
 .command(`query ${cmds.query.args}`, cmds.query.description).alias('q')
+.command(`convert ${cmds.convert.args}`, cmds.convert.description)
 .command(`search ${cmds.search.args}`, cmds.search.description).alias('f')
 .command(`open ${cmds.open.args}`, cmds.open.description).alias('o')
 .command(`hub ${cmds.hub.args}`, cmds.hub.description).alias('h')

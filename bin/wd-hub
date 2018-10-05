@@ -31,7 +31,7 @@ if (open) {
   require('opn')(url)
 } else {
   const output = require('../lib/output')(program)
-  require('../lib/heavy_get')(url)
+  require('../lib/heavy_req').get(url)
   .catch(err => err)
   .then(res => {
     const { body, statusCode } = res
