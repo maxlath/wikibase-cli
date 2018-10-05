@@ -7,7 +7,7 @@ program
 .option('-o, --object <object>', 'set an object')
 .option('-r, --raw', 'raw SPARQL results')
 .option('-a, --labels', 'requests results labels')
-.option('-t, --limit <num>', 'set the request results limit (defaults to 1000)')
+.option('-t, --limit <num>', 'set the request results limit')
 .process('query')
 
 const { dim } = require('chalk')
@@ -61,12 +61,10 @@ if (includeLabels) {
   }`
 }
 
-const limit = program.limit || 1000
+const { limit } = program
 
-const sparql = `
-SELECT ${select}
-WHERE { ${triple} }
-LIMIT ${limit}`
+var sparql = `SELECT ${select} WHERE { ${triple} }`
+if (limit) sparql += ` LIMIT ${limit}`
 
 output(`${dim('Generated SPARQL:')} ${sparql}`, true, true)
 

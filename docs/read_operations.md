@@ -535,7 +535,7 @@ Other options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
-* `-t, --limit <num>`: set the request results limit (defaults to 1000)
+* `-t, --limit <num>`: set the request results limit
 * `-v, --verbose`: log the generated request
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wd sparql`](#wd-sparql) for examples of how to use this option)
 
