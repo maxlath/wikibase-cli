@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 6.6.0 - 2018-10-05
+* Added [`wd convert`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-convert)
+
 ## 6.5.0 - 2018-10-02
 * [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data): added support for `format=ttl`
 
