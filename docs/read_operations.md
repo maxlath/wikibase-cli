@@ -255,7 +255,7 @@ wd query --property P50 --object Q237087 > fred_vargas_books_ids
 cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 ```
 
-> NB: other options such as filtered properties will be ignored
+> **NB**: other options such as filtered properties will be ignored
 
 This can be used to generated partial Turtle dumps, if [Wikidata full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikidata API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
 
@@ -326,7 +326,7 @@ Outputs a JSON object of the kind:
   "P2899": "âge minimal",
 [...]
 ```
-NB: properties without a label in the requested language are set to `null`, as you can see above for P2898 in French
+> **NB**: properties without a label in the requested language are set to `null`, as you can see above for P2898 in French
 
 This is especially convenient when you're looking for a property:
 ```sh
@@ -410,7 +410,7 @@ Re-using the possibility to pass a pattern to match, you can pass a property typ
 wd props --type Url
 wd props --type CommonsMedia
 ```
-NB: make sure to respect the case to get an exact match, otherwise it only match on the labels, descriptions and aliases.
+> **NB**: make sure to respect the case to get an exact match, otherwise it only match on the labels, descriptions and aliases.
 
 #### Get the list of all Wikidata properties with their labels, types, descriptions, and aliases
 ```sh
@@ -568,7 +568,7 @@ wd convert P268 < ids_list
 wd sparql all-instances Q6465 | wd convert P2586
 ```
 
-> NB: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the data set your targetting, you should probably rather request all the ids at once using `wd query --property <your-property-id>`
+> **NB**: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the data set your targetting, you should probably rather request all the ids at once using `wd query --property <your-property-id>`
 
 Other options:
 * `-v, --verbose`: log the generated request
