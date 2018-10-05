@@ -37,8 +37,7 @@ if (absoluePath != null) {
 }
 
 if (!sparql.replace('\n', ' ').match(/SELECT.*WHERE/i)) {
-  const err = errors_.new("this doesn't look like SPARQL", { sparql })
-  errors_.exit(err)
+  errors_.bundle("this doesn't look like SPARQL", { sparql })
 }
 
 const { index } = program
@@ -49,8 +48,7 @@ if (index) {
   // If the variable can't be found in the SPARQL SELECT section
   // we won't be able to index the results using it
   if (!selectSection.match(variableMatch)) {
-    const err = errors_.new("the index variable can't be found in the SPARQL request", { sparql, index })
-    errors_.exit(err)
+    errors_.bundle("the index variable can't be found in the SPARQL request", { sparql, index })
   }
 }
 
