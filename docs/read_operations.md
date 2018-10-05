@@ -556,7 +556,7 @@ echo Q45 Q140 | wd convert P268 < ids_list
 # which can be a file
 cat ids_list | wd convert P268
 wd convert P268 < ids_list
-# or any command outputting a list of ids;
+# or any command outputting a list of ids:
 # here, we get the INSEE department code (P2586) of all French departments (Q6465)
 wd sparql all-instances Q6465 | wd convert P2586
 ```
