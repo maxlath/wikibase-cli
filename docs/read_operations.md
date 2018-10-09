@@ -598,11 +598,14 @@ wd open https://inventaire.io/entity/wd:Q33977
 ```
 
 Options:
-* `-p, --wikipedia`: open the Wiki**p**edia article instead
+* `-y, --history`: open the entity histor**y** page
+* `-p, --wikipedia`: open the Wiki**p**edia article
 * `-u, --url`: simply generate the url, don't open it in a browser
 ```sh
+# open https://www.wikidata.org/w/index.php?title=Q123&action=history
+wd open -y Q123
+# open https://fr.wikipedia.org/wiki/Septembre as French is my default system language
 wd open -p Q123
-# opens https://fr.wikipedia.org/wiki/Septembre because my system language is French
 ```
 * `-l, --lang <lang>`: specify which Wikipedia edition should be targeted
 ```sh
