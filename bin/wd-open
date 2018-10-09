@@ -2,7 +2,8 @@
 const program = require('../lib/program')
 
 program
-.option('-p, --wikipedia', 'open the Wikipedia article instead')
+.option('-p, --wikipedia', 'open the Wikipedia article')
+.option('-y, --history', 'open the Wikidata history')
 .option('-u, --url', 'simply generate the url')
 .process('open')
 
@@ -53,6 +54,8 @@ const openId = id => {
       console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
       handle(`https://wikidata.org/wiki/${id}#sitelinks-wikipedia`)
     })
+  } else if (program.history){
+    handle(`https://www.wikidata.org/w/index.php?title=${id}&action=history`)
   } else {
     handle(`https://wikidata.org/entity/${id}`)
   }
