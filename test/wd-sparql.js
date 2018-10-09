@@ -15,7 +15,7 @@ describe('wd sparql', function () {
   it('should take a file path', done => {
     execa.shell('./bin/wd sparql ./test/assets/query.rq')
     .then(res => {
-      res.stdout.split('Q47304').length.should.equal(2)
+      res.stdout.split('Q18120925').length.should.equal(2)
       done()
     })
     .catch(done)
