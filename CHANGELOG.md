@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 7.1.0 - 2018-10-08
+* Add option [`-y, --history` to `wd open`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-open)
+
 ## 7.0.0 - 2018-10-05
 * BREAKING CHANGE: `wd sparql` or `wd query` commands making use of the `--index <variable>` option now get their values aggregated in an array instead of being the direct value of the index key, preventing to delete multiple values for a same key.
 
