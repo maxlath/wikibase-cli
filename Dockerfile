@@ -1,5 +1,5 @@
-FROM node:latest
+FROM node:8-alpine
 
-RUN npm install -g --production wikidata-cli
+RUN apk add git && npm install -g --production wikidata-cli
 
 ENTRYPOINT [ "wd" ]

@@ -6,6 +6,7 @@ This project is [funded by a Wikimedia Project Grant](https://meta.wikimedia.org
 [![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-sdk/master/assets/wikidata.jpg)](https://wikidata.org)
 
 [![NPM](https://nodei.co/npm/wikidata-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikidata-cli/) [![NPM](https://nodei.co/npm-dl/wikidata-cli.png?months=6&height=3)](https://npmjs.com/package/wikidata-cli/)
+[![DockerHub Badge](https://dockeri.co/image/maxlath/wikidata-cli)](https://hub.docker.com/r/maxlath/wikidata-cli/)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node](https://img.shields.io/badge/node-%3E=%20v6.4.0-brightgreen.svg)](http://nodejs.org)
@@ -48,6 +49,13 @@ Installing globally allows to make the command `wikidata-cli` and its alias `wd`
 docker run --rm -t maxlath/wikidata-cli
 # You can make an alias out of it:
 alias wd="docker run --rm -t maxlath/wikidata-cli"
+```
+That would work, but all operations using cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all operations editing Wikidata would request you to enter your username and password everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
+```sh
+mkdir -p $HOME/.local/share/wikidata-cli
+docker run --rm \
+  --volume "$HOME/.local/share/wikidata-cli:/usr/local/lib/node_modules/wikidata-cli/local" \
+  -t maxlath/wikidata-cli
 ```
 
 ## Commands
