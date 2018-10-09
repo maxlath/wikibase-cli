@@ -1,7 +1,7 @@
 require('should')
 const execa = require('execa')
 
-describe('wd claims', function () {
+describe('wd sparql', function () {
   this.timeout(10000)
   it('should display help', done => {
     execa.shell('./bin/wd sparql')
