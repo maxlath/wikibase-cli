@@ -50,6 +50,13 @@ docker run --rm -t maxlath/wikidata-cli
 # You can make an alias out of it:
 alias wd="docker run --rm -t maxlath/wikidata-cli"
 ```
+That would work, but all operations using cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all operations editing Wikidata would request you to enter your username and password everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
+```sh
+mkdir -p $HOME/.local/share/wikidata-cli
+docker run --rm \
+  --volume "$HOME/.local/share/wikidata-cli:/usr/local/lib/node_modules/wikidata-cli/local" \
+  -t maxlath/wikidata-cli
+```
 
 ## Commands
 
