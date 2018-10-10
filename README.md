@@ -5,7 +5,7 @@ This project is [funded by a Wikimedia Project Grant](https://meta.wikimedia.org
 
 [![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-sdk/master/assets/wikidata.jpg)](https://wikidata.org)
 
-[![NPM](https://nodei.co/npm/wikidata-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikidata-cli/) [![NPM](https://nodei.co/npm-dl/wikidata-cli.png?months=6&height=3)](https://npmjs.com/package/wikidata-cli/)
+[![NPM](https://nodei.co/npm/wikidata-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikidata-cli/)
 [![DockerHub Badge](https://dockeri.co/image/maxlath/wikidata-cli)](https://hub.docker.com/r/maxlath/wikidata-cli/)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -57,6 +57,8 @@ That would work, but all operations using cached data (such as the list of all p
 mkdir -p $HOME/.local/share/wikidata-cli
 alias wd='docker run --rm --volume "$HOME/.local/share/wikidata-cli:/wikidata-cli/local" -t maxlath/wikidata-cli'
 ```
+
+> NB: Beware that using wikidata-cli through a Docker container has a performance cost of something like 1s per command, so if you need to run many commands (for instance in a script to mass edit Wikidata), you should probably rather use the NPM package directly for long series of commands
 
 ## Commands
 
