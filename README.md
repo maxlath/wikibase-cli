@@ -52,7 +52,7 @@ alias wd="docker run --rm -t maxlath/wikidata-cli"
 # You're then ready to use it as in the documentation examples
 wd label Q1
 ```
-That would work, but all operations using cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all operations editing Wikidata would request you to enter your username and password everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
+That would work, but all operations using cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all operations editing Wikidata would require you to enter your username and password everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
 ```sh
 mkdir -p $HOME/.local/share/wikidata-cli
 alias wd='docker run --rm --volume "$HOME/.local/share/wikidata-cli:/wikidata-cli/local" -t maxlath/wikidata-cli'
