@@ -21,4 +21,14 @@ describe('wd query', function () {
     })
     .catch(done)
   })
+
+  it('should work for URL values', done => {
+    execa.shell("./bin/wd query -p P973 -o '<https://www.fileformat.info/format/gif/egff.htm>'")
+    .then(res => {
+      console.log('res', res)
+      res.stdout.split(' ').includes('Q2192').should.be.true()
+      done()
+    })
+    .catch(done)
+  })
 })
