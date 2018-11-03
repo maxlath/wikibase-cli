@@ -1,9 +1,12 @@
+[![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/wikidata_logo_alone.jpg)](https://wikidata.org)
+
 # Wikidata-CLI
 The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikidata](https://wikidata.org)
 
 This project is [funded by a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
 
-[![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-sdk/master/assets/wikidata.jpg)](https://wikidata.org)
+**Show your support** by adding `{{#babel:Wikidata CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
+[![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikidata_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
 
 [![NPM](https://nodei.co/npm/wikidata-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikidata-cli/)
 [![DockerHub Badge](https://dockeri.co/image/maxlath/wikidata-cli)](https://hub.docker.com/r/maxlath/wikidata-cli/)
