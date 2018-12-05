@@ -119,6 +119,8 @@ wd label Q123 -l zh
 # => 9月
 ```
 
+> **NB**: when no `--lang` is specified, the command will try to fallback on English, or whatever language value can be found
+
 ### wd description
 ```sh
 wd description <entities ids>
