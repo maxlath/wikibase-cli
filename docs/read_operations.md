@@ -214,7 +214,7 @@ You can request entities to be simplified, using [wikidata-sdk `simplify.entity`
 ```sh
 wd data --simplify Q515168
 # pass options to the simplify function
-wd data --simplify --keep ids,references,qualifiers,hashes,nontruthy Q123
+wd data --simplify --keep ids,richvalues,types,references,qualifiers,hashes,nontruthy Q123
 ```
 
 ##### claims simplification keep options
