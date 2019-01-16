@@ -23,7 +23,7 @@ if (ids.length > 0) {
 } else {
   require('../lib/get_stdin_input')()
   .then(input => {
-    const ids = input.split(' ')
+    const ids = input.split(/\s+/)
     convertIds(property, ids)
   })
 }
