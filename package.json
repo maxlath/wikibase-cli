@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/maxlath/wikidata-cli#readme",
   "dependencies": {
-    "bluereq": "^2.1.7",
+    "bluereq": "^2.1.10",
     "chalk": "^2.4.1",
     "commander": "git+https://github.com/maxlath/commander.js.git#master",
     "copy2cb": "^1.0.4",
