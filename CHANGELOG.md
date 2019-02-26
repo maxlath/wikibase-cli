@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 7.2.0 - 2018-02-26
+* [`wd claims`](https://github.com/maxlath/wikidata-cli#wd-claims) returns claims GUIDs when provided with a property and a value
+
 ## 7.1.0 - 2018-12-22
 * Added new `keep` options values to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#claims-simplification-keep-options): `richvalues` and `types` (commit 6cd7b7f)
 * Add option [`-y, --history` to `wd open`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-open)
