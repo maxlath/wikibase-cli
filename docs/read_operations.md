@@ -180,6 +180,13 @@ Options when passing both an id an property:
 * `-c, --clipboard`: copy the command's result to clipboard
 * `-j, --json`: format the result as JSON
 
+#### get a claim GUID
+If a property and a value are provided, `wd claims` returns the matching claims GUIDs
+```sh
+wd claims Q2013 P2689 1940 --json
+# => [ "Q2013$2bcdb018-47a0-5175-eade-1dd6dea2b53d" ]
+```
+
 ### wd data
 A quick way to access an entity's raw JSON data
 ```sh
