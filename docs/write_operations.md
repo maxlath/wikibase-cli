@@ -181,7 +181,7 @@ wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
 ```
 
 #### wd update-claim
-Update a claim value while keeping it's qualifiers and references
+Update a claim value while keeping its qualifiers and references
 ```sh
 wd update-claim <entity-id> <property> <old-value> <new-value>
 # OR
