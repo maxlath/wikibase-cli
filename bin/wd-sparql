@@ -36,7 +36,7 @@ if (absoluePath != null) {
   sparql = fs.readFileSync(path, { encoding: 'utf-8' })
 }
 
-if (!sparql.replace('\n', ' ').match(/SELECT.*WHERE/i)) {
+if (!sparql.replace('\n', ' ').match(/SELECT.*{/i)) {
   errors_.bundle("this doesn't look like SPARQL", { sparql })
 }
 
@@ -44,7 +44,7 @@ const { index } = program
 
 if (index) {
   const variableMatch = ` ?${index} `
-  const selectSection = sparql.split(/WHERE/i)[0]
+  const selectSection = sparql.split('{')[0]
   // If the variable can't be found in the SPARQL SELECT section
   // we won't be able to index the results using it
   if (!selectSection.match(variableMatch)) {
