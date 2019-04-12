@@ -33,7 +33,7 @@
     "bluereq": "^2.1.10",
     "chalk": "^2.4.1",
     "commander": "git+https://github.com/maxlath/commander.js.git#master",
-    "copy2cb": "^1.0.4",
+    "copy-paste": "^1.3.0",
     "execa": "^0.10.0",
     "lodash": "^4.17.10",
     "mkdirp": "^0.5.1",
