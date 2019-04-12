@@ -19,6 +19,7 @@ const cmds = {
   search: require('../metadata/search'),
   open: require('../metadata/open'),
   hub: require('../metadata/hub'),
+  lang: require('../metadata/lang'),
   coord: require('../metadata/coord'),
   'set-label': require('../metadata/set-label'),
   'set-description': require('../metadata/set-description'),
@@ -56,6 +57,7 @@ program
 .command(`convert ${cmds.convert.args}`, cmds.convert.description)
 .command(`search ${cmds.search.args}`, cmds.search.description).alias('f')
 .command(`open ${cmds.open.args}`, cmds.open.description).alias('o')
+.command(`lang ${cmds.lang.args}`, cmds.lang.description).alias('g')
 .command(`hub ${cmds.hub.args}`, cmds.hub.description).alias('h')
 .command(`coord ${cmds.coord.args}`, cmds.coord.description)
 .command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')
