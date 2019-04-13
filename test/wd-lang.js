@@ -29,6 +29,19 @@ describe('wd lang', () => {
     .catch(done)
   })
 
+  it('should identify a lang from a string', done => {
+    execa.shell('./bin/wd lang akan')
+    .then(res => {
+      const [ langCode, wdId, englishLabel, native ] = res.stdout.split(/\s+/g)
+      langCode.should.equal('ak')
+      wdId.should.equal('Q28026')
+      englishLabel.should.equal('Akan')
+      native.should.equal('Akana')
+      done()
+    })
+    .catch(done)
+  })
+
   describe('json', () => {
     it('should identify a lang from a wikidata item id', done => {
       execa.shell('./bin/wd lang Q150 --json')

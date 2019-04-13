@@ -664,9 +664,31 @@ wd hub Q3 property=image width=300 --json | jd destination.url
 
 ### wd lang
 Identify a language and return its associated data
+
+**get the Wikidata id corresponding to a language code**
 ```sh
 wd lang ak
+# => Q28026
+```
+
+**get the language code corresponding to a Wikidata id**
+```sh
 wd lang Q28026
+# => ak
+```
+
+**get languages matching a given string**
+```sh
+wd lang slo
+# sk    Q9058      Slovak     Slovenčina
+# sl    Q9063      Slovenian  Slovenščina
+```
+
+Options:
+* `-j, --json`: get the full language data as JSON
+```sh
+wd lang ak --json
+wd lang Q28026 --json
 ```
 Both commands return the following data:
 ```json

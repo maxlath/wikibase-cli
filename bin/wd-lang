@@ -19,12 +19,19 @@ if (input.match(/Q\d+/) != null) {
   langData = wdLang.byWdId[wdId]
   if (langData && !json) langData = langData.code
 } else {
-  langData = wdLang.byCode[input]
+  langData = wdLang.byCode[input.toLowerCase()]
   if (langData && !json) langData = langData.wd
 }
 
 if (langData != null) {
   output(langData)
 } else {
-  console.error("couldn't find a language from input", input)
+  const { find, format } = require('../lib/matching_langs')
+  matchingLangs = find(input)
+  if (matchingLangs.length > 0) {
+    if (!json) matchingLangs = format(matchingLangs)
+    output(matchingLangs)
+  } else {
+    console.error("couldn't find a language from input", input)
+  }
 }
