@@ -12,10 +12,11 @@ const id = parseId(program.args[0])
 const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const _ = require('lodash')
+const parseProps = require('../lib/parse_props')
 
 if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
 
-const props = program.props && program.props.replace(/,/g, '|')
+const { props, propsSubkeys } = parseProps(program.props)
 
 const url = wdk.customize('getEntities', { ids: [ id ], props })
 
@@ -35,5 +36,11 @@ lightGet(url)
   var entity = _.values(body.entities)[0]
   entity = wdk.simplify.entity(entity, simplifyOptions)
   entity = _.pick(entity, requiredKeys)
+  if (props) {
+    props.forEach(prop => {
+      const subkey = propsSubkeys[prop]
+      if (subkey) entity[prop] = _.pick(entity[prop], subkey)
+    })
+  }
   console.log(JSON.stringify(entity, null, 2))
 })
