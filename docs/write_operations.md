@@ -392,11 +392,45 @@ wd edit-item '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descr
 # pass data as a JSON file path
 wd edit-item ./existing_item_data.json
 
+# pass data as a JS file path
+wd edit-item ./existing_item_data.js
+
 # Alias:
 wd ei <entity-data>
 ```
 
-See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the JSON format, especially on how to pass qualifiers and references.
+This possibility to pass a JS file path has several advantages:
+* a ligther syntax than JSON, and allowing comments
+```js
+module.exports = {
+  id: 'Q4115189',
+  labels: { en: 'a label' }
+}
+```
+* dynamic data generation, as if the exported object is a function, it will be called with the command line additional arguments:
+```js
+// template.js
+module.exports = (id, someString, quantity) => {
+  id: id,
+  claims: {
+    P1449: someString,
+    P1106: parseInt(quantity)
+  }
+}
+```
+allowing to make many edits from one template
+```sh
+wd ei ./template.js Q1 abc 123
+wd ei ./template.js Q2 def 456
+wd ei ./template.js Q3 ghi 789
+```
+
+To debug the data generated dynamically, you can use the `--dry` option
+```sh
+wd ei ./template.js Q1 abc 123 --dry
+```
+
+See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
 
 ### Demo
 - [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
