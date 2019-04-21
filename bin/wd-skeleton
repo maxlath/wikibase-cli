@@ -41,7 +41,10 @@ lightGet(url)
   if (props) {
     props.forEach(prop => {
       const subkey = propsSubkeys[prop]
-      if (subkey) entity[prop] = _.pick(entity[prop], subkey)
+      if (subkey) {
+        entity[prop] = _.pick(entity[prop], subkey)
+        if (!entity[prop][subkey]) entity[prop][subkey] = null
+      }
     })
   }
   console.log(JSON.stringify(entity, null, 2))
