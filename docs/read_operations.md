@@ -12,6 +12,7 @@
 - [wd description](#wd-description)
 - [wd aliases](#wd-aliases)
 - [wd claims](#wd-claims)
+  - [get a claim GUID](#get-a-claim-guid)
 - [wd data](#wd-data)
   - [multiple entities](#multiple-entities)
   - [simplified entities](#simplified-entities)
@@ -19,6 +20,7 @@
   - [filtered properties](#filtered-properties)
   - [alternative formats](#alternative-formats)
     - [ttl](#ttl)
+  - [single claim](#single-claim)
 - [wd revisions](#wd-revisions)
 - [wd id](#wd-id)
 - [wd props](#wd-props)
@@ -267,6 +269,14 @@ cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 > **NB**: other options such as filtered properties will be ignored
 
 This can be used to generated partial Turtle dumps, if [Wikidata full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikidata API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
+
+#### single claim
+The command also support finding a single claim from a claim GUID. (If you have a use case where you would need to fetch several claims at once this way, feel welcome to open an issue)
+```sh
+wd data 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+wd data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+```
 
 ### wd revisions
 Get entities revisions data

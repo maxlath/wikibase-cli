@@ -8,17 +8,24 @@ program
 .option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl')
 .process('data')
 
-const parseId = require('../lib/tolerant_id_parser')
-const ids = program.args.map(parseId)
+const wdk = require('wikidata-sdk')
 
-// process.stdin.isTTY will be undefined if the process is receiving
-// its stdin from another process
-if (ids.length === 0 && process.stdin.isTTY) return program.help()
-
-const fetchAndLogIdsData = require('../lib/fetch_and_log_ids_data')
-
-if (ids.length > 0) {
-  fetchAndLogIdsData(ids)
+if (program.args.length === 1 && wdk.isGuid(program.args[0])) {
+  const guid = program.args[0]
+  require('../lib/fetch_and_log_guid_data')(guid)
 } else {
-  require('../lib/read_ids_from_stdin')(fetchAndLogIdsData)
+  const parseId = require('../lib/tolerant_id_parser')
+  const ids = program.args.map(parseId)
+
+  // process.stdin.isTTY will be undefined if the process is receiving
+  // its stdin from another process
+  if (ids.length === 0 && process.stdin.isTTY) return program.help()
+
+  const fetchAndLogIdsData = require('../lib/fetch_and_log_ids_data')
+
+  if (ids.length > 0) {
+    fetchAndLogIdsData(ids)
+  } else {
+    require('../lib/read_ids_from_stdin')(fetchAndLogIdsData)
+  }
 }

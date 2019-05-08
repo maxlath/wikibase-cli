@@ -130,4 +130,42 @@ describe('wd data', function () {
     })
     .catch(done)
   })
+
+  describe('claim data', () => {
+    it('should get a claim data provided a claim guid', done => {
+      const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+      execa.shell(`./bin/wd data '${guid}'`)
+      .then(res => {
+        const claim = JSON.parse(res.stdout)
+        claim.id.should.equal(guid)
+        claim.mainsnak.property.should.equal('P31')
+        claim.mainsnak.datavalue.value.should.equal('Q3504248')
+        done()
+      })
+      .catch(done)
+    })
+
+    it('should get a simplified claim', done => {
+      execa.shell(`./bin/wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'`)
+      .then(res => {
+        res.stdout.should.equal('Q3504248')
+        done()
+      })
+      .catch(done)
+    })
+
+    it('should keep the requested simplified claim data', done => {
+      const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+      execa.shell(`./bin/wd data --simplify --keep ids,references,qualifiers '${guid}'`)
+      .then(res => {
+        const claim = JSON.parse(res.stdout)
+        claim.id.should.equal(guid)
+        claim.value.should.equal('Q3504248')
+        claim.references.should.be.an.Array()
+        claim.qualifiers.should.be.an.Object()
+        done()
+      })
+      .catch(done)
+    })
+  })
 })
