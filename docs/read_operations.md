@@ -41,6 +41,7 @@
   - [open entities and properties pages](#open-entities-and-properties-pages)
   - [open a search page](#open-a-search-page)
 - [wd hub](#wd-hub)
+- [wd lang](#wd-lang)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -659,4 +660,42 @@ Examples:
 wd hub viaf:24597135 site=inventaire
 # Get the image illustrating Q3 in 300px
 wd hub Q3 property=image width=300 --json | jd destination.url
+```
+
+### wd lang
+Identify a language and return its associated data
+
+**get the Wikidata id corresponding to a language code**
+```sh
+wd lang ak
+# => Q28026
+```
+
+**get the language code corresponding to a Wikidata id**
+```sh
+wd lang Q28026
+# => ak
+```
+
+**get languages matching a given string**
+```sh
+wd lang slo
+# sk    Q9058      Slovak     Slovenčina
+# sl    Q9063      Slovenian  Slovenščina
+```
+
+Options:
+* `-j, --json`: get the full language data as JSON
+```sh
+wd lang ak --json
+wd lang Q28026 --json
+```
+Both commands return the following data:
+```json
+{
+  "code": "ak",
+  "label": "Akan",
+  "native": "Akana",
+  "wd": "Q28026"
+}
 ```

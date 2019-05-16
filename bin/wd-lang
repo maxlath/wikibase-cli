@@ -1,0 +1,37 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program
+.process('lang')
+
+const wdLang = require('wikidata-lang')
+const output = require('../lib/output')(program)
+
+const { args, json } = program
+
+if (args.length === 0) return program.help()
+
+const input = args[0]
+
+var langData
+if (input.match(/Q\d+/) != null) {
+  const wdId = input.match(/Q\d+/)[0]
+  langData = wdLang.byWdId[wdId]
+  if (langData && !json) langData = langData.code
+} else {
+  langData = wdLang.byCode[input.toLowerCase()]
+  if (langData && !json) langData = langData.wd
+}
+
+if (langData != null) {
+  output(langData)
+} else {
+  const { find, format } = require('../lib/matching_langs')
+  matchingLangs = find(input)
+  if (matchingLangs.length > 0) {
+    if (!json) matchingLangs = format(matchingLangs)
+    output(matchingLangs)
+  } else {
+    console.error("couldn't find a language from input", input)
+  }
+}
