@@ -10,6 +10,7 @@ const cmds = {
   aliases: require('../metadata/aliases'),
   claims: require('../metadata/claims'),
   data: require('../metadata/data'),
+  skeleton: require('../metadata/skeleton'),
   revisions: require('../metadata/revisions'),
   props: require('../metadata/props'),
   id: require('../metadata/id'),
@@ -49,6 +50,7 @@ program
 .command(`aliases ${cmds.aliases.args}`, cmds.aliases.description).alias('a')
 .command(`claims ${cmds.claims.args}`, cmds.claims.description).alias('c')
 .command(`data ${cmds.data.args}`, cmds.data.description).alias('d')
+.command(`skeleton ${cmds.skeleton.args}`, cmds.skeleton.description).alias('k')
 .command(`revisions ${cmds.revisions.args}`, cmds.revisions.description).alias('r')
 .command(`props ${cmds.props.args}`, cmds.props.description).alias('p')
 .command(`id ${cmds.id.args}`, cmds.id.description).alias('wikiqid')

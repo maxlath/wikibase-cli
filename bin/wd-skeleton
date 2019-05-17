@@ -1,0 +1,51 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program
+.option('-k, --keep <props>', 'data to keep when simplifying claims')
+.option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
+.option('-f, --format <format>', 'Default: json. Alternatives: js')
+.process('skeleton')
+
+if (program.args.length === 0) return program.help()
+
+const parseId = require('../lib/tolerant_id_parser')
+const id = parseId(program.args[0])
+const wdk = require('../lib/customized_wdk')(program)
+const lightGet = require('../lib/light_get')
+const _ = require('lodash')
+const parseProps = require('../lib/parse_props')
+
+if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+
+const { props, propsSubkeys } = parseProps(program.props)
+
+const url = wdk.customize('getEntities', { ids: [ id ], props })
+
+const requiredKeys = [ 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
+
+const simplifyOptions = {
+  keepIds: true,
+  keepQualifiers: true,
+  keepReferences: true,
+  keepRichValues: true,
+  keepHashes: true,
+  keepNonTruthy: true
+}
+
+lightGet(url)
+.then(body => {
+  var entity = _.values(body.entities)[0]
+  entity = wdk.simplify.entity(entity, simplifyOptions)
+  entity = _.pick(entity, requiredKeys)
+  if (props) {
+    props.forEach(prop => {
+      const subkey = propsSubkeys[prop]
+      if (subkey) {
+        entity[prop] = _.pick(entity[prop], subkey)
+        if (!entity[prop][subkey]) entity[prop][subkey] = null
+      }
+    })
+  }
+  console.log(JSON.stringify(entity, null, 2))
+})
