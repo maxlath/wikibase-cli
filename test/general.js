@@ -2,7 +2,7 @@ require('should')
 const execa = require('execa')
 
 describe('general', function () {
-  this.timeout(10000)
+  this.timeout(20000)
 
   // This test may fail if your local network messes with the request
   // Known case: public hotspot
