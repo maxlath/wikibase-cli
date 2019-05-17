@@ -36,7 +36,7 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 - [item](#item)
   - [wd create-item](#wd-create-item)
   - [wd edit-item](#wd-edit-item)
-- [Demo](#demo)
+    - [Demo](#demo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -386,13 +386,13 @@ See [`wikidata-edit` documentation on `entity.create`](https://github.com/maxlat
 Edit an existing item
 
 ```sh
-# pass data as JSON
+# Pass data as JSON
 wd edit-item '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
-# pass data as a JSON file path
+# Pass data as a JSON file path
 wd edit-item ./existing_item_data.json
 
-# pass data as a JS file path
+# Pass data as a JS file path
 wd edit-item ./existing_item_data.js
 
 # Alias:
@@ -410,6 +410,7 @@ module.exports = {
 * dynamic data generation, as if the exported object is a function, it will be called with the command line additional arguments:
 ```js
 // template.js
+// (see `wd generate-template` for documentation on how to easily create such a function from an existing item)
 module.exports = (id, someString, quantity) => {
   id: id,
   claims: {
@@ -432,5 +433,5 @@ wd ei ./template.js Q1 abc 123 --dry
 
 See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
 
-### Demo
+##### Demo
 - [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)

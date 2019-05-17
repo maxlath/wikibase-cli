@@ -21,6 +21,7 @@
   - [alternative formats](#alternative-formats)
     - [ttl](#ttl)
   - [single claim](#single-claim)
+- [wd generate-template](#wd-generate-template)
 - [wd revisions](#wd-revisions)
 - [wd id](#wd-id)
 - [wd props](#wd-props)
@@ -277,6 +278,41 @@ The command also support finding a single claim from a claim GUID. (If you have 
 wd data 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
 wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
 wd data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+```
+
+### wd generate-template
+This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wd create-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-create-item) or [`wd edit-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-edit-item)
+
+```sh
+wd generate-template <item-id>
+# Alias:
+wd gt <item-id>
+
+# Get Q123 pre-formatted data
+wd generate-template Q4115189 > Q4115189.json
+# Then the typical workflow would be to edit the generated file as you please,
+# before passing it back to the `wd edit-item` command
+wd edit-item ./Q4115189.json
+
+# For reference,
+wd generate-template Q4115189
+# is equivalent to
+wd data --simplify --keep ids,references,qualifiers,hashes Q4115189
+
+# Only get data required to edit the labels, claims and sitelinks
+wd generate-template Q4115189 --props labels,claims,sitelinks
+
+# Only get data required to edit the Dutch label, the P31 claims, and the frwiki sitelink
+wd generate-template Q4115189 --props labels.nl,claims.P31,sitelinks.frwiki
+
+# Get the generate-template as a Javascript module,
+# ready to be customized to take arguments from the command-line,
+# which is typically useful to edit or create several items with one template
+wd generate-template Q123 --format js > template.js
+# Call the generated JS generate-template after customization
+# by passing the required arguments
+wd create-item ./template.js foo bar 456 'https://example.org'
+wd create-item ./template.js buz bla 987 'https://example2.org'
 ```
 
 ### wd revisions
