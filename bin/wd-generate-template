@@ -5,7 +5,7 @@ program
 .option('-k, --keep <props>', 'data to keep when simplifying claims')
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 .option('-f, --format <format>', 'Default: json. Alternatives: js')
-.process('skeleton')
+.process('generate-template')
 
 if (program.args.length === 0) return program.help()
 
