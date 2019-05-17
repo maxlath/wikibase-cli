@@ -1,7 +1,13 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
-## 7.2.0 - 2018-02-26
+## 7.3.0 - 2019-05-17
+* [`wd create-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-create-item) / [`wd edit-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-edit-item): accept JS files as input, where the JS file should export either an object or a function, to which command line arguments are passed
+* Added [`wd generate-template`](https://github.com/maxlath/wikidata-cli#wd-generate-template): a command to easily create those JSON or JS files to be passed to `wd create-item` or `wd edit-item` from existing items
+* [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data): allow to fetch a single claim's data by passing a claim GUID
+* Added [`wd lang`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-lang)
+
+## 7.2.0 - 2019-02-26
 * [`wd claims`](https://github.com/maxlath/wikidata-cli#wd-claims) returns claims GUIDs when provided with a property and a value
 
 ## 7.1.0 - 2018-12-22
