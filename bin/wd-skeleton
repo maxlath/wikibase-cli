@@ -47,5 +47,9 @@ lightGet(url)
       }
     })
   }
-  console.log(JSON.stringify(entity, null, 2))
+  if (program.format === 'js') {
+    console.log(require('../lib/output_js_function')(entity))
+  } else {
+    console.log(JSON.stringify(entity, null, 2))
+  }
 })
