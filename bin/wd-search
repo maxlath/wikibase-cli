@@ -43,9 +43,13 @@ lightGet(url)
     process.exit(1)
   }
 
-  const results = body.search
-    .filter(filterOutSpecialPages)
-    .slice(0, limit)
+  var results = body.search
+
+  if (results.length > 5) {
+    results = results.filter(filterOutSpecialPages)
+  }
+
+  results = results.slice(0, limit)
 
   if (json) {
     console.log(JSON.stringify(results, null, 2))
