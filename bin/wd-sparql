@@ -36,7 +36,7 @@ if (absoluePath != null) {
   sparql = fs.readFileSync(path, { encoding: 'utf-8' })
 }
 
-if (!sparql.replace('\n', ' ').match(/SELECT.*{/i)) {
+if (!sparql.replace('\n', ' ').match(/(SELECT|DESCRIBE|CONSTRUCT|ASK)/i)) {
   errors_.bundle("this doesn't look like SPARQL", { sparql })
 }
 
