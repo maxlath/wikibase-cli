@@ -18,6 +18,7 @@
   - [simplified entities](#simplified-entities)
     - [claims simplification keep options](#claims-simplification-keep-options)
   - [filtered properties](#filtered-properties)
+  - [fetch an old revision](#fetch-an-old-revision)
   - [alternative formats](#alternative-formats)
     - [ttl](#ttl)
   - [single claim](#single-claim)
@@ -249,6 +250,11 @@ wd d -sk ids Q123 | jd .claims.P138 -j
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
 ```sh
 wd data --props labels,claims,sitelinks Q515168
+```
+
+#### fetch an old revision
+```sh
+wd data Q4115189 --revision 943703455
 ```
 
 #### alternative formats
