@@ -5,6 +5,7 @@ program
 .option('-p, --wikipedia', 'open the Wikipedia article')
 .option('-y, --history', 'open the Wikidata history')
 .option('-u, --url', 'simply generate the url')
+.option('-r, --revision <id>', 'open a specific revision')
 .process('open')
 
 const getSitelinkUrl = require('../lib/get_sitelink_url')(program)
@@ -56,6 +57,8 @@ const openId = id => {
     })
   } else if (program.history){
     handle(`https://www.wikidata.org/w/index.php?title=${id}&action=history`)
+  } else if (program.revision){
+    handle(`https://www.wikidata.org/w/index.php?title=${id}&oldid=${program.revision}`)
   } else {
     handle(`https://wikidata.org/entity/${id}`)
   }

@@ -45,6 +45,7 @@
 - [wd open](#wd-open)
   - [open entities and properties pages](#open-entities-and-properties-pages)
   - [open a search page](#open-a-search-page)
+  - [open a specific revision's page](#open-a-specific-revisions-page)
 - [wd hub](#wd-hub)
 - [wd lang](#wd-lang)
 
@@ -682,8 +683,9 @@ wd open https://inventaire.io/entity/wd:Q33977
 
 Options:
 * `-y, --history`: open the entity histor**y** page
+* `-r, --revision <id>`: open a specific **r**evision
 * `-p, --wikipedia`: open the Wiki**p**edia article
-* `-u, --url`: simply generate the url, don't open it in a browser
+* `-u, --url`: simply generate the **u**rl, don't open it in a browser
 ```sh
 # open https://www.wikidata.org/w/index.php?title=Q123&action=history
 wd open -y Q123
@@ -702,6 +704,11 @@ wd open -p -l sv Q123 -u
 ```sh
 wd open Dan Simmons
 # opens https://www.wikidata.org/w/index.php?title=Special:Search&search=Dan%20Simmons
+```
+
+#### open a specific revision's page
+```sh
+wd open Q44559 --revision 942578737
 ```
 
 ### wd hub
