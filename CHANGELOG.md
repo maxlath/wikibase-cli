@@ -1,6 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 7.4.0 - 2019-05-25
+* [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data): allow to [fetch an old revision's data](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#fetch-an-old-revision)
+* [`wd generate-template`](https://github.com/maxlath/wikidata-cli#wd-generate-template): allow to [generate template from a specific revision](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#generate-template-from-a-specific-revision)
+* [`wd generate-open`](https://github.com/maxlath/wikidata-cli#wd-generate-template): allow to open a specifc revision's page
+
 ## 7.3.0 - 2019-05-17
 * [`wd create-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-create-item) / [`wd edit-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-edit-item): accept JS files as input, where the JS file should export either an object or a function, to which command line arguments are passed
 * Added [`wd generate-template`](https://github.com/maxlath/wikidata-cli#wd-generate-template): a command to easily create those JSON or JS files to be passed to `wd create-item` or `wd edit-item` from existing items
