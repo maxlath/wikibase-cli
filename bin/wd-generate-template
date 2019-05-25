@@ -36,9 +36,11 @@ const simplifyOptions = {
   keepQualifiers: true,
   keepReferences: true,
   keepRichValues: true,
-  keepHashes: true,
   keepNonTruthy: true,
-  keepSnaktypes: true
+  keepSnaktypes: true,
+  // No need to keep the hashes as every edited claim (identified with a GUID)
+  // will have it's qualifiers and references fully overriden
+  keepHashes: false
 }
 
 lightGet(url)
