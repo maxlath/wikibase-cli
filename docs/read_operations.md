@@ -22,6 +22,9 @@
     - [ttl](#ttl)
   - [single claim](#single-claim)
 - [wd generate-template](#wd-generate-template)
+  - [Tailored templates](#tailored-templates)
+  - [Dynamic templates](#dynamic-templates)
+  - [Generate template from a specific revision](#generate-template-from-a-specific-revision)
 - [wd revisions](#wd-revisions)
 - [wd id](#wd-id)
 - [wd props](#wd-props)
@@ -296,15 +299,22 @@ wd edit-item ./Q4115189.json
 
 # For reference,
 wd generate-template Q4115189
-# is equivalent to
-wd data --simplify --keep ids,references,qualifiers,hashes Q4115189
+# is pretty much equivalent to
+wd data --simplify --keep ids,references,qualifiers,hashes,snaktypes Q4115189
+```
 
+#### Tailored templates
+
+```sh
 # Only get data required to edit the labels, claims and sitelinks
 wd generate-template Q4115189 --props labels,claims,sitelinks
 
 # Only get data required to edit the Dutch label, the P31 claims, and the frwiki sitelink
 wd generate-template Q4115189 --props labels.nl,claims.P31,sitelinks.frwiki
+```
 
+#### Dynamic templates
+```sh
 # Get the generate-template as a Javascript module,
 # ready to be customized to take arguments from the command-line,
 # which is typically useful to edit or create several items with one template
@@ -313,6 +323,17 @@ wd generate-template Q123 --format js > template.js
 # by passing the required arguments
 wd create-item ./template.js foo bar 456 'https://example.org'
 wd create-item ./template.js buz bla 987 'https://example2.org'
+```
+
+#### Generate template from a specific revision
+```sh
+wd generate-template Q4115189 --revision 943703455
+```
+Use cases:
+* Easily recover specific data elements from a previous revision
+```sh
+wd generate-template Q4115189 --revision 943703455 --props claims.P516 > ./Q4115189_lost_P516_claims.json
+wd edit-item ./Q4115189_lost_P516_claims.json
 ```
 
 ### wd revisions

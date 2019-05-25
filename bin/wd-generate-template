@@ -2,8 +2,8 @@
 const program = require('../lib/program')
 
 program
-.option('-k, --keep <props>', 'data to keep when simplifying claims')
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
+.option('-r, --revision <id>', 'request a specific revision')
 .option('-f, --format <format>', 'Default: json. Alternatives: js')
 .process('generate-template')
 
@@ -16,12 +16,18 @@ const lightGet = require('../lib/light_get')
 const _ = require('lodash')
 const parseProps = require('../lib/parse_props')
 const dropNonSpecialSnaktypes = require('../lib/drop_non_special_snaktypes')
+const { revision } = program
 
 if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
 
 const { props, propsSubkeys } = parseProps(program.props)
 
-const url = wdk.customize('getEntities', { ids: [ id ], props })
+var url
+if (revision) {
+  url = wdk.customize('getEntityRevision', id, revision)
+} else {
+  url = wdk.customize('getEntities', { ids: [ id ], props })
+}
 
 const requiredKeys = [ 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
@@ -40,6 +46,7 @@ lightGet(url)
   var entity = _.values(body.entities)[0]
   entity = wdk.simplify.entity(entity, simplifyOptions)
   entity = _.pick(entity, requiredKeys)
+  if (revision) entity = _.pick(entity, [ 'id' ].concat(props))
   if (props) {
     props.forEach(prop => {
       const subkey = propsSubkeys[prop]
