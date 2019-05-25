@@ -15,7 +15,7 @@ const wdk = require('../lib/customized_wdk')(program)
 const lightGet = require('../lib/light_get')
 const _ = require('lodash')
 const parseProps = require('../lib/parse_props')
-const dropNonSpecialSnaktypes = require('../lib/drop_non_special_snaktypes')
+const minimizeClaims = require('../lib/minimize_claims')
 const { revision } = program
 
 if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
@@ -58,7 +58,7 @@ lightGet(url)
       }
     })
   }
-  dropNonSpecialSnaktypes(entity.claims)
+  minimizeClaims(entity.claims)
   if (program.format === 'js') {
     console.log(require('../lib/output_js_function')(entity))
   } else {
