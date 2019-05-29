@@ -252,6 +252,10 @@ Only request properties you need among `labels`,`descriptions`,`aliases`,`claims
 ```sh
 wd data --props labels,claims,sitelinks Q515168
 ```
+Or even subparts of those properties
+```sh
+wd data --props labels.fr,claims.P18,sitelinks.dewiki Q515168
+```
 
 #### fetch an old revision
 ```sh
