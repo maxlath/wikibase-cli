@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 7.5.0 - 2019-05-29
+* [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data): allow to [request sub property keys](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#filtered-properties)
+
 ## 7.4.0 - 2019-05-25
 * [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data): allow to [fetch an old revision's data](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#fetch-an-old-revision)
 * [`wd generate-template`](https://github.com/maxlath/wikidata-cli#wd-generate-template): allow to [generate template from a specific revision](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#generate-template-from-a-specific-revision)
