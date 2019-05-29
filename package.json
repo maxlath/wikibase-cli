@@ -42,7 +42,7 @@
     "shell-quote": "^1.6.1",
     "split": "^1.0.1",
     "through": "^2.3.8",
-    "wikidata-edit": "^2.9.2",
+    "wikidata-edit": "^2.9.3",
     "wikidata-lang": "^2.0.8",
     "wikidata-sdk": "^6.6.0"
   },
