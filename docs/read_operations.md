@@ -541,12 +541,14 @@ Options:
 * `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-x, --index <variable>`: get the results indexed by one of the SELECTed variables
+* `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see below for examples)
 
 ```sh
 wb sparql ./path/to/query.rq > ./results.json
 wb sparql ./path/to/query.rq --raw > ./raw_sparql_results.json
 wb sparql ./path/to/query.rq --index someVariableName > ./results_index.json
+wb sparql ./path/to/query.rq --format table > ./results_table
 ```
 
 #### dynamic request from a JS file
@@ -634,6 +636,7 @@ Other options:
 * `-t, --limit <num>`: set the request results limit
 * `-v, --verbose`: log the generated request
 * `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
+* `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wb sparql`](#wb-sparql) for examples of how to use this option)
 
 ### wb convert

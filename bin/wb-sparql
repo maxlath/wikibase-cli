@@ -3,6 +3,7 @@ const program = require('../lib/program')
 
 program
 .option('-r, --raw', 'get raw, non-simplified, SPARQL results')
+.option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('sparql')
 
