@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 
-program.process('claims')
+program
+.option('-a, --all', 'include all claims, not only the truthy ones')
+.process('claims')
 
 const { yellow } = require('tiny-chalk')
 const parseId = require('../lib/tolerant_id_parser')
@@ -43,16 +45,17 @@ lightGet(url)
   const entity = body.entities && body.entities[id]
   if (!entity) return console.log('error: ', body)
 
+  const keepNonTruthy = program.all === true
   if (isPropertyId(prop) && value != null) {
     const propClaims = entity.claims[prop]
     if (!propClaims) throw new Error(`no claims found for this property: ${prop}`)
-    const ids = simplify.propertyClaims(propClaims, { keepIds: true })
+    const ids = simplify.propertyClaims(propClaims, { keepIds: true, keepNonTruthy })
       .filter(simplifyClaim => simplifyClaim.value === value)
       .map(simplifyClaim => simplifyClaim.id)
     return output(ids)
   }
 
-  const claims = simplify.claims(entity.claims)
+  const claims = simplify.claims(entity.claims, { keepNonTruthy })
   if (!prop) return logClaims(program, claims, pattern)
 
   value = claims[prop]

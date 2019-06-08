@@ -186,6 +186,13 @@ Options:
 wb claims Q2001 -l es
 wb claims Q2001 P19 --lang ru
 ```
+* `-a, --all`: include all claims, not only the truthy ones
+```sh
+# one result: the claim with the preferred rank
+wb claims Q858121 P2002
+# several results: claims of all ranks
+wb claims Q858121 P2002 --all
+```
 
 Options when passing both an id an property:
 * `-c, --clipboard`: copy the command's result to clipboard
