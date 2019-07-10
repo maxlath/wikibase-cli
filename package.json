@@ -1,6 +1,6 @@
 {
   "name": "wikidata-cli",
-  "version": "7.5.1",
+  "version": "7.5.2",
   "description": "The command-line interface to Wikidata",
   "main": "index.js",
   "bin": {
