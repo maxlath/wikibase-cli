@@ -7,12 +7,13 @@
     "wd": "./bin/wd"
   },
   "scripts": {
-    "test": "mocha",
+    "docker:publish": "./scripts/docker_publish",
+    "lint": "standard",
     "postinstall": "./scripts/postinstall",
     "prepublishOnly": "npm run lint && npm test",
-    "lint": "standard",
-    "update-toc": "doctoc docs/*md",
-    "docker:publish": "./scripts/docker_publish"
+    "postpublish": "npm run docker:publish",
+    "test": "mocha",
+    "update-toc": "doctoc docs/*md"
   },
   "repository": {
     "type": "git",
