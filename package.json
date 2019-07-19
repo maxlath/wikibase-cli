@@ -9,7 +9,7 @@
   "scripts": {
     "docker:publish": "./scripts/docker_publish",
     "lint": "standard",
-    "postinstall": "./scripts/postinstall",
+    "postinstall": "./scripts/check_node_version",
     "prepublishOnly": "npm run lint && npm test",
     "postpublish": "npm run docker:publish",
     "test": "mocha",
