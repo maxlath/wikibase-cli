@@ -8,11 +8,11 @@ const [ property, ...ids ] = program.args
 
 if (!property) return program.help()
 
-const wdk = require('wikidata-sdk')
+const { isPropertyId } = require('wikibase-sdk')
 const convertIds = require('../lib/convert_ids')
 const errors_ = require('../lib/errors')
 
-if (!wdk.isPropertyId(property)) {
+if (!isPropertyId(property)) {
   errors_.bundle("invalid property", { property })
 }
 

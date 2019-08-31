@@ -7,7 +7,7 @@ program
 .option('-l, --limit <num>', 'end date')
 .process('revisions')
 
-const wdk = require('../lib/customized_wdk')(program)
+const { isEntityId, getRevisions } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
 const parseId = require('../lib/tolerant_id_parser')
 const errors_ = require('../lib/errors')
@@ -19,7 +19,7 @@ const ids = program.args.map(parseId)
 if (!(ids && ids.length > 0)) return program.help()
 
 ids.forEach(id => {
-  if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+  if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
 })
 
 const query = {}
@@ -32,7 +32,7 @@ query.end = end
 query.limit = limit
 
 const getAndLogRevisions = id => {
-  const url = wdk.customize('getRevisions', id, query)
+  const url = getRevisions(id, query)
   if (verbose) console.log(`revision query: ${id}`, url)
   return lightGet(url)
   .then(body => _.values(body.query.pages)[0])
@@ -44,7 +44,7 @@ if (ids.length === 1) {
   .catch(errors_.exit)
 } else {
   // Getting revisisions data individually to be able to pass parameters
-  // cf https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md
+  // cf https://github.com/maxlath/wikibase-sdk/blob/master/docs/get_revisions.md
   Promise.all(ids.map(getAndLogRevisions))
   .then(logNdjson)
   .catch(errors_.exit)

@@ -9,11 +9,11 @@ program
 .option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl')
 .process('data')
 
-const wdk = require('wikidata-sdk')
+const { isGuid } = require('wikibase-sdk')
 
 const guid = program.args[0] && program.args[0].replace('\\$', '$')
 
-if (program.args.length === 1 && wdk.isGuid(guid)) {
+if (program.args.length === 1 && isGuid(guid)) {
   require('../lib/fetch_and_log_guid_data')(guid)
 } else {
   const parseId = require('../lib/tolerant_id_parser')

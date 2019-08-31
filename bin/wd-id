@@ -8,7 +8,7 @@ const chalk = require('chalk')
 const args = program.args
 if (args.length === 0) return program.help()
 
-const wdk = require('../lib/customized_wdk')(program)
+const { getEntitiesFromSitelinks } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
 const errors_ = require('../lib/errors')
 const _ = require('lodash')
@@ -65,7 +65,7 @@ site = site || 'wikipedia'
 getRedirectedSitelinkTitle(lang, site, title)
 .then(trueTitle => {
   const siteCode = `${lang}${site}`.replace('wikipedia', 'wiki')
-  const url = wdk.customize('getWikidataIdsFromSitelinks', trueTitle, siteCode)
+  const url = getEntitiesFromSitelinks({ title: trueTitle, sites: siteCode })
   return lightGet(url)
   .then(parseIds.bind(null, [title, trueTitle]))
 })

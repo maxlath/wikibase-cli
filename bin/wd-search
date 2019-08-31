@@ -23,11 +23,11 @@ if (!valide.lang(language)) {
   process.exit(1)
 }
 
-const wdk = require('../lib/customized_wdk')(program)
+const { searchEntities } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
 const { padEnd } = require('lodash')
 
-const url = wdk.customize('searchEntities', {
+const url = searchEntities({
   search,
   language,
   // Fetch more in case we need to filter-out some results

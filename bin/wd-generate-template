@@ -11,7 +11,7 @@ if (program.args.length === 0) return program.help()
 
 const parseId = require('../lib/tolerant_id_parser')
 const id = parseId(program.args[0])
-const wdk = require('../lib/customized_wdk')(program)
+const { isEntityId, getEntityRevision, getEntities, simplify } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
 const _ = require('lodash')
 const parseProps = require('../lib/parse_props')
@@ -19,15 +19,15 @@ const dropNonSelectedSubprops = require('../lib/drop_non_selected_subprops')
 const minimizeClaims = require('../lib/minimize_claims')
 const { revision } = program
 
-if (!wdk.isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
 
 const { props, propsSubkeys } = parseProps(program.props)
 
 var url
 if (revision) {
-  url = wdk.customize('getEntityRevision', id, revision)
+  url = getEntityRevision(id, revision)
 } else {
-  url = wdk.customize('getEntities', { ids: [ id ], props })
+  url = getEntities({ ids: [ id ], props })
 }
 
 const requiredKeys = [ 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
@@ -47,7 +47,7 @@ const simplifyOptions = {
 lightGet(url)
 .then(body => {
   var entity = _.values(body.entities)[0]
-  entity = wdk.simplify.entity(entity, simplifyOptions)
+  entity = simplify.entity(entity, simplifyOptions)
   entity = _.pick(entity, requiredKeys)
   if (revision) entity = _.pick(entity, [ 'id' ].concat(props))
   dropNonSelectedSubprops(entity, props, propsSubkeys)

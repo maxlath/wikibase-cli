@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const entityDataParser = require('../lib/entity_data_parser')
 const entityAttributeParser = require('../lib/entity_attribute_parser')
-const wdk = require('wikidata-sdk')
+const { simplify } = require('wikibase-sdk')
 const logClaims = require('../lib/log_claims')
 const { bgGreen, bgBlue, dim } = require('chalk')
 const _ = require('lodash')
@@ -29,7 +29,7 @@ const parseEntity = (entity, options) => {
   var { claims } = entity
   const properties = (program.properties && program.properties.split(',')) || []
   claims = program.verbose ? claims : _.pick(claims, mainProps.concat(properties))
-  claims = wdk.simplifyClaims(claims)
+  claims = simplify.claims(claims)
 
   return logClaims(program, claims)
   .catch(errors_.exit)

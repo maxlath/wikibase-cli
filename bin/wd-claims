@@ -8,13 +8,13 @@ const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
 const commonErrors = require('../lib/common_errors')
 const getLangProps = require('../lib/get_lang_props')
-const wdk = require('../lib/customized_wdk')(program)
+const { isPropertyId, getEntities, isPropertyId, simplify } = require('../lib/wbk')(program)
 
 var [ id, ...filter ] = program.args
 var id = id && parseId(id)
 
 var prop, value, pattern
-if (wdk.isPropertyId(filter[0])) {
+if (isPropertyId(filter[0])) {
   prop = filter[0]
   value = filter[1]
 } else {
@@ -35,23 +35,23 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
 const lightGet = require('../lib/light_get')
 const errors_ = require('../lib/errors')
 
-const url = wdk.customize('getEntities', { props: 'claims', ids: id })
+const url = getEntities({ props: 'claims', ids: id })
 
 lightGet(url)
 .then(body => {
   const entity = body.entities && body.entities[id]
   if (!entity) return console.log('error: ', body)
 
-  if (wdk.isPropertyId(prop) && value != null) {
+  if (isPropertyId(prop) && value != null) {
     const propClaims = entity.claims[prop]
     if (!propClaims) throw new Error(`no claims found for this property: ${prop}`)
-    const ids = wdk.simplifyPropertyClaims(propClaims, { keepIds: true })
+    const ids = simplify.propertyClaims(propClaims, { keepIds: true })
       .filter(simplifyClaim => simplifyClaim.value === value)
       .map(simplifyClaim => simplifyClaim.id)
     return output(ids)
   }
 
-  const claims = wdk.simplifyClaims(entity.claims)
+  const claims = simplify.claims(entity.claims)
   if (!prop) return logClaims(program, claims, pattern)
 
   value = claims[prop]
