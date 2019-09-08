@@ -21,7 +21,6 @@ const cmds = {
   open: require('../metadata/open'),
   hub: require('../metadata/hub'),
   lang: require('../metadata/lang'),
-  coord: require('../metadata/coord'),
   'set-label': require('../metadata/set-label'),
   'set-description': require('../metadata/set-description'),
   'add-alias': require('../metadata/add-alias'),
@@ -61,7 +60,6 @@ program
 .command(`open ${cmds.open.args}`, cmds.open.description).alias('o')
 .command(`lang ${cmds.lang.args}`, cmds.lang.description).alias('g')
 .command(`hub ${cmds.hub.args}`, cmds.hub.description).alias('h')
-.command(`coord ${cmds.coord.args}`, cmds.coord.description)
 .command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')
 .command(`set-description ${cmds['set-description'].args}`, cmds['set-description'].description).alias('sd')
 .command(`add-alias ${cmds['add-alias'].args}`, cmds['add-alias'].description).alias('aa')
