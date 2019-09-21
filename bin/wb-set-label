@@ -1,2 +1,4 @@
 #!/usr/bin/env node
+const program = require('commander')
+program.customArgsParser = require('../lib/term_command_args_parser')('label')
 require('../lib/edit/edit_command')('label', 'set')
