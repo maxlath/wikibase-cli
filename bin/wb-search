@@ -11,7 +11,7 @@ const search = program.args.join(' ')
 
 if (!(search && search.length > 0)) return program.help()
 
-var { lang:language, json, verbose, properties, limit } = program
+var { lang: language, json, verbose, properties, limit } = program
 limit = limit || 10
 
 if (properties) program.verbose = verbose = true
@@ -63,7 +63,7 @@ lightGet(url)
     process.exit(1)
   }
 
-  // In verbose mode, pass the found ids to the 'wd summary' command
+  // In verbose mode, pass the found ids to the 'wb summary' command
   // to get a summary of each entity, possibly with additional properties
   if (verbose) {
     var command = `summary ${ids.join(' ')}`

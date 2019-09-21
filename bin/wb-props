@@ -25,7 +25,7 @@ const errors_ = require('../lib/errors')
 if (program.reset) return resetProperties()
 
 // Any additional arguments are interpreted as a pattern that properties
-// should match `wd props some pattern` <=> `wd props | grep -i "some pattern"`
+// should match `wb props some pattern` <=> `wb props | grep -i "some pattern"`
 const pattern = program.args.join(' ')
 const filter = getPatternFilter(pattern, includeTypes)
 

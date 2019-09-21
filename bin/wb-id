@@ -65,7 +65,7 @@ site = site || 'wikipedia'
 getRedirectedSitelinkTitle(lang, site, title)
 .then(trueTitle => {
   const siteCode = `${lang}${site}`.replace('wikipedia', 'wiki')
-  const url = getEntitiesFromSitelinks({ title: trueTitle, sites: siteCode })
+  const url = getEntitiesFromSitelinks({ titles: trueTitle, sites: siteCode })
   return lightGet(url)
   .then(parseIds.bind(null, [title, trueTitle]))
 })

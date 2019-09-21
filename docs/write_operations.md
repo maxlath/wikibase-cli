@@ -1,6 +1,6 @@
 # Write operations
 
-Those command modify Wikidata so you will be asked your Wikidata **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikidata-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wd config clear` once you're done.
+Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikidata-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
 ## Summary
 
@@ -9,140 +9,140 @@ Those command modify Wikidata so you will be asked your Wikidata **username** an
 
 
 - [labels](#labels)
-  - [wd set-label](#wd-set-label)
+  - [wb set-label](#wb-set-label)
 - [descriptions](#descriptions)
-  - [wd set-description](#wd-set-description)
+  - [wb set-description](#wb-set-description)
 - [aliases](#aliases)
-  - [wd add-alias](#wd-add-alias)
-  - [wd remove-alias](#wd-remove-alias)
-  - [wd set-alias](#wd-set-alias)
+  - [wb add-alias](#wb-add-alias)
+  - [wb remove-alias](#wb-remove-alias)
+  - [wb set-alias](#wb-set-alias)
 - [claims](#claims)
-  - [wd add-claim](#wd-add-claim)
+  - [wb add-claim](#wb-add-claim)
     - [rich values](#rich-values)
       - [JSON format](#json-format)
       - [query string format](#query-string-format)
     - [with a reference](#with-a-reference)
     - [special claim snaktypes](#special-claim-snaktypes)
-  - [wd update-claim](#wd-update-claim)
-  - [wd remove-claim](#wd-remove-claim)
+  - [wb update-claim](#wb-update-claim)
+  - [wb remove-claim](#wb-remove-claim)
 - [qualifiers](#qualifiers)
-  - [wd add-qualifier](#wd-add-qualifier)
+  - [wb add-qualifier](#wb-add-qualifier)
     - [special qualifier snaktypes](#special-qualifier-snaktypes)
-  - [wd update-qualifier](#wd-update-qualifier)
-  - [wd remove-qualifier](#wd-remove-qualifier)
+  - [wb update-qualifier](#wb-update-qualifier)
+  - [wb remove-qualifier](#wb-remove-qualifier)
 - [references](#references)
-  - [wd add-reference](#wd-add-reference)
-  - [wd remove-reference](#wd-remove-reference)
+  - [wb add-reference](#wb-add-reference)
+  - [wb remove-reference](#wb-remove-reference)
 - [item](#item)
-  - [wd create-item](#wd-create-item)
-  - [wd edit-item](#wd-edit-item)
+  - [wb create-item](#wb-create-item)
+  - [wb edit-item](#wb-edit-item)
     - [Demo](#demo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
 ### labels
 See [Wikidata:Glossary#Label](https://www.wikidata.org/wiki/Wikidata:Glossary#Label)
-#### wd set-label
+#### wb set-label
 
 Set a label on an entity in a given language
 ```sh
-wd set-label <entity> <language> <label>
+wb set-label <entity> <language> <label>
 # Alias:
-wd sl <entity> <language> <label>
+wb sl <entity> <language> <label>
 ```
 Examples:
 ```sh
 # Set the label 'Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
-wd set-label Q4115189 fr "Bac à sable bulgroz"
+wb set-label Q4115189 fr "Bac à sable bulgroz"
 ```
 
 ### descriptions
 See [Wikidata:Glossary#Description](https://www.wikidata.org/wiki/Wikidata:Glossary#Description)
 
-#### wd set-description
+#### wb set-description
 
 
 Set a description on an entity in a given language
 ```sh
-wd set-description <entity> <language> <description>
+wb set-description <entity> <language> <description>
 # Alias:
-wd sd <entity> <language> <description>
+wb sd <entity> <language> <description>
 ```
 Examples:
 ```sh
 # Set the description 'description du Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
-wd set-description Q4115189 fr "description du Bac à sable bulgroz"
+wb set-description Q4115189 fr "description du Bac à sable bulgroz"
 ```
 
 ### aliases
 See [Wikidata:Glossary#Alias](https://www.wikidata.org/wiki/Wikidata:Glossary#Alias)
 
-#### wd add-alias
+#### wb add-alias
 Add one or several aliases to the list of aliases of an entity in a given language
 ```sh
-wd add-alias <entity> <language> <alias>
+wb add-alias <entity> <language> <alias>
 # Alias:
-wd aa <entity> <language> <alias>
+wb aa <entity> <language> <alias>
 ```
 
 ```sh
 # Add an alias
-wd add-alias Q4115189 fr foo
+wb add-alias Q4115189 fr foo
 # Add several aliases separated by a pipe
-wd add-alias Q4115189 fr "foo|bar"
+wb add-alias Q4115189 fr "foo|bar"
 ```
 
-#### wd remove-alias
+#### wb remove-alias
 Remove one or several aliases from the list of aliases of an entity in a given language
 ```sh
-wd remove-alias <entity> <language> <alias>
+wb remove-alias <entity> <language> <alias>
 # Alias:
-wd ra <entity> <language> <alias>
+wb ra <entity> <language> <alias>
 ```
 
 ```sh
 # Remove an alias
-wd remove-alias Q4115189 fr foo
+wb remove-alias Q4115189 fr foo
 # Remove several aliases separated by a pipe
-wd remove-alias Q4115189 fr "foo|bar"
+wb remove-alias Q4115189 fr "foo|bar"
 ```
 
-#### wd set-alias
+#### wb set-alias
 Set the list of aliases of an entity in a given language
 ```sh
-wd set-alias <entity> <language> <alias>
+wb set-alias <entity> <language> <alias>
 # Alias:
-wd sa <entity> <language> <alias>
+wb sa <entity> <language> <alias>
 ```
 ```sh
 # Replace all Q4115189's French alias by 'foo'
-wd set-alias Q4115189 fr foo
+wb set-alias Q4115189 fr foo
 # Replace all Q4115189's French alias by 'foo' and 'bar'
-wd set-alias Q4115189 fr "foo|bar"
+wb set-alias Q4115189 fr "foo|bar"
 ```
 
 ### claims
 See [Wikidata:Glossary#Claim](https://www.wikidata.org/wiki/Wikidata:Glossary#Claim)
 
-#### wd add-claim
+#### wb add-claim
 
 Add a claim to an entity.<br>
 *Alternative*: [QuickStatements](https://tools.wmflabs.org/wikidata-todo/quick_statements.php)
 
 ```sh
-wd add-claim <entity> <property> <value>
+wb add-claim <entity> <property> <value>
 # Alias:
-wd ac <entity> <property> <value>
+wb ac <entity> <property> <value>
 ```
 
 Examples:
 ```sh
 # Add the Twitter account (P2002) 'bulgroz' to the Sandbox (Q4115189) entity
-wd add-claim Q4115189 P2002 bulgroz
+wb add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
-wd ac Q4115189 P2002 bulgroz
+wb ac Q4115189 P2002 bulgroz
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
-wd ac Q4115189 P527 Q34679
+wb ac Q4115189 P527 Q34679
 ```
 
 ##### rich values
@@ -150,89 +150,89 @@ Some values like monolingual text, quatities with a unit, or time with a precisi
 
 ###### JSON format
 ```sh
-wd ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
-wd ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
+wb ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
+wb ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
 # On precision, see https://www.wikidata.org/wiki/Help:Dates#Precision
-wd ac Q4115189 P578 '{"time":1800,"precision":7}'
+wb ac Q4115189 P578 '{"time":1800,"precision":7}'
 # Set a coordinate on another celestial body than Earth (here, Mars (Q111))
-wd ac Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
+wb ac Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
 ```
 
 ###### query string format
 ```sh
-wd ac Q4115189 P1476 'text=bac à sable&language=fr'
-wd ac Q4115189 P1106 'amount=123&unit=Q4916'
-wd ac Q4115189 P578 'time=1800&precision=7'
+wb ac Q4115189 P1476 'text=bac à sable&language=fr'
+wb ac Q4115189 P1106 'amount=123&unit=Q4916'
+wb ac Q4115189 P578 'time=1800&precision=7'
 ```
 
 ##### with a reference
-Workflow example to add a claim with a reference, relying on the [jsondepth](https://github.com/maxlath/jsondepth) parser (hereafter referenced as `jd`). See [`wd add-reference`](#wd-add-reference) for more details.
+Workflow example to add a claim with a reference, relying on the [jsondepth](https://github.com/maxlath/jsondepth) parser (hereafter referenced as `jd`). See [`wb add-reference`](#wb-add-reference) for more details.
 ``` sh
-claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jd claim.id)
+claim_guid=$(wb add-claim Q4115189 P369 Q34679 | jd claim.id)
 # Add the reference that this claim is imported from (P143) Wikipedia in Uyghur (Q60856)
-wd add-reference $claim_guid P143 Q60856
+wb add-reference $claim_guid P143 Q60856
 ```
 
 ##### special claim snaktypes
 You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) claims by passing the desired snaktype in a JSON object as values:
 ```sh
-wd ac Q4115189 P1106 '{"snaktype":"novalue"}'
-wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
+wb ac Q4115189 P1106 '{"snaktype":"novalue"}'
+wb ac Q4115189 P1106 '{"snaktype":"somevalue"}'
 ```
 
-#### wd update-claim
+#### wb update-claim
 Update a claim value while keeping its qualifiers and references
 ```sh
-wd update-claim <entity-id> <property> <old-value> <new-value>
+wb update-claim <entity-id> <property> <old-value> <new-value>
 # OR
-wd update-claim <guid> <new-value>
+wb update-claim <guid> <new-value>
 # Alias:
-wd uc <entity-id> <property> <old-value> <new-value>
-wd uc <guid>
+wb uc <entity-id> <property> <old-value> <new-value>
+wb uc <guid>
 ```
 
 Examples:
 ```sh
 # change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
-wd update-claim Q4115189 P2002 Zorglub Bulgroz
+wb update-claim Q4115189 P2002 Zorglub Bulgroz
 # or using the claim's guid
-wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
+wb uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
 
 # change a coordinate from Mars (Q112) to Venus (Q313)
-wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+wb uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 # or using the claim's guid
-wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+wb uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 ```
 
-#### wd remove-claim
+#### wb remove-claim
 Remove a claim
 ```sh
-wd remove-claim <guid>
+wb remove-claim <guid>
 # Alias:
-wd rc <guid>
+wb rc <guid>
 ```
 
 Examples:
 ```sh
 # /!\ beware of the '$' sign that might need escaping
-wd remove-claim "Q71\$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7"
+wb remove-claim "Q71\$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7"
 # or simply
-wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
+wb remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
 # or several at a time (required to be claims on the same entity)
-wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
+wb remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
 ```
 
 ### qualifiers
 See [Wikidata:Glossary#Qualifier](https://www.wikidata.org/wiki/Wikidata:Glossary#Qualifier)
 
-#### wd add-qualifier
+#### wb add-qualifier
 
 Add a qualifier to a claim
 
 ```sh
-wd add-qualifier <claim-guid> <property> <value>
+wb add-qualifier <claim-guid> <property> <value>
 # Alias:
-wd aq <claim-guid> <property> <value>
+wb aq <claim-guid> <property> <value>
 ```
 
 Examples:
@@ -240,40 +240,40 @@ Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # entity qualifier
-wd add-qualifier $claim_guid P155 'Q13406268'
+wb add-qualifier $claim_guid P155 'Q13406268'
 
 # string qualifier
-wd aq $claim_guid P1545 'A-123'
+wb aq $claim_guid P1545 'A-123'
 
 # time qualifier
-wd aq $claim_guid P580 '1802-02-26'
+wb aq $claim_guid P580 '1802-02-26'
 
 # quantity qualifier
-wd aq $claim_guid P2130 123
+wb aq $claim_guid P2130 123
 
 # quantity qualifier with a unit
-wd aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
+wb aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
 
 # monolingualtext qualifier
-wd aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
+wb aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
 ```
 
 ##### special qualifier snaktypes
 You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) qualifiers by passing the desired snaktype in a JSON object as values:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
-wd aq $claim_guid P1106 '{"snaktype":"novalue"}'
-wd aq $claim_guid P1106 '{"snaktype":"somevalue"}'
+wb aq $claim_guid P1106 '{"snaktype":"novalue"}'
+wb aq $claim_guid P1106 '{"snaktype":"somevalue"}'
 ```
 
-#### wd update-qualifier
+#### wb update-qualifier
 
 Update a qualifier from an existing value to a new value
 
 ```sh
-wd update-qualifier <claim-guid> <property> <old-value> <new-value>
+wb update-qualifier <claim-guid> <property> <old-value> <new-value>
 # Alias:
-wd uq <claim-guid> <property> <old-value> <new-value>
+wb uq <claim-guid> <property> <old-value> <new-value>
 ```
 
 Examples:
@@ -281,122 +281,122 @@ Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # entity qualifier
-wd update-qualifier $claim_guid P155 'Q13406268' 'Q3576110'
+wb update-qualifier $claim_guid P155 'Q13406268' 'Q3576110'
 
 # string qualifier
-wd uq $claim_guid P1545 'A-123' 'B-123'
+wb uq $claim_guid P1545 'A-123' 'B-123'
 
 # time qualifier
-wd uq $claim_guid P580 '1802-02-26' '1802-02-27'
+wb uq $claim_guid P580 '1802-02-26' '1802-02-27'
 
 # quantity qualifier
-wd uq $claim_guid P2130 123 124
+wb uq $claim_guid P2130 123 124
 
 # quantity qualifier with a unit
-wd uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
+wb uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
 
 # monolingualtext qualifier
-wd uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
+wb uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
 ```
 
-#### wd remove-qualifier
+#### wb remove-qualifier
 
 ```sh
-wd remove-qualifier <claim-guid> <qualifiers-hashes>
+wb remove-qualifier <claim-guid> <qualifiers-hashes>
 # Alias:
-wd rq <claim-guid> <qualifiers-hashes>
+wb rq <claim-guid> <qualifiers-hashes>
 ```
 
 Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # Remove a qualifier from this claim
-wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
+wb rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
 # Remove several qualifiers from this claim by passing the qualifier hashes as one argument made of several pipe-separated hashes
-wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
+wb rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
 ```
 
 ### references
 See [Wikidata:Glossary#Reference](https://www.wikidata.org/wiki/Wikidata:Glossary#Reference)
 
-#### wd add-reference
+#### wb add-reference
 
 Add a reference to an claim
 ```sh
-wd add-reference <claim-guid> <property> <value>
+wb add-reference <claim-guid> <property> <value>
 # Alias:
-wd ar <claim-guid> <property> <value>
+wb ar <claim-guid> <property> <value>
 ```
 
 Examples:
 ```sh
 # Add a reference URL (P854) to this claim
 # /!\ beware of the '$' sign that might need escaping
-wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
+wb add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
 # or simply
-wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
+wb add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
 # Reference the claim as imported from (P143) Wikipedia in Uyghur (Q60856)
-wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
+wb add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 # or simply
-wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
+wb ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 ```
 
 See [*add claim with a reference*](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
-#### wd remove-reference
+#### wb remove-reference
 
 Remove a reference from a claim
 ```sh
-wd remove-reference <claim-guid> <references-hashes>
+wb remove-reference <claim-guid> <references-hashes>
 # Alias:
-wd rr <claim-guid> <references-hashes>
+wb rr <claim-guid> <references-hashes>
 ```
 
 Examples:
 ```sh
 # Remove a reference from this claim
-wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3'
+wb remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3'
 # Remove several references from this claim by passing the reference hashes as one argument made of several pipe-separated hashes
-wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
+wb remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
 ```
 
 ### item
-See [Wikidata:Glossary#Item](https://www.wikidata.org/wiki/Wikidata:Glossary#Item)
+See [Wikibase:Glossary#Item](https://www.wikidata.org/wiki/Wikibase:Glossary#Item)
 
-#### wd create-item
+#### wb create-item
 
 Create a new item
 
 ```sh
 # pass data as JSON
 # /!\ Do not run this example command as it would create a junk item
-wd create-item '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+wb create-item '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
 # pass data as a JSON file path
-wd create-item ./new_item_data.json
+wb create-item ./new_item_data.json
 
 # Alias:
-wd ci <entity-data>
+wb ci <entity-data>
 ```
 
 See [`wikidata-edit` documentation on `entity.create`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
 
-#### wd edit-item
+#### wb edit-item
 
 Edit an existing item
 
 ```sh
 # Pass data as JSON
-wd edit-item '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+wb edit-item '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
 # Pass data as a JSON file path
-wd edit-item ./existing_item_data.json
+wb edit-item ./existing_item_data.json
 
 # Pass data as a JS file path
-wd edit-item ./existing_item_data.js
+wb edit-item ./existing_item_data.js
 
 # Alias:
-wd ei <entity-data>
+wb ei <entity-data>
 ```
 
 This possibility to pass a JS file path has several advantages:
@@ -410,7 +410,7 @@ module.exports = {
 * dynamic data generation, as if the exported object is a function, it will be called with the command line additional arguments:
 ```js
 // template.js
-// (see `wd generate-template` for documentation on how to easily create such a function from an existing item)
+// (see `wb generate-template` for documentation on how to easily create such a function from an existing item)
 module.exports = (id, someString, quantity) => {
   id: id,
   claims: {
@@ -421,14 +421,14 @@ module.exports = (id, someString, quantity) => {
 ```
 allowing to make many edits from one template
 ```sh
-wd ei ./template.js Q1 abc 123
-wd ei ./template.js Q2 def 456
-wd ei ./template.js Q3 ghi 789
+wb ei ./template.js Q1 abc 123
+wb ei ./template.js Q2 def 456
+wb ei ./template.js Q3 ghi 789
 ```
 
 To debug the data generated dynamically, you can use the `--dry` option
 ```sh
-wd ei ./template.js Q1 abc 123 --dry
+wb ei ./template.js Q1 abc 123 --dry
 ```
 
 See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
