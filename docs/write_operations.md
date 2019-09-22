@@ -34,8 +34,8 @@ Those command modify Wikibase so you will be asked your Wikibase **username** an
   - [wb add-reference](#wb-add-reference)
   - [wb remove-reference](#wb-remove-reference)
 - [item](#item)
-  - [wb create-item](#wb-create-item)
-  - [wb edit-item](#wb-edit-item)
+  - [wb create-entity](#wb-create-entity)
+  - [wb edit-entity](#wb-edit-entity)
     - [Demo](#demo)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -360,43 +360,42 @@ wb remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd270
 wb remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
 ```
 
-### item
-See [Wikibase:Glossary#Item](https://www.wikidata.org/wiki/Wikibase:Glossary#Item)
+### entity
+See [Wikidata:Glossary#Entity](https://www.wikidata.org/wiki/Wikidata:Glossary#Entity)
 
-#### wb create-item
+#### wb create-entity
 
-Create a new item
+Create a new entity (currently supported types: item, property)
 
 ```sh
-# pass data as JSON
-# /!\ Do not run this example command as it would create a junk item
-wb create-item '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+# Pass data as JSON
+wb create-entity '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
-# pass data as a JSON file path
-wb create-item ./new_item_data.json
+# Pass data as a JSON file path
+wb create-entity ./new_entity_data.json
 
 # Alias:
-wb ci <entity-data>
+wb ce <entity-data>
 ```
 
 See [`wikidata-edit` documentation on `entity.create`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
 
-#### wb edit-item
+#### wb edit-entity
 
-Edit an existing item
+Edit an existing item (currently supported types: item, property)
 
 ```sh
 # Pass data as JSON
-wb edit-item '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+wb edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
 # Pass data as a JSON file path
-wb edit-item ./existing_item_data.json
+wb edit-entity ./existing_entity_data.json
 
 # Pass data as a JS file path
-wb edit-item ./existing_item_data.js
+wb edit-entity ./existing_entity_data.js
 
 # Alias:
-wb ei <entity-data>
+wb ee <entity-data>
 ```
 
 This possibility to pass a JS file path has several advantages:
@@ -404,6 +403,7 @@ This possibility to pass a JS file path has several advantages:
 ```js
 module.exports = {
   id: 'Q4115189',
+  // a comment
   labels: { en: 'a label' }
 }
 ```
@@ -421,17 +421,18 @@ module.exports = (id, someString, quantity) => {
 ```
 allowing to make many edits from one template
 ```sh
-wb ei ./template.js Q1 abc 123
-wb ei ./template.js Q2 def 456
-wb ei ./template.js Q3 ghi 789
+wb ee ./template.js Q1 abc 123
+wb ee ./template.js Q2 def 456
+wb ee ./template.js Q3 ghi 789
 ```
+
+See this demo on creating many items from a JS template file: [Create missing HTTP Status Codes items on Wikidata](https://github.com/maxlath/wikidata-scripting/tree/master/http_status_codes)
 
 To debug the data generated dynamically, you can use the `--dry` option
 ```sh
-wb ei ./template.js Q1 abc 123 --dry
+wb ee ./template.js Q1 abc 123 --dry
 ```
 
 See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
 
-##### Demo
-- [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
+### [Demos](https://github.com/maxlath/wikidata-scripting)

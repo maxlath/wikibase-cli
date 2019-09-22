@@ -284,7 +284,7 @@ cat fred_vargas_books_ids | wb data --format ttl > fred_vargas_books.ttl
 
 > **NB**: other options such as filtered properties will be ignored
 
-This can be used to generated partial Turtle dumps, if [Wikibase full dump](https://www.wikidata.org/wiki/Wikibase:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikibase API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
+This can be used to generated partial Turtle dumps, if [Wikibase full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikibase API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
 
 #### single claim
 The command also support finding a single claim from a claim GUID. (If you have a use case where you would need to fetch several claims at once this way, feel welcome to open an issue)
@@ -295,18 +295,18 @@ wb data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f87
 ```
 
 ### wb generate-template
-This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-create-item) or [`wb edit-item`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-edit-item)
+This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-entity`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-create-entity) or [`wb edit-entity`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-edit-entity)
 
 ```sh
-wb generate-template <item-id>
+wb generate-template <entity-id>
 # Alias:
-wb gt <item-id>
+wb gt <entity-id>
 
 # Get Q123 pre-formatted data
 wb generate-template Q4115189 > Q4115189.json
 # Then the typical workflow would be to edit the generated file as you please,
-# before passing it back to the `wb edit-item` command
-wb edit-item ./Q4115189.json
+# before passing it back to the `wb edit-entity` command
+wb edit-entity ./Q4115189.json
 
 # For reference,
 wb generate-template Q4115189
@@ -328,12 +328,12 @@ wb generate-template Q4115189 --props labels.nl,claims.P31,sitelinks.frwiki
 ```sh
 # Get the generate-template as a Javascript module,
 # ready to be customized to take arguments from the command-line,
-# which is typically useful to edit or create several items with one template
+# which is typically useful to edit or create several entities with one template
 wb generate-template Q123 --format js > template.js
 # Call the generated JS generate-template after customization
 # by passing the required arguments
-wb create-item ./template.js foo bar 456 'https://example.org'
-wb create-item ./template.js buz bla 987 'https://example2.org'
+wb create-entity ./template.js foo bar 456 'https://example.org'
+wb create-entity ./template.js buz bla 987 'https://example2.org'
 ```
 
 #### Generate template from a specific revision
@@ -344,7 +344,7 @@ Use cases:
 * Easily recover specific data elements from a previous revision
 ```sh
 wb generate-template Q4115189 --revision 943703455 --props claims.P516 > ./Q4115189_lost_P516_claims.json
-wb edit-item ./Q4115189_lost_P516_claims.json
+wb edit-entity ./Q4115189_lost_P516_claims.json
 ```
 
 ### wb revisions

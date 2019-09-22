@@ -34,8 +34,8 @@ const cmds = {
   'remove-qualifier': require('../metadata/remove-qualifier'),
   'add-reference': require('../metadata/add-reference'),
   'remove-reference': require('../metadata/remove-reference'),
-  'create-item': require('../metadata/create-item'),
-  'edit-item': require('../metadata/edit-item'),
+  'create-entity': require('../metadata/create-entity'),
+  'edit-entity': require('../metadata/edit-entity'),
   config: require('../metadata/config')
 }
 
@@ -73,8 +73,8 @@ program
 .command(`remove-qualifier ${cmds['remove-qualifier'].args}`, cmds['remove-qualifier'].description).alias('rq')
 .command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
 .command(`remove-reference ${cmds['remove-reference'].args}`, cmds['remove-reference'].description).alias('rr')
-.command(`create-item ${cmds['create-item'].args}`, cmds['create-item'].description).alias('ci')
-.command(`edit-item ${cmds['edit-item'].args}`, cmds['edit-item'].description).alias('ei')
+.command(`create-entity ${cmds['create-entity'].args}`, cmds['create-entity'].description).alias('ce')
+.command(`edit-entity ${cmds['edit-entity'].args}`, cmds['edit-entity'].description).alias('ee')
 .command(`config ${cmds.config.args}`, cmds.config.description).alias('c')
 .parse(process.argv)
 
