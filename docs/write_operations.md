@@ -1,6 +1,6 @@
 # Write operations
 
-Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikidata-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
+Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikibase-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
 ## Summary
 
@@ -341,7 +341,7 @@ wb add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 wb ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 ```
 
-See [*add claim with a reference*](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
+See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
 #### wb remove-reference
 
@@ -378,7 +378,7 @@ wb create-entity ./new_entity_data.json
 wb ce <entity-data>
 ```
 
-See [`wikidata-edit` documentation on `entity.create`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
+See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
 
 #### wb edit-entity
 
@@ -433,6 +433,6 @@ To debug the data generated dynamically, you can use the `--dry` option
 wb ee ./template.js Q1 abc 123 --dry
 ```
 
-See [`wikidata-edit` documentation on `entity.edit`](https://github.com/maxlath/wikidata-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
+See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
 
 ### [Demos](https://github.com/maxlath/wikidata-scripting)

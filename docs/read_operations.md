@@ -295,7 +295,7 @@ wb data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f87
 ```
 
 ### wb generate-template
-This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-entity`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-create-entity) or [`wb edit-entity`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-edit-entity)
+This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-create-entity) or [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-edit-entity)
 
 ```sh
 wb generate-template <entity-id>
@@ -506,7 +506,7 @@ wb props --details
 ```
 
 #### Reset properties
-`wb props` first tries to find the list in the `props` folder (created at wikidata-cli root), and request them to query.wikidata.org if missing.
+`wb props` first tries to find the list in the `props` folder (created at wikibase-cli root), and request them to query.wikidata.org if missing.
 
 This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` or `--no-cache` options:
 

@@ -67,8 +67,8 @@ wb config clear
 ## options
 
 ### username and password
-Required for [write operations](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md)
-(Alternatively, we might be able to use OAuth once [this issue](https://github.com/maxlath/wikidata-cli/issues/25) is resolved)
+Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md)
+(Alternatively, we might be able to use OAuth once [this issue](https://github.com/maxlath/wikibase-cli/issues/25) is resolved)
 
 :warning: the password is persisted on your file system as clear text (until we find a better way to do that)
 ```
