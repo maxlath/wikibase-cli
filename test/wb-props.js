@@ -1,8 +1,8 @@
 require('should')
 const execa = require('execa')
 
-describe('wd props', function () {
-  this.timeout(10000)
+describe('wb props', function () {
+  this.timeout(20000)
 
   it('should display help', done => {
     execa.shell('./bin/wd props --help')
@@ -35,7 +35,7 @@ describe('wd props', function () {
   })
 
   it('should be able to query a custom SPARQL endpoint', done => {
-    execa.shell('./bin/wd props --sparql-endpoint https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql')
+    execa.shell('./bin/wb props --sparql-endpoint https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql -l en')
     .then(res => {
       const data = JSON.parse(res.stdout)
       data['P2'].toLowerCase().should.equal('main page')

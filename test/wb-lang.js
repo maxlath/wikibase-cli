@@ -1,7 +1,7 @@
 require('should')
 const execa = require('execa')
 
-describe('wd lang', () => {
+describe('wb lang', () => {
   it('should display help', done => {
     execa.shell('./bin/wd lang')
     .then(res => {

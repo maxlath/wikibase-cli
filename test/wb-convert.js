@@ -1,8 +1,8 @@
 require('should')
 const execa = require('execa')
 
-describe('wd convert', function () {
-  this.timeout(10000)
+describe('wb convert', function () {
+  this.timeout(20000)
 
   it('should convert external ids', done => {
     execa.shell('./bin/wd convert P268 11865344k 11932251d')

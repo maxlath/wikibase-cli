@@ -1,8 +1,8 @@
 require('should')
 const execa = require('execa')
 
-describe('wd id', function () {
-  this.timeout(10000)
+describe('wb id', function () {
+  this.timeout(20000)
 
   it('display help', done => {
     execa.shell('./bin/wd id')

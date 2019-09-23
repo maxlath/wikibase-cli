@@ -2,7 +2,7 @@ require('should')
 const execa = require('execa')
 
 describe('wd', function () {
-  this.timeout(10000)
+  this.timeout(20000)
 
   it('should display general help', done => {
     execa.shell('./bin/wd')

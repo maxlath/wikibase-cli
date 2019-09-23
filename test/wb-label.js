@@ -2,8 +2,8 @@ require('should')
 const execa = require('execa')
 const { undesiredRes } = require('./lib/utils')
 
-describe('wd label', function () {
-  this.timeout(10000)
+describe('wb label', function () {
+  this.timeout(20000)
 
   it('should display help', done => {
     execa.shell('./bin/wd label')

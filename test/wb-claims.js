@@ -1,8 +1,8 @@
 require('should')
 const execa = require('execa')
 
-describe('wd claims', function () {
-  this.timeout(10000)
+describe('wb claims', function () {
+  this.timeout(20000)
 
   it('should display help when requested without argument', done => {
     execa.shell('./bin/wd claims')
@@ -34,14 +34,14 @@ describe('wd claims', function () {
   it('should return shell-friendly results when possible', done => {
     execa.shell('./bin/wd claims Q90 P625')
     .then(res => {
-      res.stdout.should.equal('48.856577777778 2.3518277777778')
+      res.stdout.should.equal('48.856944444444 2.3513888888889')
       done()
     })
     .catch(done)
   })
 
   it('should filters properties from text', done => {
-    const coords = '48.856577777778,2.3518277777778'
+    const coords = '48.856944444444,2.3513888888889'
     execa.shell('./bin/wd claims Q90 coord')
     .then(res => {
       res.stdout.split(coords).length.should.equal(2)

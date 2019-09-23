@@ -1,7 +1,7 @@
 require('should')
 const execa = require('execa')
 
-describe('wd generate-template', function () {
+describe('wb generate-template', function () {
   this.timeout(20000)
 
   it('should generate a template from an item id', done => {

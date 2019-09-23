@@ -1,8 +1,8 @@
 const should = require('should')
 const execa = require('execa')
 
-describe('wd aliases', function () {
-  this.timeout(10000)
+describe('wb aliases', function () {
+  this.timeout(20000)
 
   it('should display help', done => {
     execa.shell('./bin/wd aliases')
@@ -16,7 +16,7 @@ describe('wd aliases', function () {
   it('<entity>', done => {
     execa.shell('./bin/wd aliases Q123')
     .then(res => {
-      should(res.stdout.split('Sept').length > 1).be.true()
+      res.stdout.should.match(/sept/i)
       done()
     })
     .catch(done)
@@ -25,7 +25,7 @@ describe('wd aliases', function () {
   it('<entity> should be tolerant on input', done => {
     execa.shell('./bin/wd aliases azfzafzafazQ123fazafazfz')
     .then(res => {
-      should(res.stdout.split('Sept').length > 1).be.true()
+      res.stdout.should.match(/sept/i)
       done()
     })
     .catch(done)

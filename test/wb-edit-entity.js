@@ -3,11 +3,11 @@ const execa = require('execa')
 const editDataJson = require('./assets/edit_data.json')
 const editDataJs = require('./assets/edit_data.js')
 
-describe('wd aliases', function () {
-  this.timeout(10000)
+describe('wb edit-entity', function () {
+  this.timeout(20000)
 
   it('should accept a path to a JSON file', done => {
-    execa.shell('./bin/wd edit-item  --dry ./test/assets/edit_data.json')
+    execa.shell('./bin/wd edit-entity  --dry ./test/assets/edit_data.json')
     .then(res => {
       const data = JSON.parse(res.stdout)
       data.should.deepEqual(editDataJson)
@@ -17,7 +17,7 @@ describe('wd aliases', function () {
   })
 
   it('should accept a path to a JS object file', done => {
-    execa.shell('./bin/wd edit-item  --dry ./test/assets/edit_data.js')
+    execa.shell('./bin/wd edit-entity  --dry ./test/assets/edit_data.js')
     .then(res => {
       const data = JSON.parse(res.stdout)
       data.should.deepEqual(editDataJs)
@@ -27,7 +27,7 @@ describe('wd aliases', function () {
   })
 
   it('should accept a path to a JS function file', done => {
-    execa.shell('./bin/wd edit-item --dry ./test/assets/edit_data_function.js Q1 123')
+    execa.shell('./bin/wd edit-entity --dry ./test/assets/edit_data_function.js Q1 123')
     .then(res => {
       const data = JSON.parse(res.stdout)
       data.id.should.equal('Q1')
