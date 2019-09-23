@@ -16,15 +16,11 @@ const formatStatementElementValue = require('../lib/format_statement_element_val
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const output = require('../lib/output')(program)
 
-if (process.argv.length === 2) return program.help()
+if (!(program.subject || program.property || program.object)) return program.help()
 
 const includeLabels = program.labels
 var lang = program.lang
 
-if (!(program.subject || program.property || program.object)) {
-  console.log("At least one statement element should be set: subject (-s), property (-p), or object (-o)")
-  process.exit(1)
-}
 if (program.subject && program.property && program.object) {
   console.log('At maximum two statement element should be set')
   process.exit(1)

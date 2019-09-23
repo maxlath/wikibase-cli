@@ -5,9 +5,8 @@ const { green } = require('chalk')
 const fileOps = require('../lib/config/file_operations')
 const config = require('../lib/config/config')
 
-// Commander doesn't seem to like when arguments have the same name as options
-// so we role our own argument parser here
-const args = process.argv.slice(2)
+const { args } = program
+
 if (args.length === 0) {
   // Hiding password
   if (config.password) config.password = config.password.replace(/./g, '*')

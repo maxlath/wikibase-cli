@@ -1,2 +1,9 @@
 #!/usr/bin/env bash
-wb $@ --instance 'https://www.wikidata.org' --sparql-endpoint 'https://query.wikidata.org/sparql'
+last_arg="${@: -1}"
+
+if [[ "$last_arg" == '--help' || "$last_arg" == '-h' ]] ;
+then
+  wb $@ | sed 's/wb/wd/' | grep -vE '\-\-instance|\-\-sparql-endpoint'
+else
+  wb $@ --instance 'https://www.wikidata.org' --sparql-endpoint 'https://query.wikidata.org/sparql'
+fi
