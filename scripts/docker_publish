@@ -4,8 +4,8 @@ set -eu
 
 version=$(node -p "require('./package.json').version")
 
-docker build -t wikidata-cli .
-docker tag wikidata-cli "maxlath/wikidata-cli:${version}"
-docker push "maxlath/wikidata-cli:${version}"
-docker tag wikidata-cli maxlath/wikidata-cli:latest
-docker push maxlath/wikidata-cli:latest
+docker build -t wikibase-cli .
+docker tag wikibase-cli "maxlath/wikibase-cli:${version}"
+docker push "maxlath/wikibase-cli:${version}"
+docker tag wikibase-cli maxlath/wikibase-cli:latest
+docker push maxlath/wikibase-cli:latest
