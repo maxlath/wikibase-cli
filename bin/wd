@@ -1,7 +1,24 @@
 #!/usr/bin/env bash
-last_arg="${@: -1}"
 
-if [[ "$last_arg" == '--help' || "$last_arg" == '-h' ]] ;
+wb_show_help=0
+
+# The help menu is displayed if the the -h,--help option is passed
+# or if a command or a sub-command is called without argument,
+# unless it can be called without argument (ex: "props")
+if [[ "$2" == "" ]] ;
+then
+  if [[ "$1" != "props" ]] ;
+  then
+    wb_show_help=1
+  fi
+else
+  if [[ "$2" == '--help' || "$2" == '-h' ]] ;
+  then
+    wb_show_help=1
+  fi
+fi
+
+if [[ "$wb_show_help" == "1" ]] ;
 then
   wb $@ | sed 's/wb/wd/' | grep -vE '\-\-instance|\-\-sparql-endpoint'
 else
