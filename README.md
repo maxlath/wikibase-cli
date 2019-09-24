@@ -1,15 +1,17 @@
 [![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/wikidata_logo_alone.jpg)](https://wikidata.org)
 
 # Wikidata-CLI
-The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikidata](https://wikidata.org)
+The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikibase](https://wikiba.se) instances.
 
-This project is [funded by a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
+It was primarily developed to target [Wikidata](https://wikidata.org), but as then be decoupled to support any Wikibase instance.
+
+This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
 
 **Show your support** by adding `{{#babel:Wikidata CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
 [![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikidata_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
 
-[![NPM](https://nodei.co/npm/wikidata-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikidata-cli/)
-[![DockerHub Badge](https://dockeri.co/image/maxlath/wikidata-cli)](https://hub.docker.com/r/maxlath/wikidata-cli/)
+[![NPM](https://nodei.co/npm/wikibase-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikibase-cli/)
+[![DockerHub Badge](https://dockeri.co/image/maxlath/wikibase-cli)](https://hub.docker.com/r/maxlath/wikibase-cli/)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node](https://img.shields.io/badge/node-%3E=%20v6.4.0-brightgreen.svg)](http://nodejs.org)
@@ -42,26 +44,26 @@ This project is [funded by a Wikimedia Project Grant](https://meta.wikimedia.org
 ## Installation
 ### via npm
 ```sh
-npm install -g wikidata-cli
+npm install -g wikibase-cli
 ```
-Installing globally allows to make the command `wikidata-cli` and its alias `wd` accessible from your shell `$PATH`
+Installing globally allows to make the command `wb` (and `wd`, the Wikidata-bound verion of `wb`) accessible from your shell `$PATH`.
 
 ### via docker
 ```sh
 # Might require to be run with sudo depending on your Docker installation
-docker run --rm -t maxlath/wikidata-cli
+docker run --rm -t maxlath/wikibase-cli
 # You can make an alias out of it:
-alias wd="docker run --rm -t maxlath/wikidata-cli"
+alias wd="docker run --rm -t maxlath/wikibase-cli"
 # You're then ready to use it as in the documentation examples
-wd label Q1
+wb label Q1
 ```
-That would work, but all operations using cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all operations editing Wikidata would require you to enter your username and password everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
+That would work, but all operations cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all write operations would require you to re-enter your credentials everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
 ```sh
-mkdir -p $HOME/.local/share/wikidata-cli
-alias wd='docker run --rm --volume "$HOME/.local/share/wikidata-cli:/wikidata-cli/local" -t maxlath/wikidata-cli'
+mkdir -p $HOME/.local/share/wikibase-cli
+alias wd='docker run --rm --volume "$HOME/.local/share/wikibase-cli:/wikibase-cli/local" -t maxlath/wikibase-cli'
 ```
 
-> NB: Beware that using wikidata-cli through a Docker container has a performance cost of something like 1s per command, so if you need to run many commands (for instance in a script to mass edit Wikidata), you should probably rather use the NPM package directly for long series of commands
+> NB: Beware that using wikidata-cli through a Docker container has a performance cost of something like 1s per command, so if you need to run many commands (for instance in a script to make mass edit on the desired Wikibase instance), you should probably rather use the NPM package directly
 
 ## Commands
 
@@ -79,10 +81,10 @@ Allows to persist options
 see [Config](docs/config.md)
 
 ## See Also
-* [wikidata-sdk](https://www.npmjs.com/package/wikidata-sdk): A javascript tool suite to query and work with Wikibase data, heavily used by wikibase-cli
+* [wikibase-sdk](https://www.npmjs.com/package/wikibase-sdk): A javascript tool suite to query and work with Wikibase data, heavily used by wikibase-cli
 * [wikibase-edit](https://www.npmjs.com/package/wikibase-edit): Edit Wikibase from NodeJS, used in wikibase-cli for all [write operations](docs/write-operations)
 * [wikidata-filter](https://npmjs.com/package/wikidata-filter): A command-line tool to filter a Wikidata dump by claim
-* [wikidata-subset-search-engine](https://github.com/inventaire/wikidata-subset-search-engine): Tools to setup an ElasticSearch instance fed with subsets of Wikidata
+* [wikidata-subset-search-engine](https://github.com/inventaire/entities-search-engine/tree/wikidata-subset-search-engine): Tools to setup an ElasticSearch instance fed with subsets of Wikidata
 * [wikidata-taxonomy](https://github.com/nichtich/wikidata-taxonomy): A command-line tool to extract taxonomies from Wikidata
 * [import-wikidata-dump-to-couchdb](https://github.com/maxlath/import-wikidata-dump-to-couchdb): Import a subset or a full Wikidata dump into a CouchDB database
 * [Other Wikidata external tools](https://www.wikidata.org/wiki/Wikidata:Tools/External_tools)
@@ -91,7 +93,7 @@ see [Config](docs/config.md)
 
 [![inventaire banner](https://inventaire.io/public/images/inventaire-brittanystevens-13947832357-CC-BY-lighter-blue-4-banner-500px.png)](https://inventaire.io)
 
-Do you know [inventaire.io](https://inventaire.io/)? It's a web app to share books with your friends, built on top of Wikidata! And its [libre software](http://github.com/inventaire/inventaire) too.
+Do you know [Inventaire](https://inventaire.io/)? It's a web app to share books with your friends, built on top of Wikidata! And its [libre software](http://github.com/inventaire/inventaire) too.
 
 ## License
 [MIT](LICENSE.md)

@@ -116,8 +116,6 @@ You may want to use those commands against a different [Wikibase](http://wikiba.
 ```sh
 # Default: https://wikidata.org/w/api.php
 wb config instance https://mywikibase.instance/w/api.php
-# Come back to the default setting
-wb config instance default
 ```
 You're all set to make requests against your custom instance:
 ```sh
@@ -132,8 +130,6 @@ You can also set a custom SPARQL endpoint (same as `-e, --sparql-endpoint`)
 ```sh
 # Default: https://query.wikidata.org/sparql
 wb config sparql-endpoint https://example.com/sparql
-# Come back to the default setting
-wb config sparql-endpoint default
 ```
 You're all set to make requests against your custom instance:
 ```sh

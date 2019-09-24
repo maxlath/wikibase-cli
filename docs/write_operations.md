@@ -2,6 +2,8 @@
 
 Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikibase-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
+The following documentation assumes that the Wikibase instance we work with is Wikidata, unless specified otherwise.
+
 ## Summary
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -33,10 +35,10 @@ Those command modify Wikibase so you will be asked your Wikibase **username** an
 - [references](#references)
   - [wb add-reference](#wb-add-reference)
   - [wb remove-reference](#wb-remove-reference)
-- [item](#item)
+- [entity](#entity)
   - [wb create-entity](#wb-create-entity)
   - [wb edit-entity](#wb-edit-entity)
-    - [Demo](#demo)
+- [Demos](#demos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 

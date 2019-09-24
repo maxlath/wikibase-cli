@@ -1,5 +1,7 @@
 # Read operations
 
+The following documentation assumes that the Wikibase instance we work with is Wikidata, unless specified otherwise.
+
 ## Summary
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
@@ -29,10 +31,10 @@
 - [wb revisions](#wb-revisions)
 - [wb id](#wb-id)
 - [wb props](#wb-props)
-  - [Get the list of all Wikibase properties in another language](#get-the-list-of-all-wikidata-properties-in-another-language)
-  - [Get the list of all Wikibase properties with their types](#get-the-list-of-all-wikidata-properties-with-their-types)
-  - [Get the list of all Wikibase properties of a given type](#get-the-list-of-all-wikidata-properties-of-a-given-type)
-  - [Get the list of all Wikibase properties with their labels, types, descriptions, and aliases](#get-the-list-of-all-wikidata-properties-with-their-labels-types-descriptions-and-aliases)
+  - [Get the list of all Wikibase properties in another language](#get-the-list-of-all-wikibase-properties-in-another-language)
+  - [Get the list of all Wikibase properties with their types](#get-the-list-of-all-wikibase-properties-with-their-types)
+  - [Get the list of all Wikibase properties of a given type](#get-the-list-of-all-wikibase-properties-of-a-given-type)
+  - [Get the list of all Wikibase properties with their labels, types, descriptions, and aliases](#get-the-list-of-all-wikibase-properties-with-their-labels-types-descriptions-and-aliases)
   - [Reset properties](#reset-properties)
 - [wb sparql](#wb-sparql)
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
