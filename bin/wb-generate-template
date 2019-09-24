@@ -11,6 +11,7 @@ if (program.args.length === 0) return program.help()
 
 const parseId = require('../lib/tolerant_id_parser')
 const id = parseId(program.args[0])
+require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getEntityRevision, getEntities, simplify } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
 const _ = require('lodash')

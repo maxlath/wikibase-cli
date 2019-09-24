@@ -8,6 +8,7 @@ const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
 const commonErrors = require('../lib/common_errors')
 const getLangProps = require('../lib/get_lang_props')
+require('../lib/exit_on_missing').instance(program.instance)
 const { isPropertyId, getEntities, simplify } = require('../lib/wbk')(program)
 
 var [ id, ...filter ] = program.args

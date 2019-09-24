@@ -8,6 +8,7 @@ const chalk = require('chalk')
 const args = program.args
 if (args.length === 0) return program.help()
 
+require('../lib/exit_on_missing').instance(program.instance)
 const { getEntitiesFromSitelinks } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
 const errors_ = require('../lib/errors')
