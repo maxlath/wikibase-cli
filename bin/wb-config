@@ -15,12 +15,14 @@ if (args.length === 0) {
   program.helpAndExit(0)
 }
 
-var [ key, value ] = args
+const [ key, value, value2 ] = args
 
 if (key === 'path') {
   console.log(fileOps.configFilePath)
 } else if (key === 'clear') {
   fileOps.clear()
+} else if (key === 'credentials') {
+  require('../lib/config/credentials_config')(value, value2)
 } else if (value == null) {
   console.log(fileOps.get(key))
 } else {

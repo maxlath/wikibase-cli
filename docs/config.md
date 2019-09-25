@@ -19,7 +19,7 @@ wb config <key> [value]
   - [path](#path)
   - [clear](#clear)
 - [options](#options)
-  - [username and password](#username-and-password)
+  - [credentials](#credentials)
   - [bot](#bot)
   - [lang](#lang)
   - [json](#json)
@@ -35,10 +35,11 @@ wb config <key> [value]
 ## commands
 ### get
 ```sh
-# output the current config and the help menu
+# Output the current config and the help menu
 wb config
-# output the config value for the key 'clipboard'
+# Output the config value for the key 'clipboard'
 wb config clipboard
+# For wb config credentials
 ```
 
 ### set
@@ -59,22 +60,30 @@ wb config path
 ```
 
 ### clear
-clear the whole config (use [`reset`](#reset) if you just want to reset one option)
+Clear a single parameter to come back to its default value
+```sh
+wb config instance clear
+```
+or clear the whole config
 ```sh
 wb config clear
 ```
 
 ## options
 
-### username and password
+### credentials
 Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md)
-(Alternatively, we might be able to use OAuth once [this issue](https://github.com/maxlath/wikibase-cli/issues/25) is resolved)
 
-:warning: the password is persisted on your file system as clear text (until we find a better way to do that)
+```sh
+# Output the current credentials for a given instance
+wb config credentials https://www.wikidata.org
+# Reset those credentials
+wb config credentials https://www.wikidata.org clear
+# Get the prompt to enter either OAuth tokens or a username and password
+wb config credentials https://www.wikidata.org
 ```
-wb config username myusername
-wb config password myuserpassword
-```
+
+:warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommanded to pick OAuth tokens when possible, with minimal authorizations.
 
 ### bot
 Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
