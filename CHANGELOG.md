@@ -1,6 +1,27 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 8.0.0 - 2019-10-01
+**BREAKING CHANGES**:
+* **renamed**:
+  * `create-item` => [`create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#create-entity)
+  * `edit-item` => [`edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-entity)
+  * `wd config <option> default` => [`wd config <option> clear`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#clear)
+* **removed**:
+  * `wd-coord` (as it was just an alias of `wd claims P625`)
+* **changed aliases**:
+  * `wb s` is now an alias for `wb sparql`, while `wb u` is `wb summary` new alias
+
+**New features**:
+* Added a **`wb` command, which is now considered the default command in the documentation**, `wd` simply now being the Wikidata-bound version of it.
+* Added [multiple instances credentials](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#credentials) support (so that acting on different instances now only depends on the command flags without the painful process of entering credentials)
+* Added [OAuth tokens](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#credentials) support
+* Added [`wb delete-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-delete-entity)
+* Added [`wb merge-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-merge-entity)
+* Add option `--format table` to [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql) and [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-sparql)
+* Add option `--all` to [`wb claims`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-claims)
+* Add alias `wb r` to [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql)
+
 ## 7.5.0 - 2019-05-29
 * [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data): allow to [request sub property keys](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#filtered-properties)
 
@@ -23,7 +44,7 @@
 * Add option [`-y, --history` to `wd open`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-open)
 
 ## 7.0.0 - 2018-10-05
-* BREAKING CHANGE: `wd sparql` or `wd query` commands making use of the `--index <variable>` option now get their values aggregated in an array instead of being the direct value of the index key, preventing to delete multiple values for a same key.
+* **BREAKING CHANGE**: `wd sparql` or `wd query` commands making use of the `--index <variable>` option now get their values aggregated in an array instead of being the direct value of the index key, preventing to delete multiple values for a same key.
 
 ## 6.6.0 - 2018-10-05
 * Added [`wd convert`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-convert)
@@ -75,8 +96,8 @@
 * Added `keep` options to [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#claims-simplification-keep-options)
 
 ## 5.0.0 - 2017-11-03
-* BREAKING CHANGE: [`wd add-reference`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-reference) expects a property to be explicity set
-* BREAKING CHANGE: [`wd add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-claim) now can't be passed a reference: the reference needs to be added separately. See [add claim with a reference](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference).
+* **BREAKING CHANGE**: [`wd add-reference`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-reference) expects a property to be explicity set
+* **BREAKING CHANGE**: [`wd add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-claim) now can't be passed a reference: the reference needs to be added separately. See [add claim with a reference](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#with-a-reference).
 * Entity attribute commands ([`wd summary`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-summary), [`wd label`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-label), [`wd description`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-description), [`wd aliases`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-aliases)) can now request the attributes of several entities at once
 * [`wd add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-claim) accepts time values with month or day precision
 * [`wd add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wd-add-claim) now supports [rich values]((https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#rich-values))
