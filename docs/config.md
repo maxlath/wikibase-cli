@@ -15,7 +15,6 @@ wb config <key> [value]
 - [commands](#commands)
   - [get](#get)
   - [set](#set)
-  - [reset](#reset)
   - [path](#path)
   - [clear](#clear)
 - [options](#options)
@@ -45,12 +44,6 @@ wb config clipboard
 ### set
 ```sh
 wb config clipboard true
-```
-
-### reset
-To reset an option to its current value without having to [`clear`](#clear) the whole config, pass it the value `default`
-```sh
-wb config instance default
 ```
 
 ### path
