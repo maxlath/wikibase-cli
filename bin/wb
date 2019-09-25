@@ -1,91 +1,32 @@
 #!/usr/bin/env node
 const program = require('commander')
 const pkg = require('../package.json')
-const { red } = require('chalk')
+const fs = require('fs')
+const path = require('path')
+const getCommandAlias = require('../lib/get_command_alias')
 
-const cmds = {
-  summary: require('../metadata/summary'),
-  label: require('../metadata/label'),
-  description: require('../metadata/description'),
-  aliases: require('../metadata/aliases'),
-  claims: require('../metadata/claims'),
-  data: require('../metadata/data'),
-  'generate-template': require('../metadata/generate-template'),
-  revisions: require('../metadata/revisions'),
-  props: require('../metadata/props'),
-  id: require('../metadata/id'),
-  sparql: require('../metadata/sparql'),
-  query: require('../metadata/query'),
-  convert: require('../metadata/convert'),
-  search: require('../metadata/search'),
-  open: require('../metadata/open'),
-  hub: require('../metadata/hub'),
-  lang: require('../metadata/lang'),
-  'set-label': require('../metadata/set-label'),
-  'set-description': require('../metadata/set-description'),
-  'add-alias': require('../metadata/add-alias'),
-  'remove-alias': require('../metadata/remove-alias'),
-  'set-alias': require('../metadata/set-alias'),
-  'add-claim': require('../metadata/add-claim'),
-  'update-claim': require('../metadata/update-claim'),
-  'remove-claim': require('../metadata/remove-claim'),
-  'add-qualifier': require('../metadata/add-qualifier'),
-  'update-qualifier': require('../metadata/update-qualifier'),
-  'remove-qualifier': require('../metadata/remove-qualifier'),
-  'add-reference': require('../metadata/add-reference'),
-  'remove-reference': require('../metadata/remove-reference'),
-  'create-entity': require('../metadata/create-entity'),
-  'edit-entity': require('../metadata/edit-entity'),
-  'delete-entity': require('../metadata/delete-entity'),
-  'merge-entity': require('../metadata/merge-entity'),
-  config: require('../metadata/config')
-}
+program.version(pkg.version)
 
-const cmdsList = Object.keys(cmds)
+// To add a new command, create a file in ../metadata/${new-command-name}
+// and add an executable at ./wb-${new-command-name}
 
-program
-.version(pkg.version)
-.command(`summary ${cmds.summary.args}`, cmds.summary.description).alias('s')
-.command(`label ${cmds.label.args}`, cmds.label.description).alias('l')
-.command(`description ${cmds.description.args}`, cmds.description.description).alias('desc')
-.command(`aliases ${cmds.aliases.args}`, cmds.aliases.description).alias('a')
-.command(`claims ${cmds.claims.args}`, cmds.claims.description).alias('c')
-.command(`data ${cmds.data.args}`, cmds.data.description).alias('d')
-.command(`generate-template ${cmds['generate-template'].args}`, cmds['generate-template'].description).alias('gt')
-.command(`revisions ${cmds.revisions.args}`, cmds.revisions.description).alias('r')
-.command(`props ${cmds.props.args}`, cmds.props.description).alias('p')
-.command(`id ${cmds.id.args}`, cmds.id.description).alias('wikiqid')
-.command(`sparql ${cmds.sparql.args}`, cmds.sparql.description)
-.command(`query ${cmds.query.args}`, cmds.query.description).alias('q')
-.command(`convert ${cmds.convert.args}`, cmds.convert.description)
-.command(`search ${cmds.search.args}`, cmds.search.description).alias('f')
-.command(`open ${cmds.open.args}`, cmds.open.description).alias('o')
-.command(`lang ${cmds.lang.args}`, cmds.lang.description).alias('g')
-.command(`hub ${cmds.hub.args}`, cmds.hub.description).alias('h')
-.command(`set-label ${cmds['set-label'].args}`, cmds['set-label'].description).alias('sl')
-.command(`set-description ${cmds['set-description'].args}`, cmds['set-description'].description).alias('sd')
-.command(`add-alias ${cmds['add-alias'].args}`, cmds['add-alias'].description).alias('aa')
-.command(`remove-alias ${cmds['remove-alias'].args}`, cmds['remove-alias'].description).alias('ra')
-.command(`set-alias ${cmds['set-alias'].args}`, cmds['set-alias'].description).alias('sa')
-.command(`add-claim ${cmds['add-claim'].args}`, cmds['add-claim'].description).alias('ac')
-.command(`update-claim ${cmds['update-claim'].args}`, cmds['update-claim'].description).alias('uc')
-.command(`remove-claim ${cmds['remove-claim'].args}`, cmds['remove-claim'].description).alias('rc')
-.command(`add-qualifier ${cmds['add-qualifier'].args}`, cmds['add-qualifier'].description).alias('aq')
-.command(`update-qualifier ${cmds['update-qualifier'].args}`, cmds['update-qualifier'].description).alias('uq')
-.command(`remove-qualifier ${cmds['remove-qualifier'].args}`, cmds['remove-qualifier'].description).alias('rq')
-.command(`add-reference ${cmds['add-reference'].args}`, cmds['add-reference'].description).alias('ar')
-.command(`remove-reference ${cmds['remove-reference'].args}`, cmds['remove-reference'].description).alias('rr')
-.command(`create-entity ${cmds['create-entity'].args}`, cmds['create-entity'].description).alias('ce')
-.command(`edit-entity ${cmds['edit-entity'].args}`, cmds['edit-entity'].description).alias('ee')
-.command(`delete-entity ${cmds['delete-entity'].args}`, cmds['delete-entity'].description).alias('de')
-.command(`merge-entity ${cmds['merge-entity'].args}`, cmds['merge-entity'].description).alias('me')
-.command(`config ${cmds.config.args}`, cmds.config.description).alias('c')
-.parse(process.argv)
+const commandsNames = fs.readdirSync(path.resolve(__dirname, '../metadata'))
+  .map(filename => filename.replace('.js', ''))
 
-const commandName = program.args[0]
+commandsNames.forEach(commandName => {
+  const { args, description } = require(`../metadata/${commandName}`)
+  const alias = getCommandAlias(commandName)
+  program
+  .command(`${commandName} ${args}`, description)
+  .alias(alias)
+})
 
-if (!cmdsList.includes(commandName)) {
-  console.error(red('unknown command'))
+program.parse(process.argv)
+
+const subcommand = program.args[0]
+
+if (!commandsNames.includes(subcommand)) {
+  console.error(require('chalk').red('unknown command'))
   program.help()
   process.exit(1)
 }
