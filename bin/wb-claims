@@ -3,7 +3,7 @@ const program = require('../lib/program')
 
 program.process('claims')
 
-const { dim, yellow } = require('chalk')
+const { yellow } = require('tiny-chalk')
 const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
 const commonErrors = require('../lib/common_errors')
@@ -12,7 +12,7 @@ require('../lib/exit_on_missing').instance(program.instance)
 const { isPropertyId, getEntities, simplify } = require('../lib/wbk')(program)
 
 var [ id, ...filter ] = program.args
-var id = id && parseId(id)
+id = id && parseId(id)
 
 var prop, value, pattern
 if (isPropertyId(filter[0])) {
@@ -22,10 +22,10 @@ if (isPropertyId(filter[0])) {
   pattern = filter.join(' ')
 }
 
-const { lang, verbose } = program
+const { lang } = program
 const output = require('../lib/output')(program)
 
-if (!(id && lang)) return program.help()
+if (!(id && lang)) program.helpAndExit(0)
 
 // Working around a weird behavior of commander that inverts arguments
 // when an option is passed before

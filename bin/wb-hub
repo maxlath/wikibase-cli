@@ -6,7 +6,7 @@ program
 .process('hub')
 
 const { args, lang, json, open, verbose } = program
-if (args.length === 0) return program.help()
+if (args.length === 0) program.helpAndExit(0)
 
 var argsString = args.join(' ')
 
@@ -21,7 +21,7 @@ const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 
 const notFound = context => {
-  const { grey } = require('chalk')
+  const { grey } = require('tiny-chalk')
   console.error(grey('no result found'))
   if (verbose) console.error(JSON.stringify(context, null, 2))
   process.exit(1)

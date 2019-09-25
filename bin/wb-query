@@ -11,12 +11,12 @@ program
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('query')
 
-const { dim } = require('chalk')
+const { grey } = require('tiny-chalk')
 const formatStatementElementValue = require('../lib/format_statement_element_value')
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const output = require('../lib/output')(program)
 
-if (!(program.subject || program.property || program.object)) return program.help()
+if (!(program.subject || program.property || program.object)) program.helpAndExit(0)
 
 const includeLabels = program.labels
 var lang = program.lang
@@ -63,7 +63,7 @@ const { limit } = program
 var sparql = `SELECT ${select} WHERE { ${triple} }`
 if (limit) sparql += ` LIMIT ${limit}`
 
-output(`${dim('Generated SPARQL:')} ${sparql}`, true, true)
+output(`${grey('Generated SPARQL:')} ${sparql}`, true, true)
 
 makeSparqlQuery(sparql)
 .then(output)

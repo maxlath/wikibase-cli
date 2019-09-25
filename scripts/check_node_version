@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // ES5 script to be able to properly detect old node versions
 
-var red = require('chalk').red
+var red = require('tiny-chalk').red
 
 var parts = process.version
   .slice(1)

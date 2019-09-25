@@ -6,20 +6,20 @@ program
 
 const [ property, ...ids ] = program.args
 
-if (!property) return program.help()
+if (!property) program.helpAndExit(0)
 
 const { isPropertyId } = require('wikibase-sdk')
 const convertIds = require('../lib/convert_ids')
 const errors_ = require('../lib/errors')
 
 if (!isPropertyId(property)) {
-  errors_.bundle("invalid property", { property })
+  errors_.bundle('invalid property', { property })
 }
 
 if (ids.length > 0) {
   convertIds(property, ids)
 } else if (process.stdin.isTTY) {
-  errors_.bundle("no ids provided", { property })
+  errors_.bundle('no ids provided', { property })
 } else {
   require('../lib/get_stdin_input')()
   .then(input => {

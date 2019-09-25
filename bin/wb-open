@@ -18,7 +18,7 @@ if (!instance) throw new Error('no instance set')
 const instanceDomain = instance.replace('/w/api.php', '')
 
 const { args, lang } = program
-if (args.length === 0) return program.help()
+if (args.length === 0) program.helpAndExit(0)
 
 var ids
 try {
@@ -45,24 +45,27 @@ if (!ids || ids.length === 0) {
   } else {
     handle(`${instanceDomain}/w/index.php?title=Special:Search&search=${search}`)
   }
-  return
-}
-
-const openId = id => {
-  if (program.wikipedia) {
-    getSitelinkUrl(id, lang, 'wiki')
-    .then(handle)
-    .catch(err => {
-      console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
-      handle(`${instanceDomain}/wiki/${id}#sitelinks-wikipedia`)
-    })
-  } else if (program.history){
-    handle(`${instanceDomain}/w/index.php?title=${id}&action=history`)
-  } else if (program.revision){
-    handle(`${instanceDomain}/w/index.php?title=${id}&oldid=${program.revision}`)
-  } else {
-    handle(`${instanceDomain}/entity/${id}`)
+} else {
+  const openId = id => {
+    if (program.wikipedia) {
+      getSitelinkUrl(id, lang, 'wiki')
+      .then(handle)
+      .catch(err => {
+        if (err.statusCode === 404) {
+          console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
+          handle(`${instanceDomain}/wiki/${id}#sitelinks-wikipedia`)
+        } else {
+          throw err
+        }
+      })
+    } else if (program.history) {
+      handle(`${instanceDomain}/w/index.php?title=${id}&action=history`)
+    } else if (program.revision) {
+      handle(`${instanceDomain}/w/index.php?title=${id}&oldid=${program.revision}`)
+    } else {
+      handle(`${instanceDomain}/entity/${id}`)
+    }
   }
-}
 
-ids.forEach(openId)
+  ids.forEach(openId)
+}

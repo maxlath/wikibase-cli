@@ -3,18 +3,18 @@ const entityDataParser = require('../lib/entity_data_parser')
 const entityAttributeParser = require('../lib/entity_attribute_parser')
 const { simplify } = require('wikibase-sdk')
 const logClaims = require('../lib/log_claims')
-const { bgGreen, bgBlue, dim } = require('chalk')
+const { bgGreen, bgBlue, grey } = require('tiny-chalk')
 const _ = require('lodash')
 const { mainProps } = require('../lib/properties')
 const errors_ = require('../lib/errors')
 
 const programOptions = [
-  [ '-p, --properties <properties>', 'request additional properties (separated by a comma)']
+  [ '-p, --properties <properties>', 'request additional properties (separated by a comma)' ]
 ]
 
 const parseEntity = (entity, options) => {
   if (entity.missing != null) {
-    console.log(dim('missing'))
+    console.log(grey('missing'))
     return Promise.resolve()
   }
 
@@ -51,7 +51,7 @@ const parser = options => entities => {
       firstLogged = true
     }
 
-    console.log(dim('id'), nextEntity.id)
+    console.log(grey('id'), nextEntity.id)
 
     return parseEntity(nextEntity, options).then(parseNext)
   }

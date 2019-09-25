@@ -3,10 +3,8 @@ const program = require('../lib/program')
 
 program.process('id')
 
-const chalk = require('chalk')
-
 const args = program.args
-if (args.length === 0) return program.help()
+if (args.length === 0) program.helpAndExit(0)
 
 require('../lib/exit_on_missing').instance(program.instance)
 const { getEntitiesFromSitelinks } = require('../lib/wbk')(program)
@@ -15,7 +13,6 @@ const errors_ = require('../lib/errors')
 const _ = require('lodash')
 const getRedirectedSitelinkTitle = require('../lib/get_redirected_sitelink_title')
 
-const last = args.slice(-1)[0]
 var { lang } = program
 const output = require('../lib/output')(program)
 
@@ -24,8 +21,8 @@ var title = args.join(' ')
 
 // parse the url if a wikipedia url was provided as title
 const re = /https:\/\/\w{2,8}\.wik\w+\.org\/wiki\//
-var site, title
-if (title.match(re)){
+var site
+if (title.match(re)) {
   [ lang, site, title ] = title
     .replace(/https:\/\/(\w{2,8}).(wik\w+).org\/wiki\/(.*)/, '$1|$2|$3')
     .split('|')
@@ -45,12 +42,12 @@ function parseIds (context, body) {
   }
   const ids = Object.keys(entities)
   if (ids.length === 1 && ids[0] !== '-1') {
-    id = ids[0]
+    const id = ids[0]
     const descriptions = formatDescriptions(entities[id].descriptions)
     output(descriptions, true)
     output(id)
   } else {
-    titles = context.join(' / ')
+    const titles = context.join(' / ')
     throw errors_.new(`id not found (${titles})`, body)
   }
 }

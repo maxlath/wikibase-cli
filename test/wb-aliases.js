@@ -1,4 +1,4 @@
-const should = require('should')
+require('should')
 const execa = require('execa')
 
 describe('wb aliases', function () {

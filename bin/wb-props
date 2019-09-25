@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const { red } = require('chalk')
+const { red } = require('tiny-chalk')
 
 program
 .option('-d, --details', 'include properties labels, types, descriptions, and aliases')
@@ -22,18 +22,20 @@ const formatPropertiesData = require('../lib/format_properties_data')
 const getPatternFilter = require('../lib/get_pattern_filter')
 const errors_ = require('../lib/errors')
 
-if (program.reset) return resetProperties()
+if (program.reset) {
+  resetProperties()
+} else {
+  // Any additional arguments are interpreted as a pattern that properties
+  // should match `wb props some pattern` <=> `wb props | grep -i "some pattern"`
+  const pattern = program.args.join(' ')
+  const filter = getPatternFilter(pattern, includeTypes)
 
-// Any additional arguments are interpreted as a pattern that properties
-// should match `wb props some pattern` <=> `wb props | grep -i "some pattern"`
-const pattern = program.args.join(' ')
-const filter = getPatternFilter(pattern, includeTypes)
-
-getLangProps(program)
-.then(formatPropertiesData(pattern, filter, includeAllDetails, includeTypes))
-.then(output => {
-  if (filter && filter.regex) return output.replace(filter.regex, red(pattern))
-  return output
-})
-.then(console.log)
-.catch(errors_.exit)
+  getLangProps(program)
+  .then(formatPropertiesData(pattern, filter, includeAllDetails, includeTypes))
+  .then(output => {
+    if (filter && filter.regex) return output.replace(filter.regex, red(pattern))
+    return output
+  })
+  .then(console.log)
+  .catch(errors_.exit)
+}

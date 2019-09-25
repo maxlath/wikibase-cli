@@ -9,7 +9,7 @@ const output = require('../lib/output')(program)
 
 const { args, json } = program
 
-if (args.length === 0) return program.help()
+if (args.length === 0) program.helpAndExit(0)
 
 const input = args[0]
 
@@ -27,7 +27,7 @@ if (langData != null) {
   output(langData)
 } else {
   const { find, format } = require('../lib/matching_langs')
-  matchingLangs = find(input)
+  var matchingLangs = find(input)
   if (matchingLangs.length > 0) {
     if (!json) matchingLangs = format(matchingLangs)
     output(matchingLangs)
