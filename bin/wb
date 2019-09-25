@@ -36,6 +36,7 @@ const cmds = {
   'remove-reference': require('../metadata/remove-reference'),
   'create-entity': require('../metadata/create-entity'),
   'edit-entity': require('../metadata/edit-entity'),
+  'delete-entity': require('../metadata/delete-entity'),
   config: require('../metadata/config')
 }
 
@@ -75,6 +76,7 @@ program
 .command(`remove-reference ${cmds['remove-reference'].args}`, cmds['remove-reference'].description).alias('rr')
 .command(`create-entity ${cmds['create-entity'].args}`, cmds['create-entity'].description).alias('ce')
 .command(`edit-entity ${cmds['edit-entity'].args}`, cmds['edit-entity'].description).alias('ee')
+.command(`delete-entity ${cmds['delete-entity'].args}`, cmds['delete-entity'].description).alias('de')
 .command(`config ${cmds.config.args}`, cmds.config.description).alias('c')
 .parse(process.argv)
 

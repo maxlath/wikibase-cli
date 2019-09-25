@@ -2,7 +2,7 @@ const { editCommands } = require('./common_options')
 
 module.exports = {
   args: '<data>',
-  description: 'Edit an existing item from the passed data',
+  description: 'Edit an existing entity',
   options: Object.assign({}, editCommands, { dry: true }),
   examples: [
     {
