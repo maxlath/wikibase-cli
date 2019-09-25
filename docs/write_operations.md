@@ -412,7 +412,8 @@ module.exports = {
 * dynamic data generation, as if the exported object is a function, it will be called with the command line additional arguments:
 ```js
 // template.js
-// (see `wb generate-template` for documentation on how to easily create such a function from an existing item)
+// See `wb generate-template` for documentation on how to easily create such a function from an existing item)
+// This function can also be async function/return a promise
 module.exports = (id, someString, quantity) => {
   id: id,
   claims: {
