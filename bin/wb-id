@@ -1,0 +1,73 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program.process('id')
+
+const chalk = require('chalk')
+
+const args = program.args
+if (args.length === 0) return program.help()
+
+require('../lib/exit_on_missing').instance(program.instance)
+const { getEntitiesFromSitelinks } = require('../lib/wbk')(program)
+const lightGet = require('../lib/light_get')
+const errors_ = require('../lib/errors')
+const _ = require('lodash')
+const getRedirectedSitelinkTitle = require('../lib/get_redirected_sitelink_title')
+
+const last = args.slice(-1)[0]
+var { lang } = program
+const output = require('../lib/output')(program)
+
+// allow to pass a title without having to put it in ""
+var title = args.join(' ')
+
+// parse the url if a wikipedia url was provided as title
+const re = /https:\/\/\w{2,8}\.wik\w+\.org\/wiki\//
+var site, title
+if (title.match(re)){
+  [ lang, site, title ] = title
+    .replace(/https:\/\/(\w{2,8}).(wik\w+).org\/wiki\/(.*)/, '$1|$2|$3')
+    .split('|')
+  title = global.decodeURIComponent(title)
+}
+
+// Capitalizing the first letter makes it more conveninent for one-word queries
+// but quite randome for multi-word queries or just one-word queries
+// with title that don't take an capital
+// Might need to be removed :/
+title = title[0].toUpperCase() + title.slice(1)
+
+function parseIds (context, body) {
+  const entities = body.entities
+  if (entities == null) {
+    throw errors_.new('received an empty response', body)
+  }
+  const ids = Object.keys(entities)
+  if (ids.length === 1 && ids[0] !== '-1') {
+    id = ids[0]
+    const descriptions = formatDescriptions(entities[id].descriptions)
+    output(descriptions, true)
+    output(id)
+  } else {
+    titles = context.join(' / ')
+    throw errors_.new(`id not found (${titles})`, body)
+  }
+}
+
+function formatDescriptions (descriptions) {
+  return _.values(descriptions)
+    .map(_.property('value'))
+    .join('\n')
+}
+
+site = site || 'wikipedia'
+
+getRedirectedSitelinkTitle(lang, site, title)
+.then(trueTitle => {
+  const siteCode = `${lang}${site}`.replace('wikipedia', 'wiki')
+  const url = getEntitiesFromSitelinks({ titles: trueTitle, sites: siteCode })
+  return lightGet(url)
+  .then(parseIds.bind(null, [title, trueTitle]))
+})
+.catch(errors_.exit)

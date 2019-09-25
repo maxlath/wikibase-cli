@@ -1,0 +1,42 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+
+program
+.option('-s, --simplify', 'get simplified entities data')
+.option('-k, --keep <props>', 'data to keep when simplifying claims')
+.option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
+.option('-r, --revision <id>', 'request a specific revision')
+.option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl')
+.process('data')
+
+const { isGuid } = require('wikibase-sdk')
+
+const guid = program.args[0] && program.args[0].replace('\\$', '$')
+
+if (program.args.length === 1 && isGuid(guid)) {
+  require('../lib/fetch_and_log_guid_data')(guid)
+} else {
+  const parseId = require('../lib/tolerant_id_parser')
+  const ids = program.args.map(parseId)
+  const { revision } = program
+
+  if (revision) {
+    if (ids.length === 1) {
+      return require('../lib/fetch_and_log_entity_revision')(ids[0], revision)
+    } else {
+      throw new Error('a revision can be specified when only one entity is fetched')
+    }
+  }
+
+  // process.stdin.isTTY will be undefined if the process is receiving
+  // its stdin from another process
+  if (ids.length === 0 && process.stdin.isTTY) return program.help()
+
+  const fetchAndLogIdsData = require('../lib/fetch_and_log_ids_data')
+
+  if (ids.length > 0) {
+    fetchAndLogIdsData(ids)
+  } else {
+    require('../lib/read_ids_from_stdin')(fetchAndLogIdsData)
+  }
+}

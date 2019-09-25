@@ -7,7 +7,7 @@ describe('general', function () {
   // This test may fail if your local network messes with the request
   // Known case: public hotspot
   it('should allow to customize the instance', done => {
-    execa.shell('./bin/wd label Item:Q11 --instance https://wikibase-registry.wmflabs.org/w/api.php')
+    execa.shell('./bin/wb label Item:Q11 --instance https://wikibase-registry.wmflabs.org/w/api.php')
     .then(res => {
       res.stdout.should.equal('TransforMap Base')
       done()
@@ -17,9 +17,9 @@ describe('general', function () {
 
   // Addressed by https://github.com/maxlath/commander.js/commit/1297ae6
   it('should accepts options before arguments', done => {
-    execa.shell('./bin/wd claims -c Q90 P625')
+    execa.shell('./bin/wd claims -c Q12569 P2586')
     .then(res => {
-      res.stdout.should.equal('48.856577777778 2.3518277777778')
+      res.stdout.should.equal('42')
       done()
     })
     .catch(done)

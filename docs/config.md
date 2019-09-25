@@ -3,7 +3,7 @@
 Allows to persist options
 
 ```sh
-wd config <key> [value]
+wb config <key> [value]
 ```
 
 ## Summary
@@ -36,124 +36,120 @@ wd config <key> [value]
 ### get
 ```sh
 # output the current config and the help menu
-wd config
+wb config
 # output the config value for the key 'clipboard'
-wd config clipboard
+wb config clipboard
 ```
 
 ### set
 ```sh
-wd config clipboard true
+wb config clipboard true
 ```
 
 ### reset
 To reset an option to its current value without having to [`clear`](#clear) the whole config, pass it the value `default`
 ```sh
-wd config instance default
+wb config instance default
 ```
 
 ### path
 get config file path
 ```sh
-wd config path
+wb config path
 ```
 
 ### clear
 clear the whole config (use [`reset`](#reset) if you just want to reset one option)
 ```sh
-wd config clear
+wb config clear
 ```
 
 ## options
 
 ### username and password
-Required for [write operations](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md)
-(Alternatively, we might be able to use OAuth once [this issue](https://github.com/maxlath/wikidata-cli/issues/25) is resolved)
+Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md)
+(Alternatively, we might be able to use OAuth once [this issue](https://github.com/maxlath/wikibase-cli/issues/25) is resolved)
 
 :warning: the password is persisted on your file system as clear text (until we find a better way to do that)
 ```
-wd config username myusername
-wd config password myuserpassword
+wb config username myusername
+wb config password myuserpassword
 ```
 
 ### bot
 Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
 ```sh
 # Default: false
-wd config bot true
+wb config bot true
 ```
 
 ### lang
 set the prefered language (same as `-l, --lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
-wd config lang nl
+wb config lang nl
 ```
 
 ### json
 format the output of commands as JSON, when possible (same as `-j, --json`)
 ```sh
 # Default: false
-wd config json true
+wb config json true
 ```
 
 ### clipboard
 copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
 ```sh
 # Default: false
-wd config clipboard true
+wb config clipboard true
 ```
 
 ### verbose
 set commands to print verbose output (same as `-v, --verbose`)
 ```sh
 # Default: false
-wd config verbose true
+wb config verbose true
 ```
 
 ### custom Wikibase instance
 You may want to use those commands against a different [Wikibase](http://wikiba.se) than `wikidata.org` (same as `-i, --instance`)
 ```sh
 # Default: https://wikidata.org/w/api.php
-wd config instance https://mywikibase.instance/w/api.php
-# Come back to the default setting
-wd config instance default
+wb config instance https://mywikibase.instance/w/api.php
 ```
 You're all set to make requests against your custom instance:
 ```sh
-wd label Q1
-wd claims Q1
-wd data Q1
-wd open Q1
+wb label Q1
+wb claims Q1
+wb data Q1
+wb open Q1
 ```
 
 ### custom SPARQL endpoint
 You can also set a custom SPARQL endpoint (same as `-e, --sparql-endpoint`)
 ```sh
 # Default: https://query.wikidata.org/sparql
-wd config sparql-endpoint https://example.com/sparql
-# Come back to the default setting
-wd config sparql-endpoint default
+wb config sparql-endpoint https://example.com/sparql
 ```
 You're all set to make requests against your custom instance:
 ```sh
-wd query --property P2002 --object timberners_lee
+wb query --property P2002 --object timberners_lee
 ```
 
 ## environment variables
 
-Alternatively to using `wd config`, you can set environment variables. Priority is given to the command line options, then environment variables, then config values.
+Alternatively to using `wb config`, you can set environment variables. Priority is given to the command line options, then environment variables, then config values.
 
 ```sh
-export WD_INSTANCE=https://wikibase-registry.wmflabs.org/w/api.php ; wd label Q2
-# => Wikidata
-export WD_INSTANCE=https://www.wikidata.org/w/api.php ; wd label Q2
+export WB_INSTANCE=https://wikibase-registry.wmflabs.org/w/api.php ; wb label Q2
+# => Wikibase
+export WB_INSTANCE=https://www.wikidata.org/w/api.php ; wb label Q2
 # => Earth
 ```
 
 Available variables:
-* `WD_CLIPBOARD`
-* `WD_JSON`
-* `WD_VERBOSE`
-* `WD_INSTANCE`
-* `WD_SPARQL_ENDPOINT`
+* `WB_CLIPBOARD`
+* `WB_JSON`
+* `WB_VERBOSE`
+* `WB_INSTANCE`
+* `WB_SPARQL_ENDPOINT`
