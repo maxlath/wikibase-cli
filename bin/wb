@@ -37,6 +37,7 @@ const cmds = {
   'create-entity': require('../metadata/create-entity'),
   'edit-entity': require('../metadata/edit-entity'),
   'delete-entity': require('../metadata/delete-entity'),
+  'merge-entity': require('../metadata/merge-entity'),
   config: require('../metadata/config')
 }
 
@@ -77,6 +78,7 @@ program
 .command(`create-entity ${cmds['create-entity'].args}`, cmds['create-entity'].description).alias('ce')
 .command(`edit-entity ${cmds['edit-entity'].args}`, cmds['edit-entity'].description).alias('ee')
 .command(`delete-entity ${cmds['delete-entity'].args}`, cmds['delete-entity'].description).alias('de')
+.command(`merge-entity ${cmds['merge-entity'].args}`, cmds['merge-entity'].description).alias('me')
 .command(`config ${cmds.config.args}`, cmds.config.description).alias('c')
 .parse(process.argv)
 
