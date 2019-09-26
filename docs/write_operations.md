@@ -38,6 +38,8 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [entity](#entity)
   - [wb create-entity](#wb-create-entity)
   - [wb edit-entity](#wb-edit-entity)
+  - [wb merge-entity](#wb-merge-entity)
+  - [wb delete-entity](#wb-delete-entity)
 - [Demos](#demos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -437,5 +439,25 @@ wb ee ./template.js Q1 abc 123 --dry
 ```
 
 See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
+
+#### wb merge-entity
+Merge an entity into another (See [wd:Help:Merge](https://www.wikidata.org/wiki/Help:Merge))
+```sh
+# Merge an item (Q1) into another (Q2)
+wb merge-entity Q1 Q2
+# Alias:
+wb me <from-id> <to-id>
+```
+
+#### wb delete-entity
+Delete an entity (See [mw:Page deletion](https://www.mediawiki.org/wiki/Manual:Page_deletion))
+```sh
+# Delete an item
+wb delete-entity Q1
+# Delete a property
+wb delete-entity P1
+# Alias:
+wb de <entity-id>
+```
 
 ### [Demos](https://github.com/maxlath/wikidata-scripting)
