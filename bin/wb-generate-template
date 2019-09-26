@@ -7,8 +7,6 @@ program
 .option('-f, --format <format>', 'Default: json. Alternatives: js')
 .process('generate-template')
 
-if (program.args.length === 0) program.helpAndExit(0)
-
 const parseId = require('../lib/tolerant_id_parser')
 const id = parseId(program.args[0])
 require('../lib/exit_on_missing').instance(program.instance)

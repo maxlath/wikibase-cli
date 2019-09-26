@@ -17,7 +17,6 @@ const { instance } = program
 if (!instance) throw new Error('no instance set')
 
 const { args, lang } = program
-if (args.length === 0) program.helpAndExit(0)
 
 var ids
 try {

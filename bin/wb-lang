@@ -9,8 +9,6 @@ const output = require('../lib/output')(program)
 
 const { args, json } = program
 
-if (args.length === 0) program.helpAndExit(0)
-
 const input = args[0]
 
 var langData

@@ -3,9 +3,6 @@ const program = require('../lib/program')
 
 program.process('id')
 
-const args = program.args
-if (args.length === 0) program.helpAndExit(0)
-
 require('../lib/exit_on_missing').instance(program.instance)
 const { getEntitiesFromSitelinks } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
@@ -17,7 +14,7 @@ var { lang } = program
 const output = require('../lib/output')(program)
 
 // allow to pass a title without having to put it in ""
-var title = args.join(' ')
+var title = program.args.join(' ')
 
 // parse the url if a wikipedia url was provided as title
 const re = /https:\/\/\w{2,8}\.wik\w+\.org\/wiki\//

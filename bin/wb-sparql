@@ -14,8 +14,6 @@ const wellknownQueries = require('../lib/wellknown_queries')
 const output = require('../lib/output')(program)
 const path = program.args[0]
 
-if (!path) program.helpAndExit(0)
-
 const extension = path.split('.').slice(-1)[0]
 
 var sparql, absoluePath
