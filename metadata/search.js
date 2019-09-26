@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'f',
   args: '<search>',
   description: 'search entities',
   options: {

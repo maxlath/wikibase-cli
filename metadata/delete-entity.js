@@ -1,6 +1,7 @@
-const { editCommands } = require('./common_options')
+const { editCommands } = require('../lib/common_options')
 
 module.exports = {
+  alias: 'de',
   args: '<id>',
   description: 'Delete an entity',
   options: editCommands,

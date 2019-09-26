@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 's',
   args: '<file.rq>',
   description: 'run a SPARQL query and get its JSON output',
   options: {

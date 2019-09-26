@@ -1,7 +1,8 @@
 module.exports = {
+  alias: 'uq',
   args: '<claim-guid> <property> <old-value> <new-value>',
   description: 'update a qualifier from an existing value to a new value',
-  options: require('./common_options').editCommands,
+  options: require('../lib/common_options').editCommands,
   examples: [
     { args: "'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P155 'Q13406268' 'Q3576110'", comment: 'entity qualifier' },
     { args: "'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P1545 'A-123' 'B-123'", comment: 'string qualifier' },

@@ -1,6 +1,7 @@
-const { editCommands } = require('./common_options')
+const { editCommands } = require('../lib/common_options')
 
 module.exports = {
+  alias: 'ce',
   args: '<data>',
   description: 'Create a new entity',
   options: Object.assign({}, editCommands, { dry: true }),

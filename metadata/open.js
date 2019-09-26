@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'o',
   args: '<entity>',
   description: "open the entity's page on Wikidata website",
   options: {

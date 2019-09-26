@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'p',
   args: '',
   description: 'output the list of all Wikidata properties',
   options: {

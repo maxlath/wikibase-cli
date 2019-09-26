@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'r',
   args: '<entity>',
   description: "output the entity's revisions data",
   options: {

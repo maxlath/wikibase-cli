@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'q',
   args: '',
   description: "generate and run a simple SPARQL query by passing a statement's subject, property, or object, or a couple of those",
   options: {

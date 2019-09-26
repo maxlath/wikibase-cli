@@ -3,7 +3,6 @@ const program = require('commander')
 const pkg = require('../package.json')
 const fs = require('fs')
 const path = require('path')
-const getCommandAlias = require('../lib/get_command_alias')
 
 program.version(pkg.version)
 
@@ -14,11 +13,9 @@ const commandsNames = fs.readdirSync(path.resolve(__dirname, '../metadata'))
   .map(filename => filename.replace('.js', ''))
 
 commandsNames.forEach(commandName => {
-  const { args, description } = require(`../metadata/${commandName}`)
-  const alias = getCommandAlias(commandName)
-  program
-  .command(`${commandName} ${args}`, description)
-  .alias(alias)
+  const { alias, args, description } = require(`../metadata/${commandName}`)
+  program.command(`${commandName} ${args}`, description)
+  if (alias) program.alias(alias)
 })
 
 program.parse(process.argv)

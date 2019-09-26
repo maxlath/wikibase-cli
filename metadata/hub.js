@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'h',
   args: '<query>',
   description: 'Open a web page using the Hub, see documentation: https://tools.wmflabs.org/hub/',
   options: {

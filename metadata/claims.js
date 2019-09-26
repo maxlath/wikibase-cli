@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'c',
   args: '<entity> [property]',
   description: 'display the claims of an entity',
   options: {

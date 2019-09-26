@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'gt',
   args: '<entity>',
   description: "output the pre-formatted item's data optimized for edition with `wd edit-item`",
   options: {

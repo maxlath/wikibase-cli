@@ -1,7 +1,8 @@
 module.exports = {
+  alias: 'aq',
   args: '<claim-guid> <property> <value>',
   description: 'add a qualifier to a claim',
-  options: require('./common_options').editCommands,
+  options: require('../lib/common_options').editCommands,
   examples: [
     { args: "'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P155 'Q13406268'", comment: 'entity qualifier' },
     { args: "'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P1545 'A-123'", comment: 'string qualifier' },

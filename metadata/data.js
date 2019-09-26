@@ -1,4 +1,5 @@
 module.exports = {
+  alias: 'd',
   args: '<entity>',
   description: "output the entity's data",
   options: {

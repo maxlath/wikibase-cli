@@ -1,6 +1,7 @@
-const { editCommands } = require('./common_options')
+const { editCommands } = require('../lib/common_options')
 
 module.exports = {
+  alias: 'me',
   args: '<from-id> <to-id>',
   description: 'Merge an entity into another',
   options: editCommands,

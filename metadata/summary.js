@@ -1,6 +1,7 @@
-const { entityAttributeCommands } = require('./common_options')
+const { entityAttributeCommands } = require('../lib/common_options')
 
 module.exports = {
+  alias: 'u',
   args: '<entity>',
   description: 'display basic information on the requested entity',
   options: Object.assign({ clipboard: false }, entityAttributeCommands),
