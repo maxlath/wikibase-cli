@@ -15,7 +15,6 @@ const open = require('opn')
 
 const { instance } = program
 if (!instance) throw new Error('no instance set')
-const instanceDomain = instance.replace('/w/api.php', '')
 
 const { args, lang } = program
 if (args.length === 0) program.helpAndExit(0)
@@ -43,7 +42,7 @@ if (!ids || ids.length === 0) {
   if (program.wikipedia) {
     handle(`https://${lang}.wikipedia.org/w/index.php?title=Special:Search&search=${search}`)
   } else {
-    handle(`${instanceDomain}/w/index.php?title=Special:Search&search=${search}`)
+    handle(`${instance}/w/index.php?title=Special:Search&search=${search}`)
   }
 } else {
   const openId = id => {
@@ -53,17 +52,17 @@ if (!ids || ids.length === 0) {
       .catch(err => {
         if (err.statusCode === 404) {
           console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
-          handle(`${instanceDomain}/wiki/${id}#sitelinks-wikipedia`)
+          handle(`${instance}/wiki/${id}#sitelinks-wikipedia`)
         } else {
           throw err
         }
       })
     } else if (program.history) {
-      handle(`${instanceDomain}/w/index.php?title=${id}&action=history`)
+      handle(`${instance}/w/index.php?title=${id}&action=history`)
     } else if (program.revision) {
-      handle(`${instanceDomain}/w/index.php?title=${id}&oldid=${program.revision}`)
+      handle(`${instance}/w/index.php?title=${id}&oldid=${program.revision}`)
     } else {
-      handle(`${instanceDomain}/entity/${id}`)
+      handle(`${instance}/entity/${id}`)
     }
   }
 
