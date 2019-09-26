@@ -10,6 +10,7 @@
   "scripts": {
     "docker:publish": "./scripts/docker_publish",
     "lint": "standard bin/wb* lib/* lib/*/* test/* test/lib/*",
+    "lint-staged": "./scripts/lint_staged",
     "prepublishOnly": "npm run lint && npm test",
     "postpublish": "npm run docker:publish",
     "test": "mocha",
