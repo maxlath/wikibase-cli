@@ -47,7 +47,7 @@
     "through": "^2.3.8",
     "tiny-chalk": "^2.0.0",
     "wikibase-edit": "^3.2.5",
-    "wikibase-sdk": "^7.1.2",
+    "wikibase-sdk": "^7.1.4",
     "wikibase-token": "^3.0.4",
     "wikidata-lang": "^2.0.8"
   },

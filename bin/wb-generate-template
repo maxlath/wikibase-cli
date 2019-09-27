@@ -29,7 +29,7 @@ if (revision) {
   url = getEntities({ ids: [ id ], props })
 }
 
-const requiredKeys = [ 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
+const requiredKeys = [ 'id', 'type', 'datatype', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
 const simplifyOptions = {
   keepIds: true,
