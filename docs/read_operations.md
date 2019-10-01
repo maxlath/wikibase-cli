@@ -658,6 +658,15 @@ This can also be used to get all the uses of a property
 wd query --property P2002 P2586
 ```
 
+**NB**: if the `--object` value could be interpreted as a number (`123.456`) but should be a string, make sure to pass it between quotes:
+```sh
+# Doesn't find anything
+wd query --property P2448 --object 2217527
+
+# Finds Q138172
+wd query --property P2448 --object '"2217527"'
+```
+
 Other options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
