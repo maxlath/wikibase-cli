@@ -1,2 +1,4 @@
 #!/usr/bin/env node
+const program = require('commander')
+program.customArgsParser = ([ guid, hash ]) => [ { guid, hash } ]
 require('../lib/edit/edit_command')('reference', 'remove')

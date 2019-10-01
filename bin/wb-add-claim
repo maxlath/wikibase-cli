@@ -1,2 +1,4 @@
 #!/usr/bin/env node
-require('../lib/edit/edit_command')('claim', 'create')
+const program = require('commander')
+program.customArgsParser = ([ id, property, value ]) => [ { id, property, value } ]
+require('../lib/edit/edit_command')('claim', 'add')

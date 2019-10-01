@@ -1,2 +1,4 @@
 #!/usr/bin/env node
+const program = require('commander')
+program.customArgsParser = ([ id, property, oldValue, newValue ]) => [ { id, property, oldValue, newValue } ]
 require('../lib/edit/edit_command')('claim', 'update')

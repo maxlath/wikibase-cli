@@ -1,2 +1,4 @@
 #!/usr/bin/env node
+const program = require('commander')
+program.customArgsParser = ([ guid, property, value ]) => [ { guid, property, value } ]
 require('../lib/edit/edit_command')('qualifier', 'add')
