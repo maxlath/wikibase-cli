@@ -2,7 +2,7 @@
 
 Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikibase-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
-The following documentation assumes that the Wikibase instance we work with is Wikidata, unless specified otherwise.
+The following documentation assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
 
 ## Summary
 
@@ -56,8 +56,8 @@ wb sl <entity> <language> <label>
 ```
 Examples:
 ```sh
-# Set the label 'Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
-wb set-label Q4115189 fr "Bac à sable bulgroz"
+# Set the label 'lorem ipsum' to the item Q4115189 in French
+wb set-label Q4115189 fr "lorem ipsum"
 ```
 
 ### descriptions
@@ -74,8 +74,8 @@ wb sd <entity> <language> <description>
 ```
 Examples:
 ```sh
-# Set the description 'description du Bac à sable bulgroz' to the Sandbox entity (Q4115189) in French
-wb set-description Q4115189 fr "description du Bac à sable bulgroz"
+# Set the description "lorem ipsum" to the item Q4115189 in French
+wb set-description Q4115189 fr "lorem ipsum"
 ```
 
 ### aliases
@@ -142,11 +142,11 @@ wb ac <entity> <property> <value>
 Examples:
 ```sh
 # Add the Twitter account (P2002) 'bulgroz' to the Sandbox (Q4115189) entity
-wb add-claim Q4115189 P2002 bulgroz
+wd add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
-wb ac Q4115189 P2002 bulgroz
+wd ac Q4115189 P2002 bulgroz
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
-wb ac Q4115189 P527 Q34679
+wd ac Q4115189 P527 Q34679
 ```
 
 ##### rich values
@@ -154,34 +154,34 @@ Some values like monolingual text, quatities with a unit, or time with a precisi
 
 ###### JSON format
 ```sh
-wb ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
-wb ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
+wd ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
+wd ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
 # On precision, see https://www.wikidata.org/wiki/Help:Dates#Precision
-wb ac Q4115189 P578 '{"time":1800,"precision":7}'
+wd ac Q4115189 P578 '{"time":1800,"precision":7}'
 # Set a coordinate on another celestial body than Earth (here, Mars (Q111))
-wb ac Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
+wd ac Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
 ```
 
 ###### query string format
 ```sh
-wb ac Q4115189 P1476 'text=bac à sable&language=fr'
-wb ac Q4115189 P1106 'amount=123&unit=Q4916'
-wb ac Q4115189 P578 'time=1800&precision=7'
+wd ac Q4115189 P1476 'text=bac à sable&language=fr'
+wd ac Q4115189 P1106 'amount=123&unit=Q4916'
+wd ac Q4115189 P578 'time=1800&precision=7'
 ```
 
 ##### with a reference
 Workflow example to add a claim with a reference, relying on the [jsondepth](https://github.com/maxlath/jsondepth) parser (hereafter referenced as `jd`). See [`wb add-reference`](#wb-add-reference) for more details.
 ``` sh
-claim_guid=$(wb add-claim Q4115189 P369 Q34679 | jd claim.id)
+claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jd claim.id)
 # Add the reference that this claim is imported from (P143) Wikipedia in Uyghur (Q60856)
-wb add-reference $claim_guid P143 Q60856
+wd add-reference $claim_guid P143 Q60856
 ```
 
 ##### special claim snaktypes
 You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) claims by passing the desired snaktype in a JSON object as values:
 ```sh
-wb ac Q4115189 P1106 '{"snaktype":"novalue"}'
-wb ac Q4115189 P1106 '{"snaktype":"somevalue"}'
+wd ac Q4115189 P1106 '{"snaktype":"novalue"}'
+wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
 ```
 
 #### wb update-claim
@@ -198,14 +198,14 @@ wb uc <guid>
 Examples:
 ```sh
 # change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
-wb update-claim Q4115189 P2002 Zorglub Bulgroz
+wd update-claim Q4115189 P2002 Zorglub Bulgroz
 # or using the claim's guid
-wb uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
+wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
 
 # change a coordinate from Mars (Q112) to Venus (Q313)
-wb uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 # or using the claim's guid
-wb uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 ```
 
 #### wb remove-claim
@@ -219,11 +219,11 @@ wb rc <guid>
 Examples:
 ```sh
 # /!\ beware of the '$' sign that might need escaping
-wb remove-claim "Q71\$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7"
+wd remove-claim "Q71\$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7"
 # or simply
-wb remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
+wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7'
 # or several at a time (required to be claims on the same entity)
-wb remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
+wd remove-claim 'Q71$BD9A4A9F-E3F9-43D4-BFDB-484984A87FD7|Q71$B8EE0BCB-A0D9-4821-A8B4-FB9E9D2B1251|Q71$2FCCF7DD-32BD-496C-890D-FEAD8181EEED'
 ```
 
 ### qualifiers
@@ -244,30 +244,30 @@ Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # entity qualifier
-wb add-qualifier $claim_guid P155 'Q13406268'
+wd add-qualifier $claim_guid P155 'Q13406268'
 
 # string qualifier
-wb aq $claim_guid P1545 'A-123'
+wd aq $claim_guid P1545 'A-123'
 
 # time qualifier
-wb aq $claim_guid P580 '1802-02-26'
+wd aq $claim_guid P580 '1802-02-26'
 
 # quantity qualifier
-wb aq $claim_guid P2130 123
+wd aq $claim_guid P2130 123
 
 # quantity qualifier with a unit
-wb aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
+wd aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
 
 # monolingualtext qualifier
-wb aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
+wd aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
 ```
 
 ##### special qualifier snaktypes
 You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) qualifiers by passing the desired snaktype in a JSON object as values:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
-wb aq $claim_guid P1106 '{"snaktype":"novalue"}'
-wb aq $claim_guid P1106 '{"snaktype":"somevalue"}'
+wd aq $claim_guid P1106 '{"snaktype":"novalue"}'
+wd aq $claim_guid P1106 '{"snaktype":"somevalue"}'
 ```
 
 #### wb update-qualifier
@@ -285,22 +285,22 @@ Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # entity qualifier
-wb update-qualifier $claim_guid P155 'Q13406268' 'Q3576110'
+wd update-qualifier $claim_guid P155 'Q13406268' 'Q3576110'
 
 # string qualifier
-wb uq $claim_guid P1545 'A-123' 'B-123'
+wd uq $claim_guid P1545 'A-123' 'B-123'
 
 # time qualifier
-wb uq $claim_guid P580 '1802-02-26' '1802-02-27'
+wd uq $claim_guid P580 '1802-02-26' '1802-02-27'
 
 # quantity qualifier
-wb uq $claim_guid P2130 123 124
+wd uq $claim_guid P2130 123 124
 
 # quantity qualifier with a unit
-wb uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
+wd uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
 
 # monolingualtext qualifier
-wb uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
+wd uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
 ```
 
 #### wb remove-qualifier
@@ -315,9 +315,9 @@ Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # Remove a qualifier from this claim
-wb rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
+wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
 # Remove several qualifiers from this claim by passing the qualifier hashes as one argument made of several pipe-separated hashes
-wb rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
+wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
 ```
 
 ### references
@@ -336,13 +336,13 @@ Examples:
 ```sh
 # Add a reference URL (P854) to this claim
 # /!\ beware of the '$' sign that might need escaping
-wb add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
+wd add-reference "Q4115189\$E66DBC80-CCC1-4899-90D4-510C9922A04F" P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
 # or simply
-wb add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
+wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P854 'https://example.org/rise-and-box-of-the-holy-sand-box'
 # Reference the claim as imported from (P143) Wikipedia in Uyghur (Q60856)
-wb add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
+wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 # or simply
-wb ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
+wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 ```
 
 See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
@@ -359,9 +359,9 @@ wb rr <claim-guid> <references-hashes>
 Examples:
 ```sh
 # Remove a reference from this claim
-wb remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3'
+wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3'
 # Remove several references from this claim by passing the reference hashes as one argument made of several pipe-separated hashes
-wb remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
+wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
 ```
 
 ### entity
@@ -373,7 +373,7 @@ Create a new entity (currently supported types: item, property)
 
 ```sh
 # Pass data as JSON
-wb create-entity '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+wd create-entity '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
 # Pass data as a JSON file path
 wb create-entity ./new_entity_data.json
@@ -390,7 +390,7 @@ Edit an existing item (currently supported types: item, property)
 
 ```sh
 # Pass data as JSON
-wb edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+wd edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
 # Pass data as a JSON file path
 wb edit-entity ./existing_entity_data.json

@@ -1,6 +1,6 @@
 # Read operations
 
-The following documentation assumes that the Wikibase instance we work with is Wikidata, unless specified otherwise.
+The following documentation assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
 
 ## Summary
 
@@ -65,12 +65,11 @@ wb summary <entities ids>
 wb u <entities ids>
 ```
 ```sh
-wb summary Q27477672
-# Label anthropomorphic comic
-# Description comic book genre
-# instance of (P31):  comic genre (Q20087698)
-# subclass of (P279): animal comic (Q10493450)
-wb summary Q18120925 Q22117436 Q22117437
+wd summary Q27477672
+wd summary Q18120925 Q22117436 Q22117437
+
+# With custom properties on an other Wikibase instance
+wb summary Q5 -l en -p P2,P12 -i https://wikibase-registry.wmflabs.org -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
 ```
 
 Options:
@@ -85,7 +84,7 @@ wb search <query>
 wb f <query>
 ```
 ```sh
-wb search Ligo
+wd search Ligo
 # Q255371    Laser — Interferometer Gravitational-Wave Observatory gravitational-wave detector
 # Q18461808  Ligo — Italian town
 # Q36946800  Ligo — family name
@@ -96,6 +95,9 @@ wb search Ligo
 # Q70330     Ligornetto
 # Q785105    Ligonier, Pennsylvania — borough of Pennsylvania
 # Q1781427   Ligorio López — Mexican footballer
+
+wb search eagle -i https://wikibase-registry.wmflabs.org
+# Q5         EAGLE Wikibase wikibase instance created for the Europeana Ancient Greek and Latin Epigraphy project
 ```
 
 Options:
@@ -114,9 +116,12 @@ wb label <entities ids>
 wb l <entities ids>
 ```
 ```sh
-wb label Q1103345
+wd label Q1103345
 # => The Cluetrain Manifesto
-wb label Q18120925 Q22117436 Q22117437
+wd label Q18120925 Q22117436 Q22117437
+
+wb label Q7 -i https://wikibase-registry.wmflabs.org
+# => PlantData
 ```
 
 Options:
@@ -169,29 +174,32 @@ wb c <entities ids> [property id or pattern]
 ```
 ```sh
 # all Q2001's claims
-wb claims Q2001
+wd claims Q2001
 # or just his place of birth
-wb claims Q2001 P19
+wd claims Q2001 P19
 # or just the claims from properties of type Url
-wb claims Q2001 Url
+wd claims Q2001 Url
 # or just the claims from properties with labels matching "library"
-wb claims Q2001 library
+wd claims Q2001 library
 # or website, etc
-wb claims Q2001 website
+wd claims Q2001 website
+
+# all https://wikibase-registry.wmflabs.org/entity/Q7 claims
+wb claims Q7 -i https://wikibase-registry.wmflabs.org -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
 ```
 
 Options:
 * `-l, --lang <lang>`: specify the properties labels' language
 ```sh
-wb claims Q2001 -l es
-wb claims Q2001 P19 --lang ru
+wd claims Q2001 -l es
+wd claims Q2001 P19 --lang ru
 ```
 * `-a, --all`: include all claims, not only the truthy ones
 ```sh
 # one result: the claim with the preferred rank
-wb claims Q858121 P2002
+wd claims Q858121 P2002
 # several results: claims of all ranks
-wb claims Q858121 P2002 --all
+wd claims Q858121 P2002 --all
 ```
 
 Options when passing both an id an property:
@@ -201,7 +209,7 @@ Options when passing both an id an property:
 #### get a claim GUID
 If a property and a value are provided, `wb claims` returns the matching claims GUIDs
 ```sh
-wb claims Q2013 P2689 1940 --json
+wd claims Q2013 P2689 1940 --json
 # => [ "Q2013$2bcdb018-47a0-5175-eade-1dd6dea2b53d" ]
 ```
 
@@ -213,12 +221,12 @@ wb data <entities ids>
 wb d <entities ids>
 ```
 ```sh
-wb data Q1496
+wd data Q1496
 ```
 This simply outputs the result of `https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q1496`, parsed to keep only what is relevant to the requested entity (here Q1496).
 The output is valid json, so it lets you the possibility to pipe it to a JSON parser such as [jsondepth](https://www.npmjs.com/package/jsondepth):
 ```sh
-wb data Q1496 | jd labels.pt
+wd data Q1496 | jd labels.pt
 # => { language: 'pt', value: 'Fernão de Magalhães' }
 ```
 
@@ -226,32 +234,33 @@ wb data Q1496 | jd labels.pt
 You can also request several entities at once by passing several ids.
 This outputs newline delimited JSON: one entity per-line, each line being valid JSON, but not the whole file as a whole.
 ```sh
-wb data Q1496 Q123
+wd data Q1496 Q123
+wb data Q5 Q6 Q7 -i https://wikibase-registry.wmflabs.org
 ```
 Alternatively, you can pass ids from stdin:
 ```sh
-echo "Q1496 Q123" | wb data
+echo "Q1496 Q123" | wd data
 ```
 This especially make sense when you have thousands of ids to pass, passing them as arguments would fail. See [`wb sparql all-instances` example](#all-instances).
 
 #### simplified entities
-You can request entities to be simplified, using [wikidata-sdk `simplify.entity` function](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_entities_data.md#simplify-entity)
+You can request entities to be simplified, using [wikibase-sdk `simplify.entity` function](https://github.com/maxlath/wikibase-sdk/blob/master/docs/simplify_entities_data.md#simplify-entity)
 ```sh
-wb data --simplify Q515168
+wd data --simplify Q515168
 # pass options to the simplify function
-wb data --simplify --keep ids,richvalues,types,references,qualifiers,hashes,nontruthy Q123
+wd data --simplify --keep ids,nontruthy,ranks Q123
 ```
 
 ##### claims simplification keep options
 
-You can customize the output by passing the list of data elements to keep among `ids`, `references`, `qualifiers`, `hashes`, `nontruthy`
+You can customize the output by passing the list of data elements to keep:
 
 ```sh
-wb data --simplify --keep ids,references,qualifiers,hashes,nontruthy Q123
+wd data --simplify --keep ids,richvalues,types,references,qualifiers,hashes,nontruthy,ranks Q123
 # equivalent to
-wb data --simplify --keep all Q123
+wd data --simplify --keep all Q123
 # Can be useful to easily access claims ids
-wb d -sk ids Q123 | jd .claims.P138 -j
+wd d -sk ids Q123 | jq .claims.P138 -j
 ```
 
 > See [`simplify.claims` options](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_claims.md#options) for behavior details
@@ -259,16 +268,16 @@ wb d -sk ids Q123 | jd .claims.P138 -j
 #### filtered properties
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
 ```sh
-wb data --props labels,claims,sitelinks Q515168
+wd data --props labels,claims,sitelinks Q515168
 ```
 Or even subparts of those properties
 ```sh
-wb data --props labels.fr,claims.P18,sitelinks.dewiki Q515168
+wd data --props labels.fr,claims.P18,sitelinks.dewiki Q515168
 ```
 
 #### fetch an old revision
 ```sh
-wb data Q4115189 --revision 943703455
+wd data Q4115189 --revision 943703455
 ```
 
 #### alternative formats
@@ -276,7 +285,8 @@ wb data Q4115189 --revision 943703455
 Entities can be requested in [Turtle](https://en.wikipedia.org/wiki/Turtle_(syntax))
 
 ```sh
-wb data --format ttl Q123 Q3548931 Q515168
+wd data --format ttl Q123 Q3548931 Q515168
+wb data --format ttl Q5 Q6 Q7 -i https://wikibase-registry.wmflabs.org
 ```
 
 Fetch many entities from a SPARQL request, using [`wb sparql`](#wb-sparql):
@@ -287,8 +297,8 @@ cat entities_ids | wb data --format ttl > entities.ttl
 
 The same can be done using [`wb query`](#wb-query)
 ```sh
-wb query --property P50 --object Q237087 > fred_vargas_books_ids
-cat fred_vargas_books_ids | wb data --format ttl > fred_vargas_books.ttl
+wd query --property P50 --object Q237087 > fred_vargas_books_ids
+cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 ```
 
 > **NB**: other options such as filtered properties will be ignored
@@ -298,9 +308,9 @@ This can be used to generated partial Turtle dumps, if [Wikibase full dump](http
 #### single claim
 The command also support finding a single claim from a claim GUID. (If you have a use case where you would need to fetch several claims at once this way, feel welcome to open an issue)
 ```sh
-wb data 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-wb data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-wb data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+wd data 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+wd data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
 ```
 
 ### wb generate-template
@@ -312,25 +322,25 @@ wb generate-template <entity-id>
 wb gt <entity-id>
 
 # Get Q123 pre-formatted data
-wb generate-template Q4115189 > Q4115189.json
+wd generate-template Q4115189 > Q4115189.json
 # Then the typical workflow would be to edit the generated file as you please,
 # before passing it back to the `wb edit-entity` command
-wb edit-entity ./Q4115189.json
+wd edit-entity ./Q4115189.json
 
 # For reference,
-wb generate-template Q4115189
+wd generate-template Q4115189
 # is pretty much equivalent to
-wb data --simplify --keep ids,references,qualifiers,hashes,snaktypes Q4115189
+wd data --simplify --keep ids,references,qualifiers,hashes,snaktypes Q4115189
 ```
 
 #### Tailored templates
 
 ```sh
 # Only get data required to edit the labels, claims and sitelinks
-wb generate-template Q4115189 --props labels,claims,sitelinks
+wd generate-template Q4115189 --props labels,claims,sitelinks
 
 # Only get data required to edit the Dutch label, the P31 claims, and the frwiki sitelink
-wb generate-template Q4115189 --props labels.nl,claims.P31,sitelinks.frwiki
+wd generate-template Q4115189 --props labels.nl,claims.P31,sitelinks.frwiki
 ```
 
 #### Dynamic templates
@@ -347,13 +357,13 @@ wb create-entity ./template.js buz bla 987 'https://example2.org'
 
 #### Generate template from a specific revision
 ```sh
-wb generate-template Q4115189 --revision 943703455
+wd generate-template Q4115189 --revision 943703455
 ```
 Use cases:
 * Easily recover specific data elements from a previous revision
 ```sh
-wb generate-template Q4115189 --revision 943703455 --props claims.P516 > ./Q4115189_lost_P516_claims.json
-wb edit-entity ./Q4115189_lost_P516_claims.json
+wd generate-template Q4115189 --revision 943703455 --props claims.P516 > ./Q4115189_lost_P516_claims.json
+wd edit-entity ./Q4115189_lost_P516_claims.json
 ```
 
 ### wb revisions
@@ -364,8 +374,8 @@ wb revisions <entities ids>
 wb r <entities ids>
 ```
 ```sh
-wb revisions Q3548931
-wb r Q3548931
+wd revisions Q3548931
+wd r Q3548931
 ```
 
 Options:
@@ -374,14 +384,16 @@ Options:
 * `-l, --limit <time>`: specify a limit number of revision (default and max = 500)
 
 ### wb id
-This one is kind of the inverse of `wb label`: pass it the title of a Wikipedia article and it will return the corresponding Wikibase id
+This one is kind of the inverse of `wb label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id
+**Status command**: still very much coupled to Wikidata, especially for sitelinks resolution
+
 ```sh
 wb id <article title or any Wikimedia project URL>
 ```
 ```sh
-wb id Cantabria
+wd id Cantabria
 # => Q3946
-wb id New Delhi
+wd id New Delhi
 # => Q987
 ```
 
@@ -391,15 +403,15 @@ Options:
 * `-l, --lang <lang>`: specify from which language the title comes
 By default, it will look at the Wikipedia corresponding to your environment local language (`process.env.LANG`), but you can specify another language by passing a 2-letters language code
 ```sh
-wb id -l fr science politique
+wd id -l fr science politique
 # => Q36442
 ```
 
 You can also pass it full Wikipedia urls and let it deduce the language from there
 ```sh
-wb id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
+wd id https://en.wikipedia.org/wiki/Friedrich_Nietzsche
 # => Q9358
-wb id https://fr.wikisource.org/wiki/Auteur:George_Sand
+wd id https://fr.wikisource.org/wiki/Auteur:George_Sand
 # => Q3816
 ```
 
@@ -413,7 +425,7 @@ wb p [filter]
 
 By default, your config or environment language is used:
 ```sh
-wb props
+wd props
 ```
 Outputs a JSON object of the kind:
 ```
@@ -428,7 +440,7 @@ Outputs a JSON object of the kind:
 This is especially convenient when you're looking for a property:
 ```sh
 # look for a property having "image" in its label, description or aliases (case insensitive unless the argument contains capitals)
-wb props photo
+wd props photo
 ```
 Outputs:
 ```json
@@ -457,7 +469,7 @@ Outputs:
 
 Matching on labels, descriptions, and aliases can come very handy in cases such as the following:
 ```sh
-wb props RSS
+wd props RSS
 ```
 Output:
 ```json
@@ -468,13 +480,13 @@ Output:
 
 But in case you want to match only on labels (ignoring descriptions, and aliases), you can pass the pattern to `grep` instead:
 ```sh
-wb props | grep photo
+wd props | grep photo
 ```
 
 #### Get the list of all Wikibase properties in another language
 Option: `-l, --lang <lang>`: specify the properties labels language
 ```sh
-wb props -l sv
+wd props -l sv
 # outputs the properties in Swedish
 ```
 
@@ -484,7 +496,7 @@ Every property accepts values of a precise type, one of `CommonsMedia`, `Externa
 
 Option: `-t, --type`: include properties types
 ```sh
-wb props --type
+wd props --type
 ```
 Outputs:
 ```
@@ -504,14 +516,14 @@ Outputs:
 #### Get the list of all Wikibase properties of a given type
 Re-using the possibility to pass a pattern to match, you can pass a property type
 ```sh
-wb props --type Url
-wb props --type CommonsMedia
+wd props --type Url
+wd props --type CommonsMedia
 ```
 > **NB**: make sure to respect the case to get an exact match, otherwise it only match on the labels, descriptions and aliases.
 
 #### Get the list of all Wikibase properties with their labels, types, descriptions, and aliases
 ```sh
-wb props --details
+wd props --details
 ```
 
 #### Reset properties
@@ -546,7 +558,7 @@ wb sparql ./path/to/author_works.rq > ./results.json
 
 Options:
 * `-v, --verbose`: log the generated SPARQL
-* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
+* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikibase-sdk `simplifySparqlResults`](https://github.com/maxlath/wikibase-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-x, --index <variable>`: get the results indexed by one of the SELECTed variables
 * `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see below for examples)
@@ -558,27 +570,35 @@ wb sparql ./path/to/query.rq --index someVariableName > ./results_index.json
 wb sparql ./path/to/query.rq --format table > ./results_table
 ```
 
+This command can actually be used on any SPARQL endpoint:
+```sh
+echo 'SELECT * { ?s ?p ?o } LIMIT 5' > ./get_some_triples.rq
+# On Wikidata
+wd sparql ./get_some_triples.rq
+# On another Wikibase
+wb sparql ./get_some_triples.rq -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
+# On a non-Wikibase SPARQL endpoint
+wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
+```
+
 #### dynamic request from a JS file
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
 // author_works.js
-module.exports = authorId => {
-  return `SELECT ?item WHERE {
-    ?item wdt:P50 wd:${authorId} .
-  }`
-}
+module.exports = authorId => `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
 ```
 ```sh
-wb sparql ./path/to/author_works.js Q535 --json > ./Q535_works.json
-wb sparql ./path/to/author_works.js Q5879 --json > ./Q5879_works.json
-# This simple query could actually have been done using the `wb query` command
-wb query --property P50 --object Q5879
+echo 'module.exports = authorId => `SELECT ?item { ?item wdt:P50 wd:${authorId} . }' > ./path/to/author_works.js
+wd sparql ./path/to/author_works.js Q535 --json > ./Q535_works.json
+wd sparql ./path/to/author_works.js Q5879 --json > ./Q5879_works.json
+# This simple query could actually have been done using the `wd query` command
+wd query --property P50 --object Q5879
 # but, meh, let's keep it simple for the demo
 ```
 
 You can use it to build [alias commands](https://en.wikipedia.org/wiki/Alias_%28command%29) for the requests you use often: the above can then be written
 ```sh
-alias authors_works="wb sparql ./path/to/author_works.js --json"
+alias authors_works="wd sparql ./path/to/author_works.js --json"
 authors_works Q535 > ./Q535_works.json
 authors_works Q5879 > ./Q5879_works.json
 ```
@@ -589,6 +609,8 @@ authors_works Q5879 > ./Q5879_works.json
 Some idiomatic queries than can't be done with [`wb query`](#wb-query) are included for convenience:
 
 ##### all-instances
+:warning: **Coupled to Wikidata P31 and P279 properties**
+
 Fetch instances and instances of sub-classes of a given item.
 Example, all the instances of languages (Q34770):
 ```sh
@@ -597,9 +619,9 @@ wb sparql all-instances Q34770
 This can be used to fetch the data associated with all the instances of a given item. For instance, to fetch all the painting's data, you could do:
 ```sh
 # Get the ids of all the paintings
-wb sparql all-instances Q3305213 > ./paintings_ids
-# Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wb-data for details)
-wb data --simplify < ./paintings_ids > ./paintings.ndjson
+wd sparql all-instances Q3305213 > ./paintings_ids
+# Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wd-data for details)
+wd data --simplify < ./paintings_ids > ./paintings.ndjson
 ```
 
 #### custom SPARQL endpoint
@@ -623,17 +645,17 @@ A command to generate and run a simple SPARQL query, passing one or two of the e
 
 ```sh
 # what is the entity id matching the twitter username (P2002) "timberners_lee"?
-wb query --property P2002 --object timberners_lee
+wd query --property P2002 --object timberners_lee
 # which works have exoplanets (Q44559) for main subject (P921)?
-wb query --property P921 --object Q44559 --labels
+wd query --property P921 --object Q44559 --labels
 # or with the short options syntax
-wb query -p P921 -o Q44559 -a
+wd query -p P921 -o Q44559 -a
 ```
 
 This can also be used to get all the uses of a property
 ```sh
 # Get all the subjects and objects linked by the property P2586
-wb query --property P2002 P2586
+wd query --property P2002 P2586
 ```
 
 Other options:
@@ -655,17 +677,17 @@ wb convert <property> <ids...>
 
 ```sh
 # get the Wikibase ids corresponding to those BNF ids
-wb convert P268 11865344k 11932251d
+wd convert P268 11865344k 11932251d
 # get the BNF ids corresponding to those Wikibase ids
-wb convert P268 Q45 Q140
+wd convert P268 Q45 Q140
 # the same but taking the ids from stdin
-echo Q45 Q140 | wb convert P268
+echo Q45 Q140 | wd convert P268
 # which can be a file
-cat ids_list | wb convert P268
-wb convert P268 < ids_list
+cat ids_list | wd convert P268
+wd convert P268 < ids_list
 # or any command outputting a list of ids:
 # here, we get the INSEE department code (P2586) of all French departments (Q6465)
-wb sparql all-instances Q6465 | wb convert P2586
+wd sparql all-instances Q6465 | wd convert P2586
 ```
 
 > **NB**: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the dataset you're targetting, you should probably rather request all the ids at once using `wb query --property <your-property-id>`, passing the option ` --index object` if the data you have at hand is the external ids, and ` --index subject` if you are instead starting from the Wikibase ids.
@@ -686,15 +708,19 @@ A command to open a pages on Wikibase in a browser from the command line (yep, y
 
 #### open entities and properties pages
 ```sh
-wb open Q123
-# opens https://wikidata.org/wiki/Q123 in your default browser
+wd open Q123
+# opens https://wikidata.org/entity/Q123 in your default browser
 
-wb open P659
-# opens https://www.wikidata.org/wiki/Property:P659
+wd open P659
+# opens https://www.wikidata.org/entity/P659
 
 # also working with any string that matches /(Q|P)\d+/
-wb open https://inventaire.io/entity/wd:Q33977
+wd open https://inventaire.io/entity/wd:Q33977
 # opens https://wikidata.org/wiki/Q33977
+
+# on a Custom wikibase instance
+wb open Q123 -i http://localhost:8181
+# opens http://localhost:8181/entity/Q123
 ```
 
 Options:
@@ -704,27 +730,27 @@ Options:
 * `-u, --url`: simply generate the **u**rl, don't open it in a browser
 ```sh
 # open https://www.wikidata.org/w/index.php?title=Q123&action=history
-wb open -y Q123
+wd open -y Q123
 # open https://fr.wikipedia.org/wiki/Septembre as French is my default system language
-wb open -p Q123
+wd open -p Q123
 ```
 * `-l, --lang <lang>`: specify which Wikipedia edition should be targeted
 ```sh
-wb open -p -l sv Q123
+wd open -p -l sv Q123
 # opens https://sv.wikipedia.org/wiki/September instead
-wb open -p -l sv Q123 -u
+wd open -p -l sv Q123 -u
 # outputs https://sv.wikipedia.org/wiki/September without opening it in the browser
 ```
 
 #### open a search page
 ```sh
-wb open Dan Simmons
+wd open Dan Simmons
 # opens https://www.wikidata.org/w/index.php?title=Special:Search&search=Dan%20Simmons
 ```
 
 #### open a specific revision's page
 ```sh
-wb open Q44559 --revision 942578737
+wd open Q44559 --revision 942578737
 ```
 
 ### wb hub
@@ -736,6 +762,8 @@ wb h <query>
 
 A command to open web pages using the [Hub](https://tools.wmflabs.org/hub/). Pass arguments to the Hub as you would from a URL, replacing ? and & by spaces.
 
+**Command status**: inheriting Wikidata coupling from the Hub
+
 Options:
 * `-l, --lang <lang>`: specify which language should be prefered
 * `-j, --json`: get the Hub redirection data instead of opening the page in browser
@@ -743,29 +771,31 @@ Options:
 Examples:
 ```sh
 # Find the entity having 24597135 as VIAF id and open the corresponding page on inventaire.io
-wb hub viaf:24597135 site=inventaire
+wd hub viaf:24597135 site=inventaire
 # Get the image illustrating Q3 in 300px
-wb hub Q3 property=image width=300 --json | jd destination.url
+wd hub Q3 property=image width=300 --json | jd destination.url
 ```
 
 ### wb lang
 Identify a language and return its associated data
 
+**Command status**: coupled to Wikidata languages
+
 **get the Wikibase id corresponding to a language code**
 ```sh
-wb lang ak
+wd lang ak
 # => Q28026
 ```
 
 **get the language code corresponding to a Wikibase id**
 ```sh
-wb lang Q28026
+wd lang Q28026
 # => ak
 ```
 
 **get languages matching a given string**
 ```sh
-wb lang slo
+wd lang slo
 # sk    Q9058      Slovak     Slovenčina
 # sl    Q9063      Slovenian  Slovenščina
 ```
@@ -773,8 +803,8 @@ wb lang slo
 Options:
 * `-j, --json`: get the full language data as JSON
 ```sh
-wb lang ak --json
-wb lang Q28026 --json
+wd lang ak --json
+wd lang Q28026 --json
 ```
 Both commands return the following data:
 ```json
@@ -782,6 +812,6 @@ Both commands return the following data:
   "code": "ak",
   "label": "Akan",
   "native": "Akana",
-  "wb": "Q28026"
+  "wd": "Q28026"
 }
 ```
