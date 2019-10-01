@@ -62,7 +62,7 @@ Working with Wikibase, we often end up with obscure ids. We can always look-up t
 ```sh
 wb summary <entities ids>
 # Alias:
-wb s <entities ids>
+wb u <entities ids>
 ```
 ```sh
 wb summary Q27477672
@@ -74,7 +74,7 @@ wb summary Q18120925 Q22117436 Q22117437
 ```
 
 Options:
-* `-p, --properties <properties>`: request additional properties (separated by a comma)
+* `-p, --properties <properties>`: override default summary properties (separated by a comma)
 * `-l, --lang <lang>`: specify the summary's language
 * `-v, --verbose`: log all claims
 

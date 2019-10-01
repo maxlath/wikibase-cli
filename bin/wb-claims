@@ -56,11 +56,11 @@ lightGet(url)
     return output(ids)
   }
 
-  const claims = simplify.claims(entity.claims, { keepNonTruthy })
-  if (!prop) return logClaims(program, claims, pattern)
+  const simplifiedClaims = simplify.claims(entity.claims, { keepNonTruthy })
+  if (!prop) return logClaims({ program, simplifiedClaims, pattern, resort: true })
 
-  value = claims[prop]
-  if (value != null) return output(claims[prop])
+  value = simplifiedClaims[prop]
+  if (value != null) return output(simplifiedClaims[prop])
 
   getLangProps(program)
   .then(props => {

@@ -9,7 +9,7 @@ const { mainProps } = require('../lib/properties')
 const errors_ = require('../lib/errors')
 
 const programOptions = [
-  [ '-p, --properties <properties>', 'request additional properties (separated by a comma)' ]
+  [ '-p, --properties <properties>', 'override default summary properties (separated by a comma)' ]
 ]
 
 const parseEntity = (entity, options) => {
@@ -27,11 +27,15 @@ const parseEntity = (entity, options) => {
   if (description) console.log(bgBlue('Description'), description)
 
   var { claims } = entity
-  const properties = (program.properties && program.properties.split(',')) || []
-  claims = program.verbose ? claims : _.pick(claims, mainProps.concat(properties))
-  claims = simplify.claims(claims)
+  var properties = (program.properties && program.properties.split(',')) || []
+  if (properties.length === 0) {
+    const instanceMainProps = mainProps[program.instance]
+    if (instanceMainProps) properties = instanceMainProps
+  }
+  claims = program.verbose ? claims : _.pick(claims, properties)
+  const simplifiedClaims = simplify.claims(claims)
 
-  return logClaims(program, claims)
+  return logClaims({ program, simplifiedClaims, resort: false })
   .catch(errors_.exit)
 }
 
