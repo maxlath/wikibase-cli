@@ -16,7 +16,7 @@ limit = limit || 10
 
 if (properties) program.verbose = verbose = true
 
-const { red, grey } = require('tiny-chalk')
+const { red, grey } = require('chalk')
 const valide = require('../lib/valide')
 if (!valide.lang(language)) {
   console.error(red(`invalid language: ${language}`))

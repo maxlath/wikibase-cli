@@ -14,7 +14,7 @@ program
 
 if (!(program.subject || program.property || program.object)) program.helpAndExit(0)
 
-const { grey } = require('tiny-chalk')
+const { grey } = require('chalk')
 const formatStatementElementValue = require('../lib/format_statement_element_value')
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const output = require('../lib/output')(program)

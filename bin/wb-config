@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
 program.process('config')
-const { green } = require('tiny-chalk')
+const { green } = require('chalk')
 const fileOps = require('../lib/config/file_operations')
 const config = require('../lib/config/config')
 

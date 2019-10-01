@@ -21,7 +21,7 @@ const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 
 const notFound = context => {
-  const { grey } = require('tiny-chalk')
+  const { grey } = require('chalk')
   console.error(grey('no result found'))
   if (verbose) console.error(JSON.stringify(context, null, 2))
   process.exit(1)

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
-const { red } = require('tiny-chalk')
+const { red } = require('chalk')
 
 program
 .option('-d, --details', 'include properties labels, types, descriptions, and aliases')

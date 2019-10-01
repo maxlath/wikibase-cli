@@ -5,7 +5,7 @@ program
 .option('-a, --all', 'include all claims, not only the truthy ones')
 .process('claims')
 
-const { yellow } = require('tiny-chalk')
+const { yellow } = require('chalk')
 const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
 const commonErrors = require('../lib/common_errors')

@@ -23,7 +23,7 @@ program.parse(process.argv)
 const subcommand = program.args[0]
 
 if (!commandsNames.includes(subcommand)) {
-  console.error(require('tiny-chalk').red('unknown command'))
+  console.error(require('chalk').red('unknown command'))
   program.help()
   process.exit(1)
 }
