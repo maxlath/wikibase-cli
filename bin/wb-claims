@@ -43,7 +43,8 @@ const url = getEntities({ props: 'claims', ids: id })
 lightGet(url)
 .then(body => {
   const entity = body.entities && body.entities[id]
-  if (!entity) return console.log('error: ', body)
+  if (!entity) return console.error('error: ', body)
+  if (entity.missing != null) return console.error('entity not found:', id)
 
   const keepNonTruthy = program.all === true
   if (isPropertyId(prop) && value != null) {
