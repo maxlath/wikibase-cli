@@ -1,6 +1,6 @@
 {
   "name": "wikibase-cli",
-  "version": "8.0.0",
+  "version": "8.0.1",
   "description": "The command-line interface to Wikibase",
   "main": "index.js",
   "bin": {
@@ -20,7 +20,11 @@
     "type": "git",
     "url": "git+https://github.com/maxlath/wikidata-cli.git"
   },
-  "files": [ "bin", "lib", "metadata" ],
+  "files": [
+    "bin",
+    "lib",
+    "metadata"
+  ],
   "keywords": [
     "wikidata",
     "wikibase",
