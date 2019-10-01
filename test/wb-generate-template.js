@@ -8,7 +8,13 @@ describe('wb generate-template', function () {
     execa.shell('./bin/wd gt Q123456 -p labels.de')
     .then(res => {
       JSON.parse(res.stdout)
-      .should.deepEqual({ id: 'Q123456', labels: { de: 'Friedrichshafen' } })
+      .should.deepEqual({
+        id: 'Q123456',
+        type: 'item',
+        labels: {
+          de: 'Friedrichshafen'
+        }
+      })
       done()
     })
     .catch(done)
