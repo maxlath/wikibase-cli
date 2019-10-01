@@ -1,7 +1,7 @@
 {
-  "name": "wikidata-cli",
+  "name": "wikibase-cli",
   "version": "8.0.0",
-  "description": "The command-line interface to Wikidata",
+  "description": "The command-line interface to Wikibase",
   "main": "index.js",
   "bin": {
     "wb": "./bin/wb",
