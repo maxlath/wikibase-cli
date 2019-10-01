@@ -3,4 +3,4 @@ props
 config.json
 assets
 !test/assets
-
+docker/package.json

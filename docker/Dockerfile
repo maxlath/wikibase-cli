@@ -1,6 +1,6 @@
 FROM node:8-alpine
 
-COPY package.json /tmp
+COPY ./package.json /tmp
 
 RUN version=$(node -p 'require("/tmp/package.json").version') && \
   apk add git && \

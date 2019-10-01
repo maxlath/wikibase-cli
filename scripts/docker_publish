@@ -4,8 +4,13 @@ set -eu
 
 version=$(node -p "require('./package.json').version")
 
+cp package.json ./docker
+
+cd ./docker
 docker build -t wikibase-cli .
 docker tag wikibase-cli "maxlath/wikibase-cli:${version}"
 docker push "maxlath/wikibase-cli:${version}"
 docker tag wikibase-cli maxlath/wikibase-cli:latest
 docker push maxlath/wikibase-cli:latest
+
+rm ./docker/package.json
