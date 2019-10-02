@@ -72,17 +72,17 @@ alias wb='docker run --rm --volume "$HOME/.local/share/wikibase-cli:/wikibase-cl
 ## Commands
 
 ### Read operations
-see [Read operations](docs/read_operations.md)
+See [Read operations](docs/read_operations.md)
 
 ![wd summary Q1](https://cloud.githubusercontent.com/assets/1596934/24504647/5b17135c-1557-11e7-971e-b13648bdc604.gif)
 
 ### Write operations
-see [Write operations](docs/write_operations.md)
+See [Write operations](docs/write_operations.md)
 
 ### Config
 Allows to persist options
 
-see [Config](docs/config.md)
+See [Config](docs/config.md)
 
 ## See Also
 * [wikibase-sdk](https://www.npmjs.com/package/wikibase-sdk): A javascript tool suite to query and work with Wikibase data, heavily used by wikibase-cli
