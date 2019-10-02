@@ -69,15 +69,18 @@ Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/mas
 
 ```sh
 # Output the current credentials for a given instance
-# If no credentials are set for this instance, start a prompt session to add credentials
+# If no credentials are set for this instance, start a prompt session to add credentials,
+# either OAuth tokens (recommanded) or a username and password
 wb config credentials https://www.wikidata.org
 # Reset those credentials
 wb config credentials https://www.wikidata.org clear
-# Get the prompt to enter either OAuth tokens or a username and password
+# Get the prompt again
 wb config credentials https://www.wikidata.org
 ```
 
-:warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommanded to pick OAuth tokens when possible, with minimal authorizations.
+:warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommanded to use OAuth* tokens when possible, with minimal authorizations.
+
+* Yes, just the sight of word OAuth might give you chills, but setting up an [owner-only consumers](https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers) is actually super fast (no need for validation) and rather simple: just follow the `wb config credentials https://my.wikibase.instance` prompt instructions.
 
 ### bot
 Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
