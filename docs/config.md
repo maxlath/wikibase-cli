@@ -80,7 +80,7 @@ wb config credentials https://www.wikidata.org
 
 :warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommanded to use OAuth* tokens when possible, with minimal authorizations.
 
-* Yes, just the sight of word OAuth might give you chills, but setting up an [owner-only consumers](https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers) is actually super fast (no need for validation) and rather simple: just follow the `wb config credentials https://my.wikibase.instance` prompt instructions.
+(\*) Yes, just the sight of word OAuth might give you chills, but setting up an [owner-only consumers](https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers) is actually super fast (no need for validation) and rather simple: just follow the `wb config credentials https://my.wikibase.instance` prompt instructions.
 
 ### bot
 Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
