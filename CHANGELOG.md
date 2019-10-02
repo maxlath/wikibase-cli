@@ -6,9 +6,11 @@
 * **renamed**:
   * `create-item` => [`create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#create-entity)
   * `edit-item` => [`edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-entity)
-  * `wd config <option> default` => [`wd config <option> clear`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#clear)
+  * `wb config <option> default` => [`wb config <option> clear`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#clear)
 * **removed**:
-  * `wd-coord` (as it was just an alias of `wd claims P625`)
+  * `wb-coord` (as it was just an alias of `wb claims P625`, and thus coupled to Wikidata)
+* **changed behavior**:
+  * `wb-add-claim`: doesn't stop you from creating duplicated claims anymore (no claim existance check)
 * **changed aliases**:
   * `wb s` is now an alias for `wb sparql`, while `wb u` is `wb summary` new alias
 
