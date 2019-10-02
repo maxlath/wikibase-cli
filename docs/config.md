@@ -69,6 +69,7 @@ Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/mas
 
 ```sh
 # Output the current credentials for a given instance
+# If no credentials are set for this instance, start a prompt session to add credentials
 wb config credentials https://www.wikidata.org
 # Reset those credentials
 wb config credentials https://www.wikidata.org clear
