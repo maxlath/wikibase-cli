@@ -1,2 +1,6 @@
 #!/usr/bin/env node
+const program = require('commander')
+program.customArgsParser = ([ guid, property, oldValue, newValue ]) => {
+  return [ { guid, property, oldValue, newValue } ]
+}
 require('../lib/edit/edit_command')('qualifier', 'update')

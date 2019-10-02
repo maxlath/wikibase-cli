@@ -1,4 +1,13 @@
 #!/usr/bin/env node
 const program = require('commander')
-program.customArgsParser = ([ id, property, oldValue, newValue ]) => [ { id, property, oldValue, newValue } ]
+const { isGuid } = require('wikibase-sdk')
+program.customArgsParser = (args) => {
+  if (isGuid(args[0])) {
+    const [ guid, oldValue, newValue ] = args
+    return [ { guid, oldValue, newValue } ]
+  } else {
+    const [ id, property, oldValue, newValue ] = args
+    return [ { id, property, oldValue, newValue } ]
+  }
+}
 require('../lib/edit/edit_command')('claim', 'update')
