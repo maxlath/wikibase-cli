@@ -18,6 +18,7 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 ## Summary
+- [Changelog](CHANGELOG.md)
 - [Dependencies](#dependencies)
   - [General](#general)
   - [Per feature](#per-feature)
@@ -31,6 +32,9 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 - [See Also](#see-also)
 - [You may also like](#you-may-also-like)
 - [License](#license)
+
+## Changelog
+See [CHANGELOG.md](CHANGELOG.md) for version info
 
 ## Dependencies
 
