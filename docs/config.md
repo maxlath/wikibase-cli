@@ -70,7 +70,7 @@ Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/mas
 ```sh
 # Output the current credentials for a given instance
 # If no credentials are set for this instance, start a prompt session to add credentials,
-# either OAuth tokens (recommanded) or a username and password
+# either OAuth tokens (recommended) or a username and password
 wb config credentials https://www.wikidata.org
 # Reset those credentials
 wb config credentials https://www.wikidata.org clear
@@ -78,7 +78,7 @@ wb config credentials https://www.wikidata.org clear
 wb config credentials https://www.wikidata.org
 ```
 
-:warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommanded to use OAuth* tokens when possible, with minimal authorizations.
+:warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommended to use OAuth* tokens when possible, with minimal authorizations.
 
 (\*) Yes, just the sight of word OAuth might give you chills, but setting up an [owner-only consumers](https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers) is actually super fast (no need for validation) and rather simple: just follow the `wb config credentials https://my.wikibase.instance` prompt instructions.
 
@@ -90,7 +90,7 @@ wb config bot true
 ```
 
 ### lang
-set the prefered language (same as `-l, --lang`)
+set the preferred language (same as `-l, --lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wb config lang nl
