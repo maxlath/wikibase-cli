@@ -16,7 +16,7 @@ describe('general', function () {
   })
 
   // Addressed by https://github.com/maxlath/commander.js/commit/1297ae6
-  it('should accepts options before arguments', done => {
+  it('should accept options before arguments', done => {
     execa.shell('./bin/wd claims -c Q12569 P2586')
     .then(res => {
       res.stdout.should.equal('42')
