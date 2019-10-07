@@ -7,7 +7,7 @@ It was primarily developed to target [Wikidata](https://wikidata.org), but as th
 
 This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
 
-**Show your support** by adding `{{#babel:Wikidata CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
+**Show your support** by adding `{{#babel:Wikibase CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
 [![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikidata_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
 
 [![NPM](https://nodei.co/npm/wikibase-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikibase-cli/)
