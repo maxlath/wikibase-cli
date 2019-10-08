@@ -1,6 +1,6 @@
 [![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/wikidata_logo_alone.jpg)](https://wikidata.org)
 
-# Wikidata-CLI
+# Wikibase-CLI
 The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikibase](https://wikiba.se) instances.
 
 It was primarily developed to target [Wikidata](https://wikidata.org), but as then be decoupled to support any Wikibase instance.
