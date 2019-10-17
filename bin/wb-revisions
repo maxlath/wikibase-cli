@@ -10,17 +10,27 @@ program
 require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getRevisions } = require('../lib/wbk')(program)
 const lightGet = require('../lib/light_get')
-const parseId = require('../lib/tolerant_id_parser')
 const errors_ = require('../lib/errors')
 const logNdjson = require('../lib/log_ndjson')
 const { isPositiveIntegerString } = require('../lib/types')
 const _ = require('lodash')
 
-const ids = program.args.map(parseId)
+// Not parsing the ids with ../lib/tolerant_id_parser as that would
+// remove prefixes which are required for entities out of the main namespace
+// Ex: Property:P570
+const ids = program.args
 if (!(ids && ids.length > 0)) program.helpAndExit(0)
 
 ids.forEach(id => {
-  if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+  var [ prefix, entityId ] = id.split(':')
+  if (entityId) {
+    if (prefix !== 'Property' && prefix !== 'Item') {
+      throw new Error(`invalid entity prefix: ${prefix}`)
+    }
+  } else {
+    entityId = prefix
+  }
+  if (!isEntityId(entityId)) throw new Error(`invalid entity id: ${id}`)
 })
 
 const query = {}
