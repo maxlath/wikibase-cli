@@ -5,9 +5,10 @@ program
 .option('-s, --subject <subject>', 'set a subject')
 .option('-p, --property <property>', 'set a property')
 .option('-o, --object <object>', 'set an object')
+.option('-a, --labels', 'requests results labels')
+.option('-c, --count', 'return a count of matching results')
 .option('-r, --raw', 'raw SPARQL results')
 .option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
-.option('-a, --labels', 'requests results labels')
 .option('-t, --limit <num>', 'set the request results limit')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('query')
@@ -19,8 +20,8 @@ const formatStatementElementValue = require('../lib/format_statement_element_val
 const makeSparqlQuery = require('../lib/make_sparql_query')
 const output = require('../lib/output')(program)
 
-const includeLabels = program.labels
-var lang = program.lang
+var { count: countResults, labels: selectLabels, lang } = program
+selectLabels = selectLabels && !countResults
 
 if (program.subject && program.property && program.object) {
   console.log('At maximum two statement element should be set')
@@ -36,8 +37,13 @@ function setElement (elName) {
     value = formatStatementElementValue[elName](value)
     triple = triple.replace(`?${elName}`, value)
   } else {
-    select += `?${elName} `
-    if (includeLabels) select += `?${elName}Label `
+    if (countResults) {
+      // Get a count by selecting the first missing variable
+      if (select === '') select = `(COUNT(?${elName}) AS ?count)`
+    } else {
+      select += `?${elName} `
+      if (selectLabels) select += `?${elName}Label `
+    }
     // If the property isn't set, specify that we want only direct/truthy claims
     // and not every statements and qualifiers
     if (elName === 'property') triple += ' ?prop wikibase:directClaim ?property .'
@@ -48,7 +54,7 @@ setElement('subject')
 setElement('property')
 setElement('object')
 
-if (includeLabels) {
+if (selectLabels) {
   if (lang !== 'en') {
     // include English as a fallback
     lang = `${lang},en`

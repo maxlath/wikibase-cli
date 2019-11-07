@@ -672,6 +672,7 @@ Other options:
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
 * `-t, --limit <num>`: set the request results limit
+* `-c, --counts`: return a count of matching results
 * `-v, --verbose`: log the generated request
 * `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
 * `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`

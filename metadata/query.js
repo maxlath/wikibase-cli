@@ -13,6 +13,7 @@ module.exports = {
   examples: [
     { args: '--property P2002 --object timberners_lee', comment: 'find out which entity as the twitter username (P2002) "timberners_lee"' },
     { args: '--property P921 --object Q44559 --labels', comment: 'find out which works have exoplanets (Q44559) for main subject (P921)\n    # and include labels' },
+    { args: '--property P7476 --count', comment: 'get a list of all the claims using the property (P7476)' },
     { args: '-p P921 -o Q44559 -a', comment: 'as always, you can also use the short options syntax' },
     { args: '-p P921 -o Q44559 -a | jd 2', comment: 'the output is valid JSON, so you can pipe it to any JSON parser you like\n    # (here jsondepth a.k.a. jd)' },
     { args: '-s Q15228 -p P674 -a', comment: 'find out which are the characters (P674) in The Lord of The Ring (Q15228)' },
