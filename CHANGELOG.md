@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 8.1.0 - 2019-11-07
+* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-query): add `--count` option
+
 ## 8.0.0 - 2019-10-01
 **BREAKING CHANGES**:
 * **renamed**:
@@ -20,7 +23,7 @@
 * Added [OAuth tokens](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#credentials) support
 * Added [`wb delete-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-delete-entity)
 * Added [`wb merge-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-merge-entity)
-* Add option `--format table` to [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql) and [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-sparql)
+* Add option `--format table` to [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql) and [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-query)
 * Add option `--all` to [`wb claims`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-claims)
 * Add alias `wb r` to [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql)
 
