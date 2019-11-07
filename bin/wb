@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const program = require('commander')
+const program = require('@wikibasejs/commander')
 const pkg = require('../package.json')
 const fs = require('fs')
 const path = require('path')
