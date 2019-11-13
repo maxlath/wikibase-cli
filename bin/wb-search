@@ -44,7 +44,7 @@ lightGet(url)
     process.exit(1)
   }
 
-  var results = search
+  let results = search
 
   if (results.length > 5) {
     results = results.filter(filterOutSpecialPages)
@@ -64,23 +64,24 @@ lightGet(url)
     process.exit(1)
   }
 
-  // In verbose mode, pass the found ids to the 'wb summary' command
+  // In verbose mode, use the summary format
   // to get a summary of each entity, possibly with additional properties
   if (verbose) {
-    var command = `summary ${ids.join(' ')}`
-    if (language) command += ` --lang ${language}`
-    if (properties) command += ` --properties ${properties}`
-    require('../lib/sub_command')(command)
-    return
+    const entityDataParser = require('../lib/entity_data_parser')
+    const summaryParser = require('../lib/summary_parser')
+    // Override the verbose flag so that search results aren't displayed
+    // in the summary verbose format, only in the normal, short, summary format
+    program.verbose = false
+    entityDataParser({ ids, parser: summaryParser })
+  } else {
+    results
+    .forEach((result, index) => {
+      const { id, label, description } = result
+      let text = padEnd(id, 11) + label
+      if (description && description.length > 0) text += ' ' + grey(description)
+      console.log(text)
+    })
   }
-
-  results
-  .forEach((result, index) => {
-    const { id, label, description } = result
-    let text = padEnd(id, 11) + label
-    if (description && description.length > 0) text += ' ' + grey(description)
-    console.log(text)
-  })
 })
 
 const filterOutSpecialPages = result => {
