@@ -384,6 +384,9 @@ wb ce <entity-data>
 
 See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
 
+Examples:
+* [Creating a new entity with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_entity_with_the_same_references_being_used_multiple_times.js)
+
 #### wb edit-entity
 
 Edit an existing item (currently supported types: item, property)
