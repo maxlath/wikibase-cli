@@ -20,13 +20,14 @@ const { revision } = program
 
 if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
 
-const { props, propsSubkeys } = parseProps(program.props)
+const requestedPropsAndSubProps = parseProps(program.props)
+const requestedProps = Object.keys(requestedPropsAndSubProps)
 
 var url
 if (revision) {
   url = getEntityRevision(id, revision)
 } else {
-  url = getEntities({ ids: [ id ], props })
+  url = getEntities({ ids: [ id ], props: requestedProps })
 }
 
 const requiredKeys = [ 'id', 'type', 'datatype', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
@@ -47,9 +48,9 @@ lightGet(url)
 .then(body => {
   var entity = _.values(body.entities)[0]
   entity = simplify.entity(entity, simplifyOptions)
-  entity = _.pick(entity, requiredKeys)
-  if (revision) entity = _.pick(entity, [ 'id' ].concat(props))
-  dropNonSelectedSubprops(entity, props, propsSubkeys)
+  if (revision) entity = _.pick(entity, [ 'id' ].concat(requestedProps))
+  else entity = _.pick(entity, requiredKeys)
+  dropNonSelectedSubprops(entity, requestedPropsAndSubProps)
   minimizeClaims(entity.claims)
   if (program.format === 'js') {
     console.log(require('../lib/output_js_function')(entity))

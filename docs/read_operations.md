@@ -272,7 +272,11 @@ wd data --props labels,claims,sitelinks Q515168
 ```
 Or even subparts of those properties
 ```sh
-wd data --props labels.fr,claims.P18,sitelinks.dewiki Q515168
+wd data --props labels.fr,claims.P18,claims.P580,sitelinks.dewiki Q515168
+```
+Which can be rewritten in a more lazy format (but being less specific, it actually also try to give you descriptions and aliases in French)
+```sh
+wd data --props fr,P18,P580,dewiki Q515168
 ```
 
 #### fetch an old revision
@@ -341,6 +345,12 @@ wd generate-template Q4115189 --props labels,claims,sitelinks
 
 # Only get data required to edit the Dutch label, the P31 claims, and the frwiki sitelink
 wd generate-template Q4115189 --props labels.nl,claims.P31,sitelinks.frwiki
+
+# Only get
+# - terms (labels, descriptions, and aliases) in Russian
+# - P31 and P659 claims (with a lazy syntax)
+# - Spanish Wikipedia sitelinks (with a lazy syntax)
+wd generate-template Q4115189 --props ru,P31,P659,eswiki
 ```
 
 #### Dynamic templates
