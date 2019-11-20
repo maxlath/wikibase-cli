@@ -42,11 +42,14 @@ function setElement (elName) {
       if (select === '') select = `(COUNT(?${elName}) AS ?count)`
     } else {
       select += `?${elName} `
-      if (selectLabels) select += `?${elName}Label `
+      if (selectLabels && elName !== 'property') select += `?${elName}Label `
     }
     // If the property isn't set, specify that we want only direct/truthy claims
     // and not every statements and qualifiers
-    if (elName === 'property') triple += ' ?prop wikibase:directClaim ?property .'
+    if (elName === 'property') {
+      triple += ' ?prop wikibase:directClaim ?property .'
+      if (selectLabels) select += `?propLabel `
+    }
   }
 }
 
