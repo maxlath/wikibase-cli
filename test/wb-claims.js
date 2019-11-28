@@ -53,7 +53,7 @@ describe('wb claims', function () {
   it('should find the GUID of a claim when provided a value', done => {
     execa.shell('./bin/wd claims Q2924461 P17 Q30')
     .then(res => {
-      res.stdout.should.equal('Q2924461\\$86A518DA-945F-41B8-871C-8C4FC148AEFA')
+      res.stdout.should.equal('Q2924461$86A518DA-945F-41B8-871C-8C4FC148AEFA')
       done()
     })
     .catch(done)
