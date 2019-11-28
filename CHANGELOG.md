@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 8.2.0 - 2019-11-28
+* [`wb-data`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-data) / [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): add lazy syntax to props selection
+
 ## 8.1.0 - 2019-11-07
 * [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-query): add `--count` option
 
