@@ -32,9 +32,9 @@ if (open) {
 } else {
   const output = require('../lib/output')(program)
   require('../lib/heavy_req').get({ url })
-  .catch(err => err)
-  .then(res => {
-    const { body, statusCode } = res
+  .then(async (res) => {
+    const body = await res.json()
+    const { status: statusCode } = res
     if (statusCode === 400) return notFound(body)
     if (statusCode && statusCode >= 400) throw res
     if (json) return output(body)
