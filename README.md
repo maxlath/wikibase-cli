@@ -1,14 +1,20 @@
-[![wikidata](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/wikidata_logo_alone.jpg)](https://wikidata.org)
 
-# Wikibase-CLI
+# wikibase-cli
 The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikibase](https://wikiba.se) instances.
 
 It was primarily developed to target [Wikidata](https://wikidata.org), but as then be decoupled to support any Wikibase instance.
 
 This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
 
-**Show your support** by adding `{{#babel:Wikibase CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
-[![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikidata_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
+<div align="center">
+  <br>
+  <a href="https://wikiba.se"><img height="150" src="https://raw.githubusercontent.com/maxlath/wikibase-sdk/master/assets/wikibase.png" alt="wikibase"></a>
+  <!-- yeay hacky margin \o/ -->
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <a href="https://wikidata.org"><img src="https://raw.githubusercontent.com/maxlath/wikibase-sdk/master/assets/wikidata.jpg" alt="wikidata"></a>
+  <br>
+  <br>
+</div>
 
 [![NPM](https://nodei.co/npm/wikibase-cli.png?stars&downloads&downloadRank)](https://npmjs.com/package/wikibase-cli/)
 [![DockerHub Badge](https://dockeri.co/image/maxlath/wikibase-cli)](https://hub.docker.com/r/maxlath/wikibase-cli/)
@@ -16,6 +22,9 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 [![Node](https://img.shields.io/badge/node-%3E=%20v6.4.0-brightgreen.svg)](http://nodejs.org)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
+**Show your support** by adding `{{#babel:Wikibase CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
+[![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikidata_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
 
 ## Summary
 - [Changelog](CHANGELOG.md)
