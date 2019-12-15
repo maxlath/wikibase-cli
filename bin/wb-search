@@ -25,7 +25,7 @@ if (!valide.lang(language)) {
 
 require('../lib/exit_on_missing').instance(program.instance)
 const { searchEntities } = require('../lib/wbk')(program)
-const lightGet = require('../lib/light_get')
+const { get } = require('../lib/request')
 const { padEnd } = require('lodash')
 
 const url = searchEntities({
@@ -35,7 +35,7 @@ const url = searchEntities({
   limit: limit + 10
 })
 
-lightGet(url)
+get(url)
 .then(body => {
   const { error, search } = body
 

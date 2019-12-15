@@ -11,7 +11,7 @@ const parseId = require('../lib/tolerant_id_parser')
 const id = parseId(program.args[0])
 require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getEntityRevision, getEntities, simplify } = require('../lib/wbk')(program)
-const lightGet = require('../lib/light_get')
+const { get } = require('../lib/request')
 const _ = require('lodash')
 const parseProps = require('../lib/parse_props')
 const dropNonSelectedSubprops = require('../lib/drop_non_selected_subprops')
@@ -44,7 +44,7 @@ const simplifyOptions = {
   keepHashes: false
 }
 
-lightGet(url)
+get(url)
 .then(body => {
   var entity = _.values(body.entities)[0]
   entity = simplify.entity(entity, simplifyOptions)

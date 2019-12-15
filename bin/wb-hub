@@ -5,7 +5,7 @@ program
 .option('-o, --open', 'open the found URL in a web browser')
 .process('hub')
 
-const { args, lang, json, open, verbose } = program
+const { args, lang, json, open } = program
 if (args.length === 0) program.helpAndExit(0)
 
 var argsString = args.join(' ')
@@ -20,27 +20,17 @@ if (!open) argsString += ` format=json`
 const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 
-const notFound = context => {
-  const { grey } = require('chalk')
-  console.error(grey('no result found'))
-  if (verbose) console.error(JSON.stringify(context, null, 2))
-  process.exit(1)
-}
+const errors_ = require('../lib/errors')
 
 if (open) {
   require('opn')(url)
 } else {
   const output = require('../lib/output')(program)
-  require('../lib/heavy_req').get({ url })
-  .then(async res => {
-    const body = await res.json()
-    const { status: statusCode } = res
-    if (statusCode === 400) return notFound(body)
-    if (statusCode && statusCode >= 400) throw res
+  require('../lib/request').get(url)
+  .then(body => {
     if (json) return output(body)
     const { url: destinationUrl } = body.destination
     if (destinationUrl) return output(destinationUrl)
-    notFound(body)
   })
-  .catch(console.error)
+  .catch(errors_.exit)
 }

@@ -35,12 +35,12 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
   [ id, prop ] = [ prop, id ]
 }
 
-const lightGet = require('../lib/light_get')
+const { get } = require('../lib/request')
 const errors_ = require('../lib/errors')
 
 const url = getEntities({ props: 'claims', ids: id })
 
-lightGet(url)
+get(url)
 .then(body => {
   const entity = body.entities && body.entities[id]
   if (!entity) return console.error('error: ', body)

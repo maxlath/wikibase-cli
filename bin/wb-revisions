@@ -9,7 +9,7 @@ program
 
 require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getRevisions } = require('../lib/wbk')(program)
-const lightGet = require('../lib/light_get')
+const { get } = require('../lib/request')
 const errors_ = require('../lib/errors')
 const logNdjson = require('../lib/log_ndjson')
 const { isPositiveIntegerString } = require('../lib/types')
@@ -45,7 +45,7 @@ query.limit = limit
 const getAndLogRevisions = id => {
   const url = getRevisions(id, query)
   if (verbose) console.log(`revision query: ${id}`, url)
-  return lightGet(url)
+  return get(url)
   .then(body => _.values(body.query.pages)[0])
 }
 
