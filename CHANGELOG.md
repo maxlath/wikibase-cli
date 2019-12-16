@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 9.0.0 - 2019-12-16
+**Breaking Changes**: updated `wikibase-edit` to `> v4.0.0`, which uses async/await, and started using those internally too, thus requiring NodeJS `>= v7.6.0`. If you are locked on an older version of NodeJS, you are thus advised to stay on `wikibase-cli@8`
+
 ## 8.2.0 - 2019-11-28
 * [`wb-data`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-data) / [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): add lazy syntax to props selection
 
