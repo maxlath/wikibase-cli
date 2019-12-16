@@ -1,4 +1,3 @@
-
 # wikibase-cli
 The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikibase](https://wikiba.se) instances.
 
