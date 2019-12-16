@@ -1,5 +1,5 @@
 const should = require('should')
-const execa = require('execa')
+const { shellExec } = require('./lib/utils')
 const _ = require('lodash')
 
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
@@ -12,7 +12,7 @@ describe('wb data', function () {
   // and no other way to detect a stdin input was found
 
   // it('should display help', done => {
-  //   execa.shell('./bin/wd data')
+  //   shellExec('./bin/wd data')
   //   .then(res => {
   //     res.stdout.split('Usage:').length.should.equal(2)
   //     done()
@@ -21,7 +21,7 @@ describe('wb data', function () {
   // })
 
   it('<entity>', done => {
-    execa.shell('./bin/wd data Q123456')
+    shellExec('./bin/wd data Q123456')
     .then(res => {
       res.stdout.startsWith('{').should.be.true()
       const data = JSON.parse(res.stdout)
@@ -34,7 +34,7 @@ describe('wb data', function () {
   })
 
   it('should accept several ids', done => {
-    execa.shell('./bin/wd data Q123456 Q123')
+    shellExec('./bin/wd data Q123456 Q123')
     .then(res => {
       const lines = res.stdout.split('\n')
       lines.length.should.equal(2)
@@ -49,7 +49,7 @@ describe('wb data', function () {
   })
 
   it('should output entities as ndjson', done => {
-    execa.shell('./bin/wd data Q123456 Q1512522')
+    shellExec('./bin/wd data Q123456 Q1512522')
     .then(res => {
       res.stdout.split('\n').length.should.equal(2)
       done()
@@ -58,7 +58,7 @@ describe('wb data', function () {
   })
 
   it('should simplify entity when requested', done => {
-    execa.shell('./bin/wd data Q1512522 --simplify')
+    shellExec('./bin/wd data Q1512522 --simplify')
     .then(res => {
       const entity = JSON.parse(res.stdout)
       entity.labels.de.should.be.a.String()
@@ -71,7 +71,7 @@ describe('wb data', function () {
   })
 
   it('should simplify entities when requested', done => {
-    execa.shell('./bin/wd data Q1512522 Q123456 --simplify')
+    shellExec('./bin/wd data Q1512522 Q123456 --simplify')
     .then(res => {
       const entity = JSON.parse(res.stdout.split('\n')[0])
       entity.labels.de.should.be.a.String()
@@ -84,7 +84,7 @@ describe('wb data', function () {
   })
 
   it('should return only the desired props when requested', done => {
-    execa.shell('./bin/wd data Q1512522 --props labels,aliases')
+    shellExec('./bin/wd data Q1512522 --props labels,aliases')
     .then(res => {
       const entity = JSON.parse(res.stdout)
       should(entity.labels).be.an.Object()
@@ -98,7 +98,7 @@ describe('wb data', function () {
   })
 
   it('should accept ids on stdin', done => {
-    execa.shell('echo "Q123456 Q123" | ./bin/wd data --props labels --simplify')
+    shellExec('echo "Q123456 Q123" | ./bin/wd data --props labels --simplify')
     .then(res => {
       const lines = res.stdout.split('\n')
       lines.length.should.equal(2)
@@ -121,7 +121,7 @@ describe('wb data', function () {
   })
 
   it('should return ttl when requested', done => {
-    execa.shell('./bin/wd data Q1512522 --format ttl')
+    shellExec('./bin/wd data Q1512522 --format ttl')
     .then(res => {
       res.stdout.should.startWith('@prefix rdf:')
       done()
@@ -132,7 +132,7 @@ describe('wb data', function () {
   describe('claim data', () => {
     it('should get a claim data provided a claim guid', done => {
       const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-      execa.shell(`./bin/wd data '${guid}'`)
+      shellExec(`./bin/wd data '${guid}'`)
       .then(res => {
         const claim = JSON.parse(res.stdout)
         claim.id.should.equal(guid)
@@ -144,7 +144,7 @@ describe('wb data', function () {
     })
 
     it('should get a simplified claim', done => {
-      execa.shell(`./bin/wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'`)
+      shellExec(`./bin/wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'`)
       .then(res => {
         res.stdout.should.equal('Q3504248')
         done()
@@ -154,7 +154,7 @@ describe('wb data', function () {
 
     it('should keep the requested simplified claim data', done => {
       const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-      execa.shell(`./bin/wd data --simplify --keep ids,references,qualifiers '${guid}'`)
+      shellExec(`./bin/wd data --simplify --keep ids,references,qualifiers '${guid}'`)
       .then(res => {
         const claim = JSON.parse(res.stdout)
         claim.id.should.equal(guid)

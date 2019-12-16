@@ -1,11 +1,11 @@
 require('should')
-const execa = require('execa')
+const { shellExec } = require('./lib/utils')
 
 describe('wb id', function () {
   this.timeout(20000)
 
   it('display help', done => {
-    execa.shell('./bin/wd id')
+    shellExec('./bin/wd id')
     .then(res => {
       res.stdout.split('Usage:').length.should.equal(2)
       done()
@@ -14,7 +14,7 @@ describe('wb id', function () {
   })
 
   it('should accept a Wikipedia article title', done => {
-    execa.shell('./bin/wd id Cantabria -l en')
+    shellExec('./bin/wd id Cantabria -l en')
     .then(res => {
       res.stdout.should.equal('Q3946')
       done()
@@ -23,7 +23,7 @@ describe('wb id', function () {
   })
 
   it('should accept a sitelink URL', done => {
-    execa.shell('./bin/wd id https://fr.wikipedia.org/wiki/The_Ister')
+    shellExec('./bin/wd id https://fr.wikipedia.org/wiki/The_Ister')
     .then(res => {
       res.stdout.should.equal('Q3521413')
       done()

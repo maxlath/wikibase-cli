@@ -1,11 +1,11 @@
 require('should')
-const execa = require('execa')
+const { shellExec } = require('./lib/utils')
 
 describe('wb convert', function () {
   this.timeout(20000)
 
   it('should convert external ids', done => {
-    execa.shell('./bin/wd convert P268 11865344k 11932251d')
+    shellExec('./bin/wd convert P268 11865344k 11932251d')
     .then(res => {
       const results = JSON.parse(res.stdout)
       results.should.be.an.Object()
@@ -17,7 +17,7 @@ describe('wb convert', function () {
   })
 
   it('should convert external ids passed on stdin', done => {
-    execa.shell('echo "11865344k 11932251d" | ./bin/wd convert P268')
+    shellExec('echo "11865344k 11932251d" | ./bin/wd convert P268')
     .then(res => {
       const results = JSON.parse(res.stdout)
       results.should.be.an.Object()
@@ -29,7 +29,7 @@ describe('wb convert', function () {
   })
 
   it('should convert Wikidata ids', done => {
-    execa.shell('./bin/wd convert P268 Q45 Q140')
+    shellExec('./bin/wd convert P268 Q45 Q140')
     .then(res => {
       const results = JSON.parse(res.stdout)
       results.should.be.an.Object()

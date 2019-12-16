@@ -1,12 +1,12 @@
 require('should')
-const execa = require('execa')
+const { shellExec } = require('./lib/utils')
 const { undesiredRes } = require('./lib/utils')
 
 describe('wb label', function () {
   this.timeout(20000)
 
   it('should display help', done => {
-    execa.shell('./bin/wd label')
+    shellExec('./bin/wd label')
     .then(res => {
       res.stdout.split('Usage:').length.should.equal(2)
       done()
@@ -15,7 +15,7 @@ describe('wb label', function () {
   })
 
   it("should find an entity's label", done => {
-    execa.shell('./bin/wd label Q123456')
+    shellExec('./bin/wd label Q123456')
     .then(res => {
       res.stdout.should.equal('Friedrichshafen')
       done()
@@ -24,7 +24,7 @@ describe('wb label', function () {
   })
 
   it('should not fallback on another language if a language is explicitly specificed', done => {
-    execa.shell('./bin/wd label --lang uk Q15726039')
+    shellExec('./bin/wd label --lang uk Q15726039')
     .then(undesiredRes(done))
     .catch(res => {
       res.stderr.trim().should.equal('no result found')
@@ -34,7 +34,7 @@ describe('wb label', function () {
   })
 
   it('should be tolerant on input', done => {
-    execa.shell('./bin/wd label azfzafzafazQ123456fazafazfz')
+    shellExec('./bin/wd label azfzafzafazQ123456fazafazfz')
     .then(res => {
       res.stdout.should.equal('Friedrichshafen')
       done()
