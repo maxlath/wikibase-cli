@@ -143,6 +143,19 @@ describe('wb data', function () {
       .catch(done)
     })
 
+    it('should accept prefixed claim GUIDs', done => {
+      const prefixedGuid = 'wds:Q2-50fad68d-4f91-f878-6f29-e655af54690e'
+      shellExec(`./bin/wd data '${prefixedGuid}'`)
+      .then(res => {
+        const claim = JSON.parse(res.stdout)
+        claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
+        claim.mainsnak.property.should.equal('P31')
+        claim.mainsnak.datavalue.value.id.should.equal('Q3504248')
+        done()
+      })
+      .catch(done)
+    })
+
     it('should get a simplified claim', done => {
       shellExec(`./bin/wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'`)
       .then(res => {

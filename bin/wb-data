@@ -11,7 +11,19 @@ program
 
 const { isGuid } = require('wikibase-sdk')
 
-const guid = program.args[0] && program.args[0].replace('\\$', '$')
+let firstArg = program.args[0]
+
+// Normalize prefixed statements GUIDs as returned by SPARQL queries
+// to the format used by Wikibase API
+// ex: wds:Q2-50fad68d-4f91-f878-6f29-e655af54690e => Q2$50fad68d-4f91-f878-6f29-e655af54690e
+if (firstArg && firstArg.startsWith('wds:')) {
+  firstArg = firstArg
+    .replace('wds:', '')
+    // Replace first '-' by a dollar
+    .replace('-', '$')
+}
+
+const guid = firstArg && firstArg.replace('\\$', '$')
 
 if (program.args.length === 1 && isGuid(guid)) {
   require('../lib/fetch_and_log_guid_data')(guid)
