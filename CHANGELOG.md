@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 9.1.0 - 2020-03-08
+* Added [batch mode](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#batch-mode) to write operations
+
 ## 9.0.0 - 2019-12-16
 **Breaking Changes**: updated `wikibase-edit` to `> v4.0.0`, which uses async/await, and started using those internally too, thus requiring NodeJS `>= v7.6.0`. If you are locked on an older version of NodeJS, you are thus advised to stay on `wikibase-cli@8`
 
