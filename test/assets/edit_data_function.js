@@ -1,4 +1,4 @@
 module.exports = (id, quantity) => ({
   id,
-  claims: { P1106: parseInt(quantity) }
+  claims: { P95228: parseInt(quantity) }
 })

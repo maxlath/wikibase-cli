@@ -1,6 +1,14 @@
 const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
 
+const shellExec = async cmd => {
+  const { stdout, stderr } = await exec(cmd)
+  return {
+    stdout: stdout.trim(),
+    stderr: stderr.trim()
+  }
+}
+
 module.exports = {
   // A function to quickly fail when a test gets an undesired positive answer
   undesiredRes: done => res => {
@@ -12,11 +20,7 @@ module.exports = {
     console.warn(err.body || err, 'undesired err body')
   },
 
-  shellExec: async cmd => {
-    const { stdout, stderr } = await exec(cmd)
-    return {
-      stdout: stdout.trim(),
-      stderr: stderr.trim()
-    }
-  }
+  shellExec,
+
+  wdTest: async cmd => shellExec(`./bin/wb ${cmd} --instance "https://test.wikidata.org"`)
 }
