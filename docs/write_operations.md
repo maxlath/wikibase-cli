@@ -41,6 +41,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [wb merge-entity](#wb-merge-entity)
   - [wb delete-entity](#wb-delete-entity)
 - [Batch mode](#batch-mode)
+  - [Batch process logs](#batch-process-logs)
 - [Demos](#demos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -486,8 +487,8 @@ wb edit-entity ./template.js Q3 ghi 789
 you can write:
 ```sh
 # NB: simple arguments without spaces (such as in the 1st case hereafter)
-# don't need to be wrapped in an array, but it is required for arguments
-# that would be harder to parse otherwise (2nd and 3rd cases hereafter)
+# don't need to be wrapped in a JSON array, but it is required for arguments
+# that would be harder/error-prone to parse otherwise (2nd and 3rd cases hereafter)
 echo '
 Q1 P123 123
 [ "Q2", "P124", "multiple words value" ]
