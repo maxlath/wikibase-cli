@@ -472,8 +472,8 @@ wb de <entity-id>
 So instead of:
 ```sh
 wb add-claim Q1 P123 123
-wb add-claim Q2 P123 456
-wb add-claim Q3 P123 789
+wb add-claim Q2 P124 'multiple words value'
+wb add-claim Q3 P125 '{ "time": "1800", "precision": 7 }'
 
 wb create-entity '{"labels":{"en":"foo"}}'
 wb create-entity '{"labels":{"en":"bar"}}'
@@ -485,10 +485,13 @@ wb edit-entity ./template.js Q3 ghi 789
 ```
 you can write:
 ```sh
+# NB: simple arguments without spaces (such as in the 1st case hereafter)
+# don't need to be wrapped in an array, but it is required for arguments
+# that would be harder to parse otherwise (2nd and 3rd cases hereafter)
 echo '
 Q1 P123 123
-Q2 P123 456
-Q3 P123 789
+[ "Q2", "P124", "multiple words value" ]
+[ "Q3", "P125", { "time": "1800", "precision": 7 } ]
 ' | wb add-claim --batch
 
 echo '
@@ -520,6 +523,8 @@ wb ac -b < ./add_claim_newline_separated_command_args
 wb ce -b < ./create_entity_newline_separated_command_args
 wb ee -b < ./edit_entity_newline_separated_command_args
 ```
+
+#### Batch process logs
 
 The command output (`stdout`) will be made of one Wikibase API response per line, while `stderr` will be used for both progression logs and error messages. For long lists of commands, you could write those outputs to files to keep track of what was done, and, if need be, where the process exited if an error happened. This can be done this way:
 ```sh
