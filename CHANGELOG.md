@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 9.2.0 - 2020-03-08
+* Added [edit group](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-group) support
+
 ## 9.1.0 - 2020-03-08
 * Added [batch mode](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#batch-mode) to write operations
 
