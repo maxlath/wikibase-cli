@@ -550,21 +550,21 @@ The key must match the following pattern: `[A-Za-z0-9_]{6,50}`. Or in plain Engl
 Example:
 
 ```sh
-wb add-claim Q1 P2 123 --edit-group adding_some_P2_values
-wb add-claim Q2 P2 456 --edit-group adding_some_P2_values
-wb add-claim Q3 P2 789 --edit-group adding_some_P2_values
+wd add-claim Q4115189 P1106 123 --edit-group adding_some_P1106_values
+wd add-claim Q4115189 P1106 456 --edit-group adding_some_P1106_values
+wd add-claim Q4115189 P1106 789 --edit-group adding_some_P1106_values
 
 # Or the short version:
-wb ac Q1 P2 123 -g adding_some_P2_values
-wb ac Q2 P2 456 -g adding_some_P2_values
-wb ac Q3 P2 789 -g adding_some_P2_values
+wd ac Q4115189 P1106 123 -g adding_some_P1106_values
+wd ac Q4115189 P1106 456 -g adding_some_P1106_values
+wd ac Q4115189 P1106 789 -g adding_some_P1106_values
 
 # Or the batch mode version
 echo '
-Q1 P2 123
-Q2 P2 456
-Q3 P2 789
-' | wb add-claim --batch --edit-group adding_some_P2_values
+Q4115189 P1106 123
+Q4115189 P1106 456
+Q4115189 P1106 789
+' | wd add-claim --batch --edit-group adding_some_P1106_values
 ```
 
 In [batch mode](#batch-mode), if no edit group key is set and if the target Wikibase instance is Wikidata, **the batch will be auto-attributed an edit group key**: an epoch timestamp in milliseconds corresponding to when the batch operation was started.
