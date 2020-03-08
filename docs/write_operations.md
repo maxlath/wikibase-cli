@@ -467,8 +467,6 @@ wb de <entity-id>
 ```
 
 ### Batch mode
-:warning: **This is a new and powerful feature. Please make small tests before starting large, hard to revert batches, and report any issue you might encounter**
-
 **All write operations commands accept a `-b, --batch` option**. In batch mode, arguments are provided on the command [standard input (`stdin`)](https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)), with one operation per line.
 
 So instead of:
