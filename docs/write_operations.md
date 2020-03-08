@@ -42,6 +42,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [wb delete-entity](#wb-delete-entity)
 - [Batch mode](#batch-mode)
   - [Batch process logs](#batch-process-logs)
+- [Edit group](#edit-group)
 - [Demos](#demos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -534,5 +535,38 @@ wb ac -b < ./my_commands_args_list > ./my_commands_args_list.log 2> ./my_command
 # In another terminal, start a `tail` process at any time to see the progression. This process can be interrupted without stoppping the batch process
 tail -f ./my_commands_args_list.log ./my_commands_args_list.err
 ```
+
+### Edit group
+* Wikidata-specific feature *
+
+[Edit groups](https://www.wikidata.org/wiki/Wikidata:Edit_groups) are sets of changes on Wikidata items which follow a similar pattern and are performed around the same time by a given user.
+
+An edit group key can be set for any write operation commands via the`-g, --edit-group <key>` option.
+
+The key must match the following pattern: `[A-Za-z0-9_]{6,50}`. Or in plain English:
+* Acceptable characters: any letters, numbers, underscore
+* Length: between 6 and 50 characters
+
+Example:
+
+```sh
+wb add-claim Q1 P2 123 --edit-group adding_some_P2_values
+wb add-claim Q2 P2 456 --edit-group adding_some_P2_values
+wb add-claim Q3 P2 789 --edit-group adding_some_P2_values
+
+# Or the short version:
+wb ac Q1 P2 123 -g adding_some_P2_values
+wb ac Q2 P2 456 -g adding_some_P2_values
+wb ac Q3 P2 789 -g adding_some_P2_values
+
+# Or the batch mode version
+echo '
+Q1 P2 123
+Q2 P2 456
+Q3 P2 789
+' | wb add-claim --batch --edit-group adding_some_P2_values
+```
+
+In [batch mode](#batch-mode), if no edit group key is set and if the target Wikibase instance is Wikidata, **the batch will be auto-attributed an edit group key**: an epoch timestamp in milliseconds corresponding to when the batch operation was started.
 
 ### [Demos](https://github.com/maxlath/wikidata-scripting)
