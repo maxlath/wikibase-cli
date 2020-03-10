@@ -12,7 +12,7 @@ module.exports = {
   examples: [
     { args: 'clipboard true', comment: 'always copy results to the clipboard when possible' },
     { args: 'lang nl', comment: 'set prefered language to Dutch' },
-    { args: 'instance default', comment: 'reset the instance setting to its default value' },
+    { args: 'instance clear', comment: 'reset the instance setting to its default value' },
     { args: 'path', comment: 'get configuration path' },
     { args: 'clear', comment: 'clear configuration' }
   ],
