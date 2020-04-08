@@ -1,6 +1,6 @@
 {
   "name": "wikibase-cli",
-  "version": "9.2.1",
+  "version": "10.0.0",
   "description": "The command-line interface to Wikibase",
   "main": "index.js",
   "bin": {
