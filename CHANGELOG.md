@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 10.0.0 - 2020-04-08
+**BREAKING CHANGES**: Removed the `-g, --edit-group <key>` option, as it is now automatically generated when in batch mode and targeting wikidata.org
+* Added [edit summary](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-summary)
+
 ## 9.2.0 - 2020-03-08
 * Added [edit group](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-group) support
 
