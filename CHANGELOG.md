@@ -2,7 +2,7 @@
 *versions follow [SemVer](http://semver.org)*
 
 ## 10.0.0 - 2020-04-08
-**BREAKING CHANGES**: Removed the `-g, --edit-group <key>` option, as it is now automatically generated when in batch mode and targeting wikidata.org
+**BREAKING CHANGE**: Removed the `-g, --edit-group <key>` option, as it is now automatically generated when in batch mode and targeting wikidata.org
 * Added [edit summary](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-summary)
 
 ## 9.2.0 - 2020-03-08
@@ -12,7 +12,7 @@
 * Added [batch mode](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#batch-mode) to write operations
 
 ## 9.0.0 - 2019-12-16
-**Breaking Changes**: updated `wikibase-edit` to `> v4.0.0`, which uses async/await, and started using those internally too, thus requiring NodeJS `>= v7.6.0`. If you are locked on an older version of NodeJS, you are thus advised to stay on `wikibase-cli@8`
+**BREAKING CHANGE**: updated `wikibase-edit` to `> v4.0.0`, which uses async/await, and started using those internally too, thus requiring NodeJS `>= v7.6.0`. If you are locked on an older version of NodeJS, you are thus advised to stay on `wikibase-cli@8`
 
 ## 8.2.0 - 2019-11-28
 * [`wb-data`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-data) / [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): add lazy syntax to props selection
@@ -88,7 +88,7 @@
   * [added a `-d, --details` option to output properties with all the available data: labels, types, descriptions, aliases](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#get-the-list-of-all-wikidata-properties-with-their-labels-types-descriptions-and-aliases)
 
 ## 6.0.0 - 2017-12-16
-* BREAKING CHANGE: [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) and [`wd revisions`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-revisions) now output [newline delimited JSON](https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON), which is valid JSON if taken line by line, but not as a whole.
+* **BREAKING CHANGE**: [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) and [`wd revisions`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-revisions) now output [newline delimited JSON](https://en.wikipedia.org/wiki/JSON_streaming#Line-delimited_JSON), which is valid JSON if taken line by line, but not as a whole.
 * [`wd data`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-data) can now fetch more than 50 entities at once and accepts ids from stdin
 * Added [`wd sparql`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wd-sparql) wellknown query: [`all-instances`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#all-instances)
 
