@@ -1,7 +1,7 @@
 # wikibase-cli
 The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikibase](https://wikiba.se) instances.
 
-It was primarily developed to target [Wikidata](https://wikidata.org), but as then be decoupled to support any Wikibase instance.
+It was primarily developed to target [Wikidata](https://wikidata.org), but as then been decoupled to support any Wikibase instance.
 
 This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
 
