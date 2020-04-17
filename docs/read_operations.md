@@ -103,7 +103,8 @@ wb search eagle -i https://wikibase-registry.wmflabs.org
 
 Options:
 * `-l, --lang <lang>`: specify the results labels and descriptions language
-* `-t, --limit <num>`: set a custom limit (defaults to 10)
+* `-t, --type <type>`: set a custom type: item, property, lexeme, form, sense (Default: item)
+* `-n, --limit <num>`: set a custom limit (defaults to 10)
 * `-j, --json`: format the result as JSON
 * `-v, --verbose`: display rich results (aka summaries)
 
@@ -542,7 +543,7 @@ wd props --details
 
 This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` or `--no-cache` options:
 
-Option: `-n, --no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
+Option: `--no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
 Option: `-r, --reset`: clear cached properties, in all languages
 
 ### wb sparql
@@ -682,7 +683,7 @@ Other options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
-* `-t, --limit <num>`: set the request results limit
+* `-n, --limit <num>`: set the request results limit
 * `-c, --counts`: return a count of matching results
 * `-v, --verbose`: log the generated request
 * `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
