@@ -103,13 +103,27 @@ wb search eagle -i https://wikibase-registry.wmflabs.org
 
 Options:
 * `-l, --lang <lang>`: specify the results labels and descriptions language
-* `-t, --type <type>`: set a custom type: item, property, lexeme, form, sense (Default: item)
-* `-n, --limit <num>`: set a custom limit (defaults to 10)
+* `-t, --type <type>`: set a custom type: i|item, p|property, l|lexeme, f|form, s|sense (Default: item)
+```sh
+```
+* `-n, --limit <num>`: set a custom limit (defaults to 20)
 * `-j, --json`: format the result as JSON
 * `-v, --verbose`: display rich results (aka summaries)
+* `-p, --properties <comma separted properties ids>`: request additional properties (implies verbose mode)
 
-Verbose mode only:
-* `-p, --properties <properties>`: request additional properties (separated by a comma)
+Examples:
+```sh
+# Display search results with publication dates
+wd search --properties P577 "Harry Potter"
+# Search properties (but `wb props` might be doing a better job)
+wd search --type property "date"
+# Search lexemes
+wd search --type lexeme "date"
+# Search forms
+wd search --type form "code"
+# Searching senses doesn't seem to work currently (2020-04-17)
+wd search --type sense "test"
+```
 
 ### wb label
 ```sh
