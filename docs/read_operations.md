@@ -66,7 +66,8 @@ wb u <entities ids>
 ```
 ```sh
 wd summary Q27477672
-wd summary Q18120925 Q22117436 Q22117437
+# Can take multiple ids from all the supported entity types: item, lexeme, property
+wd summary Q18120925 L525 P123
 
 # With custom properties on an other Wikibase instance
 wb summary Q5 -l en -p P2,P12 -i https://wikibase-registry.wmflabs.org -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
