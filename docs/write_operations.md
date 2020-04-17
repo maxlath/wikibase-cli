@@ -173,9 +173,9 @@ wd ac Q4115189 P578 'time=1800&precision=7'
 ```
 
 ##### with a reference
-Workflow example to add a claim with a reference, relying on the [jsondepth](https://github.com/maxlath/jsondepth) parser (hereafter referenced as `jd`). See [`wb add-reference`](#wb-add-reference) for more details.
+Workflow example to add a claim with a reference, using [jq](https://stedolan.github.io/jq/). See [`wb add-reference`](#wb-add-reference) for more details.
 ``` sh
-claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jd claim.id)
+claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jq -r .claim.id)
 # Add the reference that this claim is imported from (P143) Wikipedia in Uyghur (Q60856)
 wd add-reference $claim_guid P143 Q60856
 ```

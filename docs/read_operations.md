@@ -224,10 +224,10 @@ wb d <entities ids>
 wd data Q1496
 ```
 This simply outputs the result of `https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q1496`, parsed to keep only what is relevant to the requested entity (here Q1496).
-The output is valid json, so it lets you the possibility to pipe it to a JSON parser such as [jsondepth](https://www.npmjs.com/package/jsondepth):
+The output is valid json, so it lets you the possibility to pipe it to a JSON parser such as [jq](https://stedolan.github.io/jq/):
 ```sh
-wd data Q1496 | jd labels.pt
-# => { language: 'pt', value: 'Fernão de Magalhães' }
+wd data Q1496 | jq .labels.pt
+# => {"language":"pt","value":"Fernão de Magalhães"}
 ```
 
 #### multiple entities
@@ -793,7 +793,7 @@ Examples:
 # Find the entity having 24597135 as VIAF id and open the corresponding page on inventaire.io
 wd hub viaf:24597135 site=inventaire
 # Get the image illustrating Q3 in 300px
-wd hub Q3 property=image width=300 --json | jd destination.url
+wd hub Q3 property=image width=300 --json | jq .destination.url
 ```
 
 ### wb lang
