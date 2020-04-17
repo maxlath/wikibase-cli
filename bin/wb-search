@@ -27,19 +27,10 @@ if (!valide.lang(language)) {
 require('../lib/exit_on_missing').instance(program.instance)
 const { searchEntities } = require('../lib/wbk')(program)
 const { get } = require('../lib/request')
+const parseEntityType = require('../lib/parse_entity_type')
 const { padEnd } = require('lodash')
 
-type = type || 'item'
-
-const shortTypes = {
-  f: 'form',
-  i: 'item',
-  p: 'property',
-  l: 'lexeme',
-  s: 'sense'
-}
-
-type = shortTypes[type] || type
+type = parseEntityType(type)
 
 const url = searchEntities({
   search,
