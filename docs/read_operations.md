@@ -736,7 +736,16 @@ wd open Q123
 wd open P659
 # opens https://www.wikidata.org/entity/P659
 
-# also working with any string that matches /(Q|P)\d+/
+wd open L525
+# opens https://www.wikidata.org/entity/L525
+
+wd open L525-F1
+# opens https://www.wikidata.org/entity/L525-F1
+
+wd open L525-S1
+# opens https://www.wikidata.org/entity/L525-S1
+
+# also working with any string that contains an entity id
 wd open https://inventaire.io/entity/wd:Q33977
 # opens https://wikidata.org/wiki/Q33977
 
