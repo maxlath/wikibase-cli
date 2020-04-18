@@ -65,6 +65,7 @@
     ],
     "globals": [
       "it",
+      "xit",
       "describe"
     ]
   },

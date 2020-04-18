@@ -13,6 +13,7 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [wb label](#wb-label)
 - [wb description](#wb-description)
 - [wb aliases](#wb-aliases)
+- [wb lemma](#wb-lemma)
 - [wb claims](#wb-claims)
   - [get a claim GUID](#get-a-claim-guid)
 - [wb data](#wb-data)
@@ -66,7 +67,8 @@ wb u <entities ids>
 ```
 ```sh
 wd summary Q27477672
-wd summary Q18120925 Q22117436 Q22117437
+# Can take multiple ids from all the supported entity types: item, lexeme, property
+wd summary Q18120925 L525 P123
 
 # With custom properties on an other Wikibase instance
 wb summary Q5 -l en -p P2,P12 -i https://wikibase-registry.wmflabs.org -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
@@ -102,12 +104,27 @@ wb search eagle -i https://wikibase-registry.wmflabs.org
 
 Options:
 * `-l, --lang <lang>`: specify the results labels and descriptions language
-* `-t, --limit <num>`: set a custom limit (defaults to 10)
+* `-t, --type <type>`: set a custom type: i|item, p|property, l|lexeme, f|form, s|sense (Default: item)
+```sh
+```
+* `-n, --limit <num>`: set a custom limit (defaults to 20)
 * `-j, --json`: format the result as JSON
 * `-v, --verbose`: display rich results (aka summaries)
+* `-p, --properties <comma separted properties ids>`: request additional properties (implies verbose mode)
 
-Verbose mode only:
-* `-p, --properties <properties>`: request additional properties (separated by a comma)
+Examples:
+```sh
+# Display search results with publication dates
+wd search --properties P577 "Harry Potter"
+# Search properties (but `wb props` might be doing a better job)
+wd search --type property "date"
+# Search lexemes
+wd search --type lexeme "date"
+# Search forms
+wd search --type form "code"
+# Searching senses doesn't seem to work currently (2020-04-17)
+wd search --type sense "test"
+```
 
 ### wb label
 ```sh
@@ -164,6 +181,18 @@ wb aliases Q18120925 Q22117436 Q22117437
 Options:
 * `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang <lang>`: specify the aliases's language
+
+### wb lemma
+```sh
+wb lemma <lexeme ids>
+```
+```sh
+wb lemma L1
+wd lemma L1 L2 L3
+```
+Options:
+* `-c, --clipboard`: copy the command's result to the clipboard
+* `-l, --lang <lang>`: specify the lemma's language
 
 ### wb claims
 A quick way to access the claims of an entity
@@ -234,7 +263,7 @@ wd data Q1496 | jq .labels.pt
 You can also request several entities at once by passing several ids.
 This outputs newline delimited JSON: one entity per-line, each line being valid JSON, but not the whole file as a whole.
 ```sh
-wd data Q1496 Q123
+wd data Q1 Q2 Q3 L57332 P2114
 wb data Q5 Q6 Q7 -i https://wikibase-registry.wmflabs.org
 ```
 Alternatively, you can pass ids from stdin:
@@ -269,6 +298,7 @@ wd d -sk ids Q123 | jq .claims.P138 -j
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
 ```sh
 wd data --props labels,claims,sitelinks Q515168
+wd data --props lemmas,forms L525
 ```
 Or even subparts of those properties
 ```sh
@@ -541,7 +571,7 @@ wd props --details
 
 This means that after a while, your local version will miss new and updated properties: this can be solved by using the `--reset` or `--no-cache` options:
 
-Option: `-n, --no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
+Option: `--no-cache`: ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached
 Option: `-r, --reset`: clear cached properties, in all languages
 
 ### wb sparql
@@ -681,7 +711,7 @@ Other options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
-* `-t, --limit <num>`: set the request results limit
+* `-n, --limit <num>`: set the request results limit
 * `-c, --counts`: return a count of matching results
 * `-v, --verbose`: log the generated request
 * `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
@@ -734,7 +764,16 @@ wd open Q123
 wd open P659
 # opens https://www.wikidata.org/entity/P659
 
-# also working with any string that matches /(Q|P)\d+/
+wd open L525
+# opens https://www.wikidata.org/entity/L525
+
+wd open L525-F1
+# opens https://www.wikidata.org/entity/L525-F1
+
+wd open L525-S1
+# opens https://www.wikidata.org/entity/L525-S1
+
+# also working with any string that contains an entity id
 wd open https://inventaire.io/entity/wd:Q33977
 # opens https://wikidata.org/wiki/Q33977
 
