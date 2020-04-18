@@ -69,6 +69,16 @@ describe('wb data', function () {
     should(entity.sitelinks).not.be.ok()
   })
 
+  // Known to fail due to inconsistencies in the Wikibase API
+  // which doesn't recognizes lexemes, forms, and senses as valid props
+  xit('should support lexemes', async () => {
+    const { stdout } = await shellExec('./bin/wd data L525 --props lexemes,forms')
+    const entity = JSON.parse(stdout)
+    should(entity.lexemes).be.an.Object()
+    should(entity.senses).not.be.ok()
+    should(entity.forms).be.an.Object()
+  })
+
   it('should accept ids on stdin', async () => {
     const { stdout } = await shellExec('echo "Q123456 Q123" | ./bin/wd data --props labels --simplify')
     const lines = stdout.split('\n')

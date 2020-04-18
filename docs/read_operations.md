@@ -263,7 +263,7 @@ wd data Q1496 | jq .labels.pt
 You can also request several entities at once by passing several ids.
 This outputs newline delimited JSON: one entity per-line, each line being valid JSON, but not the whole file as a whole.
 ```sh
-wd data Q1496 Q123
+wd data Q1 Q2 Q3 L57332 P2114
 wb data Q5 Q6 Q7 -i https://wikibase-registry.wmflabs.org
 ```
 Alternatively, you can pass ids from stdin:
@@ -298,6 +298,7 @@ wd d -sk ids Q123 | jq .claims.P138 -j
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`
 ```sh
 wd data --props labels,claims,sitelinks Q515168
+wd data --props lemmas,forms L525
 ```
 Or even subparts of those properties
 ```sh
