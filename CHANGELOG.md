@@ -1,6 +1,17 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 11.0.0 - 2020-04-18
+**BREAKING CHANGE**:
+* the short option `-n` is repurposed to alias `--limit` in read operations (it was previously associated with the `--no-cache` option)
+* the short option `-t` is repurposed to alias `--type` in read operations (it was previously associated with the `--limit` option)
+
+**New features**:
+* [`wb summary`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-summary): added support for lexemes
+* [`wb search`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-search): added support for lexemes, forms, and senses
+* [`wb open`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-open): added support for lexemes, forms, and senses
+* [`wb lemma`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-lemma)
+
 ## 10.0.0 - 2020-04-08
 **BREAKING CHANGE**: Removed the `-g, --edit-group <key>` option, as it is now automatically generated when in batch mode and targeting wikidata.org
 * Added [edit summary](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-summary)
