@@ -13,6 +13,7 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [wb label](#wb-label)
 - [wb description](#wb-description)
 - [wb aliases](#wb-aliases)
+- [wb lemma](#wb-lemma)
 - [wb claims](#wb-claims)
   - [get a claim GUID](#get-a-claim-guid)
 - [wb data](#wb-data)
@@ -180,6 +181,18 @@ wb aliases Q18120925 Q22117436 Q22117437
 Options:
 * `-c, --clipboard`: copy the command's result to the clipboard
 * `-l, --lang <lang>`: specify the aliases's language
+
+### wb lemma
+```sh
+wb lemma <lexeme ids>
+```
+```sh
+wb lemma L1
+wd lemma L1 L2 L3
+```
+Options:
+* `-c, --clipboard`: copy the command's result to the clipboard
+* `-l, --lang <lang>`: specify the lemma's language
 
 ### wb claims
 A quick way to access the claims of an entity
