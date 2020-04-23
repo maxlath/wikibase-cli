@@ -2,67 +2,43 @@ require('should')
 const { shellExec } = require('./lib/utils')
 
 describe('wb lang', () => {
-  it('should display help', done => {
-    shellExec('./bin/wd lang')
-    .then(res => {
-      res.stdout.split('Usage:').length.should.equal(2)
-      done()
-    })
-    .catch(done)
+  it('should display help', async () => {
+    const { stdout } = await shellExec('./bin/wd lang')
+    stdout.split('Usage:').length.should.equal(2)
   })
 
-  it('should identify a lang from a wikidata item id', done => {
-    shellExec('./bin/wd lang Q150')
-    .then(res => {
-      res.stdout.should.equal('fr')
-      done()
-    })
-    .catch(done)
+  it('should identify a lang from a wikidata item id', async () => {
+    const { stdout } = await shellExec('./bin/wd lang Q150')
+    stdout.should.equal('fr')
   })
 
-  it('should identify a lang from a language code', done => {
-    shellExec('./bin/wd lang fr')
-    .then(res => {
-      res.stdout.should.equal('Q150')
-      done()
-    })
-    .catch(done)
+  it('should identify a lang from a language code', async () => {
+    const { stdout } = await shellExec('./bin/wd lang fr')
+    stdout.should.equal('Q150')
   })
 
-  it('should identify a lang from a string', done => {
-    shellExec('./bin/wd lang akan')
-    .then(res => {
-      const [ langCode, wdId, englishLabel, native ] = res.stdout.split(/\s+/g)
-      langCode.should.equal('ak')
-      wdId.should.equal('Q28026')
-      englishLabel.should.equal('Akan')
-      native.should.equal('Akana')
-      done()
-    })
-    .catch(done)
+  it('should identify a lang from a string', async () => {
+    const { stdout } = await shellExec('./bin/wd lang akan')
+    const [ langCode, wdId, englishLabel, native ] = stdout.split(/\s+/g)
+    langCode.should.equal('ak')
+    wdId.should.equal('Q28026')
+    englishLabel.should.equal('Akan')
+    native.should.equal('Akana')
   })
 
   describe('json', () => {
-    it('should identify a lang from a wikidata item id', done => {
-      shellExec('./bin/wd lang Q150 --json')
-      .then(res => {
-        const data = JSON.parse(res.stdout)
-        data.code.should.equal('fr')
-        data.wd.should.equal('Q150')
-        done()
-      })
-      .catch(done)
+    it('should identify a lang from a wikidata item id', async () => {
+      const { stdout } = await shellExec('./bin/wd lang Q150 --json')
+      const data = JSON.parse(stdout)
+      data.code.should.equal('fr')
+      data.wd.should.equal('Q150')
     })
 
-    it('should identify a lang from a language code', done => {
-      shellExec('./bin/wd lang fr --json')
-      .then(res => {
-        const data = JSON.parse(res.stdout)
-        data.code.should.equal('fr')
-        data.wd.should.equal('Q150')
-        done()
-      })
-      .catch(done)
+    it('should identify a lang from a language code', async () => {
+      const { stdout } = await shellExec('./bin/wd lang fr --json')
+      const data = JSON.parse(stdout)
+      data.code.should.equal('fr')
+      data.wd.should.equal('Q150')
     })
   })
 })
