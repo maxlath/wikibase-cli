@@ -28,6 +28,7 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [wb generate-template](#wb-generate-template)
   - [Tailored templates](#tailored-templates)
   - [Dynamic templates](#dynamic-templates)
+  - [Generate many templates](#generate-many-templates)
   - [Generate template from a specific revision](#generate-template-from-a-specific-revision)
 - [wb revisions](#wb-revisions)
 - [wb id](#wb-id)
@@ -393,6 +394,54 @@ wb generate-template Q123 --format js > template.js
 # by passing the required arguments
 wb create-entity ./template.js foo bar 456 'https://example.org'
 wb create-entity ./template.js buz bla 987 'https://example2.org'
+```
+
+#### Generate many templates
+```sh
+# Pass ids as arguments
+wb generate-template Q123 Q124
+# or on stdin (useful especially when there are many ids)
+echo Q123 Q124 | wb generate-template
+```
+
+Generating many templates at once can be useful, for instance to apply the same modification to many entities. For instance, to remove all P370 qualifiers on P369 claims, you first find all the entities with such a claim with a SPARQL query
+
+```sh
+# Find the ids of entities to modify
+wd sparql ./find_entities_ids.rq > ids
+cat ids | wd generate-template --props P369 > templates.ndjson
+# using https://www.npmjs.com/package/ndjson-apply
+cat templates.ndjson | ndjson-apply ./remove_qualifier.js > cleaned_up_templates.ndjson
+cat cleaned_up_templates.ndjson | wd entity-edit --batch
+
+# Or for short, if you know what you are doing and don't want to inspect intermediary results
+wd sparql ./find_entities_ids.rq |
+  wd generate-template --props P369 |
+  ndjson-apply ./remove_qualifier.js |
+  wd entity-edit --batch
+```
+
+Where `./find_entities_ids.rq` could be something like:
+```sparql
+# find all entities with a P370 qualifier on a P369 claim
+SELECT ?item {
+  ?item p:P369 ?P369_statement .
+  ?P369_statement pq:P370 ?P370_claim .
+}
+```
+
+and `./remove_qualifier.js` could be something like:
+```js
+module.exports = item => {
+  // Filter-out claims that shouldn't be changed
+  item.claims.P369 = item.claims.P369
+    .filter(claim => claim.qualifiers.P370 != null)
+    .map(claim => {
+      delete claim.qualifiers.P370
+      return claim
+    })
+  return item
+}
 ```
 
 #### Generate template from a specific revision
