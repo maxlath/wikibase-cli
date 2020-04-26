@@ -7,7 +7,7 @@ wb_show_help=0
 # unless it can be called without argument (ex: "props")
 if [[ "$2" == "" ]] ;
 then
-  if [[ "$1" != "props" ]] ;
+  if [[ "$1" != "props" && "$1" != "p" && "$1" != "data" && "$1" != "d" && "$1" != "generate-template" && "$1" != "gt" ]] ;
   then
     wb_show_help=1
   fi

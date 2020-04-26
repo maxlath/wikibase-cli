@@ -8,26 +8,35 @@ program
 .process('generate-template')
 
 const parseId = require('../lib/tolerant_id_parser')
-const id = parseId(program.args[0])
+const ids = program.args.map(parseId)
 require('../lib/exit_on_missing').instance(program.instance)
-const { isEntityId, getEntityRevision, getEntities, simplify } = require('../lib/wbk')(program)
-const { get } = require('../lib/request')
-const _ = require('lodash')
+const { isEntityId, getEntityRevision, getManyEntities, simplify } = require('../lib/wbk')(program)
+const { pick } = require('lodash')
 const parseProps = require('../lib/parse_props')
 const dropNonSelectedSubprops = require('../lib/drop_non_selected_subprops')
 const minimizeClaims = require('../lib/minimize_claims')
 const { revision } = program
+const getEntitiesByBatches = require('../lib/get_entities_by_batches')
 
-if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+ids.forEach(id => {
+  if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+})
+
+const batchMode = ids.length > 1
+
+if (batchMode && program.format === 'js') {
+  throw new Error("js format can't be used when several entities are requested")
+}
 
 const requestedPropsAndSubProps = parseProps(program.props)
 const requestedProps = Object.keys(requestedPropsAndSubProps)
 
-var url
+let urls
 if (revision) {
-  url = getEntityRevision(id, revision)
+  if (ids.length !== 1) throw new Error(`requesting a revision for several entities isn't supported: ${ids}`)
+  urls = [ getEntityRevision(ids[0], revision) ]
 } else {
-  url = getEntities({ ids: [ id ], props: requestedProps })
+  urls = getManyEntities({ ids, props: requestedProps })
 }
 
 const requiredKeys = [ 'id', 'type', 'datatype', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
@@ -44,17 +53,24 @@ const simplifyOptions = {
   keepHashes: false
 }
 
-get(url)
-.then(body => {
-  var entity = _.values(body.entities)[0]
+const formatEntity = entity => {
   entity = simplify.entity(entity, simplifyOptions)
-  if (revision) entity = _.pick(entity, [ 'id' ].concat(requestedProps))
-  else entity = _.pick(entity, requiredKeys)
+  if (revision) entity = pick(entity, [ 'id' ].concat(requestedProps))
+  else entity = pick(entity, requiredKeys)
   dropNonSelectedSubprops(entity, requestedPropsAndSubProps)
   minimizeClaims(entity.claims)
+  return entity
+}
+
+const onResponse = entities => {
+  entities = entities.map(formatEntity)
   if (program.format === 'js') {
-    console.log(require('../lib/output_js_function')(entity))
+    console.log(require('../lib/output_js_function')(entities[0]))
   } else {
-    console.log(JSON.stringify(entity, null, 2))
+    entities.forEach(entity => {
+      process.stdout.write(JSON.stringify(entity) + '\n')
+    })
   }
-})
+}
+
+getEntitiesByBatches({ urls, onResponse })
