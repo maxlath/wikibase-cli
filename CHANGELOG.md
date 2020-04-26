@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 11.1.0 - 2020-04-26
+* [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): add batch mode
+
 ## 11.0.0 - 2020-04-18
 **BREAKING CHANGE**:
 * the short option `-n` is repurposed to alias `--limit` in read operations (it was previously associated with the `--no-cache` option)
