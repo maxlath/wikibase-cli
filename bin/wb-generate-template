@@ -39,21 +39,24 @@ let propsToPick
 if (revision && requestedProps.length > 0) propsToPick = [ 'id' ].concat(requestedProps)
 else propsToPick = requiredKeys
 
-const formatEntity = entity => {
+const FormatEntity = batchMode => entity => {
   entity = simplify.entity(entity, simplifyOptions)
   entity = pick(entity, propsToPick)
   dropNonSelectedSubprops(entity, requestedPropsAndSubProps)
-  minimizeClaims(entity.claims)
+  if (!batchMode) minimizeClaims(entity.claims)
   return entity
 }
 
-const onResponse = entities => {
-  entities = entities.map(formatEntity)
-  if (format === 'js') {
-    console.log(require('../lib/output_js_function')(entities[0]))
-  } else {
-    const newLines = entities.map(entity => JSON.stringify(entity)).join('\n')
-    process.stdout.write(newLines + '\n')
+const outputTemplates = batchMode => {
+  const formatEntity = FormatEntity(batchMode)
+  return entities => {
+    entities = entities.map(formatEntity)
+    if (format === 'js') {
+      console.log(require('../lib/output_js_function')(entities[0]))
+    } else {
+      const newLines = entities.map(entity => JSON.stringify(entity)).join('\n')
+      process.stdout.write(newLines + '\n')
+    }
   }
 }
 
@@ -76,7 +79,10 @@ const handleIds = async ids => {
     urls = getManyEntities({ ids, props: requestedProps })
   }
 
-  return getEntitiesByBatches({ urls, onResponse })
+  return getEntitiesByBatches({
+    urls,
+    onResponse: outputTemplates(batchMode)
+  })
 }
 
 if (ids.length > 0) {
