@@ -15,29 +15,11 @@ const { pick } = require('lodash')
 const parseProps = require('../lib/parse_props')
 const dropNonSelectedSubprops = require('../lib/drop_non_selected_subprops')
 const minimizeClaims = require('../lib/minimize_claims')
-const { revision } = program
+const { revision, format } = program
 const getEntitiesByBatches = require('../lib/get_entities_by_batches')
-
-ids.forEach(id => {
-  if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
-})
-
-const batchMode = ids.length > 1
-
-if (batchMode && program.format === 'js') {
-  throw new Error("js format can't be used when several entities are requested")
-}
 
 const requestedPropsAndSubProps = parseProps(program.props)
 const requestedProps = Object.keys(requestedPropsAndSubProps)
-
-let urls
-if (revision) {
-  if (ids.length !== 1) throw new Error(`requesting a revision for several entities isn't supported: ${ids}`)
-  urls = [ getEntityRevision(ids[0], revision) ]
-} else {
-  urls = getManyEntities({ ids, props: requestedProps })
-}
 
 const requiredKeys = [ 'id', 'type', 'datatype', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
@@ -53,10 +35,13 @@ const simplifyOptions = {
   keepHashes: false
 }
 
+let propsToPick
+if (revision && requestedProps.length > 0) propsToPick = [ 'id' ].concat(requestedProps)
+else propsToPick = requiredKeys
+
 const formatEntity = entity => {
   entity = simplify.entity(entity, simplifyOptions)
-  if (revision) entity = pick(entity, [ 'id' ].concat(requestedProps))
-  else entity = pick(entity, requiredKeys)
+  entity = pick(entity, propsToPick)
   dropNonSelectedSubprops(entity, requestedPropsAndSubProps)
   minimizeClaims(entity.claims)
   return entity
@@ -64,13 +49,38 @@ const formatEntity = entity => {
 
 const onResponse = entities => {
   entities = entities.map(formatEntity)
-  if (program.format === 'js') {
+  if (format === 'js') {
     console.log(require('../lib/output_js_function')(entities[0]))
   } else {
-    entities.forEach(entity => {
-      process.stdout.write(JSON.stringify(entity) + '\n')
-    })
+    const newLines = entities.map(entity => JSON.stringify(entity)).join('\n')
+    process.stdout.write(newLines + '\n')
   }
 }
 
-getEntitiesByBatches({ urls, onResponse })
+const handleIds = async ids => {
+  ids.forEach(id => {
+    if (!isEntityId(id)) throw new Error(`invalid entity id: ${id}`)
+  })
+
+  const batchMode = ids.length > 1
+
+  if (batchMode && format === 'js') {
+    throw new Error("js format can't be used when several entities are requested")
+  }
+
+  let urls
+  if (revision) {
+    if (ids.length !== 1) throw new Error(`requesting a revision for several entities isn't supported: ${ids}`)
+    urls = [ getEntityRevision(ids[0], revision) ]
+  } else {
+    urls = getManyEntities({ ids, props: requestedProps })
+  }
+
+  return getEntitiesByBatches({ urls, onResponse })
+}
+
+if (ids.length > 0) {
+  handleIds(ids)
+} else {
+  require('../lib/read_ids_from_stdin')(handleIds)
+}
