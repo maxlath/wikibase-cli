@@ -351,6 +351,37 @@ wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 
 See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
+For more elaborated cases, such as adding several references to a claim, you should rather use [`wd entity-edit`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-edit-entity):
+
+```js
+// Q4115189.json
+{
+  "id": "Q4115189",
+  "claims": {
+    "P31": [
+      {
+        "id": "Q4115189$cfbe452f-459a-d7b0-f57c-f6d816f33e19",
+        "value": "Q1",
+        "references": [
+          {
+            "P248": "Q142667",
+            "P813": "2020-03-13"
+          },
+          {
+            "P854": "http://example.org/some-article",
+            "P813": "2020-03-13"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+```bash
+wd ee ./Q4115189.json
+```
+**NB**: This is not just an addition anymore, it would replace any existing references on the claim `Q4115189$cfbe452f-459a-d7b0-f57c-f6d816f33e19`
+
 #### wb remove-reference
 
 Remove a reference from a claim
