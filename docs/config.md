@@ -27,6 +27,7 @@ wb config <key> [value]
   - [custom Wikibase instance](#custom-wikibase-instance)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [environment variables](#environment-variables)
+- [Backup config](#backup-config)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -159,3 +160,16 @@ Available variables:
 * `WB_VERBOSE`
 * `WB_INSTANCE`
 * `WB_SPARQL_ENDPOINT`
+
+## Backup config
+Backup:
+```sh
+wb config --json > config.json
+# or
+cp $(wb config path) config.json
+```
+
+Restore:
+```sh
+cp config.json $(wb config path)
+```

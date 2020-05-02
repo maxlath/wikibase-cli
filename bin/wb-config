@@ -5,21 +5,24 @@ const { green } = require('chalk')
 const fileOps = require('../lib/config/file_operations')
 const config = require('../lib/config/config')
 
-const { args } = program
+const { args, json } = program
 
 if (args.length === 0) {
-  // Hiding password
-  if (config.password) config.password = config.password.replace(/./g, '*')
-  const currentConfig = JSON.stringify(config, null, 2)
-  console.log(`${green('Current config:')}\n\n${currentConfig}\n`)
-  program.helpAndExit(0)
+  if (json) {
+    console.log(JSON.stringify(config, null, 2))
+    process.exit(0)
+  } else {
+    const currentConfig = JSON.stringify(config, null, 2)
+    console.log(`${green('Current config:')}\n\n${currentConfig}\n`)
+    program.helpAndExit(0)
+  }
 }
 
 const [ key, value, value2 ] = args
 
 if (key === 'path') {
   console.log(fileOps.configFilePath)
-} else if (key === 'clear') {
+} else if (key === 'clear' || key === 'reset') {
   fileOps.clear()
 } else if (key === 'credentials') {
   require('../lib/config/credentials_config')(value, value2)
