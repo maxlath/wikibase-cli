@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 11.2.0 - 2020-05-02
+* batch mode: added [`--no-exit-on-error` option](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#handle-batch-errors)
+
 ## 11.1.0 - 2020-04-26
 * [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): add batch mode
 
