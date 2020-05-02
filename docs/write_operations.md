@@ -43,6 +43,7 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [edit summary](#edit-summary)
 - [batch mode](#batch-mode)
   - [Batch process logs](#batch-process-logs)
+  - [Handle batch errors](#handle-batch-errors)
 - [Demos](#demos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -518,12 +519,12 @@ echo '
 
 Or more probably passing those arguments from a file:
 ```sh
-cat ./add_claim_newline_separated_command_args | wb add-claims --batch
+cat ./add_claim_newline_separated_command_args | wb add-claim --batch
 cat ./create_entity_newline_separated_command_args | wb create-entity --batch
 cat ./edit_entity_newline_separated_command_args | wb edit-entity --batch
 
 # Which can also be written
-wb add-claims --batch < ./add_claim_newline_separated_command_args
+wb add-claim --batch < ./add_claim_newline_separated_command_args
 wb create-entity --batch < ./create_entity_newline_separated_command_args
 wb edit-entity --batch < ./edit_entity_newline_separated_command_args
 
@@ -534,13 +535,21 @@ wb ee -b < ./edit_entity_newline_separated_command_args
 ```
 
 #### Batch process logs
-
 The command output (`stdout`) will be made of one Wikibase API response per line, while `stderr` will be used for both progression logs and error messages. For long lists of commands, you could write those outputs to files to keep track of what was done, and, if need be, where the process exited if an error happened. This can be done this way:
 ```sh
 # Redirect stdout and stderr to files
-wb ac -b < ./my_commands_args_list > ./my_commands_args_list.log 2> ./my_commands_args_list.err
+wb ac -b < ./args_list > ./args_list.log 2> ./args_list.err
 # In another terminal, start a `tail` process at any time to see the progression. This process can be interrupted without stoppping the batch process
-tail -f ./my_commands_args_list.log ./my_commands_args_list.err
+tail -f ./args_list.log ./args_list.err
 ```
+
+#### Handle batch errors
+If one of the batch operation encounters an error, the default behavior is to stop the batch there, the last line logged on `stdout` being the line that triggered the error, the error itself being logged on `stderr`.
+
+In case you would prefer to continue to process the batch rather than exiting, you can set the `--no-exit-on-error` option:
+```sh
+wb add-claim --batch --no-exit-on-error < ./args_list > ./args_list.log 2> ./args_list.err
+```
+This can come handy for long batches, where you might encounter errors such as edit conflicts.
 
 ### [Demos](https://github.com/maxlath/wikidata-scripting)
