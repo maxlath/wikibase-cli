@@ -44,18 +44,19 @@ if (!ids || ids.length === 0) {
     handle(`${instance}/w/index.php?title=Special:Search&search=${search}`)
   }
 } else {
-  const openId = id => {
+  const openId = async id => {
     if (program.wikipedia) {
-      getSitelinkUrl(id, lang, 'wiki')
-      .then(handle)
-      .catch(err => {
+      try {
+        const url = await getSitelinkUrl(id, lang, 'wiki')
+        handle(url)
+      } catch (err) {
         if (err.statusCode === 404) {
           console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
           handle(`${instance}/wiki/${id}#sitelinks-wikipedia`)
         } else {
           throw err
         }
-      })
+      }
     } else if (program.history) {
       handle(`${instance}/w/index.php?title=${id}&action=history`)
     } else if (program.revision) {

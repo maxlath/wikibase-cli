@@ -41,7 +41,7 @@ const errors_ = require('../lib/errors')
 const url = getEntities({ props: 'claims', ids: id })
 
 get(url)
-.then(body => {
+.then(async body => {
   const entity = body.entities && body.entities[id]
   if (!entity) return console.error('error: ', body)
   if (entity.missing != null) return console.error('entity not found:', id)
@@ -62,11 +62,9 @@ get(url)
   value = simplifiedClaims[prop]
   if (value != null) return output(simplifiedClaims[prop])
 
-  getLangProps(program)
-  .then(props => {
-    if (!props[prop]) return commonErrors.missingProperty(prop)
-    const { label } = props[prop]
-    console.log(yellow('no statement found'), label)
-  })
+  const props = await getLangProps(program)
+  if (!props[prop]) return commonErrors.missingProperty(prop)
+  const { label } = props[prop]
+  console.log(yellow('no statement found'), label)
 })
 .catch(errors_.exit)

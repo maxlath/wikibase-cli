@@ -32,7 +32,7 @@ if (title.match(re)) {
 // Might need to be removed :/
 title = title[0].toUpperCase() + title.slice(1)
 
-function parseIds (context, body) {
+const parseIds = ({ body, context }) => {
   const entities = body.entities
   if (entities == null) {
     throw errors_.new('received an empty response', body)
@@ -49,19 +49,19 @@ function parseIds (context, body) {
   }
 }
 
-function formatDescriptions (descriptions) {
+const formatDescriptions = descriptions => {
   return _.values(descriptions)
-    .map(_.property('value'))
-    .join('\n')
+  .map(_.property('value'))
+  .join('\n')
 }
 
 site = site || 'wikipedia'
 
 getRedirectedSitelinkTitle(lang, site, title)
-.then(trueTitle => {
+.then(async trueTitle => {
   const siteCode = `${lang}${site}`.replace('wikipedia', 'wiki')
   const url = getEntitiesFromSitelinks({ titles: trueTitle, sites: siteCode })
-  return get(url)
-  .then(parseIds.bind(null, [title, trueTitle]))
+  const body = await get(url)
+  return parseIds({ body, context: { title, trueTitle } })
 })
 .catch(errors_.exit)
