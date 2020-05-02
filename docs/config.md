@@ -157,7 +157,7 @@ export WB_INSTANCE=https://www.wikidata.org/w/api.php ; wb label Q2
 Available variables:
 * `WB_CLIPBOARD`
 * `WB_JSON`
-* `WB_VERBOSE`
+* `WB_LANG`
 * `WB_INSTANCE`
 * `WB_SPARQL_ENDPOINT`
 
