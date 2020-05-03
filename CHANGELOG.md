@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 11.3.0 - 2020-05-03
+* [`wb config credentials`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#credentials): add a `test` mode, to easily validate credentials
+* `wb config <option> reset` => [`wb config <option> reset`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#reset) (but the keyword `clear` remains available to avoid a breaking change)
+
 ## 11.2.0 - 2020-05-02
 * batch mode: added [`--no-exit-on-error` option](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#handle-batch-errors)
 
