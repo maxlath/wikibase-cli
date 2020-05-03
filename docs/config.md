@@ -77,6 +77,8 @@ wb config credentials https://www.wikidata.org
 wb config credentials https://www.wikidata.org clear
 # Get the prompt again
 wb config credentials https://www.wikidata.org
+# Test your credentials validity
+wb config credentials https://www.wikidata.org test
 ```
 
 :warning: Be aware that your credentials will be persisted on your file system as clear text (until we find a better way to do that). It is thus recommended to use OAuth* tokens when possible, with minimal authorizations.
