@@ -16,7 +16,7 @@ wb config <key> [value]
   - [get](#get)
   - [set](#set)
   - [path](#path)
-  - [clear](#clear)
+  - [reset](#reset)
 - [options](#options)
   - [credentials](#credentials)
   - [bot](#bot)
@@ -53,14 +53,14 @@ get config file path
 wb config path
 ```
 
-### clear
-Clear a single parameter to come back to its default value
+### reset
+Reset a single parameter to come back to its default value
 ```sh
-wb config instance clear
+wb config instance reset
 ```
 or clear the whole config
 ```sh
-wb config clear
+wb config reset
 ```
 
 ## options
@@ -74,7 +74,7 @@ Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/mas
 # either OAuth tokens (recommended) or a username and password
 wb config credentials https://www.wikidata.org
 # Reset those credentials
-wb config credentials https://www.wikidata.org clear
+wb config credentials https://www.wikidata.org reset
 # Get the prompt again
 wb config credentials https://www.wikidata.org
 # Test your credentials validity
