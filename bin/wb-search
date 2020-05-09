@@ -51,10 +51,6 @@ get(url)
 
   let results = search
 
-  if (results.length > 5) {
-    results = results.filter(filterOutSpecialPages)
-  }
-
   results = results.slice(0, limit)
 
   if (json) {
@@ -88,8 +84,3 @@ get(url)
     })
   }
 })
-
-const filterOutSpecialPages = result => {
-  result.description = result.description || ''
-  return !result.description.match(/(Wiki(m|p)(e|é)dia)/)
-}
