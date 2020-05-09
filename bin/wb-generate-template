@@ -5,7 +5,10 @@ program
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 .option('-r, --revision <id>', 'request a specific revision')
 .option('-f, --format <format>', 'Default: json. Alternatives: js')
+.option('-m, --create-mode', 'optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template')
 .process('generate-template')
+
+const { createMode = false } = program
 
 const parseId = require('../lib/tolerant_id_parser')
 const ids = program.args.map(parseId)
@@ -25,7 +28,7 @@ const requestedProps = Object.keys(requestedPropsAndSubProps)
 const requiredKeys = [ 'id', 'type', 'datatype', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
 const simplifyOptions = {
-  keepIds: true,
+  keepIds: !createMode,
   keepQualifiers: true,
   keepReferences: true,
   keepRichValues: true,
@@ -42,6 +45,7 @@ else propsToPick = requiredKeys
 
 const FormatEntity = batchMode => entity => {
   entity = simplify.entity(entity, simplifyOptions)
+  if (createMode) delete entity.id
   entity = pick(entity, propsToPick)
   dropNonSelectedSubprops(entity, requestedPropsAndSubProps)
   if (!batchMode) minimizeClaims(entity.claims)
