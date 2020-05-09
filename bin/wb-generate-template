@@ -17,6 +17,7 @@ const dropNonSelectedSubprops = require('../lib/drop_non_selected_subprops')
 const minimizeClaims = require('../lib/minimize_claims')
 const { revision, format } = program
 const getEntitiesByBatches = require('../lib/get_entities_by_batches')
+const stringifyAsJsFunction = require('../lib/stringify_as_js_function')
 
 const requestedPropsAndSubProps = parseProps(program.props)
 const requestedProps = Object.keys(requestedPropsAndSubProps)
@@ -49,10 +50,11 @@ const FormatEntity = batchMode => entity => {
 
 const outputTemplates = batchMode => {
   const formatEntity = FormatEntity(batchMode)
-  return entities => {
+  return async entities => {
     entities = entities.map(formatEntity)
     if (format === 'js') {
-      console.log(require('../lib/output_js_function')(entities[0]))
+      const jsFile = await stringifyAsJsFunction(entities[0], program.lang)
+      console.log(jsFile)
     } else {
       const newLines = entities.map(entity => JSON.stringify(entity)).join('\n')
       process.stdout.write(newLines + '\n')
