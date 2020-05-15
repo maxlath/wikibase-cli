@@ -50,7 +50,7 @@
     "split": "^1.0.1",
     "through": "^2.3.8",
     "wikibase-edit": "^4.2.5",
-    "wikibase-sdk": "^7.4.0",
+    "wikibase-sdk": "^7.4.2",
     "wikidata-lang": "^2.0.8"
   },
   "devDependencies": {
