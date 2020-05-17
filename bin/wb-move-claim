@@ -1,0 +1,9 @@
+#!/usr/bin/env node
+const program = require('@wikibasejs/commander')
+const { parseGuid } = require('../lib/parse_command_utils')
+program.customArgsParser = (args) => {
+  let [ guid, id, property ] = args
+  guid = parseGuid(guid)
+  return [ { guid, id, property } ]
+}
+require('../lib/edit/edit_command')('claim', 'move')

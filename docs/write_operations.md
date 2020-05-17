@@ -26,6 +26,7 @@ The following documentation assumes that the Wikibase instance we work with is W
     - [with a reference](#with-a-reference)
     - [special claim snaktypes](#special-claim-snaktypes)
   - [wb update-claim](#wb-update-claim)
+  - [wb move-claim](#wb-move-claim)
   - [wb remove-claim](#wb-remove-claim)
 - [qualifiers](#qualifiers)
   - [wb add-qualifier](#wb-add-qualifier)
@@ -210,6 +211,26 @@ wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
 wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 # or using the claim's guid
 wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+```
+
+#### wb move-claim
+Move a claim from an entity to another and/or from a property to another
+```sh
+wb move-claim <guid> <target-entity-id> <target-property-id>
+# Alias
+wb mc <guid> <target-entity-id> <target-property-id>
+```
+
+Examples:
+```sh
+Q4115189_P19_claim_guid='Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F'
+
+# change the property of a claim (without changing entity)
+wb mc $Q4115189_P19_claim_guid Q4115189 P20
+# move the claim to another entity (without changing the property)
+wb mc $Q4115189_P19_claim_guid Q13406268 P19
+# move the claim to another entity and another property
+wb mc $Q4115189_P19_claim_guid Q13406268 P20
 ```
 
 #### wb remove-claim
