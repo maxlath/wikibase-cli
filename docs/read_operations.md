@@ -363,10 +363,14 @@ wd generate-template Q4115189 > Q4115189.json
 wd edit-entity ./Q4115189.json
 
 # For reference,
-wd generate-template Q4115189
-# is pretty much equivalent to
+wd generate-template --format json Q4115189
+# is equivalent to
 wd data --simplify --keep ids,references,qualifiers,hashes,snaktypes Q4115189
 ```
+
+Options:
+* `-f, --format <json|js>`: output template in the desired format. When requesting only one entity, defaults to `js`. Defaults to `json` when requesting several entities.
+* `-m, --create-mode`: optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template
 
 #### Tailored templates
 
