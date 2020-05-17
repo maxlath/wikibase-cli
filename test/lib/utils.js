@@ -2,6 +2,8 @@ const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
 
 const shellExec = async cmd => {
+  // Overwrite local config
+  cmd = `export WB_CLIPBOARD=false; ${cmd}`
   const { stdout, stderr } = await exec(cmd)
   return {
     stdout: stdout.trim(),
