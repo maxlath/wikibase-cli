@@ -1,6 +1,13 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 12.0.0 - 2020-05-17
+* [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template):
+  * **BREAKING CHANGE**: default to format js, when only one entity is requested
+  * When using `--format js`: add entities labels as comments
+  * Added `--create-mode` option
+* Added [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-move-claim)
+
 ## 11.3.0 - 2020-05-03
 * [`wb config credentials`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#credentials): add a `test` mode, to easily validate credentials
 * `wb config <option> reset` => [`wb config <option> reset`](https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#reset) (but the keyword `clear` remains available to avoid a breaking change)
