@@ -1,6 +1,6 @@
 const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
-const testsEnv = 'export WB_CLIPBOARD=false WB_LANG=en;'
+const testsEnv = 'export WB_CLIPBOARD=false WB_LANG=en WB_MAXLAG=5;'
 
 const shellExec = async cmd => {
   // Overwrite local config
