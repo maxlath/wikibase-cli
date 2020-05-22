@@ -20,6 +20,7 @@ wb config <key> [value]
 - [options](#options)
   - [credentials](#credentials)
   - [bot](#bot)
+  - [maxlag](#maxlag)
   - [lang](#lang)
   - [json](#json)
   - [clipboard](#clipboard)
@@ -86,35 +87,42 @@ wb config credentials https://www.wikidata.org test
 (\*) Yes, just the sight of word OAuth might give you chills, but setting up an [owner-only consumers](https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers) is actually super fast (no need for validation) and rather simple: just follow the `wb config credentials https://my.wikibase.instance` prompt instructions.
 
 ### bot
-Setting a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
+Set a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
 ```sh
 # Default: false
 wb config bot true
 ```
 
+### maxlag
+Set the [`maxlag`](https://www.mediawiki.org/wiki/Manual:Maxlag_parameter) value
+```sh
+# Default: 5
+wb config maxlag 10
+```
+
 ### lang
-set the preferred language (same as `-l, --lang`)
+Set the preferred language (same as `-l, --lang`)
 ```sh
 # Default: process.env.LANG.slice(0, 2)
 wb config lang nl
 ```
 
 ### json
-format the output of commands as JSON, when possible (same as `-j, --json`)
+Format the output of commands as JSON, when possible (same as `-j, --json`)
 ```sh
 # Default: false
 wb config json true
 ```
 
 ### clipboard
-copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
+Copy command results to the clipboard, when this option is available (same as `-c, --clipboard`)
 ```sh
 # Default: false
 wb config clipboard true
 ```
 
 ### verbose
-set commands to print verbose output (same as `-v, --verbose`)
+Set commands to print verbose output (same as `-v, --verbose`)
 ```sh
 # Default: false
 wb config verbose true
@@ -157,11 +165,14 @@ export WB_INSTANCE=https://www.wikidata.org/w/api.php ; wb label Q2
 ```
 
 Available variables:
+* `WB_BOT`
 * `WB_CLIPBOARD`
+* `WB_INSTANCE`
 * `WB_JSON`
 * `WB_LANG`
-* `WB_INSTANCE`
+* `WB_MAXLAG`
 * `WB_SPARQL_ENDPOINT`
+* `WB_VERBOSE`
 
 ## Backup config
 Backup:
