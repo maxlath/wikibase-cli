@@ -23,7 +23,7 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 **Show your support** by adding `{{#babel:Wikibase CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
-[![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikidata_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
+[![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikibase_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
 
 ## Summary
 - [Changelog](CHANGELOG.md)
