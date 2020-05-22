@@ -28,10 +28,11 @@ describe('batch mode', function () {
   it('should not exit if requested', async () => {
     const { stdout, stderr } = await wdTest('add-claim --batch --no-exit-on-error < ./test/assets/add_claim_batch_with_error')
     const stderrLines = stderr.split('\n')
-    stderrLines.slice(0, 2).should.deepEqual([
-      'processing line 1: Q1111 P95228 notaquantity',
-      'error triggered by line: "Q1111 P95228 notaquantity": Error: invalid quantity value'
-    ])
+    stderrLines[0].should.equal('processing line 1: Q1111 P95228 notaquantity')
+    // Not testing the whole line at once, as the error output isn't stable between NodeJS versions
+    // Identified case: Node v8 gives a differnt outputs than Node v12
+    stderrLines[1].should.startWith('error triggered by line: "Q1111 P95228 notaquantity"')
+    stderrLines[1].should.containEql('invalid quantity value')
     stderrLines.slice(-2).should.deepEqual([
       'processing line 2: Q1111 P95228 123 (errors in previous lines: 1)',
       'done processing 2 lines: successes=1 errors=1'
