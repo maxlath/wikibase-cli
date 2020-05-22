@@ -43,6 +43,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
   - [wellknown queries](#wellknown-queries)
     - [all-instances](#all-instances)
+  - [output format](#output-format)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [wb query](#wb-query)
 - [wb convert](#wb-convert)
@@ -716,6 +717,15 @@ wd sparql all-instances Q3305213 > ./paintings_ids
 # Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wd-data for details)
 wd data --simplify < ./paintings_ids > ./paintings.ndjson
 ```
+
+#### output format
+If the query `SELECT`s only one variable, the output will, by default, be a space-separated list of values.
+It can alternatively be set to output as json, either with `--format json` (`--json` would also be accepted for consistency with other commands).
+
+If the query `SELECT`s several variables, the output will, by default, be a JSON array.
+It can alternatively be requested as a table by setting `--format table`.
+
+To consistently get JSON output, either pass the `--json` flag, or set JSON as your prefered format in config: `wd config json true` (this will affect other commands)
 
 #### custom SPARQL endpoint
 The `wb sparql` command can actually be used with on other SPARQL endpoints:
