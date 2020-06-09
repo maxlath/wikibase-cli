@@ -214,11 +214,11 @@ wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "lon
 ```
 
 #### wb move-claim
-Move a claim from an entity to another and/or from a property to another
+Move claims from an entity to another and/or from a property to another
 ```sh
-wb move-claim <guid> <target-entity-id> <target-property-id>
+wb move-claim <guid|property-claims-id> <target-entity-id> <target-property-id>
 # Alias
-wb mc <guid> <target-entity-id> <target-property-id>
+wb mc <guid|property-claims-id> <target-entity-id> <target-property-id>
 ```
 
 Examples:
@@ -231,6 +231,13 @@ wb mc $Q4115189_P19_claim_guid Q4115189 P20
 wb mc $Q4115189_P19_claim_guid Q13406268 P19
 # move the claim to another entity and another property
 wb mc $Q4115189_P19_claim_guid Q13406268 P20
+
+# move all Q4115189 P19 claims to P20 (without changing entity)'
+wb mc Q4115189#P19 Q4115189 P20
+# move all Q4115189 P19 claims to Q13406268 (without changing the property)'
+wb mc Q4115189#P19 Q13406268 P19
+# move all Q4115189 P19 claims to Q13406268 P20'
+wb mc Q4115189#P19 Q13406268 P20
 ```
 
 #### wb remove-claim
