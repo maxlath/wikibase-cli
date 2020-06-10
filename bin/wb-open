@@ -11,7 +11,7 @@ program
 const getSitelinkUrl = require('../lib/get_sitelink_url')(program)
 const parseId = require('../lib/tolerant_id_parser')
 const copy = require('../lib/copy')
-const open = require('opn')
+const open = require('open')
 
 const { instance } = program
 if (!instance) throw new Error('no instance set')
@@ -32,7 +32,7 @@ const handle = url => {
     clipboard ? copy(url) : console.log(url)
   } else {
     if (clipboard) copy(url)
-    open(url)
+    open(url, { url: true })
   }
 }
 
