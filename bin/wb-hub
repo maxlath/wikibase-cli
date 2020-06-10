@@ -23,7 +23,7 @@ const url = `https://tools.wmflabs.org/hub/query?q=${query}`
 const errors_ = require('../lib/errors')
 
 if (open) {
-  require('opn')(url)
+  require('open')(url, { url: true })
 } else {
   const output = require('../lib/output')(program)
   require('../lib/request').get(url)
