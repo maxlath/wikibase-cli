@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 12.1.0 - 2020-06-10
+* Added [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-move-qualifier)
+* [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-move-claim): allow to move all property claims at once
+
 ## 12.0.0 - 2020-05-17
 * [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template):
   * **BREAKING CHANGE**: default to format js, when only one entity is requested
