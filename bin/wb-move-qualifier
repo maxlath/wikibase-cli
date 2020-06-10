@@ -1,0 +1,15 @@
+#!/usr/bin/env node
+const program = require('@wikibasejs/commander')
+const { parseGuid } = require('../lib/parse_command_utils')
+const { isHash } = require('wikibase-sdk')
+program.customArgsParser = args => {
+  let [ guid, hash, oldProperty, newProperty ] = args
+  guid = parseGuid(guid)
+  if (isHash(hash)) {
+    return [ { guid, hash, oldProperty, newProperty } ]
+  } else {
+    ([ oldProperty, newProperty ] = [ hash, oldProperty ])
+    return [ { guid, oldProperty, newProperty } ]
+  }
+}
+require('../lib/edit/edit_command')('qualifier', 'move')

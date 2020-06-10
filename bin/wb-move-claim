@@ -2,7 +2,7 @@
 const program = require('@wikibasejs/commander')
 const { parseGuid } = require('../lib/parse_command_utils')
 const { isPropertyClaimsId } = require('wikibase-sdk')
-program.customArgsParser = (args) => {
+program.customArgsParser = args => {
   let [ guid, id, property ] = args
   if (isPropertyClaimsId(guid)) {
     return [ { propertyClaimsId: guid, id, property } ]

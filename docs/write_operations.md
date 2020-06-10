@@ -32,6 +32,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [wb add-qualifier](#wb-add-qualifier)
     - [special qualifier snaktypes](#special-qualifier-snaktypes)
   - [wb update-qualifier](#wb-update-qualifier)
+  - [wb move-qualifier](#wb-move-qualifier)
   - [wb remove-qualifier](#wb-remove-qualifier)
 - [references](#references)
   - [wb add-reference](#wb-add-reference)
@@ -333,6 +334,25 @@ wd uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
 
 # monolingualtext qualifier
 wd uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
+```
+
+#### wb move-qualifier
+Move a claim from an entity to another and/or from a property to another
+```sh
+wb move-qualifier <guid> [hash] <old-property-id> <new-property-id>
+# Alias
+wb mq <guid> [hash] <old-property-id> <new-property-id>
+```
+
+Examples:
+```sh
+claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# move all P2310 qualifiers of this claim to P2311
+wb mq $claim_guid P2310 P2311
+
+# move only the first P2310 qualifier to P2311
+qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq -r '.qualifiers.P2310[0]')
+wb mq $claim_guid $qualifier_hash P2310 P2311
 ```
 
 #### wb remove-qualifier

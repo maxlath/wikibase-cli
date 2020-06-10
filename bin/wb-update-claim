@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const program = require('@wikibasejs/commander')
 const { isGuid } = require('wikibase-sdk')
-program.customArgsParser = (args) => {
+program.customArgsParser = args => {
   if (isGuid(args[0])) {
     const [ guid, oldValue, newValue ] = args
     return [ { guid, oldValue, newValue } ]
