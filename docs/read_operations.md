@@ -24,6 +24,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [fetch an old revision](#fetch-an-old-revision)
   - [alternative formats](#alternative-formats)
     - [ttl](#ttl)
+  - [property claims](#property-claims)
   - [single claim](#single-claim)
 - [wb generate-template](#wb-generate-template)
   - [Tailored templates](#tailored-templates)
@@ -340,6 +341,14 @@ cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 > **NB**: other options such as filtered properties will be ignored
 
 This can be used to generated partial Turtle dumps, if [Wikibase full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikibase API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
+
+#### property claims
+You can also use this command to get the data of an entity's claims for a certain property
+```sh
+wd data 'Q2#P31'
+wd data --simplify 'Q2#P31'
+wd data --simplify --keep ids,references,qualifiers,hashes 'Q2#P31'
+```
 
 #### single claim
 The command also support finding a single claim from a claim GUID. (If you have a use case where you would need to fetch several claims at once this way, feel welcome to open an issue)

@@ -103,6 +103,19 @@ describe('wb data', function () {
     stdout.should.startWith('@prefix rdf:')
   })
 
+  describe('property claims data', () => {
+    it.only('should get property claims data provided a property claims id', async () => {
+      const propertyClaimsId = 'Q2#P31'
+      const { stdout } = await shellExec(`./bin/wd data '${propertyClaimsId}'`)
+      const propertyClaims = JSON.parse(stdout)
+      propertyClaims.should.be.an.Array()
+      propertyClaims[0].id.should.startWith('Q2$')
+      propertyClaims.forEach(claim => {
+        claim.mainsnak.property.should.equal('P31')
+      })
+    })
+  })
+
   describe('claim data', () => {
     it('should get a claim data provided a claim guid', async () => {
       const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
