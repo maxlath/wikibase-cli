@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 12.2.0 - 2020-06-10
+* [wb data](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wb-data): added support for [property claims id](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#property-claims)
+
 ## 12.1.0 - 2020-06-10
 * Added [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-move-qualifier)
 * [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-move-claim): allow to move all property claims at once
