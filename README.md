@@ -60,6 +60,15 @@ npm install -g wikibase-cli
 ```
 Installing globally allows to make the command `wb` (and `wd`, the Wikidata-bound verion of `wb`) accessible from your shell `$PATH`.
 
+If you later need to update the package to a different version, you can run the same command but specifying the version you want (here `12.2.0`)
+```sh
+npm install -g wikibase-cli@12.2.0
+```
+or just request the latest version
+```sh
+npm install -g wikibase-cli@latest
+```
+
 ### via docker
 ```sh
 # Might require to be run with sudo depending on your Docker installation
