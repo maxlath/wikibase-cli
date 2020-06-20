@@ -45,6 +45,8 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [wellknown queries](#wellknown-queries)
     - [all-instances](#all-instances)
   - [output format](#output-format)
+    - [single value output](#single-value-output)
+    - [multiple value output](#multiple-value-output)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [wb query](#wb-query)
 - [wb convert](#wb-convert)
@@ -740,9 +742,11 @@ wd data --simplify < ./paintings_ids > ./paintings.ndjson
 ```
 
 #### output format
-If the query `SELECT`s only one variable, the output will, by default, be a space-separated list of values.
-It can alternatively be set to output as json, either with `--format json` (`--json` would also be accepted for consistency with other commands).
+##### single value output
+If the query `SELECT`s only one variable, the output will, by default, be a newline-delimited list of values.
+It can alternatively be set to output as json, either with `--format json` (`--json` would also be accepted for consistency with other commands), or `--format inline` to get values separated by a space instead of a newline break.
 
+##### multiple value output
 If the query `SELECT`s several variables, the output will, by default, be a JSON array.
 It can alternatively be requested as a table by setting `--format table`.
 

@@ -19,11 +19,6 @@ describe('wb claims', function () {
     stdout.should.equal('Q11424')
   })
 
-  it('should return shell-friendly results when possible', async () => {
-    const { stdout } = await shellExec('./bin/wd claims Q90 P625')
-    stdout.should.equal('48.856944444444 2.3513888888889')
-  })
-
   it('should filters properties from text', async () => {
     const coords = '48.856944444444,2.3513888888889'
     const { stdout } = await shellExec('./bin/wd claims Q90 coord')
