@@ -46,6 +46,8 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [batch mode](#batch-mode)
   - [Batch process logs](#batch-process-logs)
   - [Handle batch errors](#handle-batch-errors)
+- [Options](#options)
+  - [maxlag](#maxlag)
 - [Demos](#demos)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -630,5 +632,23 @@ In case you would prefer to continue to process the batch rather than exiting, y
 wb add-claim --batch --no-exit-on-error < ./args_list > ./args_list.log 2> ./args_list.err
 ```
 This can come handy for long batches, where you might encounter errors such as edit conflicts.
+
+### Options
+Options common to all edit operations
+
+#### maxlag
+Set the [`maxlag`](https://www.mediawiki.org/wiki/Manual:Maxlag_parameter) value (see also [config#maxlag](./config.md#maxlag))
+
+The default value is `5`, meaning that you will tell the server that you accept to wait if the server has a lag of 5 seconds or more.
+
+If you are not in a hurry, you can set an even nicer value, like `2`
+```sh
+wb add-claim Q4115189 P1106 123 --maxlag 2
+```
+If you want that command to be done already, you can go for a more aggresive value and be done with it
+:warning: should be avoided when you have a long command queue, typically in --batch mode
+```sh
+wb add-claim Q4115189 P1106 123 --maxlag 100
+```
 
 ### [Demos](https://github.com/maxlath/wikidata-scripting)
