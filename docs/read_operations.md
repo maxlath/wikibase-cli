@@ -418,44 +418,56 @@ wb generate-template Q123 Q124
 echo Q123 Q124 | wb generate-template
 ```
 
-Generating many templates at once can be useful, for instance to apply the same modification to many entities. For instance, to remove all P370 qualifiers on P369 claims, you first find all the entities with such a claim with a SPARQL query
+Generating many templates at once can be useful, for instance to apply the same custom modification to many entities
+
+Example: let's imagine that you want to create a P370 claim for each P1106 claims, where the P370 value would be the P1106 value prefixed by `-foobar`, and remove the P1106 claim.
 
 ```sh
-# Find the ids of entities to modify
-wd sparql ./find_entities_ids.rq > ids
-cat ids | wd generate-template --props P369 > templates.ndjson
+# Find the ids of entities to modify (see the content of find_entities_with_P1106_claims.rq below)
+wd sparql ./find_entities_with_P1106_claims.rq > ids
+# Get one template per line, requesting only the P1106 claims to let all the rest of the entity intact
+cat ids | wd generate-template --props P1106 > templates.ndjson
+# Apply a JS function (see the content of transform_P1106_into_P370.js below)
 # using https://www.npmjs.com/package/ndjson-apply
-cat templates.ndjson | ndjson-apply ./remove_qualifier.js > cleaned_up_templates.ndjson
-cat cleaned_up_templates.ndjson | wd entity-edit --batch
+cat templates.ndjson | ndjson-apply ./transform_P1106_into_P370.js > cleaned_up_templates.ndjson
+cat cleaned_up_templates.ndjson | wd entity-edit --batch --summary 'doing what needed to be done'
 
 # Or for short, if you know what you are doing and don't want to inspect intermediary results
 wd sparql ./find_entities_ids.rq |
-  wd generate-template --props P369 |
-  ndjson-apply ./remove_qualifier.js |
-  wd entity-edit --batch
+  wd generate-template --props P1106 |
+  ndjson-apply ./transform_P1106_into_P370.js |
+  wd entity-edit --batch  --summary 'doing what needed to be done'
 ```
 
-Where `./find_entities_ids.rq` could be something like:
+Where `./find_entities_with_P1106_claims.rq` could be something like:
 ```sparql
-# find all entities with a P370 qualifier on a P369 claim
+# find_entities_with_P1106_claims.rq
 SELECT ?item {
-  ?item p:P369 ?P369_statement .
-  ?P369_statement pq:P370 ?P370_claim .
+  ?item wdt:P1106 ?value .
 }
 ```
 
-and `./remove_qualifier.js` could be something like:
+and `./transform_P1106_into_P370.js` could be something like:
 ```js
-module.exports = item => {
-  // Filter-out claims that shouldn't be changed
-  item.claims.P369 = item.claims.P369
-    .filter(claim => claim.qualifiers.P370 != null)
-    .map(claim => {
-      delete claim.qualifiers.P370
-      return claim
-    })
-  return item
+// transform_P1106_into_P370.js
+module.exports = entity => {
+  return {
+    id,
+    claims: {
+      P370: entity.claims.P1106.map(generateP370ClaimFromP1106Claim)
+      P1106: entity.claims.P1106.map(removeClaim)
+    }
+  }
 }
+const generateP370ClaimFromP1106Claim = claim => {
+  return {
+    value: `${claim.value.amount}-foobar`,
+    references: {
+      P854: 'http://zombo.com'
+    }
+  }
+}
+const removeClaim = claim => ({ id: claim.id, remove: true })
 ```
 
 #### Generate template from a specific revision
