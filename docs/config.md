@@ -174,6 +174,15 @@ Available variables:
 * `WB_SPARQL_ENDPOINT`
 * `WB_VERBOSE`
 
+Those variables can be useful if you work with several instances, you could set aliases in your shell environment to target specifically one instance or the other:
+```sh
+wdt(){
+  export WB_INSTANCE=https://test.wikidata.org
+  wb "$@"
+}
+wdt search foo
+```
+
 ## Backup config
 Backup:
 ```sh

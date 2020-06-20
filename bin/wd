@@ -22,5 +22,5 @@ if [[ "$wb_show_help" == "1" ]] ;
 then
   wb "$@" | sed 's/wb/wd/' | grep -vE '\-\-instance|\-\-sparql-endpoint'
 else
-  wb "$@" --instance 'https://www.wikidata.org' --sparql-endpoint 'https://query.wikidata.org/sparql'
+  export WB_INSTANCE=https://www.wikidata.org WB_SPARQL_ENDPOINT=https://query.wikidata.org/sparql ; wb "$@"
 fi
