@@ -556,7 +556,7 @@ wb add-alias Q4115189 fr "lorem ipsum" --summary 'this HAD to be changed!'
 ```
 
 ### batch mode
-**All write operations commands accept a `-b, --batch` option**. In batch mode, arguments are provided on the command [standard input (`stdin`)](https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)), with one operation per line. If the edited Wikbiase instance is Wikidata, batch edits will automatically be grouped within an [Edit groups](https://www.wikidata.org/wiki/Wikidata:Edit_groups); you are thus encouraged to set a summary (with the [`-s, --summary` option](#edit-summary)) as it will be used as label for the edit group ([example](https://tools.wmflabs.org/editgroups/b/wikibase-cli/b941fa220ab7b/)).
+**All write operations commands accept a `-b, --batch` option**. In batch mode, arguments are provided on the command [standard input (`stdin`)](https://en.wikipedia.org/wiki/Standard_streams#Standard_input_(stdin)), with one operation per line. If the edited Wikibase instance is Wikidata, batch edits will automatically be grouped within an [Edit groups](https://www.wikidata.org/wiki/Wikidata:Edit_groups); you are thus encouraged to set a summary (with the [`-s, --summary` option](#edit-summary)) as it will be used as label for the edit group ([example](https://tools.wmflabs.org/editgroups/b/wikibase-cli/b941fa220ab7b/)).
 
 So instead of:
 ```sh
