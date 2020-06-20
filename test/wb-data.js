@@ -104,7 +104,7 @@ describe('wb data', function () {
   })
 
   describe('property claims data', () => {
-    it.only('should get property claims data provided a property claims id', async () => {
+    it('should get property claims data provided a property claims id', async () => {
       const propertyClaimsId = 'Q2#P31'
       const { stdout } = await shellExec(`./bin/wd data '${propertyClaimsId}'`)
       const propertyClaims = JSON.parse(stdout)
