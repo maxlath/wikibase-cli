@@ -75,11 +75,12 @@ Examples:
 wb set-label Q4115189 fr "lorem ipsum"
 ```
 
+For more advanced use cases (such as setting multiple labels on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
+
 ### descriptions
 See [Wikidata:Glossary#Description](https://www.wikidata.org/wiki/Wikidata:Glossary#Description)
 
 #### wb set-description
-
 
 Set a description on an entity in a given language
 ```sh
@@ -92,6 +93,8 @@ Examples:
 # Set the description "lorem ipsum" to the item Q4115189 in French
 wb set-description Q4115189 fr "lorem ipsum"
 ```
+
+For more advanced use cases (such as setting multiple descriptions on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
 
 ### aliases
 See [Wikidata:Glossary#Alias](https://www.wikidata.org/wiki/Wikidata:Glossary#Alias)
@@ -111,6 +114,8 @@ wb add-alias Q4115189 fr foo
 wb add-alias Q4115189 fr "foo|bar"
 ```
 
+For more advanced use cases, you should rather use [`edit-entity`](#wb-edit-entity).
+
 #### wb remove-alias
 Remove one or several aliases from the list of aliases of an entity in a given language
 ```sh
@@ -126,6 +131,8 @@ wb remove-alias Q4115189 fr foo
 wb remove-alias Q4115189 fr "foo|bar"
 ```
 
+For more advanced use cases, you should rather use [`edit-entity`](#wb-edit-entity).
+
 #### wb set-alias
 Set the list of aliases of an entity in a given language
 ```sh
@@ -139,6 +146,8 @@ wb set-alias Q4115189 fr foo
 # Replace all Q4115189's French alias by 'foo' and 'bar'
 wb set-alias Q4115189 fr "foo|bar"
 ```
+
+For more advanced use cases, you should rather use [`edit-entity`](#wb-edit-entity).
 
 ### claims
 See [Wikidata:Glossary#Claim](https://www.wikidata.org/wiki/Wikidata:Glossary#Claim)
@@ -163,6 +172,8 @@ wd ac Q4115189 P2002 bulgroz
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
 wd ac Q4115189 P527 Q34679
 ```
+
+For more advanced use cases, such as adding a claim with qualifiers and references, you should rather use [`edit-entity`](#wb-edit-entity).
 
 ##### rich values
 Some values like monolingual text, quatities with a unit, or time with a precision, require to pass more data than a simple primitive value. This can be done by passing an object, either in a JSON or a query string format:
@@ -408,7 +419,7 @@ wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 
 See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
-For more elaborated cases, such as adding several references to a claim, you should rather use [`wd entity-edit`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-edit-entity):
+For more advanced use cases, such as adding several references to a claim, you should rather use [`edit-entity`](#wb-edit-entity):
 
 ```js
 // Q4115189.json
@@ -490,7 +501,7 @@ See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlat
 Edit an existing item (currently supported types: item, property)
 
 ```sh
-wb entity-edit <inline-entity-json|file-path>
+wb edit-entity <inline-entity-json|file-path>
 # Alias:
 wb ee <inline-entity-json|file-path>
 ```
@@ -557,9 +568,9 @@ module.exports = (id, someString, quantity) => ({
 ```
 that can then be called as follow:
 ```sh
-wb entity-edit ./add_P1449_and_P1106.js Q1 abc 123
-wb entity-edit ./add_P1449_and_P1106.js Q2 def 456
-wb entity-edit ./add_P1449_and_P1106.js Q3 ghi 789
+wb edit-entity ./add_P1449_and_P1106.js Q1 abc 123
+wb edit-entity ./add_P1449_and_P1106.js Q2 def 456
+wb edit-entity ./add_P1449_and_P1106.js Q3 ghi 789
 ```
 
 This way, you can generate infinitely flexible templates.
