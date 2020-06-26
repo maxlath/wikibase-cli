@@ -11,11 +11,11 @@ describe('wb query', function () {
 
   it('-p [prop] -o [obj] -t [limit]', async () => {
     const { stdout } = await shellExec('./bin/wd query -p P50 -o Q1345582')
-    stdout.split(' ').includes('Q18120925').should.be.true()
+    stdout.split(/\s/).includes('Q18120925').should.be.true()
   })
 
   it('should work for URL values', async () => {
     const { stdout } = await shellExec("./bin/wd query -p P973 -o '<https://www.fileformat.info/format/gif/egff.htm>'")
-    stdout.split(' ').includes('Q2192').should.be.true()
+    stdout.split(/\s/).includes('Q2192').should.be.true()
   })
 })
