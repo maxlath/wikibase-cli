@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 13.0.0 - 2020-06-26
+**BREAKING CHANGE**: output now defaults to newline-delimited values (instead of space-delimited values)
+
 ## 12.2.0 - 2020-06-10
 * [wb data](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wb-data): added support for [property claims id](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#property-claims)
 
