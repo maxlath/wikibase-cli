@@ -40,6 +40,13 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [entity](#entity)
   - [wb create-entity](#wb-create-entity)
   - [wb edit-entity](#wb-edit-entity)
+    - [Pass data as inline JSON](#pass-data-as-inline-json)
+    - [Pass data as a JSON file](#pass-data-as-a-json-file)
+    - [Pass data as a static JS object file](#pass-data-as-a-static-js-object-file)
+    - [Pass data as a dynamic JS function file returning an object](#pass-data-as-a-dynamic-js-function-file-returning-an-object)
+      - [transform input](#transform-input)
+      - [fetch additional data](#fetch-additional-data)
+      - [inspect generated data](#inspect-generated-data)
   - [wb merge-entity](#wb-merge-entity)
   - [wb delete-entity](#wb-delete-entity)
 - [edit summary](#edit-summary)
@@ -460,73 +467,150 @@ Create a new entity (currently supported types: item, property)
 # Pass data as JSON
 wd create-entity '{"labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 
-# Pass data as a JSON file path
+# Pass data as a JSON file
 wb create-entity ./new_entity_data.json
 
 # Alias:
 wb ce <entity-data>
 ```
 
-See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the JSON format, especially on how to pass qualifiers and references.
+Assuming that you have the proper authorization, **creating a property** can as simple as:
+```sh
+wb create-entity '{ "datatype": "string", "labels": { "en": "some new string property" } }'
+```
 
-Examples:
-* [Creating a new entity with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_entity_with_the_same_references_being_used_multiple_times.js)
+Other that the `datatype` and the absence of `id`, the `create-entity` command is identical to the [`edit-entity` command](#wb-edit-entity).
+
+See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the input format.
+
+**Demo**: [Creating a new entity with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_entity_with_the_same_references_being_used_multiple_times.js)
 
 #### wb edit-entity
 
 Edit an existing item (currently supported types: item, property)
 
 ```sh
-# Pass data as JSON
-wd edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
-
-# Pass data as a JSON file path
-wb edit-entity ./existing_entity_data.json
-
-# Pass data as a JS file path
-wb edit-entity ./existing_entity_data.js
-
+wb entity-edit <inline-entity-json|file-path>
 # Alias:
-wb ee <entity-data>
+wb ee <inline-entity-json|file-path>
 ```
 
-This possibility to pass a JS file path has several advantages:
-* a ligther syntax than JSON, and allowing comments
+See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected input format, especially on how to set complex values, qualifiers and references, or remove existing data.
+
+##### Pass data as inline JSON
+Pass data as inline JSON.
+```sh
+wd edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+```
+It works, but writting JSON by hand is very sub-optimal, even painful.
+
+##### Pass data as a JSON file
+Taking our JSON data from a file can be much more convenient than the inline option above, as it can be generated from other commands, or manually edited with the help of smart text editors that might help you with the syntax.
+
+```sh
+wb edit-entity ./existing_entity_data.json
+```
+
+This `./existing_entity_data.json` file could be generated in different ways, but the easiest is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
+```sh
+wd generate-template Q4115189 --format json > Q4115189.json
+# Do your modifications, and then
+wb edit-entity ./Q4115189.json
+```
+
+The JSON syntax remains heavy with all those `"` though, if you are not generating it somehow and simply writting your data file by hand, you might be better of going with a JS file (see below).
+
+##### Pass data as a static JS object file
+The JavaScript object notation is very similar to JSON (thus the name of the later), but much lighter, which is very convenient when editing data manually.
+
+```sh
+wb edit-entity ./existing_entity_data.js
+```
+
+This `./existing_entity_data.js` could be something like:
 ```js
 module.exports = {
   id: 'Q4115189',
   // a comment
-  labels: { en: 'a label' }
+  labels: { en: 'a label' },
+  claims: {
+    P123: 'Q1799264'
+  }
 }
 ```
-* dynamic data generation, as if the exported object is a function, it will be called with the command line additional arguments:
+
+##### Pass data as a dynamic JS function file returning an object
+**This is the recommended way** as it gives you a crazy amount of flexibility :D
+
+It's basically the same as the above JS file approach, but instead of returning an object, the JS file exports a function. All additional command line arguments will be passed to that function.
+
+For instance, to add different P1449 and P1106 values to different entities, you could write a JS file like this:
 ```js
-// template.js
-// See `wb generate-template` for documentation on how to easily create such a function from an existing item)
-// This function can also be async function/return a promise
-module.exports = (id, someString, quantity) => {
+// add_P1449_and_P1106.js
+module.exports = (id, someString, quantity) => ({
   id: id,
   claims: {
     P1449: someString,
     P1106: parseInt(quantity)
   }
+})
+```
+that can then be called as follow:
+```sh
+wb entity-edit ./add_P1449_and_P1106.js Q1 abc 123
+wb entity-edit ./add_P1449_and_P1106.js Q2 def 456
+wb entity-edit ./add_P1449_and_P1106.js Q3 ghi 789
+```
+
+This way, you can generate infinitely flexible templates.
+
+A good way to start writting a template function starting from an existing entity is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
+```sh
+# When generating templates for only one entity, JS is the default format, and comes with helpful labels as comments, to make ids less obscure
+wd generate-template Q4115189 > Q4115189.js
+# Do your modifications, and then
+wd edit-entity ./Q4115189.js
+```
+
+Some examples of how such a dynamic template can be useful:
+
+###### transform input
+```js
+const doSomeComplexTransformation = quantity => parseInt(quantity) * 2
+
+module.exports = (id, quantity) => ({
+  id,
+  claims: {
+    P1106: doSomeComplexTransformation(quantity)
+  }
+})
+```
+
+**Demo**: See how this principle was applied to create many items from a single JS template file: [Create missing HTTP Status Codes items on Wikidata](https://github.com/maxlath/wikidata-scripting/tree/master/http_status_codes)
+
+###### fetch additional data
+The exported function can be an async function, so you could fetch data during the transformation process:
+```js
+const fetchSomeData = require('./fetch_some_data.js')
+const doSomeComplexTransformation = async quantity => quantity * 2
+
+module.exports = async (id, someExternalId) => {
+  const initialQuantity = await fetchSomeData(someExternalId)
+  const finalQuantity = await doSomeComplexTransformation(initialQuantity)
+  return {
+    id,
+    claims: {
+      P1106: finalQuantity
+    }
+  }
 }
 ```
-allowing to make many edits from one template
-```sh
-wb ee ./template.js Q1 abc 123
-wb ee ./template.js Q2 def 456
-wb ee ./template.js Q3 ghi 789
-```
 
-See this demo on creating many items from a JS template file: [Create missing HTTP Status Codes items on Wikidata](https://github.com/maxlath/wikidata-scripting/tree/master/http_status_codes)
-
-To debug the data generated dynamically, you can use the `--dry` option
+###### inspect generated data
+To inspect the data generated dynamically, you can use the `--dry` option
 ```sh
 wb ee ./template.js Q1 abc 123 --dry
 ```
-
-See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected data format, especially on how to set complex values, qualifiers and references, or remove existing data.
 
 #### wb merge-entity
 Merge an entity into another (See [wd:Help:Merge](https://www.wikidata.org/wiki/Help:Merge))
