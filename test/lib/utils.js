@@ -25,5 +25,5 @@ module.exports = {
 
   shellExec,
 
-  wdTest: async cmd => shellExec(`./bin/wb ${cmd} --instance "https://test.wikidata.org"`)
+  wdTest: async cmd => shellExec(`./bin/wb ${cmd} --instance "https://test.wikidata.org" --maxlag 100`)
 }
