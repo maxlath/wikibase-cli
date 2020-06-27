@@ -432,13 +432,13 @@ cat ids | wd generate-template --props P1106 > templates.ndjson
 # Apply a JS function (see the content of transform_P1106_into_P370.js below)
 # using https://www.npmjs.com/package/ndjson-apply
 cat templates.ndjson | ndjson-apply ./transform_P1106_into_P370.js > cleaned_up_templates.ndjson
-cat cleaned_up_templates.ndjson | wd entity-edit --batch --summary 'doing what needed to be done'
+cat cleaned_up_templates.ndjson | wd edit-entity --batch --summary 'doing what needed to be done'
 
 # Or for short, if you know what you are doing and don't want to inspect intermediary results
 wd sparql ./find_entities_ids.rq |
   wd generate-template --props P1106 |
   ndjson-apply ./transform_P1106_into_P370.js |
-  wd entity-edit --batch  --summary 'doing what needed to be done'
+  wd edit-entity --batch  --summary 'doing what needed to be done'
 ```
 
 Where `./find_entities_with_P1106_claims.rq` could be something like:
