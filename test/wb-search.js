@@ -6,7 +6,7 @@ describe('wb search', function () {
 
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd search')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('should find an item', async () => {

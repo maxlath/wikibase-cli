@@ -6,6 +6,6 @@ describe('wb open', function () {
 
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd open')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 })

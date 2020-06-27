@@ -6,12 +6,12 @@ describe('wb claims', function () {
 
   it('should display help when requested without argument', async () => {
     const { stdout } = await shellExec('./bin/wd claims')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('should display all entity claims when passed an entity id', async () => {
     const { stdout } = await shellExec('./bin/wd claims Q3521413')
-    stdout.split('film (Q11424)').length.should.equal(2)
+    stdout.should.containEql('film (Q11424)')
   })
 
   it('shoud display property claims when passed and entity id and a property id', async () => {
@@ -22,7 +22,7 @@ describe('wb claims', function () {
   it('should filters properties from text', async () => {
     const coords = '48.856944444444,2.3513888888889'
     const { stdout } = await shellExec('./bin/wd claims Q90 coord')
-    stdout.split(coords).length.should.equal(2)
+    stdout.should.containEql(coords)
   })
 
   it('should find the GUID of a claim when provided a value', async () => {

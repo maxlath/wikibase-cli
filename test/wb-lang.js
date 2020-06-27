@@ -4,7 +4,7 @@ const { shellExec } = require('./lib/utils')
 describe('wb lang', () => {
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd lang')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('should identify a lang from a wikidata item id', async () => {

@@ -9,7 +9,7 @@ describe('wb summary', function () {
   this.timeout(20000)
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd summary')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('<entity>', async () => {

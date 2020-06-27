@@ -6,7 +6,7 @@ describe('wb query', function () {
 
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd query')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('-p [prop] -o [obj] -t [limit]', async () => {

@@ -6,7 +6,7 @@ describe('wb lemma', function () {
 
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd lemma')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it("should find an entity's lemma", async () => {

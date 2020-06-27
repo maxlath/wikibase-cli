@@ -6,13 +6,13 @@ describe('wb props', function () {
 
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd props --help')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('should output properties', async () => {
     const { stdout } = await shellExec('./bin/wd props')
     stdout.startsWith('{').should.be.true()
-    stdout.split('"P6": "').length.should.equal(2)
+    stdout.should.containEql('"P6": "')
   })
 
   it('should output properties with types', async () => {

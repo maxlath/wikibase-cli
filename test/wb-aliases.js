@@ -6,7 +6,7 @@ describe('wb aliases', function () {
 
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd aliases')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('<entity>', async () => {

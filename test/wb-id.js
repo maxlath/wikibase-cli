@@ -6,7 +6,7 @@ describe('wb id', function () {
 
   it('display help', async () => {
     const { stdout } = await shellExec('./bin/wd id')
-    stdout.split('Usage:').length.should.equal(2)
+    stdout.should.containEql('Usage:')
   })
 
   it('should accept a Wikipedia article title', async () => {
