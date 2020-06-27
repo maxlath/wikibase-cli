@@ -1,4 +1,5 @@
 #!/usr/bin/env node
 const program = require('commander')
 program.customArgsParser = require('../lib/object_arg_parser')
+program.customHelpOption = require('../lib/entity_custom_help_option')
 require('../lib/edit/edit_command')('entity', 'create')
