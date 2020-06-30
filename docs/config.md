@@ -86,6 +86,8 @@ wb config credentials https://www.wikidata.org test
 
 (\*) Yes, just the sight of word OAuth might give you chills, but setting up an [owner-only consumers](https://www.mediawiki.org/wiki/OAuth/Owner-only_consumers) is actually super fast (no need for validation) and rather simple: just follow the `wb config credentials https://my.wikibase.instance` prompt instructions.
 
+:warning: Individual calls to `wd` do re-login every time, as cookies are not stored between sessions. An excessive number of logins to Wikidata should be avoided --- the solution to this is to use [batch mode](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#batch-mode)
+
 ### bot
 Set a bot flag on requests made by a bot account is [required](https://www.wikidata.org/wiki/Wikidata:Bots#All_bots) and can be done by setting the `config.bot` value:
 ```sh
