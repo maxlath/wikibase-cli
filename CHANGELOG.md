@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 13.1.0 - 2020-07-11
+* [batch mode](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#batch-mode): allow to combine arguments passed inline and those passed on stdin
+
 ## 13.0.0 - 2020-06-26
 **BREAKING CHANGE**: output now defaults to newline-delimited values (instead of space-delimited values)
 
