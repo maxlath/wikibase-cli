@@ -25,6 +25,21 @@ describe('batch mode', function () {
     logDone.trim().should.equal('done processing 2 lines: successes=2 errors=0')
   })
 
+  it('should take some arguments inline and complete with stdin', async () => {
+    const { stdout, stderr } = await wdTest('edit-entity ./test/assets/template.js --batch --dry < ./test/assets/batch_ids')
+    stdout.split('\n').should.deepEqual([
+      '{"id":"Q210421","aliases":{"fr":"test"}}',
+      '{"id":"Q210422","aliases":{"fr":"test"}}',
+      '{"id":"Q210423","aliases":{"fr":"test"}}'
+    ])
+    stderr.split('\n').should.deepEqual([
+      'processing line 1: Q210421',
+      'processing line 2: Q210422',
+      'processing line 3: Q210423',
+      'done processing 3 lines: successes=3 errors=0'
+    ])
+  })
+
   it('should not exit if requested', async () => {
     const { stdout, stderr } = await wdTest('add-claim --batch --no-exit-on-error < ./test/assets/add_claim_batch_with_error')
     const stderrLines = stderr.split('\n')

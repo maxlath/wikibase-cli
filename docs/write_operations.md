@@ -691,6 +691,14 @@ echo '
 ./template.js Q2 def 456
 ./template.js Q3 ghi 789
 ' | wb edit-entity --batch
+
+# In that last case, the first argument being always the same,
+# it could also be written like this:
+echo '
+Q1 abc 123
+Q2 def 456
+Q3 ghi 789
+' | wb edit-entity ./template.js --batch
 ```
 
 Or more probably passing those arguments from a file:
