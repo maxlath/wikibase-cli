@@ -225,8 +225,7 @@ wb claims Q7 -i https://wikibase-registry.wmflabs.org -e https://wikibase-regist
 Options:
 * `-l, --lang <lang>`: specify the properties labels' language
 ```sh
-wd claims Q2001 -l es
-wd claims Q2001 P19 --lang ru
+wd claims Q2001 --lang es
 ```
 * `-a, --all`: include all claims, not only the truthy ones
 ```sh
