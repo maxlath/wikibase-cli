@@ -4,15 +4,15 @@ const program = require('../lib/program')
 program
 .option('-r, --raw', 'get raw, non-simplified, SPARQL results')
 .option('-d, --dry', 'output the SPARQL without running the query')
+.option('-o, --open', 'open the query in the Query Service GUI')
 .option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('sparql')
 
 const fs = require('fs')
 const errors_ = require('../lib/errors')
-const makeSparqlQuery = require('../lib/make_sparql_query')
+const sparqlQueryCommand = require('../lib/sparql_query_command')
 const wellknownQueries = require('../lib/wellknown_queries')
-const output = require('../lib/output')(program)
 const path = program.args[0]
 
 const extension = path.split('.').slice(-1)[0]
@@ -52,10 +52,4 @@ if (index) {
   }
 }
 
-if (program.dry) {
-  output(sparql.trim())
-} else {
-  // Override config parameter, as it's unlikely to be the desired behavior
-  program.clipboard = false
-  makeSparqlQuery(sparql).then(output)
-}
+sparqlQueryCommand(sparql)

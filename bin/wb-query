@@ -9,6 +9,8 @@ program
 .option('-c, --count', 'return a count of matching results')
 .option('-r, --raw', 'raw SPARQL results')
 .option('-d, --dry', 'output the SPARQL without running the query')
+// /!\ -o would conflict with --object
+.option('--open', 'open the query in the Query Service GUI')
 .option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
 .option('-n, --limit <num>', 'set the request results limit')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
@@ -18,7 +20,7 @@ if (!(program.subject || program.property || program.object)) program.helpAndExi
 
 const { grey } = require('chalk')
 const formatStatementElementValue = require('../lib/format_statement_element_value')
-const makeSparqlQuery = require('../lib/make_sparql_query')
+const sparqlQueryCommand = require('../lib/sparql_query_command')
 const output = require('../lib/output')(program)
 
 var { count: countResults, labels: selectLabels, lang } = program
@@ -78,10 +80,4 @@ if (limit) sparql += ` LIMIT ${limit}`
 
 output(`${grey('Generated SPARQL:')} ${sparql}`, true, true)
 
-if (program.dry) {
-  output(sparql.trim())
-} else {
-  // Override config parameter, as it's unlikely to be the desired behavior
-  program.clipboard = false
-  makeSparqlQuery(sparql).then(output)
-}
+sparqlQueryCommand(sparql)

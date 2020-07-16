@@ -10,8 +10,7 @@ program
 
 const getSitelinkUrl = require('../lib/get_sitelink_url')(program)
 const parseId = require('../lib/tolerant_id_parser')
-const copy = require('../lib/copy')
-const open = require('open')
+const open = require('../lib/open')
 
 const { instance } = program
 if (!instance) throw new Error('no instance set')
@@ -25,44 +24,33 @@ try {
   // invalid ids: trigger a search
 }
 
-const { url: urlOnly, clipboard } = program
-
-const handle = url => {
-  if (urlOnly) {
-    clipboard ? copy(url) : console.log(url)
-  } else {
-    if (clipboard) copy(url)
-    open(url, { url: true })
-  }
-}
-
 if (!ids || ids.length === 0) {
   const search = encodeURIComponent(args.join(' '))
   if (program.wikipedia) {
-    handle(`https://${lang}.wikipedia.org/w/index.php?title=Special:Search&search=${search}`)
+    open(`https://${lang}.wikipedia.org/w/index.php?title=Special:Search&search=${search}`)
   } else {
-    handle(`${instance}/w/index.php?title=Special:Search&search=${search}`)
+    open(`${instance}/w/index.php?title=Special:Search&search=${search}`)
   }
 } else {
   const openId = async id => {
     if (program.wikipedia) {
       try {
         const url = await getSitelinkUrl(id, lang, 'wiki')
-        handle(url)
+        open(url)
       } catch (err) {
         if (err.statusCode === 404) {
           console.error('Wikipedia article not found: opening Wikidata page on sitelinks')
-          handle(`${instance}/wiki/${id}#sitelinks-wikipedia`)
+          open(`${instance}/wiki/${id}#sitelinks-wikipedia`)
         } else {
           throw err
         }
       }
     } else if (program.history) {
-      handle(`${instance}/w/index.php?title=${id}&action=history`)
+      open(`${instance}/w/index.php?title=${id}&action=history`)
     } else if (program.revision) {
-      handle(`${instance}/w/index.php?title=${id}&oldid=${program.revision}`)
+      open(`${instance}/w/index.php?title=${id}&oldid=${program.revision}`)
     } else {
-      handle(`${instance}/entity/${id}`)
+      open(`${instance}/entity/${id}`)
     }
   }
 

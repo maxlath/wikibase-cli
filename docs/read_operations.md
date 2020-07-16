@@ -673,11 +673,13 @@ wb sparql ./path/to/author_works.rq > ./results.json
 ```
 
 Options:
-* `-v, --verbose`: log the generated SPARQL
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikibase-sdk `simplifySparqlResults`](https://github.com/maxlath/wikibase-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-x, --index <variable>`: get the results indexed by one of the SELECTed variables
 * `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
-* `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see below for examples)
+* `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint
+* `-v, --verbose`: log the generated SPARQL
+* `-d, --dry`: output the SPARQL without running the query
+* `-o, --open`: open the query in the Query Service GUI
 
 ```sh
 wb sparql ./path/to/query.rq > ./results.json
@@ -717,6 +719,11 @@ You can use it to build [alias commands](https://en.wikipedia.org/wiki/Alias_%28
 alias authors_works="wd sparql ./path/to/author_works.js --json"
 authors_works Q535 > ./Q535_works.json
 authors_works Q5879 > ./Q5879_works.json
+```
+
+You also use it to generate a SPARQL file, using the `--dry` flag:
+```sh
+wb sparql ./path/to/query_template.js --dry > ./query.rq
 ```
 
 **Demo**: [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
@@ -804,6 +811,8 @@ Other options:
 * `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
 * `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wb sparql`](#wb-sparql) for examples of how to use this option)
+* `-d, --dry`: output the SPARQL without running the query
+* `-o, --open`: open the query in the Query Service GUI
 
 ### wb convert
 Convert batches of external ids to Wikibase ids and vice versa
