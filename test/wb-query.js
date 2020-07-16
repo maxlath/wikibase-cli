@@ -18,4 +18,11 @@ describe('wb query', function () {
     const { stdout } = await shellExec("./bin/wd query -p P973 -o '<https://www.fileformat.info/format/gif/egff.htm>'")
     stdout.split(/\s/).includes('Q2192').should.be.true()
   })
+
+  describe('dry', () => {
+    it('should return the generated SPARQL', async () => {
+      const { stdout } = await shellExec('./bin/wd query -p P50 -o Q1345582 --dry')
+      stdout.should.containEql('SELECT')
+    })
+  })
 })

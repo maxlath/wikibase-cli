@@ -8,6 +8,7 @@ program
 .option('-a, --labels', 'requests results labels')
 .option('-c, --count', 'return a count of matching results')
 .option('-r, --raw', 'raw SPARQL results')
+.option('-d, --dry', 'output the SPARQL without running the query')
 .option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
 .option('-n, --limit <num>', 'set the request results limit')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
@@ -70,10 +71,17 @@ if (selectLabels) {
 
 const { limit } = program
 
-var sparql = `SELECT ${select} WHERE { ${triple} }`
+var sparql = `SELECT ${select.trim()} WHERE {
+  ${triple}
+}`
 if (limit) sparql += ` LIMIT ${limit}`
 
 output(`${grey('Generated SPARQL:')} ${sparql}`, true, true)
 
-makeSparqlQuery(sparql)
-.then(output)
+if (program.dry) {
+  output(sparql.trim())
+} else {
+  // Override config parameter, as it's unlikely to be the desired behavior
+  program.clipboard = false
+  makeSparqlQuery(sparql).then(output)
+}
