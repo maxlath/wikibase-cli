@@ -1,6 +1,6 @@
 # Write operations
 
-Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your crendentials can be found in your home folder: `~/.config/wikibase-cli/config.json`. This allows not having to re-enter crendentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
+Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your credentials can be found in your home folder: `~/.config/wikibase-cli/config.json`. This allows not having to re-enter credentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
 The following documentation assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
 
