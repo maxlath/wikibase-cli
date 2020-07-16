@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 13.2.0 - 2020-07-16
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql), [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-query): Added options `--dry` and `--open`
+
 ## 13.1.0 - 2020-07-11
 * [batch mode](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#batch-mode): allow to combine arguments passed inline and those passed on stdin
 
