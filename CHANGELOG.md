@@ -1,6 +1,15 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 14.0.0 - 2020-07-17
+**BREAKING CHANGE**: local files are now always stored in the home directory. **To keep your current config after this upgrade**, follow this steps:
+```sh
+mkdir -p ~/.config/wikibase-cli
+wb config --json > ~/.config/wikibase-cli/config.js
+# Now we can run the upgrade
+npm install -g wikibase-cli@14
+```
+
 ## 13.2.0 - 2020-07-16
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql), [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-query): Added options `--dry` and `--open`
 
