@@ -12,4 +12,11 @@ describe('wb sparql', function () {
     const { stdout } = await shellExec('./bin/wd sparql ./test/assets/query.rq')
     stdout.should.containEql('Q18120925')
   })
+
+  describe('dry', () => {
+    it('should return the generated SPARQL', async () => {
+      const { stdout } = await shellExec('./bin/wd sparql ./test/assets/query.rq --dry')
+      stdout.should.containEql('SELECT')
+    })
+  })
 })
