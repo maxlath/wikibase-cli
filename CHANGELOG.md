@@ -5,7 +5,7 @@
 **BREAKING CHANGE**: local files are now always stored in the home directory. **To keep your current config after this upgrade**, follow this steps:
 ```sh
 mkdir -p ~/.config/wikibase-cli
-wb config --json > ~/.config/wikibase-cli/config.js
+wb config --json > ~/.config/wikibase-cli/config.json
 # Now we can run the upgrade
 npm install -g wikibase-cli@14
 ```
