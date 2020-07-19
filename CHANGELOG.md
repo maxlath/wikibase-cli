@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 14.1.0 - 2020-07-19
+* [`wb add-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-add-claim), [`wb update-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-update-claim): Added a `--rank` option
+
 ## 14.0.0 - 2020-07-17
 **BREAKING CHANGE**: local files are now always stored in the home directory. **To keep your current config after this upgrade**, follow this steps:
 ```sh
