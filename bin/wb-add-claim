@@ -1,4 +1,8 @@
 #!/usr/bin/env node
 const program = require('@wikibasejs/commander')
-program.customArgsParser = ([ id, property, value ]) => [ { id, property, value } ]
+program.customArgsParser = ([ id, property, value ]) => {
+  const data = { id, property, value }
+  if (program.rank) data.rank = program.rank
+  return [ data ]
+}
 require('../lib/edit/edit_command')('claim', 'add')

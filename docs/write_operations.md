@@ -162,6 +162,8 @@ wb add-claim <entity> <property> <value>
 # Alias:
 wb ac <entity> <property> <value>
 ```
+Options:
+* `--rank <preferred|deprecated>`: set the claim [rank](https://www.wikidata.org/wiki/Wikidata:Glossary/en#Rank)
 
 Examples:
 ```sh
@@ -170,7 +172,8 @@ wd add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
 wd ac Q4115189 P2002 bulgroz
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
-wd ac Q4115189 P527 Q34679
+# with a preferred rank
+wd ac Q4115189 P527 Q34679 --rank preferred
 ```
 
 For more advanced use cases, such as adding a claim with qualifiers and references, you should rather use [`edit-entity`](#wb-edit-entity).
@@ -220,17 +223,23 @@ wb update-claim <guid> <new-value>
 wb uc <entity-id> <property> <old-value> <new-value>
 wb uc <guid>
 ```
+Options:
+* `--rank <normal|preferred|deprecated>`: set the claim [rank](https://www.wikidata.org/wiki/Wikidata:Glossary/en#Rank)
 
 Examples:
 ```sh
-# change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
+# Change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
 wd update-claim Q4115189 P2002 Zorglub Bulgroz
 # or using the claim's guid
 wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
+# Update both the claim rank and value
+wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz --rank preferred
+# Only update the rank
+wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' --rank preferred
 
-# change a coordinate from Mars (Q112) to Venus (Q313)
+# Change a coordinate from Mars (Q112) to Venus (Q313)
 wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
-# or using the claim's guid
+# or using the claim's guid: that's generally the preferred way to do it
 wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 ```
 

@@ -2,12 +2,15 @@
 const program = require('@wikibasejs/commander')
 const { isGuid } = require('wikibase-sdk')
 program.customArgsParser = args => {
+  let data
   if (isGuid(args[0])) {
     const [ guid, oldValue, newValue ] = args
-    return [ { guid, oldValue, newValue } ]
+    data = { guid, oldValue, newValue }
   } else {
     const [ id, property, oldValue, newValue ] = args
-    return [ { id, property, oldValue, newValue } ]
+    data = { id, property, oldValue, newValue }
   }
+  if (program.rank) data.rank = program.rank
+  return [ data ]
 }
 require('../lib/edit/edit_command')('claim', 'update')
