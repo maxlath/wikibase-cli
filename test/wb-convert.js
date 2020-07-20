@@ -28,4 +28,10 @@ describe('wb convert', function () {
     results.Q45.includes('119328454').should.be.true()
     results.Q140[0].should.equal('11932251d')
   })
+
+  it('should convert external ids that look like Wikidata ids', async () => {
+    const { stdout } = await shellExec('./bin/wd convert P352 Q13131')
+    const results = JSON.parse(stdout)
+    results.Q13131[0].should.equal('Q21115170')
+  })
 })
