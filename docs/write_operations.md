@@ -1,8 +1,10 @@
 # Write operations
 
-Those command modify Wikibase so you will be asked your Wikibase **username** and **password** to use them. Those will be **persisted in clear text** in this module's folder: `./config.json`. Alternatively, in the case writing to this module's folder would require special rights, the config file with your credentials can be found in your home folder: `~/.config/wikibase-cli/config.json`. This allows not having to re-enter credentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
+Those command modify Wikibase so you will need to first **setup credentials** to use them: you will get a prompt requesting those credentials when required, but if you want to setup those credentials ahead, you can run `wb config credentials https://www.wikidata.org test` (Replace `https://www.wikidata.org` by your Wikibase instance url if necessary). For more documentation on the different options to setup credentials, see [`wikibase-edit` single-user credentials setup](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#single-user-setup) (`wikibase-edit` is the lib on which wikibase-cli relies for all write operations).
 
-The following documentation assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
+Those credentials will be **saved in clear text** (Run `wb config path` to know where). This allows not having to re-enter credentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
+
+The following documentation often assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
 
 ## Summary
 
