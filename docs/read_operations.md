@@ -818,22 +818,30 @@ Other options:
 Convert batches of external ids to Wikibase ids and vice versa
 
 ```sh
-wb convert <property> <ids...>
+# From external ids to Wikibase entity ids
+wb convert --property <property> --objects <ids...>
+wb convert -p <property> -o <ids...>
+echo <ids...> | wb convert -p <property> -o
+
+# From Wikibase entity ids to external ids
+wb convert --property <property> --subjects <ids...>
+wb convert -p <property> -s <ids...>
+echo <ids...> | wb convert -p <property> -s
 ```
 
 ```sh
 # get the Wikibase ids corresponding to those BNF ids
-wd convert P268 11865344k 11932251d
+wd convert -p P268 -o 11865344k 11932251d
 # get the BNF ids corresponding to those Wikibase ids
-wd convert P268 Q45 Q140
+wd convert -p P268 -s Q45 Q140
 # the same but taking the ids from stdin
-echo Q45 Q140 | wd convert P268
+echo Q45 Q140 | wd convert -p P268 -s
 # which can be a file
-cat ids_list | wd convert P268
-wd convert P268 < ids_list
+cat ids_list | wd convert -p P268 -s
+wd convert -p P268 -s < ids_list
 # or any command outputting a list of ids:
 # here, we get the INSEE department code (P2586) of all French departments (Q6465)
-wd sparql all-instances Q6465 | wd convert P2586
+wd sparql all-instances Q6465 | wd convert -p P2586 -s
 ```
 
 > **NB**: this conversion is done by batches of 100, so calling this command with 100,000 ids will sequentially make 1000 requests to the SPARQL endpoint, which isn't very efficient; depending on the size of the dataset you're targetting, you should probably rather request all the ids at once using `wb query --property <your-property-id>`, passing the option ` --index object` if the data you have at hand is the external ids, and ` --index subject` if you are instead starting from the Wikibase ids.
