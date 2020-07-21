@@ -9,9 +9,8 @@ describe('wd', function () {
     stdout.should.containEql('Usage:')
   })
 
-  it('should log an error and display help when called with an unknown command', async () => {
-    const { stdout, stderr } = await shellExec('./bin/wd nop')
+  it('should log an error when called with an unknown command', async () => {
+    const { stderr } = await shellExec('./bin/wd nop')
     stderr.should.equal('unknown command')
-    stdout.should.containEql('Usage:')
   })
 })

@@ -19,11 +19,3 @@ commandsNames.forEach(commandName => {
 })
 
 program.parse(process.argv)
-
-const subcommand = program.args[0]
-
-if (!commandsNames.includes(subcommand) && subcommand !== 'help') {
-  console.error(require('chalk').red('unknown command'))
-  program.help()
-  process.exit(1)
-}
