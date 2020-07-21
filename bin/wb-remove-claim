@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const program = require('@wikibasejs/commander')
+const program = require('commander')
 const { parseGuid } = require('../lib/parse_command_utils')
 program.customArgsParser = guids => [ { guid: guids.map(parseGuid) } ]
 require('../lib/edit/edit_command')('claim', 'remove')

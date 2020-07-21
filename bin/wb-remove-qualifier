@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const program = require('@wikibasejs/commander')
+const program = require('commander')
 program.customArgsParser = ([ guid, hash ]) => {
   hash = hash.split('|')
   return [ { guid, hash } ]

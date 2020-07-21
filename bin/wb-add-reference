@@ -1,4 +1,4 @@
 #!/usr/bin/env node
-const program = require('@wikibasejs/commander')
+const program = require('commander')
 program.customArgsParser = ([ guid, property, value ]) => [ { guid, property, value } ]
 require('../lib/edit/edit_command')('reference', 'add')

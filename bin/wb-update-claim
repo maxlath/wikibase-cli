@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const program = require('@wikibasejs/commander')
+const program = require('commander')
 const { isGuid } = require('wikibase-sdk')
 program.customArgsParser = args => {
   let data
