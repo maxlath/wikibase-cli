@@ -1,26 +1,2 @@
 #!/usr/bin/env bash
-
-wb_show_help=0
-
-# The help menu is displayed if the the -h,--help option is passed
-# or if a command or a sub-command is called without argument,
-# unless it can be called without argument (ex: "props")
-if [[ "$2" == "" ]] ;
-then
-  if [[ "$1" != "props" && "$1" != "p" && "$1" != "data" && "$1" != "d" && "$1" != "generate-template" && "$1" != "gt" ]] ;
-  then
-    wb_show_help=1
-  fi
-else
-  if [[ "$2" == '--help' || "$2" == '-h' ]] ;
-  then
-    wb_show_help=1
-  fi
-fi
-
-if [[ "$wb_show_help" == "1" ]] ;
-then
-  wb "$@" | sed 's/wb/wd/' | grep -vE '\-\-instance|\-\-sparql-endpoint'
-else
-  export WB_INSTANCE=https://www.wikidata.org WB_SPARQL_ENDPOINT=https://query.wikidata.org/sparql ; wb "$@"
-fi
+export WB_INSTANCE=https://www.wikidata.org WB_SPARQL_ENDPOINT=https://query.wikidata.org/sparql ; wb "$@"
