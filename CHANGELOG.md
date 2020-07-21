@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.0.0 - 2020-07-21
+**BREAKING CHANGE**: [`wb convert`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wb-convert) now requires ids to be passed as explicit subject or object options.
+
 ## 14.1.0 - 2020-07-19
 * [`wb add-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-add-claim), [`wb update-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wd-update-claim): Added a `--rank` option
 
