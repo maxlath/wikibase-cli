@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.1.0 - 2020-07-21
+* [`wb add-reference`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#wb-add-reference): support [adding a reference with multiple snaks](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#add-a-reference-with-multiple-snaks)
+
 ## 15.0.0 - 2020-07-21
 **BREAKING CHANGE**: [`wb convert`](https://github.com/maxlath/wikidata-cli/blob/master/docs/read_operations.md#wb-convert) now requires ids to be passed as explicit subject or object options.
 
