@@ -1,4 +1,6 @@
 #!/usr/bin/env node
 const program = require('commander')
-program.customArgsParser = ([ guid, property, value ]) => [ { guid, property, value } ]
+const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
+const inlineArgsParser = ([ guid, property, value ]) => [ { guid, property, value } ]
+program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
 require('../lib/edit/edit_command')('reference', 'add')

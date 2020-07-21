@@ -38,6 +38,8 @@ The following documentation often assumes that the Wikibase instance we work wit
   - [wb remove-qualifier](#wb-remove-qualifier)
 - [references](#references)
   - [wb add-reference](#wb-add-reference)
+    - [add a reference with a single snak](#add-a-reference-with-a-single-snak)
+    - [add a reference with multiple snaks](#add-a-reference-with-multiple-snaks)
   - [wb remove-reference](#wb-remove-reference)
 - [entity](#entity)
   - [wb create-entity](#wb-create-entity)
@@ -407,8 +409,9 @@ wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f
 See [Wikidata:Glossary#Reference](https://www.wikidata.org/wiki/Wikidata:Glossary#Reference)
 
 #### wb add-reference
-
 Add a reference to an claim
+
+##### add a reference with a single snak
 ```sh
 wb add-reference <claim-guid> <property> <value>
 # Alias:
@@ -430,36 +433,53 @@ wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 
 See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
-For more advanced use cases, such as adding several references to a claim, you should rather use [`edit-entity`](#wb-edit-entity):
+##### add a reference with multiple snaks
+To create a single reference with multiple snaks we will need to use the object interface, passing the `guid` and `snaks` as a JSON object.
+```sh
+# That object can be passed as inline JSON
+wb add-reference <JSON>
+# or as a path to a JSON file
+wb ar ./reference.json
+# or as a path to JS file exporting an object, or exporting a JS function, which given some arguments would return an object (it can be an async function)
+wb ar ./reference.js P248 P813
+```
 
+Example:
 ```js
-// Q4115189.json
-{
-  "id": "Q4115189",
-  "claims": {
-    "P31": [
-      {
-        "id": "Q4115189$cfbe452f-459a-d7b0-f57c-f6d816f33e19",
-        "value": "Q1",
-        "references": [
-          {
-            "P248": "Q142667",
-            "P813": "2020-03-13"
-          },
-          {
-            "P854": "http://example.org/some-article",
-            "P813": "2020-03-13"
-          }
-        ]
-      }
-    ]
+// reference.js: a JS file exporting an object
+module.exports = {
+  guid: 'Q63313825$A42967A6-CA5B-41AD-9F1F-3DAEF10DDBB5',
+  snaks: {
+    P248: 'Q53556514',
+    P5199: '000011361',
+    P813: '2019-03-06'
   }
 }
 ```
-```bash
-wd ee ./Q4115189.json
+Could then be passed like this
+```sh
+wb ar ./reference.js
 ```
-**NB**: This is not just an addition anymore, it would replace any existing references on the claim `Q4115189$cfbe452f-459a-d7b0-f57c-f6d816f33e19`
+
+In case you need to add a similar kind of reference to several claims, you might want to use a JS function instead:
+```js
+// reference.js: a JS file exporting an object
+module.exports = (guid, statedIn, BLnumber) => {
+  const today = new Date().toISOString().split('T')[0]
+  return {
+    guid,
+    snaks: {
+      P248: statedIn,
+      P5199: BLnumber,
+      P813: today
+    }
+  }
+}
+```
+Could then be passed like this
+```sh
+wb ar ./reference.js 'Q63313825$A42967A6-CA5B-41AD-9F1F-3DAEF10DDBB5' Q53556514 000011361
+```
 
 #### wb remove-reference
 
