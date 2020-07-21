@@ -8,10 +8,11 @@ program
 const { yellow } = require('chalk')
 const parseId = require('../lib/tolerant_id_parser')
 const logClaims = require('../lib/log_claims')
-const commonErrors = require('../lib/common_errors')
-const getLangProps = require('../lib/get_lang_props')
+const getEntities = require('../lib/get_entities')
+const { getEntityLabel } = require('../lib/get_entities_labels')
+const errors_ = require('../lib/errors')
 require('../lib/exit_on_missing').instance(program.instance)
-const { isPropertyId, getEntities, simplify } = require('../lib/wbk')(program)
+const { isPropertyId, simplify } = require('../lib/wbk')(program)
 
 var [ id, ...filter ] = program.args
 id = id && parseId(id)
@@ -35,16 +36,12 @@ if (id && prop && id[0] === 'P' && prop[0] === 'Q') {
   [ id, prop ] = [ prop, id ]
 }
 
-const { get } = require('../lib/request')
-const errors_ = require('../lib/errors')
-
-const url = getEntities({ props: 'claims', ids: id })
-
-get(url)
-.then(async body => {
-  const entity = body.entities && body.entities[id]
-  if (!entity) return console.error('error: ', body)
-  if (entity.missing != null) return console.error('entity not found:', id)
+const run = async () => {
+  const entities = await getEntities({ props: 'claims', ids: [ id ] })
+  const entity = entities[id]
+  if (!entity) {
+    errors_.exitMessage(`entity not found: ${program.instance}/entity/${id}`)
+  }
 
   const keepNonTruthy = program.all === true
   if (isPropertyId(prop) && value != null) {
@@ -62,9 +59,9 @@ get(url)
   value = simplifiedClaims[prop]
   if (value != null) return output(simplifiedClaims[prop])
 
-  const props = await getLangProps(program)
-  if (!props[prop]) return commonErrors.missingProperty(prop)
-  const { label } = props[prop]
+  const label = await getEntityLabel(prop)
   console.log(yellow('no statement found'), label)
-})
+}
+
+run()
 .catch(errors_.exit)
