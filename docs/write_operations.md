@@ -28,6 +28,7 @@ The following documentation often assumes that the Wikibase instance we work wit
     - [with a reference](#with-a-reference)
     - [special claim snaktypes](#special-claim-snaktypes)
   - [wb update-claim](#wb-update-claim)
+    - [update claim in batch mode](#update-claim-in-batch-mode)
   - [wb move-claim](#wb-move-claim)
   - [wb remove-claim](#wb-remove-claim)
 - [qualifiers](#qualifiers)
@@ -245,6 +246,25 @@ wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' --rank preferred
 wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 # or using the claim's guid: that's generally the preferred way to do it
 wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+```
+
+##### update claim in batch mode
+
+Arguments can either be passed in object mode
+```sh
+echo '
+{ "guid": "Q1$d941fe74-4a76-a143-6766-a24d2ef2ddad", "newValue": "foo", "rank": "preferred" }
+{ "guid": "Q1$63ef3ef4-4499-110a-3f66-33b352b61520", "newValue": "bar" }
+{ "guid": "Q1$aaa3162d-4faa-6761-a8e6-f5e6a639afd5", "rank": "deprecated" }
+{ "guid": "Q1$b1a0d905-4f20-065d-4aa7-787ea29c5af1", "rank": "normal" }
+' | wb uc -b
+```
+or as inline values (but then you can't set the rank)
+```sh
+echo '
+Q1$d941fe74-4a76-a143-6766-a24d2ef2ddad foo
+Q1$63ef3ef4-4499-110a-3f66-33b352b61520 bar
+' | wb uc -b
 ```
 
 #### wb move-claim
