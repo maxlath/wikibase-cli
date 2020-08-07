@@ -190,8 +190,8 @@ Some values like monolingual text, quatities with a unit, or time with a precisi
 ```sh
 wd ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
 wd ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
-# On precision, see https://www.wikidata.org/wiki/Help:Dates#Precision
-wd ac Q4115189 P578 '{"time":"1800","precision":7}'
+# On precision and calendar, see wikibase-edit documentation https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#time
+wd ac Q4115189 P578 '{"time":"1800","precision":7,"calendar":"julian"}'
 # Set a coordinate on another celestial body than Earth (here, Mars (Q111))
 wd ac Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
 ```
