@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 const program = require('commander')
-program.customArgsParser = ([ id, property, value ]) => {
+const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
+const inlineArgsParser = ([ id, property, value ]) => {
   const data = { id, property, value }
   if (program.rank) data.rank = program.rank
   return [ data ]
 }
+program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
 require('../lib/edit/edit_command')('claim', 'add')

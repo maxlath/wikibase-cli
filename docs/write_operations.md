@@ -564,7 +564,7 @@ Pass data as inline JSON.
 ```sh
 wd edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
 ```
-It works, but writting JSON by hand is very sub-optimal, even painful.
+It works, but writting JSON by hand isn't that fun, we can do better.
 
 ##### Pass data as a JSON file
 Taking our JSON data from a file can be much more convenient than the inline option above, as it can be generated from other commands, or manually edited with the help of smart text editors that might help you with the syntax.
