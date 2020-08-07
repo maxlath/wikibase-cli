@@ -241,6 +241,8 @@ wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
 wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz --rank preferred
 # Only update the rank
 wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' --rank preferred
+# This can also be written using the object interface
+wb uc '{ "guid": "Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3", "rank": "preferred" }'
 
 # Change a coordinate from Mars (Q112) to Venus (Q313)
 wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
