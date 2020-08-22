@@ -74,14 +74,14 @@ npm install -g wikibase-cli@latest
 # Might require to be run with sudo depending on your Docker installation
 docker run --rm -t maxlath/wikibase-cli
 # You can make an alias out of it:
-alias wb="docker run --rm -t maxlath/wikibase-cli"
+alias wb="docker run --rm -it maxlath/wikibase-cli"
 # You're then ready to use it as in the documentation examples
 wb label Q1
 ```
 That would work, but all operations cached data (such as the list of all properties) would need to re-fetch those data for each operations, and all write operations would require you to re-enter your credentials everytime. To work around this, you can allow this container to persist some files on your system, using shared volumes:
 ```sh
 mkdir -p $HOME/.config/wikibase-cli $HOME/.cache/wikibase-cli
-alias wb='docker run --rm -v "$HOME/.config/wikibase-cli:/root/.config/wikibase-cli" -v "$HOME/.cache/wikibase-cli:/root/.cache/wikibase-cli" -t maxlath/wikibase-cli'
+alias wb='docker run --rm -v "$HOME/.config/wikibase-cli:/root/.config/wikibase-cli" -v "$HOME/.cache/wikibase-cli:/root/.cache/wikibase-cli" -it maxlath/wikibase-cli'
 ```
 
 > NB: Beware that using wikidata-cli through a Docker container has a performance cost of something like 1s per command, so if you need to run many commands (for instance in a script to make mass edit on the desired Wikibase instance), you should probably rather use the NPM package directly
