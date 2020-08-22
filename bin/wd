@@ -1,2 +1,2 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 export WB_INSTANCE=https://www.wikidata.org WB_SPARQL_ENDPOINT=https://query.wikidata.org/sparql ; wb "$@"
