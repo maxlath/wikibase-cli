@@ -50,7 +50,7 @@ function setElement (elName) {
     // If the property isn't set, specify that we want only direct/truthy claims
     // and not every statements and qualifiers
     if (elName === 'property') {
-      triple += ' ?prop wikibase:directClaim ?property .'
+      triple += '\n  ?prop wikibase:directClaim ?property .'
       if (selectLabels) select += `?propLabel `
     }
   }
