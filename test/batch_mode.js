@@ -9,7 +9,7 @@ describe('batch mode', function () {
     const [ res1, res2 ] = stdout.split('\n')
     JSON.parse(res1).claim.id.should.startWith('Q1111')
     JSON.parse(res2).claim.id.should.startWith('Q1111')
-    stderr.split('\n').should.deepEqual([
+    formatProgression(stderr).should.deepEqual([
       'processing line 1: Q1111 P95180 bar',
       'processing line 2: [ "Q1111", "P95226", {"time":"1800","precision":7} ]',
       'done processing 2 lines: successes=2 errors=0'
@@ -22,7 +22,7 @@ describe('batch mode', function () {
       '{"id":"Q1111","claims":{"P95180":"foo"}}',
       '{"id":"Q1111","claims":{"P95228":456}}'
     ])
-    stderr.split('\n').should.deepEqual([
+    formatProgression(stderr).should.deepEqual([
       'processing line 1: {"id":"Q1111", "claims":{ "P95180": "foo" }}',
       'processing line 2: {"id":"Q1111", "claims":{ "P95228": 456 }}',
       'done processing 2 lines: successes=2 errors=0'
@@ -36,7 +36,7 @@ describe('batch mode', function () {
       '{"id":"Q210422","aliases":{"fr":"test"}}',
       '{"id":"Q210423","aliases":{"fr":"test"}}'
     ])
-    stderr.split('\n').should.deepEqual([
+    formatProgression(stderr).should.deepEqual([
       'processing line 1: Q210421',
       'processing line 2: Q210422',
       'processing line 3: Q210423',
@@ -46,7 +46,7 @@ describe('batch mode', function () {
 
   it('should not exit if requested', async () => {
     const { stdout, stderr } = await wdTest('add-claim --batch --no-exit-on-error < ./test/assets/add_claim_batch_with_error')
-    const stderrLines = stderr.split('\n')
+    const stderrLines = formatProgression(stderr)
     stderrLines[0].should.equal('processing line 1: Q1111 P95228 notaquantity')
     // Not testing the whole line at once, as the error output isn't stable between NodeJS versions
     // Identified case: Node v8 gives a differnt outputs than Node v12
@@ -60,3 +60,7 @@ describe('batch mode', function () {
     JSON.parse(res2).claim.id.should.startWith('Q1111')
   })
 })
+
+const formatProgression = stderr => stderr.split('\n').filter(isntWarningLine)
+
+const isntWarningLine = line => !line.match(/(\[WARNING\]|maxlag: Waiting|retrying in)/)
