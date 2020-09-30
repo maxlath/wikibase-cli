@@ -4,6 +4,7 @@ const program = require('../lib/program')
 program
 .option('-p, --wikipedia', 'open the Wikipedia article')
 .option('-y, --history', 'open the Wikidata history')
+.option('-t, --talk', 'open the Talk page')
 .option('-u, --url', 'simply generate the url')
 .option('-r, --revision <id>', 'open a specific revision')
 .process('open')
@@ -11,6 +12,7 @@ program
 const getSitelinkUrl = require('../lib/get_sitelink_url')(program)
 const parseId = require('../lib/tolerant_id_parser')
 const open = require('../lib/open')
+const { isPropertyId } = require('wikibase-sdk')
 
 const { instance } = program
 if (!instance) throw new Error('no instance set')
@@ -46,7 +48,18 @@ if (!ids || ids.length === 0) {
         }
       }
     } else if (program.history) {
-      open(`${instance}/w/index.php?title=${id}&action=history`)
+      if (isPropertyId(id)) {
+        open(`${instance}/w/index.php?title=Property:${id}&action=history`)
+      } else {
+        // Will be redirected to title=${id} if Item is the main namespace
+        open(`${instance}/w/index.php?title=Item:${id}&action=history`)
+      }
+    } else if (program.talk) {
+      if (isPropertyId(id)) {
+        open(`${instance}/wiki/Property_talk:${id}`)
+      } else {
+        open(`${instance}/wiki/Item_talk:${id}`)
+      }
     } else if (program.revision) {
       open(`${instance}/w/index.php?title=${id}&oldid=${program.revision}`)
     } else {

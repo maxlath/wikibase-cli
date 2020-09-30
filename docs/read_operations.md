@@ -888,6 +888,7 @@ wb open Q123 -i http://localhost:8181
 
 Options:
 * `-y, --history`: open the entity histor**y** page
+* `-t, --talk`: open the entity **t**alk page
 * `-r, --revision <id>`: open a specific **r**evision
 * `-p, --wikipedia`: open the Wiki**p**edia article
 * `-u, --url`: simply generate the **u**rl, don't open it in a browser
