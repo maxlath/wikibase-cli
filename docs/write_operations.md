@@ -296,6 +296,8 @@ wb mc Q4115189#P19 Q13406268 P19
 wb mc Q4115189#P19 Q13406268 P20
 ```
 
+Certain claims can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
+
 #### wb remove-claim
 Remove a claim
 ```sh
@@ -409,6 +411,8 @@ wb mq $claim_guid P2310 P2311
 qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq -r '.qualifiers.P2310[0]')
 wb mq $claim_guid $qualifier_hash P2310 P2311
 ```
+
+Just like for `move-claim`, certain qualifiers can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
 
 #### wb remove-qualifier
 
