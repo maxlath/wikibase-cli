@@ -9,7 +9,7 @@
   },
   "scripts": {
     "docker:publish": "./scripts/docker_publish",
-    "lint": "standard bin/wb* lib/* lib/*/* test/* test/lib/*",
+    "lint": "eslint -c .eslintrc bin/wb* lib/* lib/*/* test/* test/lib/*",
     "lint-staged": "./scripts/lint_staged",
     "prepublishOnly": "npm run lint && npm test",
     "postpublish": "npm run docker:publish && git push --tags",
@@ -54,20 +54,16 @@
     "wikidata-lang": "^2.0.11"
   },
   "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-standard": "^14.1.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^4.0.1",
     "git-hooks": "^1.1.10",
     "mocha": "^5.2.0",
-    "should": "^13.2.3",
-    "standard": "^10.0.3"
-  },
-  "standard": {
-    "ignore": [
-      "dist"
-    ],
-    "globals": [
-      "it",
-      "xit",
-      "describe"
-    ]
+    "should": "^13.2.3"
   },
   "engines": {
     "node": ">= 7.6.0"

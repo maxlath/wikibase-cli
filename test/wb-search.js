@@ -51,12 +51,12 @@ describe('wb search', function () {
 
   // Sense search doesn't seem to return results at the moment
   xit('should find a sense', async () => {
-    const { stdout } = await shellExec(`./bin/wd search "édifice destiné à l'habitation" --type sense`)
+    const { stdout } = await shellExec('./bin/wd search "édifice destiné à l\'habitation" --type sense')
     stdout.should.startWith('L525-S1')
   })
 
   xit('should find a sense, short version', async () => {
-    const { stdout } = await shellExec(`./bin/wd search "édifice destiné à l'habitation" -t s`)
+    const { stdout } = await shellExec('./bin/wd search "édifice destiné à l\'habitation" -t s')
     stdout.should.startWith('L525-S1')
   })
 })

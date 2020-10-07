@@ -17,7 +17,7 @@ const path = program.args[0]
 
 const extension = path.split('.').slice(-1)[0]
 
-var sparql, absoluePath
+let sparql, absoluePath
 
 // Allow to pass a JS module that exports a function
 // to which is passed the remaining arguments

@@ -25,6 +25,6 @@ describe('wb props', function () {
   it('should be able to query a custom SPARQL endpoint', async () => {
     const { stdout } = await shellExec('./bin/wb props --sparql-endpoint https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql -l en')
     const data = JSON.parse(stdout)
-    data['P2'].toLowerCase().should.equal('main page')
+    data.P2.toLowerCase().should.equal('main page')
   })
 })

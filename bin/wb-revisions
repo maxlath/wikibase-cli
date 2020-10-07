@@ -22,7 +22,7 @@ const ids = program.args
 if (!(ids && ids.length > 0)) program.helpAndExit(0)
 
 ids.forEach(id => {
-  var [ prefix, entityId ] = id.split(':')
+  let [ prefix, entityId ] = id.split(':')
   if (entityId) {
     if (prefix !== 'Property' && prefix !== 'Item') {
       throw new Error(`invalid entity prefix: ${prefix}`)
@@ -34,7 +34,7 @@ ids.forEach(id => {
 })
 
 const query = {}
-var { start, end, limit, verbose } = program
+let { start, end, limit, verbose } = program
 if (isPositiveIntegerString(start)) start = parseInt(start)
 if (isPositiveIntegerString(end)) end = parseInt(end)
 

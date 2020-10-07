@@ -39,7 +39,7 @@ if (ids && ids.length > 0) {
   require('../lib/get_stdin_input')()
   .then(input => {
     input = input.trim()
-    var ids = input.split(/\s+/)
+    let ids = input.split(/\s+/)
     if (ids.length === 1 && ids[0] === '') ids = []
     convertIds(property, ids, fromWdIds)
   })

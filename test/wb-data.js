@@ -136,7 +136,7 @@ describe('wb data', function () {
     })
 
     it('should get a simplified claim', async () => {
-      const { stdout } = await shellExec(`./bin/wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'`)
+      const { stdout } = await shellExec('./bin/wd data --simplify \'Q2$50fad68d-4f91-f878-6f29-e655af54690e\'')
       stdout.should.equal('Q3504248')
     })
 

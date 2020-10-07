@@ -23,7 +23,7 @@ const formatStatementElementValue = require('../lib/format_statement_element_val
 const sparqlQueryCommand = require('../lib/sparql_query_command')
 const output = require('../lib/output')(program)
 
-var { count: countResults, labels: selectLabels, lang } = program
+let { count: countResults, labels: selectLabels, lang } = program
 selectLabels = selectLabels && !countResults
 
 if (program.subject && program.property && program.object) {
@@ -31,11 +31,11 @@ if (program.subject && program.property && program.object) {
   process.exit(1)
 }
 
-var select = ''
-var triple = '?subject ?property ?object .'
+let select = ''
+let triple = '?subject ?property ?object .'
 
-function setElement (elName) {
-  var value = program[elName]
+const setElement = elName => {
+  let value = program[elName]
   if (value) {
     value = formatStatementElementValue[elName](value)
     triple = triple.replace(`?${elName}`, value)
@@ -51,7 +51,7 @@ function setElement (elName) {
     // and not every statements and qualifiers
     if (elName === 'property') {
       triple += '\n  ?prop wikibase:directClaim ?property .'
-      if (selectLabels) select += `?propLabel `
+      if (selectLabels) select += '?propLabel '
     }
   }
 }
@@ -73,7 +73,7 @@ if (selectLabels) {
 
 const { limit } = program
 
-var sparql = `SELECT ${select.trim()} WHERE {
+let sparql = `SELECT ${select.trim()} WHERE {
   ${triple}
 }`
 if (limit) sparql += ` LIMIT ${limit}`

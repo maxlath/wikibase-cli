@@ -10,5 +10,5 @@ if [ -z "$staged" ]
     echo 'no file to lint'
   else
     sed -i 's/ / /g' $staged
-    standard --fix $staged
+    eslint -c .eslintrc --fix $staged
 fi

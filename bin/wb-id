@@ -10,15 +10,15 @@ const errors_ = require('../lib/errors')
 const _ = require('lodash')
 const getRedirectedSitelinkTitle = require('../lib/get_redirected_sitelink_title')
 
-var { lang } = program
+let { lang } = program
 const output = require('../lib/output')(program)
 
 // allow to pass a title without having to put it in ""
-var title = program.args.join(' ')
+let title = program.args.join(' ')
 
 // parse the url if a wikipedia url was provided as title
 const re = /https:\/\/\w{2,8}\.wik\w+\.org\/wiki\//
-var site
+let site
 if (title.match(re)) {
   [ lang, site, title ] = title
     .replace(/https:\/\/(\w{2,8}).(wik\w+).org\/wiki\/(.*)/, '$1|$2|$3')

@@ -8,14 +8,14 @@ program
 const { args, lang, json, open } = program
 if (args.length === 0) program.helpAndExit(0)
 
-var argsString = args.join(' ')
+let argsString = args.join(' ')
 
 if (lang && !(/l(ang)?=/.test(argsString))) argsString += ` lang=${lang}`
 
 // Default to Wikidata instead of Wikipedia
-if (!(/s(ite)?=/.test(argsString))) argsString += ` site=wikidata`
+if (!(/s(ite)?=/.test(argsString))) argsString += ' site=wikidata'
 
-if (!open) argsString += ` format=json`
+if (!open) argsString += ' format=json'
 
 const query = encodeURIComponent(argsString)
 const url = `https://tools.wmflabs.org/hub/query?q=${query}`

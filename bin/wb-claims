@@ -14,10 +14,10 @@ const errors_ = require('../lib/errors')
 require('../lib/exit_on_missing').instance(program.instance)
 const { isPropertyId, simplify } = require('../lib/wbk')(program)
 
-var [ id, ...filter ] = program.args
+let [ id, ...filter ] = program.args
 id = id && parseId(id)
 
-var prop, value, pattern
+let prop, value, pattern
 if (isPropertyId(filter[0])) {
   prop = filter[0]
   value = filter[1]

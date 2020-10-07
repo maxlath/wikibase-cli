@@ -19,7 +19,7 @@ if (!instance) throw new Error('no instance set')
 
 const { args, lang } = program
 
-var ids
+let ids
 try {
   ids = args.map(parseId).filter(id => id != null)
 } catch (err) {
