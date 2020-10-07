@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.3.0 - 2020-10-07
+* [`wb open`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-open): added a `--talk` option to open an entity's talk page
+* [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-move-claim) / [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-move-qualifier): add type conversion between properties of different datatypes
+
 ## 15.2.0 - 2020-08-07
 * [`wb add-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-add-claim), [`wb update-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-update-claim): Added support for the object interface
 * Added support for custom calendars (example with [`wb add-claim`](https://github.com/maxlath/wikidata-cli/blob/master/docs/write_operations.md#json-format))
