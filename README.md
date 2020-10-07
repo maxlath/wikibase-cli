@@ -1,6 +1,8 @@
 # wikibase-cli
 The [Command-line interface](https://en.wikipedia.org/wiki/Command-line_interface) interface to [Wikibase](https://wikiba.se) instances.
 
+This tool is mostly a CLI interface to the JS modules [wikibase-edit](https://www.npmjs.com/package/wikibase-edit) and [wikibase-sdk](https://www.npmjs.com/package/wikibase-sdk), + some treats for the CLI lovers. And a batch mechanism to process millions of edits.
+
 It was primarily developed to target [Wikidata](https://wikidata.org), but as then been decoupled to support any Wikibase instance.
 
 This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
