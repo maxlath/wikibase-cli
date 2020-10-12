@@ -394,7 +394,7 @@ wd uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
 ```
 
 #### wb move-qualifier
-Move a claim from an entity to another and/or from a property to another
+Change which property a qualifier is using
 ```sh
 wb move-qualifier <guid> [hash] <old-property-id> <new-property-id>
 # Alias
