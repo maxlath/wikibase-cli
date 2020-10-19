@@ -645,7 +645,12 @@ wd edit-entity ./Q4115189.edit-template.js
 # Note that it can also be used to create entities
 wd generate-template Q4115189 --create-mode > Q4115189.create-template.js
 wd create-entity ./Q4115189.create-template.js
+# Note that this id- and guid-less template can be turned back into an addition-only edit template
+# by setting an `id` in the returned object
+wd edit-entity ./Q4115189.create-template.js Q123
 ```
+
+JS templates are very powerful, but can be hard to get started with when you are not very familiar with JS: [feel welcome to ask for help to get started!](https://github.com/maxlath/wikibase-cli/issues/new?template=help.md)
 
 Some examples of how such a dynamic template can be useful:
 

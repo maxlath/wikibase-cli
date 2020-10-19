@@ -382,6 +382,9 @@ wd generate-template Q4115189 --format json > Q4115189.edit-template.json
 wd generate-template Q4115189 --create-mode > Q4115189.create-template.js
 # This is typically fit to be used in preparation for the `wb create-entity` command
 wd create-entity ./Q4115189.create-template.js
+# But that id- and guid-less template can be turned back into an addition-only edit template
+# by setting an `id` in the returned object
+wd edit-entity ./Q4115189.create-template.js Q123
 
 # For reference,
 wd generate-template --format json Q4115189
