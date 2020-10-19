@@ -368,10 +368,20 @@ wb generate-template <entity-id>
 wb gt <entity-id>
 
 # Get Q123 pre-formatted data
-wd generate-template Q4115189 > Q4115189.json
+wd generate-template Q4115189 > Q4115189.edit-template.js
 # Then the typical workflow would be to edit the generated file as you please,
 # before passing it back to the `wb edit-entity` command
-wd edit-entity ./Q4115189.json
+wd edit-entity ./Q4115189.edit-template.js
+
+# Working with a JS file allows a lighter syntax, and to add entities labels
+# but if you prefer to work with JSON, that's possible:
+wd generate-template Q4115189 --format json > Q4115189.edit-template.json
+
+# If your goal is to use an entity as a base to create a new entity,
+# you should use --create-mode
+wd generate-template Q4115189 --create-mode > Q4115189.create-template.js
+# This is typically fit to be used in preparation for the `wb create-entity` command
+wd create-entity ./Q4115189.create-template.js
 
 # For reference,
 wd generate-template --format json Q4115189

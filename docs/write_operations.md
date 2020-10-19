@@ -581,9 +581,9 @@ wb edit-entity ./existing_entity_data.json
 
 This `./existing_entity_data.json` file could be generated in different ways, but the easiest is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
 ```sh
-wd generate-template Q4115189 --format json > Q4115189.json
+wd generate-template Q4115189 --format json > Q4115189.edit-template.json
 # Do your modifications, and then
-wb edit-entity ./Q4115189.json
+wb edit-entity ./Q4115189.edit-template.json
 ```
 
 The JSON syntax remains heavy with all those `"` though, if you are not generating it somehow and simply writting your data file by hand, you might be better of going with a JS file (see below).
@@ -608,7 +608,7 @@ module.exports = {
 ```
 
 ##### Pass data as a dynamic JS function file returning an object
-**This is the recommended way** as it gives you a crazy amount of flexibility :D
+**This is the recommended way** as it gives you a crazy level of flexibility :D
 
 It's basically the same as the above JS file approach, but instead of returning an object, the JS file exports a function. All additional command line arguments will be passed to that function.
 
@@ -636,17 +636,24 @@ This way, you can generate infinitely flexible templates.
 
 A good way to start writting a template function starting from an existing entity is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
 ```sh
-# When generating templates for only one entity, JS is the default format, and comes with helpful labels as comments, to make ids less obscure
-wd generate-template Q4115189 > Q4115189.js
+# When generating templates for only one entity, JS is the default format,
+# and comes with helpful labels as comments, to make ids less obscure
+wd generate-template Q4115189 > Q4115189.edit-template.js
 # Do your modifications, and then
-wd edit-entity ./Q4115189.js
+wd edit-entity ./Q4115189.edit-template.js
+
+# Note that it can also be used to create entities
+wd generate-template Q4115189 --create-mode > Q4115189.create-template.js
+wd create-entity ./Q4115189.create-template.js
 ```
 
 Some examples of how such a dynamic template can be useful:
 
 ###### transform input
 ```js
-const doSomeComplexTransformation = function (quantity) { return parseInt(quantity) * 2 }
+const doSomeComplexTransformation = function (quantity) {
+  return parseInt(quantity) * 2
+}
 
 module.exports = function (id, quantity) {
   return {
@@ -664,7 +671,9 @@ module.exports = function (id, quantity) {
 The exported function can be an async function, so you could fetch data during the transformation process:
 ```js
 const fetchSomeData = require('./fetch_some_data.js')
-const doSomeComplexTransformation = async function (quantity) { return quantity * 2 }
+const doSomeComplexTransformation = async function (quantity) {
+  return quantity * 2
+}
 
 module.exports = async function (id, someExternalId) {
   const initialQuantity = await fetchSomeData(someExternalId)
