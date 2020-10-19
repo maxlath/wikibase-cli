@@ -490,7 +490,7 @@ wb ar ./reference.js
 In case you need to add a similar kind of reference to several claims, you might want to use a JS function instead:
 ```js
 // reference.js: a JS file exporting an object
-module.exports = (guid, statedIn, BLnumber) => {
+module.exports = function (guid, statedIn, BLnumber) {
   const today = new Date().toISOString().split('T')[0]
   return {
     guid,
@@ -615,13 +615,15 @@ It's basically the same as the above JS file approach, but instead of returning 
 For instance, to add different P1449 and P1106 values to different entities, you could write a JS file like this:
 ```js
 // add_P1449_and_P1106.js
-module.exports = (id, someString, quantity) => ({
-  id: id,
-  claims: {
-    P1449: someString,
-    P1106: parseInt(quantity)
+module.exports = function (id, someString, quantity) {
+  return {
+    id: id,
+    claims: {
+      P1449: someString,
+      P1106: parseInt(quantity)
+    }
   }
-})
+}
 ```
 that can then be called as follow:
 ```sh
@@ -644,14 +646,16 @@ Some examples of how such a dynamic template can be useful:
 
 ###### transform input
 ```js
-const doSomeComplexTransformation = quantity => parseInt(quantity) * 2
+const doSomeComplexTransformation = function (quantity) { return parseInt(quantity) * 2 }
 
-module.exports = (id, quantity) => ({
-  id,
-  claims: {
-    P1106: doSomeComplexTransformation(quantity)
+module.exports = function (id, quantity) {
+  return {
+    id: id,
+    claims: {
+      P1106: doSomeComplexTransformation(quantity)
+    }
   }
-})
+}
 ```
 
 **Demo**: See how this principle was applied to create many items from a single JS template file: [Create missing HTTP Status Codes items on Wikidata](https://github.com/maxlath/wikidata-scripting/tree/master/http_status_codes)
@@ -660,9 +664,9 @@ module.exports = (id, quantity) => ({
 The exported function can be an async function, so you could fetch data during the transformation process:
 ```js
 const fetchSomeData = require('./fetch_some_data.js')
-const doSomeComplexTransformation = async quantity => quantity * 2
+const doSomeComplexTransformation = async function (quantity) { return quantity * 2 }
 
-module.exports = async (id, someExternalId) => {
+module.exports = async function (id, someExternalId) {
   const initialQuantity = await fetchSomeData(someExternalId)
   const finalQuantity = await doSomeComplexTransformation(initialQuantity)
   return {

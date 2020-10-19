@@ -451,7 +451,7 @@ SELECT ?item {
 and `./transform_P1106_into_P370.js` could be something like:
 ```js
 // transform_P1106_into_P370.js
-module.exports = entity => {
+module.exports = function (entity) {
   return {
     id,
     claims: {
@@ -460,7 +460,7 @@ module.exports = entity => {
     }
   }
 }
-const generateP370ClaimFromP1106Claim = claim => {
+const generateP370ClaimFromP1106Claim = function (claim) {
   return {
     value: `${claim.value.amount}-foobar`,
     references: {
@@ -468,7 +468,12 @@ const generateP370ClaimFromP1106Claim = claim => {
     }
   }
 }
-const removeClaim = claim => ({ id: claim.id, remove: true })
+const removeClaim = function (claim) {
+  return {
+    id: claim.id,
+    remove: true
+  }
+}
 ```
 
 #### Generate template from a specific revision
