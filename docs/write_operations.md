@@ -551,7 +551,10 @@ Other that the `datatype` and the absence of `id`, the `create-entity` command i
 
 See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the input format.
 
-**Demo**: [Creating a new entity with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_entity_with_the_same_references_being_used_multiple_times.js)
+**Demos**:
+* [Create a new person item](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_person.js)
+* [Create a new property](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_property.js)
+* [Create a new item with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_item_with_the_same_references_being_used_multiple_times.js)
 
 #### wb edit-entity
 

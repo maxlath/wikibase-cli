@@ -1,4 +1,4 @@
-// Create an entity using the command: wd create-entity ./new_entity_with_the_same_references_being_used_multiple_times.js
+// Create an item using the command: wd create-entity ./new_item_with_the_same_references_being_used_multiple_times.js
 // Running this command created https://www.wikidata.org/entity/Q75530678
 
 const website = {
