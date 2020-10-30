@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxlath/wikidata-cli.git"
+    "url": "git+https://github.com/maxlath/wikibase-cli.git"
   },
   "files": [
     "bin",
@@ -35,9 +35,9 @@
   "author": "maxlath",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maxlath/wikidata-cli/issues"
+    "url": "https://github.com/maxlath/wikibase-cli/issues"
   },
-  "homepage": "https://github.com/maxlath/wikidata-cli#readme",
+  "homepage": "https://github.com/maxlath/wikibase-cli#readme",
   "dependencies": {
     "chalk": "^2.4.2",
     "commander": "^6.0.0",

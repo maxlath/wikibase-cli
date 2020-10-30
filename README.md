@@ -25,7 +25,8 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 **Show your support** by adding `{{#babel:Wikibase CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
-[![userbox](https://raw.githubusercontent.com/maxlath/wikidata-cli/master/assets/userbox_wikibase_cli.png)](https://www.wikidata.org/wiki/Wikidata:Userboxes)
+
+<img style="max-width: 30em;" src="https://raw.githubusercontent.com/maxlath/wikibase-cli/master/assets/userbox_wikibase_cli.jpg" alt="userbox_wikibase_cli">
 
 ## Summary
 - [Changelog](CHANGELOG.md)
@@ -86,7 +87,7 @@ mkdir -p $HOME/.config/wikibase-cli $HOME/.cache/wikibase-cli
 alias wb='docker run --rm -v "$HOME/.config/wikibase-cli:/root/.config/wikibase-cli" -v "$HOME/.cache/wikibase-cli:/root/.cache/wikibase-cli" -it maxlath/wikibase-cli'
 ```
 
-> NB: Beware that using wikidata-cli through a Docker container has a performance cost of something like 1s per command, so if you need to run many commands (for instance in a script to make mass edit on the desired Wikibase instance), you should probably rather use the NPM package directly
+> NB: Beware that using wikibase-cli through a Docker container has a performance cost of something like 1s per command, so if you need to run many commands (for instance in a script to make mass edit on the desired Wikibase instance), you should probably rather use the NPM package directly
 
 ## Commands
 
