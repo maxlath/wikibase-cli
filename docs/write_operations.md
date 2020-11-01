@@ -52,6 +52,7 @@ The following documentation often assumes that the Wikibase instance we work wit
       - [transform input](#transform-input)
       - [fetch additional data](#fetch-additional-data)
       - [inspect generated data](#inspect-generated-data)
+      - [template help menu](#template-help-menu)
   - [wb merge-entity](#wb-merge-entity)
   - [wb delete-entity](#wb-delete-entity)
 - [edit summary](#edit-summary)
@@ -699,6 +700,12 @@ module.exports = async function (id, someExternalId) {
 To inspect the data generated dynamically, you can use the `--dry` option
 ```sh
 wb ee ./template.js Q1 abc 123 --dry
+```
+
+###### template help menu
+If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [`edit_data_function` example](https://github.com/maxlath/wikibase-cli/blob/master/test/assets/edit_data_function.js)
+```sh
+wd ee ./test/assets/edit_data_function.js --help
 ```
 
 #### wb merge-entity
