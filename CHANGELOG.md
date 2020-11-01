@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.4.0 - 2020-11-01
+* Added [template help menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu)
+
 ## 15.3.0 - 2020-10-07
 * [`wb open`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-open): added a `--talk` option to open an entity's talk page
 * [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-move-claim) / [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-move-qualifier): add type conversion between properties of different datatypes
