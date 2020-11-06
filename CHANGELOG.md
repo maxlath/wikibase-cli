@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.5.0 - 2020-11-06
+* [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--no-minimize` flag
+
 ## 15.4.0 - 2020-11-01
 * Added [template help menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu)
 
