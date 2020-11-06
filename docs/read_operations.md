@@ -448,9 +448,11 @@ cat cleaned_up_templates.ndjson | wd edit-entity --batch --summary 'doing what n
 
 # Or for short, if you know what you are doing and don't want to inspect intermediary results
 wd sparql ./find_entities_ids.rq |
-  wd generate-template --props P1106 |
+  # --props P1106: limit the data to edit to just P1106 claims
+  # --no-minimize: used to get a consistent output format (single claims will still be in arrays)
+  wd generate-template --props P1106 --no-minimize |
   ndjson-apply ./transform_P1106_into_P370.js |
-  wd edit-entity --batch  --summary 'doing what needed to be done'
+  wd edit-entity --batch --summary 'doing what needed to be done'
 ```
 
 Where `./find_entities_with_P1106_claims.rq` could be something like:
@@ -466,7 +468,7 @@ and `./transform_P1106_into_P370.js` could be something like:
 // transform_P1106_into_P370.js
 module.exports = function (entity) {
   return {
-    id,
+    id: entity.id,
     claims: {
       P370: entity.claims.P1106.map(generateP370ClaimFromP1106Claim)
       P1106: entity.claims.P1106.map(removeClaim)

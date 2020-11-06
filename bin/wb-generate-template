@@ -6,6 +6,7 @@ program
 .option('-r, --revision <id>', 'request a specific revision')
 .option('-f, --format <format>', 'Default: json. Alternatives: js')
 .option('-m, --create-mode', 'optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template')
+.option('-z, --no-minimize', 'disable claims minimization, making the output format more predictable; i.e. single claims will still be in arrays')
 .process('generate-template')
 
 const parseId = require('../lib/tolerant_id_parser')
@@ -13,7 +14,7 @@ const ids = program.args.map(parseId)
 require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getEntityRevision, getManyEntities } = require('../lib/wbk')(program)
 const parseProps = require('../lib/parse_props')
-const { revision } = program
+const { revision, minimize } = program
 let { format } = program
 const getEntitiesByBatches = require('../lib/get_entities_by_batches')
 const outputTemplates = require('../lib/output_templates')
@@ -50,7 +51,7 @@ const handleIds = async ids => {
 
   return getEntitiesByBatches({
     urls,
-    onResponse: outputTemplates({ batchMode, format, propsToPick, requestedPropsAndSubProps })
+    onResponse: outputTemplates({ batchMode, format, propsToPick, requestedPropsAndSubProps, minimize })
   })
 }
 
