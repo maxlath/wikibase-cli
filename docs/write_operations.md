@@ -79,6 +79,8 @@ Examples:
 ```sh
 # Set the label 'lorem ipsum' to the item Q4115189 in French
 wb set-label Q4115189 fr "lorem ipsum"
+# Remove any existing label for the item Q4115189 in French
+wb set-label Q4115189 fr " "
 ```
 
 For more advanced use cases (such as setting multiple labels on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
