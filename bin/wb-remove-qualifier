@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 const program = require('commander')
+const { parseGuid } = require('../lib/parse_command_utils')
 program.customArgsParser = ([ guid, hash ]) => {
-  hash = hash.split('|')
+  guid = parseGuid(guid)
+  hash = hash && hash.split('|')
   return [ { guid, hash } ]
 }
 require('../lib/edit/edit_command')('qualifier', 'remove')
