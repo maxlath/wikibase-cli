@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.6.0 - 2020-11-30
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql): Added support for async SPARQL-generating functions
+
 ## 15.5.0 - 2020-11-06
 * [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--no-minimize` flag
 
