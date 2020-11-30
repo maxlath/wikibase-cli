@@ -15,41 +15,46 @@ const sparqlQueryCommand = require('../lib/sparql_query_command')
 const wellknownQueries = require('../lib/wellknown_queries')
 const path = program.args[0]
 
-const extension = path.split('.').slice(-1)[0]
+const main = async () => {
+  const extension = path.split('.').slice(-1)[0]
 
-let sparql, absoluePath
+  let sparql, absoluePath
 
-// Allow to pass a JS module that exports a function
-// to which is passed the remaining arguments
-// and from which the SPARQL request is generated
-if (extension === 'js') {
-  absoluePath = require('path').resolve(process.cwd(), path)
-// or pass the name of one of the wellknown queries
-} else if (wellknownQueries.list.includes(path)) {
-  absoluePath = wellknownQueries.getAbsolutePath(path)
-}
-
-if (absoluePath != null) {
-  const fnArgs = program.args.slice(1)
-  sparql = require('../lib/execute_function')(absoluePath, fnArgs)
-} else {
-  sparql = fs.readFileSync(path, { encoding: 'utf-8' })
-}
-
-if (!sparql.replace('\n', ' ').match(/(SELECT|DESCRIBE|CONSTRUCT|ASK)/i)) {
-  errors_.bundle("this doesn't look like SPARQL", { sparql })
-}
-
-const { index } = program
-
-if (index) {
-  const variableMatch = ` ?${index} `
-  const selectSection = sparql.split('{')[0]
-  // If the variable can't be found in the SPARQL SELECT section
-  // we won't be able to index the results using it
-  if (!selectSection.match(variableMatch)) {
-    errors_.bundle("the index variable can't be found in the SPARQL request", { sparql, index })
+  // Allow to pass a JS module that exports a function
+  // to which is passed the remaining arguments
+  // and from which the SPARQL request is generated
+  if (extension === 'js') {
+    absoluePath = require('path').resolve(process.cwd(), path)
+  // or pass the name of one of the wellknown queries
+  } else if (wellknownQueries.list.includes(path)) {
+    absoluePath = wellknownQueries.getAbsolutePath(path)
   }
+
+  if (absoluePath != null) {
+    const fnArgs = program.args.slice(1)
+    sparql = await require('../lib/execute_function')(absoluePath, fnArgs)
+  } else {
+    sparql = fs.readFileSync(path, { encoding: 'utf-8' })
+  }
+
+  if (!sparql.replace('\n', ' ').match(/(SELECT|DESCRIBE|CONSTRUCT|ASK)/i)) {
+    errors_.bundle("this doesn't look like SPARQL", { sparql })
+  }
+
+  const { index } = program
+
+  if (index) {
+    const variableMatch = ` ?${index} `
+    const selectSection = sparql.split('{')[0]
+    // If the variable can't be found in the SPARQL SELECT section
+    // we won't be able to index the results using it
+    if (!selectSection.match(variableMatch)) {
+      errors_.bundle("the index variable can't be found in the SPARQL request", { sparql, index })
+    }
+  }
+
+  sparqlQueryCommand(sparql)
 }
 
-sparqlQueryCommand(sparql)
+main()
+.catch(console.error)

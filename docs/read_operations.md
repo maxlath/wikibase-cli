@@ -723,12 +723,22 @@ wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
 // author_works.js
-module.exports = authorId => `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
+module.exports = function (authorId) {
+  return `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
+}
 ```
+Note that this function can also be async:
+```js
+// author_works_from_external_id.js
+module.exports = async function (externalIdProperty, externalIdValue) {
+  const authorId = await getAuthorIdFromWorkId(externalIdProperty, externalIdValue)
+  return `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
+}
+```
+
 ```sh
-echo 'module.exports = authorId => `SELECT ?item { ?item wdt:P50 wd:${authorId} . }' > ./path/to/author_works.js
 wd sparql ./path/to/author_works.js Q535 --json > ./Q535_works.json
-wd sparql ./path/to/author_works.js Q5879 --json > ./Q5879_works.json
+wd sparql ./path/to/author_works_from_external_id.js P268 11907966z --json > ./P268_11907966z_works.json
 # This simple query could actually have been done using the `wd query` command
 wd query --property P50 --object Q5879
 # but, meh, let's keep it simple for the demo

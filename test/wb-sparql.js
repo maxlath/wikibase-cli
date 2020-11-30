@@ -13,6 +13,16 @@ describe('wb sparql', function () {
     stdout.should.containEql('Q18120925')
   })
 
+  it('should take a JS module path', async () => {
+    const { stdout } = await shellExec('./bin/wd sparql ./test/assets/query.js Q1345582')
+    stdout.should.containEql('Q18120925')
+  })
+
+  it('should take an async JS module path', async () => {
+    const { stdout } = await shellExec('./bin/wd sparql ./test/assets/query_async.js Q1345582')
+    stdout.should.containEql('Q18120925')
+  })
+
   describe('dry', () => {
     it('should return the generated SPARQL', async () => {
       const { stdout } = await shellExec('./bin/wd sparql ./test/assets/query.rq --dry')
