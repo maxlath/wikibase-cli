@@ -48,7 +48,7 @@ The following documentation often assumes that the Wikibase instance we work wit
     - [Pass data as inline JSON](#pass-data-as-inline-json)
     - [Pass data as a JSON file](#pass-data-as-a-json-file)
     - [Pass data as a static JS object file](#pass-data-as-a-static-js-object-file)
-    - [Pass data as a dynamic JS function file returning an object](#pass-data-as-a-dynamic-js-function-file-returning-an-object)
+    - [Generate an edit object from a JS template function](#generate-an-edit-object-from-a-js-template-function)
       - [transform input](#transform-input)
       - [fetch additional data](#fetch-additional-data)
       - [inspect generated data](#inspect-generated-data)
@@ -621,7 +621,7 @@ module.exports = {
 }
 ```
 
-##### Pass data as a dynamic JS function file returning an object
+##### Generate an edit object from a JS template function
 **This is the recommended way** as it gives you a crazy level of flexibility :D
 
 It's basically the same as the above JS file approach, but instead of returning an object, the JS file exports a function. All additional command line arguments will be passed to that function.
