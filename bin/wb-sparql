@@ -56,5 +56,8 @@ const main = async () => {
   sparqlQueryCommand(sparql, format)
 }
 
-main()
-.catch(console.error)
+if (program.showHelp) {
+  require('../lib/command_with_template_custom_help')()
+} else {
+  main().catch(console.error)
+}

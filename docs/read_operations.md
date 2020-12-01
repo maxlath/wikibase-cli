@@ -41,7 +41,8 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [Reset properties](#reset-properties)
 - [wb sparql](#wb-sparql)
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
-  - [dynamic request from a JS file](#dynamic-request-from-a-js-file)
+  - [dynamic request from a JS template](#dynamic-request-from-a-js-template)
+    - [request template help menu](#request-template-help-menu)
   - [wellknown queries](#wellknown-queries)
     - [all-instances](#all-instances)
   - [output format](#output-format)
@@ -720,7 +721,7 @@ wb sparql ./get_some_triples.rq -e https://wikibase-registry-query.wmflabs.org/p
 wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
 ```
 
-#### dynamic request from a JS file
+#### dynamic request from a JS template
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
 // author_works.js
@@ -758,6 +759,12 @@ wb sparql ./path/to/query_template.js --dry > ./query.rq
 ```
 
 **Demo**: [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
+
+##### request template help menu
+If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/master/test/assets/query_with_metadata.js)
+```sh
+wd sparql ./test/assets/query_with_metadata.js --help
+```
 
 #### wellknown queries
 Some idiomatic queries than can't be done with [`wb query`](#wb-query) are included for convenience:
