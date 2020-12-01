@@ -1,10 +1,13 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.8.0 - 2020-12-01
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql): add support for template metadata, allowing to generate a [template-specific `--help` menu]
+
 ## 15.7.0 - 2020-12-01
 * [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-move-qualifier) / [`wb remove-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-remove-qualifier): accept statement uri in place of a statement guid
 * [template help menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu): add a [new recommended template syntax](https://github.com/maxlath/wikibase-cli/blob/15c824e/test/assets/edit_data_function.js)
-* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql)/* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-query): add support for xml, tsv, csv, and rdfbin formats
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql) / [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-query): add support for xml, tsv, csv, and rdfbin formats
 
 ## 15.6.0 - 2020-11-30
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql): Added support for async SPARQL-generating functions
@@ -13,7 +16,7 @@
 * [`wb generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--no-minimize` flag
 
 ## 15.4.0 - 2020-11-01
-* Added [template help menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu)
+* [`create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#create-entity) / [`edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-entity): add support for [template metadata, allowing to generate a template-specific `--help` menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu)
 
 ## 15.3.0 - 2020-10-07
 * [`wb open`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-open): added a `--talk` option to open an entity's talk page
