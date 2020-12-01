@@ -1,11 +1,16 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.7.0 - 2020-12-01
+* [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-move-qualifier) / [`wb remove-qualifier`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-remove-qualifier): accept statement uri in place of a statement guid
+* [template help menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu): add a [new recommended template syntax](https://github.com/maxlath/wikibase-cli/blob/15c824e/test/assets/edit_data_function.js)
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql)/* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-query): add support for xml, tsv, csv, and rdfbin formats
+
 ## 15.6.0 - 2020-11-30
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql): Added support for async SPARQL-generating functions
 
 ## 15.5.0 - 2020-11-06
-* [`wb-generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--no-minimize` flag
+* [`wb generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--no-minimize` flag
 
 ## 15.4.0 - 2020-11-01
 * Added [template help menu](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#template-help-menu)
