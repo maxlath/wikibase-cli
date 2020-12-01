@@ -10,25 +10,17 @@ program
 .process('data')
 
 const { isGuid, isPropertyClaimsId } = require('wikibase-sdk')
+const { parseGuid } = require('../lib/parse_command_utils')
 
-let firstArg = program.args[0]
+const firstArg = program.args[0]
 
-// Normalize prefixed statements GUIDs as returned by SPARQL queries
-// to the format used by Wikibase API
-// ex: wds:Q2-50fad68d-4f91-f878-6f29-e655af54690e => Q2$50fad68d-4f91-f878-6f29-e655af54690e
-if (firstArg && firstArg.startsWith('wds:')) {
-  firstArg = firstArg
-    .replace('wds:', '')
-    // Replace first '-' by a dollar
-    .replace('-', '$')
-}
+let guid
+if (firstArg && isGuid(parseGuid(firstArg))) guid = parseGuid(firstArg)
 
-const guid = firstArg && firstArg.replace('\\$', '$')
-
-if (program.args.length === 1 && isGuid(guid)) {
+if (program.args.length === 1 && guid) {
   require('../lib/fetch_and_log_guid_data')(guid)
-} else if (program.args.length === 1 && isPropertyClaimsId(guid)) {
-  require('../lib/fetch_and_log_property_claims_data')(guid)
+} else if (program.args.length === 1 && isPropertyClaimsId(firstArg)) {
+  require('../lib/fetch_and_log_property_claims_data')(firstArg)
 } else {
   const parseId = require('../lib/tolerant_id_parser')
   const ids = program.args.map(parseId)

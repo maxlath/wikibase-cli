@@ -405,6 +405,11 @@ wb mq <guid> [hash] <old-property-id> <new-property-id>
 Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Or, if you are working from the output of a SPARQL request
+claim_guid='wds:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Or actually any prefix
+claim_guid='s:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
+
 # move all P2310 qualifiers of this claim to P2311
 wb mq $claim_guid P2310 P2311
 
@@ -426,6 +431,11 @@ wb rq <claim-guid> <qualifiers-hashes>
 Examples:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Or, if you are working from the output of a SPARQL request
+claim_guid='wds:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Or actually any prefix
+claim_guid='s:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
+
 # Remove a qualifier from this claim
 wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
 # Remove several qualifiers from this claim by passing the qualifier hashes as one argument made of several pipe-separated hashes
