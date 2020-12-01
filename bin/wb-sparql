@@ -2,10 +2,10 @@
 const program = require('../lib/program')
 
 program
-.option('-r, --raw', 'get raw, non-simplified, SPARQL results')
+.option('-r, --raw', 'get raw, non-simplified JSON results')
 .option('-d, --dry', 'output the SPARQL without running the query')
 .option('-o, --open', 'open the query in the Query Service GUI')
-.option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
+.option('-f, --format <format>', "set output format: json, xml, tsv, csv, binrdf, table. Default: 'table' when 1 value is selected, 'json' otherwise")
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('sparql')
 
@@ -41,7 +41,7 @@ const main = async () => {
     errors_.bundle("this doesn't look like SPARQL", { sparql })
   }
 
-  const { index } = program
+  const { index, format } = program
 
   if (index) {
     const variableMatch = ` ?${index} `
@@ -53,7 +53,7 @@ const main = async () => {
     }
   }
 
-  sparqlQueryCommand(sparql)
+  sparqlQueryCommand(sparql, format)
 }
 
 main()

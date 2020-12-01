@@ -11,7 +11,7 @@ program
 .option('-d, --dry', 'output the SPARQL without running the query')
 // /!\ -o would conflict with --object
 .option('--open', 'open the query in the Query Service GUI')
-.option('-f, --format <format>', 'output in a different format. Default: json. Alternatives: table')
+.option('-f, --format <format>', "set output format: json, xml, tsv, csv, binrdf, table. Default: 'table' when 1 value is selected, 'json' otherwise")
 .option('-n, --limit <num>', 'set the request results limit')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('query')
@@ -71,7 +71,7 @@ if (selectLabels) {
   }`
 }
 
-const { limit } = program
+const { limit, format } = program
 
 let sparql = `SELECT ${select.trim()} WHERE {
   ${triple}
@@ -80,4 +80,4 @@ if (limit) sparql += ` LIMIT ${limit}`
 
 output(`${grey('Generated SPARQL:')} ${sparql}`, true, true)
 
-sparqlQueryCommand(sparql)
+sparqlQueryCommand(sparql, format)

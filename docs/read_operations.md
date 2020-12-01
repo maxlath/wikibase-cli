@@ -694,8 +694,8 @@ wb sparql ./path/to/author_works.rq > ./results.json
 
 Options:
 * `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikibase-sdk `simplifySparqlResults`](https://github.com/maxlath/wikibase-sdk/blob/master/docs/simplify_sparql_results.md) function
+* `-f, --format <format>`: set output format: `json`, `xml`, `tsv`, `csv`, `binrdf`, `table`. Default: `table` when 1 value is selected, `json` otherwise.
 * `-x, --index <variable>`: get the results indexed by one of the SELECTed variables
-* `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint
 * `-v, --verbose`: log the generated SPARQL
 * `-d, --dry`: output the SPARQL without running the query
@@ -706,6 +706,7 @@ wb sparql ./path/to/query.rq > ./results.json
 wb sparql ./path/to/query.rq --raw > ./raw_sparql_results.json
 wb sparql ./path/to/query.rq --index someVariableName > ./results_index.json
 wb sparql ./path/to/query.rq --format table > ./results_table
+wb sparql ./path/to/query.rq --format tsv > ./results.tsv
 ```
 
 This command can actually be used on any SPARQL endpoint:
@@ -832,14 +833,14 @@ wd query --property P2448 --object '"2217527"'
 ```
 
 Other options:
-* `-r, --raw`: output raw SPARQL results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
+* `-f, --format <format>`: set output format: `json`, `xml`, `tsv`, `csv`, `binrdf`, `table`. Default: `table` when 1 value is selected, `json` otherwise.
+* `-r, --raw`: output raw JSON results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
 * `-n, --limit <num>`: set the request results limit
 * `-c, --counts`: return a count of matching results
 * `-v, --verbose`: log the generated request
 * `-x, --index <variable>`: get the results indexed by `subject`, `property`, or `object`
-* `-f, --format <format>`: output in a different format. Default: `json`. Alternatives: `table`
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wb sparql`](#wb-sparql) for examples of how to use this option)
 * `-d, --dry`: output the SPARQL without running the query
 * `-o, --open`: open the query in the Query Service GUI
