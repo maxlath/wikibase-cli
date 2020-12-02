@@ -409,6 +409,8 @@ claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 claim_guid='wds:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # Or actually any prefix
 claim_guid='s:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Or even no prefix at all, which can be convenient to not have to deal with escaping $
+claim_guid='Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 
 # move all P2310 qualifiers of this claim to P2311
 wb mq $claim_guid P2310 P2311
@@ -435,6 +437,8 @@ claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 claim_guid='wds:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 # Or actually any prefix
 claim_guid='s:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
+# Or even no prefix at all, which can be convenient to not have to deal with escaping $
+claim_guid='Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 
 # Remove a qualifier from this claim
 wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'

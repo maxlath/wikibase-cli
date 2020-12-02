@@ -135,6 +135,15 @@ describe('wb data', function () {
       claim.mainsnak.datavalue.value.id.should.equal('Q3504248')
     })
 
+    it('should accept claim GUIDs with an - in place of a $', async () => {
+      const hyphenedGuid = 'Q2-50fad68d-4f91-f878-6f29-e655af54690e'
+      const { stdout } = await shellExec(`./bin/wd data '${hyphenedGuid}'`)
+      const claim = JSON.parse(stdout)
+      claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
+      claim.mainsnak.property.should.equal('P31')
+      claim.mainsnak.datavalue.value.id.should.equal('Q3504248')
+    })
+
     it('should get a simplified claim', async () => {
       const { stdout } = await shellExec('./bin/wd data --simplify \'Q2$50fad68d-4f91-f878-6f29-e655af54690e\'')
       stdout.should.equal('Q3504248')
