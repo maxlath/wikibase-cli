@@ -786,15 +786,17 @@ wd data --simplify < ./paintings_ids > ./paintings.ndjson
 ```
 
 #### output format
-##### single value output
-If the query `SELECT`s only one variable, the output will, by default, be a newline-delimited list of values.
-It can alternatively be set to output as json, either with `--format json` (`--json` would also be accepted for consistency with other commands), or `--format inline` to get values separated by a space instead of a newline break.
 
-##### multiple value output
-If the query `SELECT`s several variables, the output will, by default, be a JSON array.
-It can alternatively be requested as a table by setting `--format table`.
-
-To consistently get JSON output, either pass the `--json` flag, or set JSON as your prefered format in config: `wd config json true` (this will affect other commands)
+| format option              | comment                                                                                                                                                                                   |
+|----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `--format table`           | One result per line, with simplified values (ex: an item id rather than a URL) in column. **Default when only one variable is `SELECT`ed**                                                |
+| `--format json`            | [Simplified](https://github.com/maxlath/wikibase-sdk/blob/master/docs/simplify_sparql_results.md#simplify-sparql-results) JSON results. **Default when several variables are `SELECT`ed** |
+| `--format json --raw`      | Return non-simplified JSON results                                                                                                                                                        |
+| `--format inline`          | Space-separated simplified values. Available when only 1 variable is `SELECT`ed (fallbacks to `json` above)                                                                               |
+| `--format xml`             |                                                                                                                                                                                           |
+| `--format csv`             |                                                                                                                                                                                           |
+| `--format tsv`             |                                                                                                                                                                                           |
+| `--format binrdf`          |                                                                                                                                                                                           |
 
 #### custom SPARQL endpoint
 The `wb sparql` command can actually be used with on other SPARQL endpoints:
@@ -840,7 +842,7 @@ wd query --property P2448 --object '"2217527"'
 ```
 
 Other options:
-* `-f, --format <format>`: set output format: `json`, `xml`, `tsv`, `csv`, `binrdf`, `table`. Default: `table` when 1 value is selected, `json` otherwise.
+* `-f, --format <format>`: set output format: `json`, `xml`, `tsv`, `csv`, `binrdf`, `table`. Default: `table` when 1 value is selected, `json` otherwise (same as `wb sparql`).
 * `-r, --raw`: output raw JSON results (instead of results simplified by [wikidata-sdk `simplifySparqlResults`](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_sparql_results.md) function
 * `-a, --labels`: requests results labels
 * `-l, --lang <lang>`: specify the labels' language
