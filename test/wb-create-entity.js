@@ -16,7 +16,7 @@ describe('wb edit-entity', function () {
     templateModule.args.should.be.an.Array()
     templateModule.description.should.be.a.String()
     const { stdout } = await wdTest('create-entity --help ./test/assets/create_data_function.js')
-    stdout.trim().should.startWith('Create an item with a label and a P95228 statement')
+    stdout.should.containEql('Create an item with a label and a P95228 statement')
     stdout.should.containEql('Usage:')
   })
 })
