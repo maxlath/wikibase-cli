@@ -567,6 +567,8 @@ See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlat
 * [Create a new property](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_property.js)
 * [Create a new item with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_item_with_the_same_references_being_used_multiple_times.js)
 
+See also [wikibase-cli create template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/edit) for some examples.
+
 #### wb edit-entity
 
 Edit an existing item (currently supported types: item, property)
@@ -646,7 +648,7 @@ wb edit-entity ./add_P1449_and_P1106.js Q2 def 456
 wb edit-entity ./add_P1449_and_P1106.js Q3 ghi 789
 ```
 
-This way, you can generate infinitely flexible templates.
+This way, you can generate infinitely flexible templates. See [wikibase-cli edit template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/edit) for some examples.
 
 A good way to start writting a template function starting from an existing entity is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
 ```sh
@@ -849,4 +851,6 @@ If you want that command to be done already, you can go for a more aggresive val
 wb add-claim Q4115189 P1106 123 --maxlag 100
 ```
 
-### [Demos](https://github.com/maxlath/wikidata-scripting)
+### Demos
+* [wikibase-cli-template-collection](https://github.com/maxlath/wikibase-cli-template-collection)
+* [wikidata-scripting](https://github.com/maxlath/wikidata-scripting)

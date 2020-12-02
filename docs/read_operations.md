@@ -43,11 +43,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
   - [dynamic request from a JS template](#dynamic-request-from-a-js-template)
     - [request template help menu](#request-template-help-menu)
-  - [wellknown queries](#wellknown-queries)
-    - [all-instances](#all-instances)
   - [output format](#output-format)
-    - [single value output](#single-value-output)
-    - [multiple value output](#multiple-value-output)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [wb query](#wb-query)
 - [wb convert](#wb-convert)
@@ -758,31 +754,12 @@ You also use it to generate a SPARQL file, using the `--dry` flag:
 wb sparql ./path/to/query_template.js --dry > ./query.rq
 ```
 
-**Demo**: [Add book entities descriptions](https://github.com/maxlath/wikidata-scripting/tree/master/books_descriptions)
+See [wikibase-cli request template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/request) for some examples.
 
 ##### request template help menu
 If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/master/test/assets/query_with_metadata.js)
 ```sh
 wd sparql ./test/assets/query_with_metadata.js --help
-```
-
-#### wellknown queries
-Some idiomatic queries than can't be done with [`wb query`](#wb-query) are included for convenience:
-
-##### all-instances
-:warning: **Coupled to Wikidata P31 and P279 properties**
-
-Fetch instances and instances of sub-classes of a given item.
-Example, all the instances of languages (Q34770):
-```sh
-wb sparql all-instances Q34770
-```
-This can be used to fetch the data associated with all the instances of a given item. For instance, to fetch all the painting's data, you could do:
-```sh
-# Get the ids of all the paintings
-wd sparql all-instances Q3305213 > ./paintings_ids
-# Fetch their data in a simplified format, and output it all as newline-delimted JSON, one entity per line (see wd-data for details)
-wd data --simplify < ./paintings_ids > ./paintings.ndjson
 ```
 
 #### output format
