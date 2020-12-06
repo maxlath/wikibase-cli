@@ -25,5 +25,7 @@ module.exports = {
 
   shellExec,
 
-  wdTest: async cmd => shellExec(`export WB_INSTANCE=https://test.wikidata.org ; ./bin/wb ${cmd}`)
+  wdTest: async cmd => shellExec(`export WB_INSTANCE=https://test.wikidata.org ; ./bin/wb ${cmd}`),
+
+  wbDry: async cmd => shellExec(`./bin/wb ${cmd} --dry`)
 }

@@ -1,11 +1,13 @@
 #!/usr/bin/env node
 const program = require('commander')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
+const { parseGuid } = require('../lib/parse_command_utils')
 const { isGuid } = require('wikibase-sdk')
 const inlineArgsParser = args => {
   let data
-  if (isGuid(args[0])) {
-    const [ guid, newValue ] = args
+  if (isGuid(parseGuid(args[0]))) {
+    let [ guid, newValue ] = args
+    guid = parseGuid(guid)
     data = { guid, newValue }
   } else {
     const [ id, property, oldValue, newValue ] = args

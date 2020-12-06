@@ -1,7 +1,7 @@
 require('should')
 const { wdTest } = require('./lib/utils')
 
-describe('wb edit-entity', function () {
+describe('wb add-claim', function () {
   this.timeout(20000)
 
   it('should add a claim', async () => {
