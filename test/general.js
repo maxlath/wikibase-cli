@@ -16,4 +16,11 @@ describe('general', function () {
     const { stdout } = await shellExec('./bin/wd claims -c Q12569 P2586')
     stdout.should.equal('42')
   })
+
+  describe('dry mode', () => {
+    it.only('should not require credentials', async () => {
+      const { stdout } = await shellExec('./bin/wb add-claim Q1 P1 123 --instance http://fake.instance --dry')
+      stdout.should.equal('42')
+    })
+  })
 })
