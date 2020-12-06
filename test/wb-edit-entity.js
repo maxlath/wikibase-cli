@@ -3,9 +3,7 @@ const { wdTest } = require('./lib/utils')
 const editDataJson = require('./assets/edit_data.json')
 const editDataJs = require('./assets/edit_data.js')
 
-describe('wb edit-entity', function () {
-  this.timeout(20000)
-
+describe('wb edit-entity', () => {
   it('should accept a path to a JSON file', async () => {
     const { stdout } = await wdTest('edit-entity --dry ./test/assets/edit_data.json')
     const data = JSON.parse(stdout)

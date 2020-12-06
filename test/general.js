@@ -18,9 +18,9 @@ describe('general', function () {
   })
 
   describe('dry mode', () => {
-    it.only('should not require credentials', async () => {
+    it('should not require credentials', async () => {
       const { stdout } = await shellExec('./bin/wb add-claim Q1 P1 123 --instance http://fake.instance --dry')
-      stdout.should.equal('42')
+      JSON.parse(stdout).should.deepEqual({ id: 'Q1', property: 'P1', value: '123' })
     })
   })
 })

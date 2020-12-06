@@ -1,9 +1,7 @@
 require('should')
 const { wbDry } = require('./lib/utils')
 
-describe('wb update-claim', function () {
-  this.timeout(20000)
-
+describe('wb update-claim', () => {
   it('should accept a guid and a value', async () => {
     const { stdout, stderr } = await wbDry("update-claim 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d' Bulgroz")
     stderr.should.equal('')
