@@ -1,5 +1,7 @@
 # Write operations
 
+Before reading further we recommend you to set up a bot password here: https://www.wikidata.org/wiki/Special:BotPasswords or on the similar adress on your Wikibase instance.
+
 Those command modify Wikibase so you will need to first **setup credentials** to use them: you will get a prompt requesting those credentials when required, but if you want to setup those credentials ahead, you can run `wb config credentials https://www.wikidata.org test` (Replace `https://www.wikidata.org` by your Wikibase instance url if necessary). For more documentation on the different options to setup credentials, see [`wikibase-edit` single-user credentials setup](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#single-user-setup) (`wikibase-edit` is the lib on which wikibase-cli relies for all write operations).
 
 Those credentials will be **saved in clear text** (Run `wb config path` to know where). This allows not having to re-enter credentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
