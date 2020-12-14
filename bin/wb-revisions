@@ -4,7 +4,7 @@ const program = require('../lib/program')
 program
 .option('-s, --start <date>', 'start date')
 .option('-e, --end <date>', 'end date')
-.option('-n, --limit <num>', 'end date')
+.option('-n, --limit <num>', 'maximum number of revisions')
 .process('revisions')
 
 require('../lib/exit_on_missing').instance(program.instance)
