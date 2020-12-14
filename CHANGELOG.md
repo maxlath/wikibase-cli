@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.9.0 - 2020-12-14
+* Edit commands: allow to [set the `baserevid`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#baserevid)
+
 ## 15.8.0 - 2020-12-01
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-sparql): add support for template metadata, allowing to generate a [template-specific `--help` menu]
 
