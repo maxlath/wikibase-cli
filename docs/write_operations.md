@@ -56,7 +56,9 @@ The following documentation often assumes that the Wikibase instance we work wit
   - [wb merge-entity](#wb-merge-entity)
   - [wb delete-entity](#wb-delete-entity)
 - [edit summary](#edit-summary)
+- [baserevid](#baserevid)
 - [batch mode](#batch-mode)
+  - [Request parameters in batch mode](#request-parameters-in-batch-mode)
   - [Batch process logs](#batch-process-logs)
   - [Handle batch errors](#handle-batch-errors)
 - [Options](#options)
@@ -748,9 +750,40 @@ wb de <entity-id>
 > It's good practice to fill in the Edit Summary field, as it helps everyone to understand what is changed, such as when perusing the history of the page.
 [[source](https://meta.wikimedia.org/wiki/Help:Edit_summary)]
 
-For any of the edit commands, you can add a `-s, --summary` parameter to comment your edit:
+For any of the edit commands, you can add an edit summary with `-s, --summary`:
 ```
 wb add-alias Q4115189 fr "lorem ipsum" --summary 'this HAD to be changed!'
+```
+
+The `summary` can also be set from an edit object:
+```sh
+wb create-entity '{"labels":{"la":"lorem ipsum"},"summary":"creating some fantastic item here"}'
+```
+
+### baserevid
+> baserevid: An id for the last known revision that must be passed so that the server can detect edit collisions.
+[[source](https://www.mediawiki.org/wiki/Wikibase/API#Request_Format)]
+
+For any of the edit commands, you can pass a base revision id with `--baserevid`:
+```
+# This command will fail with a "cant-load-entity-content" error, as 1 isn't the current lastrevid
+wb add-alias Q4115189 fr "lorem ipsum" --baserevid 1
+```
+There are 2 ways to get the current revision id:
+* request it directly
+```sh
+baserevid=$(wb data Q4115189 --props info | jq '.lastrevid')
+wb add-alias Q4115189 fr "ipsum lorem" --baserevid "$baserevid"
+```
+* get the id after an edit
+```sh
+baserevid=$(wb add-alias Q4115189 fr "lorem ipsum" | jq '.entity.lastrevid')
+wb add-alias Q4115189 fr "ipsum lorem" --baserevid "$baserevid"
+```
+
+The `baserevid` can also be set from an edit object:
+```sh
+wb edit-entity '{"id":"Q4115189","labels":{"la":"lorem ipsum"},"baserevid":1234}'
 ```
 
 ### batch mode
@@ -817,6 +850,17 @@ wb edit-entity --batch < ./edit_entity_newline_separated_command_args
 wb ac -b < ./add_claim_newline_separated_command_args
 wb ce -b < ./create_entity_newline_separated_command_args
 wb ee -b < ./edit_entity_newline_separated_command_args
+```
+
+#### Request parameters in batch mode
+To pass parameters such as [`summary`](#edit-summary) or [`baserevid`](#baserevid), the JSON syntax is the recommended syntax:
+
+```sh
+echo '
+{ "id": "Q1", "labels": { "en": "foo" }, "summary": "lorem ipsum", "baserevid": 123 }
+{ "id": "Q2", "labels": { "en": "bar" }, "summary": "lorem ipsum", "baserevid": 456 }
+{ "id": "Q3", "labels": { "en": "buzz" }, "summary": "lorem ipsum", "baserevid": 789 }
+' | wb edit-entity --batch
 ```
 
 #### Batch process logs

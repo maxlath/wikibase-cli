@@ -12,6 +12,14 @@ describe('edit commands common parameters', function () {
       const lastRev = await getLastRev(id)
       lastRev.comment.should.endWith(summary)
     })
+
+    it('should accept a summary in an edit object', async () => {
+      const id = 'Q1111'
+      const summary = randomString()
+      await wdTest(`edit-entity '{"id":"${id}","labels":{"la":"${randomString()}"},"summary":"${summary}"}'`)
+      const lastRev = await getLastRev(id)
+      lastRev.comment.should.endWith(summary)
+    })
   })
 
   describe('maxlag', () => {
@@ -23,6 +31,27 @@ describe('edit commands common parameters', function () {
       } catch (err) {
         err.stderr.should.containEql('"code":"maxlag"')
         err.stderr.should.containEql('seconds lagged')
+      }
+    })
+  })
+
+  describe('baserevid', () => {
+    it('should accept a baserevid', async () => {
+      const id = 'Q1111'
+      try {
+        await wdTest(`set-label ${id} la ${randomString()} --baserevid 1`).then(shouldNotBeCalled)
+      } catch (err) {
+        err.stderr.should.containEql('cant-load-entity-content')
+      }
+    })
+
+    it('should accept a baserevid in an edit object', async () => {
+      const id = 'Q1111'
+      const editObj = `{"id":"${id}","labels":{"la":"${randomString()}"},"baserevid":1}`
+      try {
+        await wdTest(`edit-entity '${editObj}'`).then(shouldNotBeCalled)
+      } catch (err) {
+        err.stderr.should.containEql('cant-load-entity-content')
       }
     })
   })
