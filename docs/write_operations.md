@@ -765,10 +765,16 @@ wb create-entity '{"labels":{"la":"lorem ipsum"},"summary":"creating some fantas
 [[source](https://www.mediawiki.org/wiki/Wikibase/API#Request_Format)]
 
 For any of the edit commands, you can pass a base revision id with `--baserevid`:
-```
+```sh
 # This command will fail with a "cant-load-entity-content" error, as 1 isn't the current lastrevid
 wb add-alias Q4115189 fr "lorem ipsum" --baserevid 1
 ```
+
+Alternatively, the `baserevid` can be set within an edit object:
+```sh
+wb edit-entity '{"id":"Q4115189","labels":{"la":"lorem ipsum"},"baserevid":1234}'
+```
+
 There are 2 ways to get the current revision id:
 * request it directly
 ```sh
@@ -779,11 +785,6 @@ wb add-alias Q4115189 fr "ipsum lorem" --baserevid "$baserevid"
 ```sh
 baserevid=$(wb add-alias Q4115189 fr "lorem ipsum" | jq '.entity.lastrevid')
 wb add-alias Q4115189 fr "ipsum lorem" --baserevid "$baserevid"
-```
-
-The `baserevid` can also be set from an edit object:
-```sh
-wb edit-entity '{"id":"Q4115189","labels":{"la":"lorem ipsum"},"baserevid":1234}'
 ```
 
 ### batch mode
