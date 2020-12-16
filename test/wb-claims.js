@@ -20,8 +20,8 @@ describe('wb claims', function () {
   })
 
   it('should filters properties from text', async () => {
-    const coords = '48.856944444444,2.3513888888889'
-    const { stdout } = await shellExec('./bin/wd claims Q90 coord')
+    const coords = '-85.2667,-175.617'
+    const { stdout } = await shellExec('./bin/wd claims Q6484979 coord')
     stdout.should.containEql(coords)
   })
 
