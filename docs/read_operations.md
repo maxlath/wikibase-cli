@@ -356,6 +356,11 @@ wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
 wd data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
 ```
 
+To avoid having to quote the claim GUID, you can also use the hyphenated format
+```sh
+wd data Q2-50fad68d-4f91-f878-6f29-e655af54690e
+```
+
 ### wb generate-template
 This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-create-entity) or [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-edit-entity)
 
