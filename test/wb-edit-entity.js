@@ -29,6 +29,16 @@ describe('wb edit-entity', () => {
     stdout.should.containEql('Edit an existing entity')
   })
 
+  it('should accept an array of edit objects', async function () {
+    this.timeout(20000)
+    const { stdout } = await wdTest('edit-entity ./test/assets/multi_edit_data.js --maxlag 100')
+    const [ line1, line2 ] = stdout.split('\n')
+    JSON.parse(line1).entity.id.should.equal('Q1112')
+    JSON.parse(line1).success.should.equal(1)
+    JSON.parse(line2).entity.id.should.equal('Q1113')
+    JSON.parse(line2).success.should.equal(1)
+  })
+
   describe('meta data', () => {
     it('should support exporting an object with a template function and metadata', async () => {
       const templateModule = require('./assets/edit_data_function.js')

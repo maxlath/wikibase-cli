@@ -51,7 +51,8 @@ The following documentation often assumes that the Wikibase instance we work wit
     - [Generate an edit object from a JS template function](#generate-an-edit-object-from-a-js-template-function)
       - [transform input](#transform-input)
       - [fetch additional data](#fetch-additional-data)
-      - [inspect generated data](#inspect-generated-data)
+      - [generate several edit objects](#generate-several-edit-objects)
+      - [inspect generated edit object data](#inspect-generated-edit-object-data)
       - [template help menu](#template-help-menu)
   - [wb merge-entity](#wb-merge-entity)
   - [wb delete-entity](#wb-delete-entity)
@@ -714,7 +715,19 @@ module.exports = async function (id, someExternalId) {
 }
 ```
 
-###### inspect generated data
+###### generate several edit objects
+It can sometimes be convenient to be able to generate several edits from one template call. For that purpose, you can return an array of edit objects. Example hereafter to generate bidirectional relations:
+```js
+// Add statements that itemA and itemB are different from (P1889) one another
+module.exports = function (itemA, itemB) {
+  return [
+    { id: itemA, claims: { P1889: itemB } },
+    { id: itemB, claims: { P1889: itemA } },
+  ]
+}
+```
+
+###### inspect generated edit object data
 To inspect the data generated dynamically, you can use the `--dry` option
 ```sh
 wb ee ./template.js Q1 abc 123 --dry
