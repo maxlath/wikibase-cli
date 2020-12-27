@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.10.0 - 2020-12-27
+* [`create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#create-entity) / [`edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-entity): allow to [generate several edit objects at once](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#generate-several-edit-objects)
+
 ## 15.9.0 - 2020-12-14
 * Edit commands: allow to [set the `baserevid`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#baserevid)
 
