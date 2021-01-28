@@ -22,19 +22,19 @@ describe('wb query', function () {
 
   describe('format', () => {
     it('should default to table format', async () => {
-      const { stdout } = await shellExec('./bin/wd q -p P31 -o Q5 -n 2')
+      const { stdout } = await shellExec('./bin/wd q -p P921 -o Q2005 -n 2')
       stdout.split('\n').length.should.equal(2)
       stdout.split('\n').forEach(id => isItemId(id).should.be.true())
     })
 
     it('should support inline format', async () => {
-      const { stdout } = await shellExec('./bin/wd q -p P31 -o Q5 -n 2 --format inline')
+      const { stdout } = await shellExec('./bin/wd q -p P921 -o Q2005 -n 2 --format inline')
       stdout.split(' ').length.should.equal(2)
       stdout.split(' ').forEach(id => isItemId(id).should.be.true())
     })
 
     it('should support json format', async () => {
-      const { stdout } = await shellExec('./bin/wd q -p P31 -o Q5 -n 2 --format json')
+      const { stdout } = await shellExec('./bin/wd q -p P921 -o Q2005 -n 2 --format json')
       const data = JSON.parse(stdout)
       data.should.be.an.Array()
       data.length.should.equal(2)
@@ -42,7 +42,7 @@ describe('wb query', function () {
     })
 
     it('should support csv format', async () => {
-      const { stdout } = await shellExec('./bin/wd q -p P31 -n 2 --format csv')
+      const { stdout } = await shellExec('./bin/wd q -p P921 -n 2 --format csv')
       const lines = stdout.split('\n')
       lines[0].trim().should.equal('subject,object')
       lines.slice(1).length.should.equal(2)
@@ -50,7 +50,7 @@ describe('wb query', function () {
     })
 
     it('should support tsv format', async () => {
-      const { stdout } = await shellExec('./bin/wd q -p P31 -n 2 --format tsv')
+      const { stdout } = await shellExec('./bin/wd q -p P921 -n 2 --format tsv')
       const lines = stdout.split('\n')
       // eslint-disable-next-line no-tabs
       lines[0].trim().should.equal('?subject	?object')
