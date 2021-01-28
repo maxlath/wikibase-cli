@@ -53,7 +53,7 @@ describe('wb add-reference', () => {
     const { stdout, stderr } = await wbDry('add-reference ./test/assets/add_some_reference.js Q4115189-c885b63e-46f9-3f51-5736-d3ed09a58acf S001191')
     stderr.should.equal('')
     JSON.parse(stdout).should.deepEqual({
-      guid: 'Q4115189-c885b63e-46f9-3f51-5736-d3ed09a58acf',
+      guid: 'Q4115189$c885b63e-46f9-3f51-5736-d3ed09a58acf',
       snaks: {
         P248: 'Q1150348',
         P1157: 'S001191',
