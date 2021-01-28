@@ -21,4 +21,44 @@ describe('wb add-reference', () => {
       value: 'https://example.org/rise-and-box-of-the-holy-sand-box'
     })
   })
+
+  it('should an inline JSON object', async () => {
+    const guid = 'Q4115189$c885b63e-46f9-3f51-5736-d3ed09a58acf'
+    const { stdout, stderr } = await wbDry(`add-reference '{"guid":"${guid}","snaks":{"P248":"Q1150348","P1157":"S001191","P813":"2021-01-28"}}'`)
+    stderr.should.equal('')
+    JSON.parse(stdout).should.deepEqual({
+      guid,
+      snaks: {
+        P248: 'Q1150348',
+        P1157: 'S001191',
+        P813: '2021-01-28'
+      }
+    })
+  })
+
+  it('should accept a JSON path', async () => {
+    const { stdout, stderr } = await wbDry('add-reference ./test/assets/add_some_reference.json')
+    stderr.should.equal('')
+    JSON.parse(stdout).should.deepEqual({
+      guid: 'Q4115189$c885b63e-46f9-3f51-5736-d3ed09a58acf',
+      snaks: {
+        P248: 'Q1150348',
+        P1157: 'S001191',
+        P813: '2021-01-28'
+      }
+    })
+  })
+
+  it('should accept a JS module path and arguments', async () => {
+    const { stdout, stderr } = await wbDry('add-reference ./test/assets/add_some_reference.js Q4115189-c885b63e-46f9-3f51-5736-d3ed09a58acf S001191')
+    stderr.should.equal('')
+    JSON.parse(stdout).should.deepEqual({
+      guid: 'Q4115189-c885b63e-46f9-3f51-5736-d3ed09a58acf',
+      snaks: {
+        P248: 'Q1150348',
+        P1157: 'S001191',
+        P813: new Date().toISOString().split('T')[0]
+      }
+    })
+  })
 })
