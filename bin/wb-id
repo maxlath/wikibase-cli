@@ -44,8 +44,7 @@ const parseIds = ({ body, context }) => {
     output(descriptions, true)
     output(id)
   } else {
-    const titles = context.join(' / ')
-    throw errors_.new(`id not found (${titles})`, body)
+    throw errors_.new(`id not found (${JSON.stringify(context)})`, body)
   }
 }
 
