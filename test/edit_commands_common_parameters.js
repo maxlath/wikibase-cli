@@ -38,21 +38,21 @@ describe('edit commands common parameters', function () {
   describe('baserevid', () => {
     it('should accept a baserevid', async () => {
       const id = 'Q1111'
-      try {
-        await wdTest(`set-label ${id} la ${randomString()} --baserevid 1`).then(shouldNotBeCalled)
-      } catch (err) {
-        err.stderr.should.containEql('cant-load-entity-content')
-      }
+      await wdTest(`set-label ${id} la ${randomString()} --baserevid 1`)
+      .then(shouldNotBeCalled)
+      .catch(err => {
+        err.stderr.should.containEql('nosuchrevid')
+      })
     })
 
     it('should accept a baserevid in an edit object', async () => {
       const id = 'Q1111'
       const editObj = `{"id":"${id}","labels":{"la":"${randomString()}"},"baserevid":1}`
-      try {
-        await wdTest(`edit-entity '${editObj}'`).then(shouldNotBeCalled)
-      } catch (err) {
-        err.stderr.should.containEql('cant-load-entity-content')
-      }
+      await wdTest(`edit-entity '${editObj}'`)
+      .then(shouldNotBeCalled)
+      .catch(err => {
+        err.stderr.should.containEql('nosuchrevid')
+      })
     })
   })
 })

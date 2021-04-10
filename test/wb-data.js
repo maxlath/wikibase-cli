@@ -123,7 +123,7 @@ describe('wb data', function () {
       const claim = JSON.parse(stdout)
       claim.id.should.equal(guid)
       claim.mainsnak.property.should.equal('P31')
-      claim.mainsnak.datavalue.value.id.should.equal('Q3504248')
+      claim.mainsnak.datavalue.value.id.should.equal('Q128207')
     })
 
     it('should accept prefixed claim GUIDs', async () => {
@@ -132,7 +132,7 @@ describe('wb data', function () {
       const claim = JSON.parse(stdout)
       claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
       claim.mainsnak.property.should.equal('P31')
-      claim.mainsnak.datavalue.value.id.should.equal('Q3504248')
+      claim.mainsnak.datavalue.value.id.should.equal('Q128207')
     })
 
     it('should accept claim GUIDs with an - in place of a $', async () => {
@@ -141,12 +141,12 @@ describe('wb data', function () {
       const claim = JSON.parse(stdout)
       claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
       claim.mainsnak.property.should.equal('P31')
-      claim.mainsnak.datavalue.value.id.should.equal('Q3504248')
+      claim.mainsnak.datavalue.value.id.should.equal('Q128207')
     })
 
     it('should get a simplified claim', async () => {
       const { stdout } = await shellExec('./bin/wd data --simplify \'Q2$50fad68d-4f91-f878-6f29-e655af54690e\'')
-      stdout.should.equal('Q3504248')
+      stdout.should.equal('Q128207')
     })
 
     it('should keep the requested simplified claim data', async () => {
@@ -154,7 +154,7 @@ describe('wb data', function () {
       const { stdout } = await shellExec(`./bin/wd data --simplify --keep ids,references,qualifiers '${guid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal(guid)
-      claim.value.should.equal('Q3504248')
+      claim.value.should.equal('Q128207')
       claim.references.should.be.an.Array()
       claim.qualifiers.should.be.an.Object()
     })
