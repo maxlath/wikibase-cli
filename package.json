@@ -1,6 +1,6 @@
 {
   "name": "wikidata-cli",
-  "version": "8.0.1",
+  "version": "9.0.0",
   "description": "[OBSOLETE: use wikibase-cli] The command-line interface to Wikidata",
   "main": "index.js",
   "bin": {
