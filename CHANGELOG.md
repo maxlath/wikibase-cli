@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 9.0.0 - 2021-04-24
+**ARCHIVING wikidata-cli**: new projects should use [wikibase-cli](https://github.com/maxlath/wikibase-cli)
+
 ## 8.0.0 - 2019-10-01
 **BREAKING CHANGES**:
 * **renamed**:
