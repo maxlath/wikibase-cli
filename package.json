@@ -7,6 +7,9 @@
     "wb": "./bin/wb",
     "wd": "./bin/wd"
   },
+  "files": [
+    "bin"
+  ],
   "scripts": {},
   "repository": {
     "type": "git",
