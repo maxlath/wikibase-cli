@@ -1,1 +1,9 @@
-wd
+#!/usr/bin/env sh
+echo "wikidata-cli has been renamed wikibase-cli: old versions of wikidata-cli should still work, but new projects should always install wikibase-cli instead:
+
+   npm uninstall --global wikidata-cli
+   npm install --global wikibase-cli@latest
+
+Documentation: https://github.com/maxlath/wikibase-cli
+Change logs: https://github.com/maxlath/wikibase-cli/blob/master/CHANGELOG.md"
+exit 1
