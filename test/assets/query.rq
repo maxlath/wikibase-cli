@@ -1,2 +1,0 @@
-SELECT ?subject
-WHERE { ?subject wdt:P50 wd:Q1345582 . }

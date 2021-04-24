@@ -1,6 +1,0 @@
-#!/usr/bin/env node
-const program = require('commander')
-const parseGuid = guid => guid.replace(/("|')/g, '').trim()
-const parseAndGatherGuids = guids => [ guids.map(parseGuid) ]
-program.customArgsParser = parseAndGatherGuids
-require('../lib/edit/edit_command')('claim', 'remove')

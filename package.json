@@ -1,71 +1,22 @@
 {
   "name": "wikidata-cli",
   "version": "8.0.1",
-  "description": "The command-line interface to Wikidata",
+  "description": "[OBSOLETE: use wikibase-cli] The command-line interface to Wikidata",
   "main": "index.js",
   "bin": {
     "wb": "./bin/wb",
     "wd": "./bin/wd"
   },
-  "scripts": {
-    "docker:publish": "./scripts/docker_publish",
-    "lint": "standard bin/wb* lib/* lib/*/* test/* test/lib/*",
-    "lint-staged": "./scripts/lint_staged",
-    "test": "mocha",
-    "update-toc": "doctoc docs/*md"
-  },
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/maxlath/wikidata-cli.git"
   },
-  "keywords": [
-    "wikidata",
-    "wikibase",
-    "wb",
-    "wd",
-    "cli"
-  ],
+  "keywords": [],
   "author": "maxlath",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/maxlath/wikidata-cli/issues"
   },
-  "homepage": "https://github.com/maxlath/wikidata-cli#readme",
-  "dependencies": {
-    "bluereq": "^2.1.10",
-    "chalk": "^2.4.2",
-    "commander": "git+https://github.com/maxlath/commander.js.git#master",
-    "copy-paste": "^1.3.0",
-    "execa": "^0.10.0",
-    "lodash": "^4.17.15",
-    "mkdirp": "^0.5.1",
-    "opn": "^5.3.0",
-    "read": "^1.0.7",
-    "shell-quote": "^1.6.1",
-    "split": "^1.0.1",
-    "through": "^2.3.8",
-    "wikibase-edit": "^3.2.7",
-    "wikibase-sdk": "^7.1.4",
-    "wikibase-token": "^3.0.4",
-    "wikidata-lang": "^2.0.8"
-  },
-  "devDependencies": {
-    "doctoc": "^1.3.1",
-    "git-hooks": "^1.1.10",
-    "mocha": "^5.1.1",
-    "should": "^13.2.1",
-    "standard": "^10.0.3"
-  },
-  "standard": {
-    "ignore": [
-      "dist"
-    ],
-    "globals": [
-      "it",
-      "describe"
-    ]
-  },
-  "engines": {
-    "node": ">= 6.4.0"
-  }
+  "homepage": "https://github.com/maxlath/wikidata-cli#readme"
 }
