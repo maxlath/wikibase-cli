@@ -4,7 +4,7 @@ const program = require('../lib/program')
 program
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 .option('-r, --revision <id>', 'request a specific revision')
-.option('-f, --format <format>', 'Default: json. Alternatives: js')
+.option('-f, --format <format>', 'Default: js when fetching a single entity, json otherwise. Note that the -j, --json option is equivalent to "--format json"')
 .option('-m, --create-mode', 'optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template')
 .option('-z, --no-minimize', 'disable claims minimization, making the output format more predictable; i.e. single claims will still be in arrays')
 .process('generate-template')
@@ -15,7 +15,8 @@ require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getEntityRevision, getManyEntities } = require('../lib/wbk')(program)
 const parseProps = require('../lib/parse_props')
 const { revision, minimize } = program
-let { format } = program
+let { format, json } = program
+if (format == null && json) format = 'json'
 const getEntitiesByBatches = require('../lib/get_entities_by_batches')
 const outputTemplates = require('../lib/output_templates')
 
