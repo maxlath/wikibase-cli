@@ -9,7 +9,7 @@ program
 .option('-z, --no-minimize', 'disable claims minimization, making the output format more predictable; i.e. single claims will still be in arrays')
 .process('generate-template')
 
-const parseId = require('../lib/tolerant_id_parser')
+const parseId = require('../lib/tolerant_id_parser')()
 const ids = program.args.map(parseId)
 require('../lib/exit_on_missing').instance(program.instance)
 const { isEntityId, getEntityRevision, getManyEntities } = require('../lib/wbk')(program)

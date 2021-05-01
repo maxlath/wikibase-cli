@@ -10,7 +10,7 @@ program
 .process('open')
 
 const getSitelinkUrl = require('../lib/get_sitelink_url')(program)
-const parseId = require('../lib/tolerant_id_parser')
+const parseId = require('../lib/tolerant_id_parser')()
 const open = require('../lib/open')
 const { isPropertyId } = require('wikibase-sdk')
 

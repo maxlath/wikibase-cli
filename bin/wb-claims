@@ -6,7 +6,7 @@ program
 .process('claims')
 
 const { yellow } = require('chalk')
-const parseId = require('../lib/tolerant_id_parser')
+const parseId = require('../lib/tolerant_id_parser')()
 const logClaims = require('../lib/log_claims')
 const getEntities = require('../lib/get_entities')
 const { getEntityLabel } = require('../lib/get_entities_labels')

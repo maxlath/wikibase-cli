@@ -22,7 +22,7 @@ if (program.args.length === 1 && guid) {
 } else if (program.args.length === 1 && isPropertyClaimsId(firstArg)) {
   require('../lib/fetch_and_log_property_claims_data')(firstArg)
 } else {
-  const parseId = require('../lib/tolerant_id_parser')
+  const parseId = require('../lib/tolerant_id_parser')({ allowEntitiesSchemasIds: true })
   const ids = program.args.map(parseId)
   const { revision } = program
 
