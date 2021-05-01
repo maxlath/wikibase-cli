@@ -26,6 +26,7 @@ The following documentation assumes that the Wikibase instance we work with is W
     - [ttl](#ttl)
   - [property claims](#property-claims)
   - [single claim](#single-claim)
+  - [entities schema](#entities-schema)
 - [wb generate-template](#wb-generate-template)
   - [Tailored templates](#tailored-templates)
   - [Dynamic templates](#dynamic-templates)
@@ -359,6 +360,11 @@ wd data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f87
 To avoid having to quote the claim GUID, you can also use the hyphenated format
 ```sh
 wd data Q2-50fad68d-4f91-f878-6f29-e655af54690e
+```
+
+#### entities schema
+```
+wd data E35
 ```
 
 ### wb generate-template

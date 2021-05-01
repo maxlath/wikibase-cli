@@ -116,6 +116,11 @@ describe('wb data', function () {
     })
   })
 
+  it('should return entities schema text', async () => {
+    const { stdout } = await shellExec('./bin/wd data E233')
+    stdout.should.containEql('PREFIX wd:')
+  })
+
   describe('claim data', () => {
     it('should get a claim data provided a claim guid', async () => {
       const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
