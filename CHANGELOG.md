@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.11.0 - 2021-05-01
+* [wb data](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-data): added support for [entities schema](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#entities-schema)
+* [`wb generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--json` (equivalent to `--format json`)
+
 ## 15.10.0 - 2020-12-27
 * [`create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#create-entity) / [`edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#edit-entity): allow to [generate several edit objects at once](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#generate-several-edit-objects)
 
