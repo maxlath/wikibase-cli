@@ -1,5 +1,5 @@
 const should = require('should')
-const { shellExec } = require('./lib/utils')
+const { shellExec, shouldNotBeCalled } = require('./lib/utils')
 const _ = require('lodash')
 
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
@@ -101,6 +101,33 @@ describe('wb data', function () {
   it('should return ttl when requested', async () => {
     const { stdout } = await shellExec('./bin/wd data Q1512522 --format ttl')
     stdout.should.startWith('@prefix rdf:')
+  })
+
+  it('should return csv when requested', async () => {
+    const { stdout } = await shellExec('./bin/wd data Q123 --props labels.fr,P31,P3035,P443,P7827 --format csv')
+    const lines = stdout.split('\n')
+    lines[0].trim().should.equal('id,labels.fr,claims.P31,claims.P3035,claims.P443,claims.P7827')
+    lines[1].trim().should.startWith('Q123,septembre,')
+  })
+
+  it('should require props to return in csv format', async () => {
+    await shellExec('./bin/wd data Q123 --format csv')
+    .then(shouldNotBeCalled)
+    .catch(err => {
+      err.code.should.equal(1)
+      err.stdout.should.equal('')
+      err.stderr.should.containEql('--props are required to output in csv format')
+    })
+  })
+
+  it('should require sub-props to return in csv format', async () => {
+    await shellExec('./bin/wd data Q123 --format csv --props labels')
+    .then(shouldNotBeCalled)
+    .catch(err => {
+      err.code.should.equal(1)
+      err.stdout.should.equal('')
+      err.stderr.should.containEql('all --props are required to have subprops to output in csv format')
+    })
   })
 
   describe('property claims data', () => {

@@ -6,7 +6,7 @@ program
 .option('-k, --keep <props>', 'data to keep when simplifying claims')
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 .option('-r, --revision <id>', 'request a specific revision')
-.option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl')
+.option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl, csv')
 .process('data')
 
 const { isGuid, isPropertyClaimsId } = require('wikibase-sdk')
