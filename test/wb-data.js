@@ -113,6 +113,22 @@ describe('wb data', function () {
       lines[1].trim().should.startWith('Q123,septembre,')
     })
 
+    it('should generate one row per value when there is only one property requested', async () => {
+      const { stdout } = await shellExec('./bin/wd data Q10428420 --props P6375 --format csv')
+      const lines = stdout.split('\n').slice(1)
+      lines.length.should.be.above(1)
+      lines.forEach(line => {
+        line.should.startWith('Q10428420')
+      })
+    })
+
+    it('should generate one row per value when there is only one property requested', async () => {
+      const { stdout } = await shellExec('./bin/wd data Q10428420 --props P6375 --format csv --join')
+      const lines = stdout.split('\n').slice(1)
+      lines.length.should.equal(1)
+      lines[0].should.startWith('Q10428420')
+    })
+
     it('should require props to return in csv format', async () => {
       await shellExec('./bin/wd data Q123 --format csv')
       .then(shouldNotBeCalled)
