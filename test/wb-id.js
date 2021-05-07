@@ -18,4 +18,9 @@ describe('wb id', function () {
     const { stdout } = await shellExec('./bin/wd id https://fr.wikipedia.org/wiki/The_Ister')
     stdout.should.equal('Q3521413')
   })
+
+  it('should accept a dbpedia URL', async () => {
+    const { stdout } = await shellExec('./bin/wd id http://fr.dbpedia.org/resource/Eva_Bester')
+    stdout.should.equal('Q42886668')
+  })
 })

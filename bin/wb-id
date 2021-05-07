@@ -17,12 +17,16 @@ const output = require('../lib/output')(program)
 let title = program.args.join(' ')
 
 // parse the url if a wikipedia url was provided as title
-const re = /https:\/\/\w{2,8}\.wik\w+\.org\/wiki\//
+const wikiPattern = /https?:\/\/(\w{2,8})\.(wik\w+|dbpedia)\.org\/(wiki|resource)\/(.*)/
 let site
-if (title.match(re)) {
-  [ lang, site, title ] = title
-    .replace(/https:\/\/(\w{2,8}).(wik\w+).org\/wiki\/(.*)/, '$1|$2|$3')
+if (title.match(wikiPattern)) {
+  ;[ lang, site, title ] = title
+    .replace(wikiPattern, '$1|$2|$4')
     .split('|')
+  if (site === 'dbpedia') {
+    site = 'wikipedia'
+    if (lang === 'www') lang = 'en'
+  }
   title = global.decodeURIComponent(title)
 }
 
