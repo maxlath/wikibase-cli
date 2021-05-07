@@ -341,6 +341,36 @@ cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 
 This can be used to generated partial Turtle dumps, if [Wikibase full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikibase API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
 
+##### csv
+In relatively simple cases, data can be requested in csv, that is:
+* when there are `--props` specified, including subprops (ex: not only `labels`, but with a specific language, like `labels.en`)
+* only the mainsnak value will we be output
+
+Example:
+```sh
+wd data Q122 Q123 Q124 --props labels.fr,labels.es,claims.P155,claims.P156  --format csv
+# => id,labels.fr,labels.es,claims.P155,claims.P156
+#    Q122,août,agosto,Q121,Q123
+#    Q123,septembre,septiembre,Q122,Q124
+#    Q124,octobre,octubre,Q123,Q125
+```
+
+Note that when only one `--props` is specified, each values for that property gets its own row (this can be disabled with the `--join` option):
+```sh
+wd data Q3572332 Q98407233 Q10428420 --props claims.P6375 --format csv
+# => id,claims.P6375
+#    Q3572332,Eläintarhantie 1
+#    Q3572332,Siltasaarenkatu 18
+#    Q98407233,Agricolankatu 1-3
+#    Q10428420,Viides linja 11
+#    Q10428420,Fleminginkatu 1
+#    Q10428420,Porthaninkatu 12
+```
+
+Options specific to the csv format:
+* `--no-header`: do not output the header row
+* `--join`: when selecting a single property, join values per entity, instead of creating one row per value
+
 #### property claims
 You can also use this command to get the data of an entity's claims for a certain property
 ```sh
