@@ -120,6 +120,12 @@ describe('wb data', function () {
       lines[1].trim().should.startWith('Q123,septembre,septiembre')
     })
 
+    it('should not return a header row when requested', async () => {
+      const { stdout } = await shellExec('./bin/wd data Q123 --props labels.fr,labels.es  --format csv --no-header')
+      const lines = stdout.split('\n')
+      lines[0].trim().should.startWith('Q123,septembre,septiembre')
+    })
+
     it('should generate one row per value when there is only one property requested', async () => {
       const { stdout } = await shellExec('./bin/wd data Q10428420 Q123 --props P6375 --format csv')
       const lines = stdout.split('\n').slice(1)

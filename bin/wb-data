@@ -7,7 +7,8 @@ program
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 .option('-r, --revision <id>', 'request a specific revision')
 .option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl, csv')
-.option('--join', 'when using the csv format, and selecting a single property, join values per entity, instead of creating one row per value')
+.option('--join', '[csv format only] when selecting a single property, join values per entity, instead of creating one row per value')
+.option('--no-header', '[csv format only] do not output the header row')
 .process('data')
 
 const { isGuid, isPropertyClaimsId } = require('wikibase-sdk')
