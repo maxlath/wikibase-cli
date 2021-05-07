@@ -113,20 +113,28 @@ describe('wb data', function () {
       lines[1].trim().should.startWith('Q123,septembre,')
     })
 
+    it('should return csv when requested (case with single props with multiple subprops)', async () => {
+      const { stdout } = await shellExec('./bin/wd data Q123 --props labels.fr,labels.es  --format csv')
+      const lines = stdout.split('\n')
+      lines[0].trim().should.equal('id,labels.fr,labels.es')
+      lines[1].trim().should.startWith('Q123,septembre,septiembre')
+    })
+
     it('should generate one row per value when there is only one property requested', async () => {
-      const { stdout } = await shellExec('./bin/wd data Q10428420 --props P6375 --format csv')
+      const { stdout } = await shellExec('./bin/wd data Q10428420 Q123 --props P6375 --format csv')
       const lines = stdout.split('\n').slice(1)
-      lines.length.should.be.above(1)
-      lines.forEach(line => {
+      lines.length.should.be.above(2)
+      lines.slice(0, -1).forEach(line => {
         line.should.startWith('Q10428420')
       })
     })
 
-    it('should generate one row per value when there is only one property requested', async () => {
-      const { stdout } = await shellExec('./bin/wd data Q10428420 --props P6375 --format csv --join')
+    it('should join values when requested', async () => {
+      const { stdout } = await shellExec('./bin/wd data Q10428420 Q123 --props P6375 --format csv --join')
       const lines = stdout.split('\n').slice(1)
-      lines.length.should.equal(1)
+      lines.length.should.equal(2)
       lines[0].should.startWith('Q10428420')
+      lines[1].should.startWith('Q123')
     })
 
     it('should require props to return in csv format', async () => {
@@ -146,6 +154,16 @@ describe('wb data', function () {
         err.code.should.equal(1)
         err.stdout.should.equal('')
         err.stderr.should.containEql('all --props are required to have subprops to output in csv format')
+      })
+    })
+
+    it('should reject --join when there are several props', async () => {
+      await shellExec('./bin/wd data Q123 --format csv --props labels.fr,labels.es --join')
+      .then(shouldNotBeCalled)
+      .catch(err => {
+        err.code.should.equal(1)
+        err.stdout.should.equal('')
+        err.stderr.should.containEql('--join is only possible when there is only one value for --props')
       })
     })
   })

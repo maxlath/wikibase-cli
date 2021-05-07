@@ -24,7 +24,7 @@ module.exports = {
   shouldNotBeCalled: res => {
     console.warn(yellow('undesired positive res:'), res)
     const err = new Error('function was expected not to be called')
-    err.name = 'shouldNotBeCalled'
+    err.name = err.code = err.stderr = err.stdin = 'shouldNotBeCalled'
     err.context = { res }
     throw err
   },
