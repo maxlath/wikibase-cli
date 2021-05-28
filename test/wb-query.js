@@ -65,4 +65,16 @@ describe('wb query', function () {
       stdout.should.containEql('SELECT')
     })
   })
+
+  describe('describe', () => {
+    it('should make a DESCRIBE request with an item id', async () => {
+      const { stdout } = await shellExec('./bin/wd query --describe Q1345582 --dry')
+      stdout.should.containEql('DESCRIBE wd:Q1345582')
+    })
+
+    it('should make a DESCRIBE request with a url', async () => {
+      const { stdout } = await shellExec('./bin/wd query --describe http://bnb.data.bl.uk/id/person/OBrienJim1950- --dry')
+      stdout.should.containEql('DESCRIBE <http://bnb.data.bl.uk/id/person/OBrienJim1950->')
+    })
+  })
 })
