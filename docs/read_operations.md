@@ -841,6 +841,8 @@ Other options:
 * `-e, --sparql-endpoint <url>`: customize the SPARQL endpoint (see [`wb sparql`](#wb-sparql) for examples of how to use this option)
 * `-d, --dry`: output the SPARQL without running the query
 * `-o, --open`: open the query in the Query Service GUI
+* `--describe <node>`: make a `DESCRIBE` request
+* `--sample`: get a sample of triples from a triple store
 
 ### wb convert
 Convert batches of external ids to Wikibase ids and vice versa

@@ -23,6 +23,8 @@ module.exports = {
     { args: '-p P31 -o Q44559 --limit 5', comment: 'use the limit option to get only 5 instances of exoplanets (Q44559)' },
     { args: '-p P31 -o Q44559 --limit 5 --verbose', comment: 'use the verbose option to see the generated SPARQL and the generated query URL' },
     { args: '-p P31 -o Q44559 --limit 5 --dry', comment: 'simply output the generated SPARQL, without running the query' },
-    { args: '-p P31 -o Q44559 --limit 5 --open', comment: 'open the query in the Query Service GUI' }
+    { args: '-p P31 -o Q44559 --limit 5 --open', comment: 'open the query in the Query Service GUI' },
+    { args: '--sample --sparql-endpoint https://bnb.data.bl.uk/sparql --format table', comment: 'Get a sample of triples from a triple store' },
+    { args: '--sparql-endpoint https://bnb.data.bl.uk/sparql --describe http://bnb.data.bl.uk/id/person/OBrienJim1950- --format table', comment: 'make a DESCRIBE request' },
   ]
 }
