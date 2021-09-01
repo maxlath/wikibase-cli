@@ -1,6 +1,10 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.12.0 - 2021-09-01
+* [wb id](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-id): add support for dbpedia urls
+* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-query): add `--sample` and `--describe` modes
+
 ## 15.11.0 - 2021-05-01
 * [wb data](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-data): added support for [entities schema](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#entities-schema)
 * [`wb generate-template`](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wb-generate-template): added a `--json` (equivalent to `--format json`)
