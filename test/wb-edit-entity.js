@@ -39,6 +39,12 @@ describe('wb edit-entity', () => {
     JSON.parse(line2).success.should.equal(1)
   })
 
+  it('should not log anything when the template returns undefined', async () => {
+    const { stdout, stderr } = await wdTest('edit-entity --dry ./test/assets/template_returns_undefined.js Q1')
+    stdout.should.equal('')
+    stderr.should.equal('')
+  })
+
   describe('meta data', () => {
     it('should support exporting an object with a template function and metadata', async () => {
       const templateModule = require('./assets/edit_data_function.js')
