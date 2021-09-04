@@ -3,14 +3,15 @@ const { promisify } = require('util')
 const exec = promisify(require('child_process').exec)
 const testsEnv = 'export WB_CLIPBOARD=false WB_LANG=en WB_MAXLAG=100'
 
-const shellExec = async cmd => {
+const shellExec = async (cmd, options = {}) => {
   // Overwrite local config
   cmd = `${testsEnv} ; ${cmd}`
-  const { stdout, stderr } = await exec(cmd)
-  return {
-    stdout: stdout.trim(),
-    stderr: stderr.trim()
+  let { stdout, stderr } = await exec(cmd)
+  if (options.trim !== false) {
+    stdout = stdout.trim()
+    stderr = stderr.trim()
   }
+  return { stdout, stderr }
 }
 
 module.exports = {

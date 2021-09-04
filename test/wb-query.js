@@ -42,11 +42,12 @@ describe('wb query', function () {
     })
 
     it('should support csv format', async () => {
-      const { stdout } = await shellExec('./bin/wd q -p P921 -n 2 --format csv')
+      const { stdout } = await shellExec('./bin/wd q -p P921 -n 2 --format csv', { trim: false })
       const lines = stdout.split('\n')
       lines[0].trim().should.equal('subject,object')
-      lines.slice(1).length.should.equal(2)
-      lines.slice(1).forEach(url => url.should.startWith('http://www.wikidata.org/entity/Q'))
+      lines.slice(1).length.should.equal(3)
+      lines.slice(1, -1).forEach(url => url.should.startWith('http://www.wikidata.org/entity/Q'))
+      lines.slice(-1)[0].should.equal('')
     })
 
     it('should support tsv format', async () => {
