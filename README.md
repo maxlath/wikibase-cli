@@ -24,6 +24,8 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 [![Node](https://img.shields.io/badge/node-%3E=%20v6.4.0-brightgreen.svg)](http://nodejs.org)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
+[Download stats](https://npm-stat.com/charts.html?package=wikibase-cli)
+
 **Show your support** by adding `{{#babel:Wikibase CLI}}` to [your Wikidata user page](https://www.wikidata.org/w/index.php?title=Special:MyPage&action=edit)
 
 <img style="max-width: 30em;" src="https://raw.githubusercontent.com/maxlath/wikibase-cli/master/assets/userbox_wikibase_cli.jpg" alt="userbox_wikibase_cli">
