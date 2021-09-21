@@ -22,5 +22,5 @@ module.exports = {
     { args: 'reset', comment: 'reset configuration' },
     { args: `--json > config.json.backup\n  ${grey('# to restore it, simply override the current config file')}\n  cp config.json.backup $(wb config path)`, comment: 'can be used to backup the config' }
   ],
-  doc: 'https://github.com/maxlath/wikibase-cli/blob/master/docs/config.md#config'
+  doc: 'https://github.com/maxlath/wikibase-cli/blob/main/docs/config.md#config'
 }

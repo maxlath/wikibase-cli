@@ -475,7 +475,7 @@ wd add-reference 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 wd ar 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F' P143 Q60856
 ```
 
-See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
+See [*add claim with a reference*](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#with-a-reference) for a workflow example to easily get the claim `guid`
 
 ##### add a reference with multiple snaks
 To create a single reference with multiple snaks we will need to use the object interface, passing the `guid` and `snaks` as a JSON object.
@@ -570,9 +570,9 @@ Other that the `datatype` and the absence of `id`, the `create-entity` command i
 See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the input format.
 
 **Demos**:
-* [Create a new person item](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_person.js)
-* [Create a new property](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_property.js)
-* [Create a new item with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/master/docs/examples/new_item_with_the_same_references_being_used_multiple_times.js)
+* [Create a new person item](https://github.com/maxlath/wikibase-cli/blob/main/docs/examples/new_person.js)
+* [Create a new property](https://github.com/maxlath/wikibase-cli/blob/main/docs/examples/new_property.js)
+* [Create a new item with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/main/docs/examples/new_item_with_the_same_references_being_used_multiple_times.js)
 
 See also [wikibase-cli create template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/edit) for some examples.
 
@@ -602,7 +602,7 @@ Taking our JSON data from a file can be much more convenient than the inline opt
 wb edit-entity ./existing_entity_data.json
 ```
 
-This `./existing_entity_data.json` file could be generated in different ways, but the easiest is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
+This `./existing_entity_data.json` file could be generated in different ways, but the easiest is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wd-generate-template):
 ```sh
 wd generate-template Q4115189 --format json > Q4115189.edit-template.json
 # Do your modifications, and then
@@ -657,7 +657,7 @@ wb edit-entity ./add_P1449_and_P1106.js Q3 ghi 789
 
 This way, you can generate infinitely flexible templates. See [wikibase-cli edit template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/edit) for some examples.
 
-A good way to start writting a template function starting from an existing entity is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/master/docs/read_operations.md#wd-generate-template):
+A good way to start writting a template function starting from an existing entity is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wd-generate-template):
 ```sh
 # When generating templates for only one entity, JS is the default format,
 # and comes with helpful labels as comments, to make ids less obscure
@@ -734,7 +734,7 @@ wb ee ./template.js Q1 abc 123 --dry
 ```
 
 ###### template help menu
-If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/master/test/assets/edit_data_function.js)
+If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/main/test/assets/edit_data_function.js)
 ```sh
 wd ee ./test/assets/edit_data_function.js --help
 ```

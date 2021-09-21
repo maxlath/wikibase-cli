@@ -368,7 +368,7 @@ wd data E35
 ```
 
 ### wb generate-template
-This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-create-entity) or [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/master/docs/write_operations.md#wb-edit-entity)
+This command lets you generate a data file (JSON by default) pre-formatted to be passed as input of [`wb create-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-create-entity) or [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-edit-entity)
 
 ```sh
 wb generate-template <entity-id>
@@ -768,7 +768,7 @@ wb sparql ./path/to/query_template.js --dry > ./query.rq
 See [wikibase-cli request template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/request) for some examples.
 
 ##### request template help menu
-If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/master/test/assets/query_with_metadata.js)
+If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/main/test/assets/query_with_metadata.js)
 ```sh
 wd sparql ./test/assets/query_with_metadata.js --help
 ```

@@ -12,7 +12,7 @@
       "ecmaVersion": 2018
   },
   "extends": [
-      // See https://github.com/standard/eslint-config-standard/blob/master/eslintrc.json
+      // See https://github.com/standard/eslint-config-standard/blob/master/.eslintrc.json
       "standard"
   ],
   "plugins": [
