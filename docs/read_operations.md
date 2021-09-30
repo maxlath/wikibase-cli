@@ -817,7 +817,7 @@ wd query -p P921 -o Q44559 -a
 This can also be used to get all the uses of a property
 ```sh
 # Get all the subjects and objects linked by the property P2586
-wd query --property P2002 P2586
+wd query --property P2586
 ```
 
 **NB**: if the `--object` value could be interpreted as a number (`123.456`) but should be a string, make sure to pass it between quotes:
