@@ -300,7 +300,7 @@ wd d -sk ids Q123 | jq .claims.P138 -j
 ##### `time-converter`
 Customize the format of time values
 ```sh
-wd data --simplify --time-converter simple-day Q52
+wd data --simplify --time-converter simple-day Q52#P571
 ```
 
 Available values: `iso`, `epoch`, `simple-day`, `none`, see [wikibase-sdk documentation on time parsers](https://github.com/maxlath/wikibase-sdk/blob/main/docs/simplify_claims.md#change-time-parser) for behavior details
