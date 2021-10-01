@@ -1,9 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.13.0 - 2021-10-01
+* [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added [`--time-converter`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#time-converter)
+
 ## 15.12.0 - 2021-09-01
-* [wb id](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-id): add support for dbpedia urls
-* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): add `--sample` and `--describe` modes
+* [wb id](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-id): added support for dbpedia urls
+* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): added `--sample` and `--describe` modes
 
 ## 15.11.0 - 2021-05-01
 * [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added support for [entities schema](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#entities-schema)
@@ -16,11 +19,11 @@
 * Edit commands: allow to [set the `baserevid`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#baserevid)
 
 ## 15.8.0 - 2020-12-01
-* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql): add support for template metadata, allowing to generate a [template-specific `--help` menu]
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql): added support for template metadata, allowing to generate a [template-specific `--help` menu]
 
 ## 15.7.0 - 2020-12-01
 * [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-move-qualifier) / [`wb remove-qualifier`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-qualifier): accept statement uri in place of a statement guid
-* [template help menu](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#template-help-menu): add a [new recommended template syntax](https://github.com/maxlath/wikibase-cli/blob/15c824e/test/assets/edit_data_function.js)
+* [template help menu](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#template-help-menu): added a [new recommended template syntax](https://github.com/maxlath/wikibase-cli/blob/15c824e/test/assets/edit_data_function.js)
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql) / [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): add support for xml, tsv, csv, and rdfbin formats
 
 ## 15.6.0 - 2020-11-30
@@ -162,7 +165,7 @@ npm install -g wikibase-cli@14
 * [`wd claims`](https://github.com/maxlath/wikibase-cli#wb-claims) returns claims GUIDs when provided with a property and a value
 
 ## 7.1.0 - 2018-12-22
-* Added new `keep` options values to [`wd data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#claims-simplification-keep-options): `richvalues` and `types` (commit 6cd7b7f)
+* Added new `keep` options values to [`wd data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#keep): `richvalues` and `types` (commit 6cd7b7f)
 * Add option [`-y, --history` to `wd open`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-open)
 
 ## 7.0.0 - 2018-10-05
@@ -215,7 +218,7 @@ npm install -g wikibase-cli@14
 * Add option [`-v, --verbose` to `wd search`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-search) which passes the found ids to [`wd summary`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-summary)
 
 ## 5.1.0 - 2017-11-09
-* Added `keep` options to [`wd data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#claims-simplification-keep-options)
+* Added `keep` options to [`wd data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#keep)
 
 ## 5.0.0 - 2017-11-03
 * **BREAKING CHANGE**: [`wd add-reference`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-add-reference) expects a property to be explicity set
