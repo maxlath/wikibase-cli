@@ -282,7 +282,7 @@ wd data --simplify Q515168
 wd data --simplify --keep ids,nontruthy,ranks Q123
 ```
 
-##### claims simplification keep options
+##### `keep`
 
 You can customize the output by passing the list of data elements to keep:
 
@@ -295,6 +295,14 @@ wd d -sk ids Q123 | jq .claims.P138 -j
 ```
 
 > See [`simplify.claims` options](https://github.com/maxlath/wikidata-sdk/blob/master/docs/simplify_claims.md#options) for behavior details
+
+##### `time-converter`
+Customize the format of time values
+```sh
+wd data --simplify --time-converter simple-day Q52
+```
+
+Available values: `iso`, `epoch`, `simple-day`, `none`, see [wikibase-sdk documentation on time parsers](https://github.com/maxlath/wikibase-sdk/blob/main/docs/simplify_claims.md#change-time-parser) for behavior details
 
 #### filtered properties
 Only request properties you need among `labels`,`descriptions`,`aliases`,`claims`,`sitelinks`

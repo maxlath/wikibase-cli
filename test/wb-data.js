@@ -163,5 +163,10 @@ describe('wb data', function () {
       claim.references.should.be.an.Array()
       claim.qualifiers.should.be.an.Object()
     })
+
+    it('should use specified time-converter', async () => {
+      const { stdout } = await shellExec('./bin/wd data --simplify --time-converter simple-day Q52#P571')
+      stdout.should.equal('2001-01-15')
+    })
   })
 })
