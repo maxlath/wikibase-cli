@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const program = require('../lib/program')
+program.customHelpOption = require('../lib/command_with_template_custom_help')
 
 program
 .option('-r, --raw', 'get raw, non-simplified JSON results')
@@ -57,7 +58,7 @@ const main = async () => {
 }
 
 if (program.showHelp) {
-  require('../lib/command_with_template_custom_help')()
+  program.customHelpOption()
 } else {
   main().catch(console.error)
 }
