@@ -1,6 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.14.0 - 2021-10-12
+* allow to pass templates to all edit commands where it wasn't possible yet (`wb-add-alias`, `wb-add-qualifier`, `wb-add-reference`, `wb-delete-entity`, `wb-merge-entity`, `wb-move-claim`, `wb-move-qualifier`, `wb-remove-alias`, `wb-remove-claim`, `wb-remove-reference`, `wb-remove-qualifier`, `wb-set-alias`, `wb-set-description`, `wb-set-label`, `wb-update-claim`, `wb-update-qualifier`)
+* allow to set `dryRun=false` in templates examples
+* allow to set a `commands` shortlist in templates
+
 ## 15.13.0 - 2021-10-01
 * [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added [`--time-converter`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#time-converter)
 
