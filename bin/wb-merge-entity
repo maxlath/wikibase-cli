@@ -1,4 +1,7 @@
 #!/usr/bin/env node
 const program = require('commander')
-program.customArgsParser = args => [ { from: args[0], to: args[1] } ]
+const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
+const inlineArgsParser = args => [ { from: args[0], to: args[1] } ]
+program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('entity', 'merge')

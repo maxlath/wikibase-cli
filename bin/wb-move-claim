@@ -2,7 +2,8 @@
 const program = require('commander')
 const { parseGuid } = require('../lib/parse_command_utils')
 const { isPropertyClaimsId } = require('wikibase-sdk')
-program.customArgsParser = args => {
+const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
+const inlineArgsParser = args => {
   let [ guid, id, property ] = args
   if (isPropertyClaimsId(guid)) {
     return [ { propertyClaimsId: guid, id, property } ]
@@ -11,4 +12,6 @@ program.customArgsParser = args => {
     return [ { guid, id, property } ]
   }
 }
+program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('claim', 'move')

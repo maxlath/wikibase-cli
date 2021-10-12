@@ -7,4 +7,5 @@ const inlineArgsParser = ([ guid, property, value ]) => {
   return [ { guid, property, value } ]
 }
 program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('reference', 'add')

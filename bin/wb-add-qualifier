@@ -1,8 +1,11 @@
 #!/usr/bin/env node
 const program = require('commander')
 const { parseGuid } = require('../lib/parse_command_utils')
-program.customArgsParser = ([ guid, property, value ]) => {
+const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
+const inlineArgsParser = ([ guid, property, value ]) => {
   guid = parseGuid(guid)
   return [ { guid, property, value } ]
 }
+program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('qualifier', 'add')
