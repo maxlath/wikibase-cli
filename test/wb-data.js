@@ -116,6 +116,20 @@ describe('wb data', function () {
     })
   })
 
+  it('should fetch a specific revision', async () => {
+    const revisionId = 1257590478
+    const { stdout } = await shellExec(`./bin/wd data Q1345582 --revision ${revisionId}`)
+    const entity = JSON.parse(stdout)
+    entity.lastrevid.should.equal(revisionId)
+  })
+
+  it('should simplify a specific revision', async () => {
+    const revisionId = 1257590478
+    const { stdout } = await shellExec(`./bin/wd data Q1345582 --revision ${revisionId} --simplify`)
+    const entity = JSON.parse(stdout)
+    entity.labels.fr.should.equal('Gilbert Simondon')
+  })
+
   it('should return entities schema text', async () => {
     const { stdout } = await shellExec('./bin/wd data E233')
     stdout.should.containEql('PREFIX wd:')
