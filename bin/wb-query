@@ -5,6 +5,8 @@ program
 .option('-s, --subject <subject>', 'set a subject')
 .option('-p, --property <property>', 'set a property')
 .option('-o, --object <object>', 'set an object')
+.option('-qp, --qualifier-property <property>', 'set a qualifier property')
+.option('-qo, --qualifier-object <object>', 'set a qualifier value')
 .option('--describe <node>', 'make a DESCRIBE request')
 .option('--sample', 'select a sample of triples')
 .option('-a, --labels', 'requests results labels')
