@@ -1,7 +1,7 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
-## 15.14.0 - 2021-10-18
+## 15.15.0 - 2021-10-18
 * [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): allow to set the `nondeprecated` simplify option
 
 ## 15.14.0 - 2021-10-12
