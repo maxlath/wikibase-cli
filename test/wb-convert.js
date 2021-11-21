@@ -1,9 +1,7 @@
 require('should')
 const { shellExec } = require('./lib/utils')
 
-describe('wb convert', function () {
-  this.timeout(20000)
-
+describe('wb convert', () => {
   it('should convert external ids', async () => {
     const { stdout } = await shellExec('./bin/wd convert -p P268 -o 11865344k 11932251d')
     const results = JSON.parse(stdout)

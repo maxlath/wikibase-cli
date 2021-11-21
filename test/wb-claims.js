@@ -1,9 +1,7 @@
 require('should')
 const { shellExec } = require('./lib/utils')
 
-describe('wb claims', function () {
-  this.timeout(20000)
-
+describe('wb claims', () => {
   it('should display help when requested without argument', async () => {
     const { stdout } = await shellExec('./bin/wd claims')
     stdout.should.containEql('Usage:')

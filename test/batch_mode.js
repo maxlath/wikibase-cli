@@ -1,9 +1,7 @@
 require('should')
 const { wdTest } = require('./lib/utils')
 
-describe('batch mode', function () {
-  this.timeout(20000)
-
+describe('batch mode', () => {
   it('should take arguments from stdin (add-claim)', async () => {
     const { stdout, stderr } = await wdTest('add-claim --batch --dry < ./test/assets/add_claim_batch')
     stdout.split('\n').should.deepEqual([

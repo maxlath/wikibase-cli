@@ -29,8 +29,7 @@ describe('wb edit-entity', () => {
     stdout.should.containEql('Edit an existing entity')
   })
 
-  it('should accept an array of edit objects', async function () {
-    this.timeout(20000)
+  it('should accept an array of edit objects', async () => {
     const { stdout } = await wdTest('edit-entity ./test/assets/multi_edit_data.js --maxlag 100')
     const [ line1, line2 ] = stdout.split('\n')
     JSON.parse(line1).entity.id.should.equal('Q1112')

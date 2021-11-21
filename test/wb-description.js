@@ -1,9 +1,7 @@
 require('should')
 const { shellExec } = require('./lib/utils')
 
-describe('wb description', function () {
-  this.timeout(20000)
-
+describe('wb description', () => {
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd description')
     stdout.should.containEql('Usage:')

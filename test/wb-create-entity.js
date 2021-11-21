@@ -1,9 +1,7 @@
 require('should')
 const { wdTest } = require('./lib/utils')
 
-describe('wb edit-entity', function () {
-  this.timeout(20000)
-
+describe('wb edit-entity', () => {
   it('should show the command help menu when called without argument', async () => {
     const { stdout } = await wdTest('create-entity')
     stdout.should.containEql('Usage:')

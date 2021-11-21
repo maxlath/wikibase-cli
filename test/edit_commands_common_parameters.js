@@ -1,9 +1,7 @@
 require('should')
 const { wdTest, randomString, shouldNotBeCalled } = require('./lib/utils')
 
-describe('edit commands common parameters', function () {
-  this.timeout(20000)
-
+describe('edit commands common parameters', () => {
   describe('summary', () => {
     it('should accept a summary', async () => {
       const id = 'Q1111'

@@ -2,9 +2,7 @@ require('should')
 const { shellExec } = require('./lib/utils')
 const { undesiredRes } = require('./lib/utils')
 
-describe('wb label', function () {
-  this.timeout(20000)
-
+describe('wb label', () => {
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd label')
     stdout.should.containEql('Usage:')

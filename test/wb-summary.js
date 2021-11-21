@@ -5,8 +5,7 @@ Label Friedrichshafen
 Description Wikimedia disambiguation page
 instance of (P31): Wikimedia disambiguation page (Q4167410)`
 
-describe('wb summary', function () {
-  this.timeout(20000)
+describe('wb summary', () => {
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd summary')
     stdout.should.containEql('Usage:')

@@ -2,9 +2,7 @@ require('should')
 const { shellExec } = require('./lib/utils')
 const { isItemId } = require('wikibase-sdk')
 
-describe('wb query', function () {
-  this.timeout(20000)
-
+describe('wb query', () => {
   it('should display help', async () => {
     const { stdout } = await shellExec('./bin/wd query')
     stdout.should.containEql('Usage:')

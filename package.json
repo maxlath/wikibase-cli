@@ -13,7 +13,7 @@
     "lint-staged": "./scripts/lint_staged",
     "prepublishOnly": "npm run lint && npm test",
     "postpublish": "npm run docker:publish && git push --tags",
-    "test": "mocha --exit",
+    "test": "mocha --exit --timeout 20000",
     "update-toc": "./scripts/update_toc"
   },
   "repository": {
