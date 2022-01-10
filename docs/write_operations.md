@@ -586,7 +586,7 @@ wb edit-entity <inline-entity-json|file-path>
 wb ee <inline-entity-json|file-path>
 ```
 
-See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected input format, especially on how to set complex values, qualifiers and references, or remove existing data.
+See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected input format, especially on how to set complex values, qualifiers and references, or remove existing data. See also the section on [claim reconciliation](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation).
 
 ##### Pass data as inline JSON
 Pass data as inline JSON.
