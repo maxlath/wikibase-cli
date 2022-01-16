@@ -3,6 +3,7 @@ const program = require('../lib/program')
 
 program
 .option('-a, --all', 'include all claims, not only the truthy ones')
+.option('-t, --type <type>', 'Keep only claims with the specified datatype')
 .process('claims')
 
 const { yellow } = require('chalk')
