@@ -2,7 +2,7 @@
 *versions follow [SemVer](http://semver.org)*
 
 ## 15.15.0 - 2021-10-18
-* [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): allow to set the `nondeprecated` simplify option
+* [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): allow to set the `nondeprecated` simplify option
 
 ## 15.14.0 - 2021-10-12
 * allow to pass templates to all edit commands where it wasn't possible yet (`wb-add-alias`, `wb-add-qualifier`, `wb-add-reference`, `wb-delete-entity`, `wb-merge-entity`, `wb-move-claim`, `wb-move-qualifier`, `wb-remove-alias`, `wb-remove-claim`, `wb-remove-reference`, `wb-remove-qualifier`, `wb-set-alias`, `wb-set-description`, `wb-set-label`, `wb-update-claim`, `wb-update-qualifier`)
@@ -10,14 +10,14 @@
 * allow to set a `commands` shortlist in templates
 
 ## 15.13.0 - 2021-10-01
-* [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added [`--time-converter`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#time-converter)
+* [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added [`--time-converter`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#time-converter)
 
 ## 15.12.0 - 2021-09-01
-* [wb id](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-id): added support for dbpedia urls
+* [`wb id`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-id): added support for dbpedia urls
 * [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): added `--sample` and `--describe` modes
 
 ## 15.11.0 - 2021-05-01
-* [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added support for [entities schema](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#entities-schema)
+* [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added support for [entities schema](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#entities-schema)
 * [`wb generate-template`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-generate-template): added a `--json` (equivalent to `--format json`)
 
 ## 15.10.0 - 2020-12-27
@@ -79,7 +79,7 @@ npm install -g wikibase-cli@14
 **BREAKING CHANGE**: output now defaults to newline-delimited values (instead of space-delimited values)
 
 ## 12.2.0 - 2020-06-10
-* [wb data](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added support for [property claims id](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#property-claims)
+* [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added support for [property claims id](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#property-claims)
 
 ## 12.1.0 - 2020-06-10
 * Added [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-move-qualifier)
