@@ -1,6 +1,11 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.16.0 - 2022-01-16
+* [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#edit-entity)/[`wb create-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#create-claim)/[`wb remove-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#remove-claim): add reconciliation capabilities, through [`wikibase-edit` reconciliation syntax](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation)
+* [`wb props`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-props): allow to filter by both type and pattern
+* [`wb claims`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-claims): allow to filter claims by both type and pattern
+
 ## 15.15.0 - 2021-10-18
 * [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): allow to set the `nondeprecated` simplify option
 
@@ -21,7 +26,7 @@
 * [`wb generate-template`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-generate-template): added a `--json` (equivalent to `--format json`)
 
 ## 15.10.0 - 2020-12-27
-* [`create-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#create-entity) / [`edit-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#edit-entity): allow to [generate several edit objects at once](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#generate-several-edit-objects)
+* [`wb create-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#create-entity) / [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#edit-entity): allow to [generate several edit objects at once](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#generate-several-edit-objects)
 
 ## 15.9.0 - 2020-12-14
 * Edit commands: allow to [set the `baserevid`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#baserevid)
