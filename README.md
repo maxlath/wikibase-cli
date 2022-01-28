@@ -5,6 +5,8 @@ This tool is mostly a CLI interface to the JS modules [wikibase-edit](https://ww
 
 It was primarily developed to target [Wikidata](https://wikidata.org), but as then been decoupled to support any Wikibase instance.
 
+Supported systems: any system that can run [NodeJS](https://nodejs.org/en/download/) (Linux, Mac OS, Windows, and more)
+
 This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wiki/Grants:Project/WikidataJS).
 
 <div align="center">
