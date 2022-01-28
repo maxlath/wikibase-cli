@@ -30,11 +30,6 @@ module.exports = {
     throw err
   },
 
-  undesiredErr: done => err => {
-    done(err)
-    console.warn(err.body || err, 'undesired err body')
-  },
-
   shellExec,
 
   wdTest: async cmd => shellExec(`export WB_INSTANCE=https://test.wikidata.org ; ./bin/wb ${cmd}`),
