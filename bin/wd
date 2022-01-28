@@ -6,10 +6,16 @@
 
 const { spawn } = require('child_process')
 
-spawn('wb', process.argv.slice(2), {
-  stdio: 'inherit',
+const escapeDollars = arg => arg.replace(/\$/g, '\\$')
+const args = process.argv.slice(2).map(escapeDollars)
+
+spawn('wb', args, {
   env: Object.assign({
     WB_INSTANCE: 'https://www.wikidata.org',
     WB_SPARQL_ENDPOINT: 'https://query.wikidata.org/sparql',
-  }, process.env)
+  }, process.env),
+  stdio: 'inherit',
+  // Required to not get a ENOENT on Windows
+  // See https://stackoverflow.com/a/54515183/3324977
+  shell: true,
 })
