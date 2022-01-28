@@ -1,2 +1,15 @@
-#!/usr/bin/env sh
-export WB_INSTANCE=https://www.wikidata.org WB_SPARQL_ENDPOINT=https://query.wikidata.org/sparql ; wb "$@"
+#!/usr/bin/env node
+
+// This use to be a simple one line shell script, but due to
+// compatibility reasons with Windows, it needed to be rewritten
+// in the one environment we know is available: node
+
+const { spawn } = require('child_process')
+
+spawn('wb', process.argv.slice(2), {
+  stdio: 'inherit',
+  env: Object.assign({
+    WB_INSTANCE: 'https://www.wikidata.org',
+    WB_SPARQL_ENDPOINT: 'https://query.wikidata.org/sparql',
+  }, process.env)
+})
