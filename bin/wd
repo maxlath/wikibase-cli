@@ -1,21 +1,9 @@
 #!/usr/bin/env node
 
-// This use to be a simple one line shell script, but due to
-// compatibility reasons with Windows, it needed to be rewritten
-// in the one environment we know is available: node
+process.env.WB_INSTANCE = 'https://www.wikidata.org'
+process.env.WB_SPARQL_ENDPOINT = 'https://query.wikidata.org/sparql'
+// Fake the executed script to be wb to trick commander to believe it
+// as it would otherwise fail to build subcommand paths
+process.argv[1] = process.argv[1].replace(/\/wd$/, '/wb')
 
-const { spawn } = require('child_process')
-
-const escapeDollars = arg => arg.replace(/\$/g, '\\$')
-const args = process.argv.slice(2).map(escapeDollars)
-
-spawn('wb', args, {
-  env: Object.assign({
-    WB_INSTANCE: 'https://www.wikidata.org',
-    WB_SPARQL_ENDPOINT: 'https://query.wikidata.org/sparql',
-  }, process.env),
-  stdio: 'inherit',
-  // Required to not get a ENOENT on Windows
-  // See https://stackoverflow.com/a/54515183/3324977
-  shell: true,
-})
+require('./wb')

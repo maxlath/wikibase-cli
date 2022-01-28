@@ -1,5 +1,5 @@
 require('should')
-const { shellExec } = require('./lib/utils')
+const { shellExec, shouldNotBeCalled } = require('./lib/utils')
 
 describe('wb label', () => {
   it('should display help', async () => {
@@ -13,8 +13,11 @@ describe('wb label', () => {
   })
 
   it('should not fallback on another language if a language is explicitly specificed', async () => {
-    const { stderr } = await shellExec('./bin/wd label --lang uk Q15726039')
-    stderr.should.equal('no result found')
+    await shellExec('./bin/wd label --lang uk Q15726039')
+    .then(shouldNotBeCalled)
+    .catch(({ stderr }) => {
+      stderr.trim().should.equal('no result found')
+    })
   })
 
   it('should be tolerant on input', async () => {
