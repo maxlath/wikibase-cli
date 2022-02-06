@@ -47,6 +47,7 @@
     "node-fetch": "^2.6.0",
     "open": "^7.0.4",
     "read": "^1.0.7",
+    "shell-quote": "^1.7.3",
     "split": "^1.0.1",
     "through": "^2.3.8",
     "wikibase-edit": "^4.16.0",

@@ -43,6 +43,11 @@ describe('batch mode', () => {
     ])
   })
 
+  it('should accept quoted arguments', async () => {
+    const { stdout } = await wdTest('update-claim --batch --dry < ./test/assets/update_claim_batch')
+    JSON.parse(stdout).newValue.should.equal("Thuja occidentalis 'Smaragd'")
+  })
+
   it('should not exit if requested', async () => {
     const { stderr } = await wdTest('add-claim --batch --no-exit-on-error < ./test/assets/add_claim_batch_with_error')
     const stderrLines = formatProgression(stderr)
