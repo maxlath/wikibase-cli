@@ -45,7 +45,8 @@ describe('batch mode', () => {
 
   it('should accept quoted arguments', async () => {
     const { stdout } = await wdTest('update-claim --batch --dry < ./test/assets/update_claim_batch')
-    JSON.parse(stdout).newValue.should.equal("Thuja occidentalis 'Smaragd'")
+    JSON.parse(stdout.split('\n')[0]).newValue.should.equal("Thuja occidentalis 'Smaragd'")
+    JSON.parse(stdout.split('\n')[1]).newValue.should.equal('Syringa vulgaris ʽAlba’')
   })
 
   it('should not exit if requested', async () => {
