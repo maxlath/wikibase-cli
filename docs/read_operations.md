@@ -7,7 +7,6 @@ The following documentation assumes that the Wikibase instance we work with is W
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [wb summary](#wb-summary)
 - [wb search](#wb-search)
 - [wb label](#wb-label)
@@ -25,6 +24,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [fetch an old revision](#fetch-an-old-revision)
   - [alternative formats](#alternative-formats)
     - [ttl](#ttl)
+    - [csv](#csv)
   - [property claims](#property-claims)
   - [single claim](#single-claim)
   - [entities schema](#entities-schema)
@@ -157,6 +157,11 @@ wb label Q123 -l zh
 ```
 
 > **NB**: when no `--lang` is specified, the command will try to fallback on English, or whatever language value can be found
+
+Alternatively, if you were wanting to get labels in a csv format, a combination of `wb data` and `jq` might suit you better:
+```sh
+echo Q12377508 Q193943 | wd data --props labels --simplify | jq -r '[.id, .labels.en // first(.labels[])] | @csv'
+```
 
 ### wb description
 ```sh
@@ -349,6 +354,15 @@ cat fred_vargas_books_ids | wd data --format ttl > fred_vargas_books.ttl
 > **NB**: other options such as filtered properties will be ignored
 
 This can be used to generated partial Turtle dumps, if [Wikibase full dump](https://www.wikidata.org/wiki/Wikidata:Database_download#RDF_dumps) is too big for your needs, but be aware that it is way less efficient that its NDJSON (the default format) counterpart: while for NDJSON, entities are fetched by batches of 50 (the Wikibase API limit), in TTL, entities are fetched one by one, using the [`/wiki/Special:EntityData/Qxxx.ttl`](https://www.wikidata.org/wiki/Special:EntityData/Q123.ttl) endpoint.
+
+##### csv
+`wb data` does not return csv natively, you are instead invited to combine it with a tool such as [jq](https://stedolan.github.io/jq/) to build an array of values and format it as csv. Example:
+```sh
+# Get entities English labels as csv
+echo Q12377508 Q193943 | wd data --props labels.en --simplify | jq -r '[.id, .labels.en] | @csv'
+# Get entities English labels as csv, and fallback on any other language if the English label is missing
+echo Q12377508 Q193943 | wd data --props labels --simplify | jq -r '[.id, .labels.en // first(.labels[])] | @csv'
+```
 
 #### property claims
 You can also use this command to get the data of an entity's claims for a certain property

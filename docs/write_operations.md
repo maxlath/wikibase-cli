@@ -11,7 +11,6 @@ The following documentation often assumes that the Wikibase instance we work wit
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-
 - [labels](#labels)
   - [wb set-label](#wb-set-label)
 - [descriptions](#descriptions)
