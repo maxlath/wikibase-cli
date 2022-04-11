@@ -109,12 +109,11 @@ wb search eagle -i https://wikibase-registry.wmflabs.org
 Options:
 * `-l, --lang <lang>`: specify the results labels and descriptions language
 * `-t, --type <type>`: set a custom type: i|item, p|property, l|lexeme, f|form, s|sense (Default: item)
-```sh
-```
 * `-n, --limit <num>`: set a custom limit (defaults to 20)
 * `-j, --json`: format the result as JSON
 * `-v, --verbose`: display rich results (aka summaries)
 * `-p, --properties <comma separted properties ids>`: request additional properties (implies verbose mode)
+* `--cirrus`: Use the [Cirrus search](https://www.wikidata.org/w/api.php?action=help&modules=query%2Bsearch) rather than the default [`wbsearchentities` search](https://www.wikidata.org/w/api.php?action=help&modules=wbsearchentities)
 
 Examples:
 ```sh
@@ -128,6 +127,8 @@ wd search --type lexeme "date"
 wd search --type form "code"
 # Searching senses doesn't seem to work currently (2020-04-17)
 wd search --type sense "test"
+# Use Cirrus search to find humans (Q5) matching "porte"
+wd search --cirrus "porte haswbstatement:P31=Q5"
 ```
 
 ### wb label
