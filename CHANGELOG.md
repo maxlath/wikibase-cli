@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 15.17.0 - 2022-04-11
+* [`wb search`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-search): added support for Cirrus search
+
 ## 15.16.0 - 2022-01-16
 * [`wb edit-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#edit-entity)/[`wb create-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#create-claim)/[`wb remove-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#remove-claim): add reconciliation capabilities, through [`wikibase-edit` reconciliation syntax](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation)
 * [`wb props`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-props): allow to filter by both type and pattern
