@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 16.0.0 - 2022-05-03
+**BREAKING CHANGE**: updated NodeJS minimal version `>= v10.0.0`
+
 ## 15.17.0 - 2022-04-11
 * [`wb search`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-search): added support for Cirrus search
 
