@@ -15,6 +15,7 @@ if (!(search && search.length > 0)) program.helpAndExit(0)
 
 let { lang: language, json, verbose, properties, limit, type, cirrus } = program
 limit = limit || 20
+if (typeof limit === 'string') limit = parseInt(limit)
 
 if (properties) program.verbose = verbose = true
 
