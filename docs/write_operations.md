@@ -906,7 +906,7 @@ If you are not in a hurry, you can set an even nicer value, like `2`
 ```sh
 wb add-claim Q4115189 P1106 123 --maxlag 2
 ```
-If you want that command to be done already, you can go for a more aggresive value and be done with it
+If you want that command to be done already, you can go for a more aggressive value and be done with it
 :warning: should be avoided when you have a long command queue, typically in --batch mode
 ```sh
 wb add-claim Q4115189 P1106 123 --maxlag 100
