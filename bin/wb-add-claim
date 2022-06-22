@@ -7,4 +7,5 @@ const inlineArgsParser = ([ id, property, value ]) => {
   return [ data ]
 }
 program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('claim', 'add')
