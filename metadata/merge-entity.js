@@ -4,7 +4,7 @@ module.exports = {
   alias: 'me',
   args: '<from-id> <to-id>',
   description: 'Merge an entity into another',
-  options: editCommands,
+  options: { keepOldest: true, ...editCommands },
   examples: [
     {
       args: 'Q1 Q2',

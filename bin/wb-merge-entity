@@ -1,7 +1,24 @@
 #!/usr/bin/env node
 const program = require('commander')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
-const inlineArgsParser = args => [ { from: args[0], to: args[1] } ]
+
+const inlineArgsParser = args => {
+  if (program.keepOldest) {
+    const [ newest, oldest ] = getSortedEntitiesIds(args)
+    return [ { from: newest, to: oldest } ]
+  } else {
+    return [ { from: args[0], to: args[1] } ]
+  }
+}
+
+const getSortedEntitiesIds = args => {
+  return args
+  .slice(0, 2)
+  .sort((a, b) => getNumericId(b) - getNumericId(a))
+}
+
+const getNumericId = id => parseInt(id.replace(/^[A-Z]+/i, ''))
+
 program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('entity', 'merge')

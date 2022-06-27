@@ -747,6 +747,9 @@ wb merge-entity Q1 Q2
 wb me <from-id> <to-id>
 ```
 
+Options:
+* `--keep-oldest`: Merge the newest entity in the oldest one. By default, the arguments order determins which entity is kept: the first entity is merged into the second entity.
+
 #### wb delete-entity
 Delete an entity (See [mw:Page deletion](https://www.mediawiki.org/wiki/Manual:Page_deletion))
 ```sh
