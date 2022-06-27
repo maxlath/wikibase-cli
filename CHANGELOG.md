@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 16.1.0 - 2022-06-27
+* [`wb merge-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-merge-entity): add `--keep-oldest` option
+
 ## 16.0.0 - 2022-05-03
 **BREAKING CHANGE**: updated NodeJS minimal version `>= v10.0.0`
 
