@@ -418,7 +418,7 @@ claim_guid='Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 wb mq $claim_guid P2310 P2311
 
 # move only the first P2310 qualifier to P2311
-qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq -r '.qualifiers.P2310[0]')
+qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq -r '.qualifiers.P2310[0].hash')
 wb mq $claim_guid $qualifier_hash P2310 P2311
 ```
 
