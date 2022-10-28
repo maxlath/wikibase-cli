@@ -590,7 +590,7 @@ See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/
 ##### Pass data as inline JSON
 Pass data as inline JSON.
 ```sh
-wd edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}}'
+wd edit-entity '{"id":"Q4115189", "labels":{"en":"a label","fr":"un label"},"descriptions":{"en":"some description","fr":"une description"},"claims":{"P1775":["Q3576110","Q12206942"],"P2002":"bulgroz"}, "sitelinks":{"eswiki": "Wikipedia:Wikidata/Zona de pruebas"}}'
 ```
 It works, but writting JSON by hand isn't that fun, we can do better.
 
@@ -623,9 +623,30 @@ module.exports = {
   id: 'Q4115189',
   // a comment
   labels: { en: 'a label' },
+  descriptions: { en: 'some description' },
+  aliases: {
+    en: [ 'an alias', 'another alias' ],
+    fr: [ 'un alias' ],
+  },
   claims: {
-    P123: 'Q1799264'
-  }
+    P123: 'Q1799264',
+    P369: [
+      'Q13406268',
+      {
+        value: 'Q1992907',
+        qualifiers: {
+          P370: 'some qualifier value'
+        },
+        references: [
+          { P370: 'some reference value', P813: '2022-10-28' },
+          { P370: 'another reference value', P813: '2022-10-28' },
+        ]
+      },
+    ]
+  },
+  sitelinks: {
+    eswiki: 'Wikipedia:Wikidata/Zona de pruebas'
+  },
 }
 ```
 
