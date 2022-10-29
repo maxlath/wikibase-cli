@@ -20,8 +20,18 @@ describe('wb label', () => {
     })
   })
 
-  it('should be tolerant on input', async () => {
+  it('should accept an id within a string', async () => {
     const { stdout } = await shellExec('./bin/wd label azfzafzafazQ123456fazafazfz')
+    stdout.should.equal('Friedrichshafen')
+  })
+
+  it('should accept a uri', async () => {
+    const { stdout } = await shellExec('./bin/wd label wd:Q123456')
+    stdout.should.equal('Friedrichshafen')
+  })
+
+  it('should accept a lowercased id', async () => {
+    const { stdout } = await shellExec('./bin/wd label q123456')
     stdout.should.equal('Friedrichshafen')
   })
 })
