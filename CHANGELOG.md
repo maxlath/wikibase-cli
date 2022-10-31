@@ -1,6 +1,13 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 16.2.0 - 2022-11-01
+* Added [`wb remove-label`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-label)
+* Added [`wb remove-description`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-description)
+* Added [`wb set-sitelink`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-set-sitelink)
+* Added [`wb remove-sitelink`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-sitelink)
+* [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): added `--keep badges` option
+
 ## 16.1.0 - 2022-06-27
 * [`wb merge-entity`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-merge-entity): add `--keep-oldest` option
 
