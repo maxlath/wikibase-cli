@@ -80,13 +80,27 @@ wb set-label <entity> <language> <label>
 # Alias:
 wb sl <entity> <language> <label>
 ```
-Examples:
+Example:
 ```sh
 # Set the label 'lorem ipsum' to the item Q4115189 in French
 wb set-label Q4115189 fr "lorem ipsum"
 ```
 
 For more advanced use cases (such as setting multiple labels on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
+
+#### wb remove-label
+Remove a label on an entity in a given language
+```sh
+wb remove-label <entity> <language>
+# Alias:
+wb rl <entity> <language>
+```
+
+Example:
+```sh
+# Remove Q4115189 French label
+wb set-label Q4115189 fr
+```
 
 ### descriptions
 See [Wikidata:Glossary#Description](https://www.wikidata.org/wiki/Wikidata:Glossary#Description)
@@ -106,6 +120,20 @@ wb set-description Q4115189 fr "lorem ipsum"
 ```
 
 For more advanced use cases (such as setting multiple descriptions on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
+
+#### wb remove-description
+Remove a description on an entity in a given language
+```sh
+wb remove-description <entity> <language>
+# Alias:
+wb rd <entity> <language>
+```
+
+Example:
+```sh
+# Remove Q4115189 French description
+wb set-description Q4115189 fr
+```
 
 ### aliases
 See [Wikidata:Glossary#Alias](https://www.wikidata.org/wiki/Wikidata:Glossary#Alias)
