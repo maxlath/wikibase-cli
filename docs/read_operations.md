@@ -294,7 +294,7 @@ wd data --simplify --keep ids,nontruthy,ranks Q123
 You can customize the output by passing the list of data elements to keep:
 
 ```sh
-wd data --simplify --keep ids,richvalues,types,references,qualifiers,hashes,nontruthy,ranks Q123
+wd data --simplify --keep ids,richvalues,types,references,qualifiers,hashes,nontruthy,ranks,badges Q123
 # equivalent to
 wd data --simplify --keep all Q123
 # Can be useful to easily access claims ids

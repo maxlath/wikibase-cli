@@ -1,5 +1,5 @@
 const should = require('should')
-const { shellExec } = require('./lib/utils')
+const { shellExec, wdTest } = require('./lib/utils')
 const _ = require('lodash')
 
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
@@ -174,6 +174,13 @@ describe('wb data', () => {
       claim.value.should.equal('Q128207')
       claim.references.should.be.an.Array()
       claim.qualifiers.should.be.an.Object()
+    })
+
+    it('should keep sitelinks badges', async () => {
+      const { stdout } = await wdTest('data --simplify --keep badges --props sitelinks.frwiki Q226646')
+      const { sitelinks } = JSON.parse(stdout)
+      sitelinks.frwiki.title.should.equal('Bac à sable')
+      sitelinks.frwiki.badges.should.deepEqual([ 'Q608', 'Q609' ])
     })
 
     it('should use specified time-converter', async () => {
