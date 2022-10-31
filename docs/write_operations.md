@@ -101,7 +101,7 @@ wb rl <entity> <language>
 Example:
 ```sh
 # Remove Q4115189 French label
-wb set-label Q4115189 fr
+wb remove-label Q4115189 fr
 ```
 
 ### descriptions
@@ -134,7 +134,7 @@ wb rd <entity> <language>
 Example:
 ```sh
 # Remove Q4115189 French description
-wb set-description Q4115189 fr
+wb remove-description Q4115189 fr
 ```
 
 ### aliases
