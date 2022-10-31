@@ -645,7 +645,15 @@ module.exports = {
     ]
   },
   sitelinks: {
-    eswiki: 'Wikipedia:Wikidata/Zona de pruebas'
+    // Set a sitelink without badges
+    eswiki: 'Wikipedia:Wikidata/Zona de pruebas',
+    // Set a sitelink with badges
+    zhwikisource: {
+      title: 'Wikisource:维基数据/沙盒',
+      badges: [ 'Q17437796', 'Q17437798' ],
+    },
+    // Delete the sitelink
+    frwikiquote: null
   },
 }
 ```
