@@ -13,4 +13,17 @@ describe('wb generate-template', () => {
       }
     })
   })
+
+  describe('sitelinks', () => {
+    it('should preserve badges', async () => {
+      const { stdout } = await shellExec('./bin/wb gt Q226646 --props sitelinks.frwiki --format json --instance https://test.wikidata.org')
+      JSON.parse(stdout)
+      .sitelinks.should.deepEqual({
+        frwiki: {
+          title: 'Bac à sable',
+          badges: [ 'Q608', 'Q609' ]
+        }
+      })
+    })
+  })
 })
