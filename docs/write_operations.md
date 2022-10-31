@@ -41,6 +41,9 @@ The following documentation often assumes that the Wikibase instance we work wit
     - [add a reference with a single snak](#add-a-reference-with-a-single-snak)
     - [add a reference with multiple snaks](#add-a-reference-with-multiple-snaks)
   - [wb remove-reference](#wb-remove-reference)
+- [sitelinks](#sitelinks)
+  - [wb set-sitelink](#wb-set-sitelink)
+  - [wb remove-sitelink](#wb-remove-sitelink)
 - [entity](#entity)
   - [wb create-entity](#wb-create-entity)
   - [wb edit-entity](#wb-edit-entity)
@@ -539,6 +542,42 @@ Examples:
 wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3'
 # Remove several references from this claim by passing the reference hashes as one argument made of several pipe-separated hashes
 wd remove-reference 'Q4115189$E51978A1-D13A-4916-800E-74ACD2466970' '72ea3cdd27062da9f0971c1feab6df32d729ecb3|5e9840f6896948b13d6e9c6328169643229aa3db'}
+```
+
+### sitelinks
+See [Wikidata:Glossary#Sitelink](https://www.wikidata.org/wiki/Wikidata:Glossary#Sitelink)
+
+#### wb set-sitelink
+Set a sitelink on an entity for a given site
+```sh
+wb set-sitelink <entity-id> <site> <title> [badges]
+# Alias:
+wb ss <entity-id> <site> <title> [badges]
+```
+
+Examples:
+```sh
+# Link Q4115189 to the article 'The Sandbox' on the English Wikiquote
+wb set-sitelink Q4115189 enwikiquote "The Sandbox"
+# Also set badges for that sitelink
+wb set-sitelink Q4115189 enwikiquote "The Sandbox" Q17437796,Q17437798
+```
+
+The list of badges used on Wikidata can be found at [Help:Badges](https://www.wikidata.org/wiki/Help:Badges/en#List_of_badges)
+
+#### wb remove-sitelink
+
+Remove a sitelink on an entity for a given site
+```sh
+wb remove-sitelink <entity-id> <site>
+# Alias:
+wb rs <entity-id> <site>
+```
+
+Example:
+```sh
+# Remove the link from Q4115189 to any article in the English Wikiquote
+wb set-sitelink Q4115189 enwikiquote
 ```
 
 ### entity
