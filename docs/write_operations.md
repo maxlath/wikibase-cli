@@ -13,8 +13,10 @@ The following documentation often assumes that the Wikibase instance we work wit
 
 - [labels](#labels)
   - [wb set-label](#wb-set-label)
+  - [wb remove-label](#wb-remove-label)
 - [descriptions](#descriptions)
   - [wb set-description](#wb-set-description)
+  - [wb remove-description](#wb-remove-description)
 - [aliases](#aliases)
   - [wb add-alias](#wb-add-alias)
   - [wb remove-alias](#wb-remove-alias)
