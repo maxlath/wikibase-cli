@@ -688,12 +688,23 @@ This `./existing_entity_data.js` could be something like:
 ```js
 module.exports = {
   id: 'Q4115189',
-  // a comment
-  labels: { en: 'a label' },
-  descriptions: { en: 'some description' },
+  labels: {
+    // Add a label
+    en: 'a label',
+    // Remove a label
+    fr: null,
+  },
+  descriptions: {
+    // Add a description
+    en: 'some description',
+    // Remove a description
+    fr: null,
+  },
   aliases: {
+    // Set aliases in a language (will override existing aliases)
     en: [ 'an alias', 'another alias' ],
-    fr: [ 'un alias' ],
+    // Remove all aliases in a language
+    fr: null,
   },
   claims: {
     P123: 'Q1799264',
