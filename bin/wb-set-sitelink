@@ -1,8 +1,13 @@
 #!/usr/bin/env node
 const program = require('commander')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
-const inlineArgsParser = ([ id, site, title, badges = '' ]) => {
-  return [ { id, site, title, badges: badges.split(/[,|]/) } ]
+const inlineArgsParser = ([ id, site, title, badges ]) => {
+  if (badges != null) {
+    badges = badges.split(/[,|]/)
+  } else {
+    badges = []
+  }
+  return [ { id, site, title, badges } ]
 }
 program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
 program.customHelpOption = require('../lib/command_with_template_custom_help')
