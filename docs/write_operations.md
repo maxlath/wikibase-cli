@@ -591,6 +591,8 @@ Examples:
 wb set-sitelink Q4115189 enwikiquote "The Sandbox"
 # Also set badges for that sitelink
 wb set-sitelink Q4115189 enwikiquote "The Sandbox" Q17437796,Q17437798
+# To remove badges, set the sitelink again without the undesired badges
+wb set-sitelink Q4115189 enwikiquote "The Sandbox"
 ```
 
 The list of badges used on Wikidata can be found at [Help:Badges](https://www.wikidata.org/wiki/Help:Badges/en#List_of_badges)
