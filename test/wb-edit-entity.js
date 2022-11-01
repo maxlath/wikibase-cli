@@ -6,19 +6,19 @@ const editDataJs = require('./assets/edit_data.js')
 describe('wb edit-entity', () => {
   it('should accept a path to a JSON file', async () => {
     const { stdout } = await wdTest('edit-entity --dry ./test/assets/edit_data.json')
-    const data = JSON.parse(stdout)
+    const data = JSON.parse(stdout).args[0]
     data.should.deepEqual(editDataJson)
   })
 
   it('should accept a path to a JS object file', async () => {
     const { stdout } = await wdTest('edit-entity --dry ./test/assets/edit_data.js')
-    const data = JSON.parse(stdout)
+    const data = JSON.parse(stdout).args[0]
     data.should.deepEqual(editDataJs)
   })
 
   it('should accept a path to a JS function file', async () => {
     const { stdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function.js Q1 123')
-    const data = JSON.parse(stdout)
+    const data = JSON.parse(stdout).args[0]
     data.id.should.equal('Q1')
     data.claims.P95228.value.should.equal(123)
   })
@@ -55,7 +55,7 @@ describe('wb edit-entity', () => {
       stdout.should.containEql('Usage:')
       stdout.should.containEql('Add a P95228 statement')
       const { stdout: dryStdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function.js Q1 123')
-      JSON.parse(dryStdout).id.should.equal('Q1')
+      JSON.parse(dryStdout).args[0].id.should.equal('Q1')
     })
 
     it('should support adding metadata to the template function when main module export', async () => {
@@ -68,7 +68,7 @@ describe('wb edit-entity', () => {
       stdout.should.containEql('Usage:')
       stdout.should.containEql('Add a P95228 statement')
       const { stdout: dryStdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function_deprecated.js Q1 123')
-      JSON.parse(dryStdout).id.should.equal('Q1')
+      JSON.parse(dryStdout).args[0].id.should.equal('Q1')
     })
   })
 })

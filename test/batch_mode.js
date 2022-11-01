@@ -5,8 +5,8 @@ describe('batch mode', () => {
   it('should take arguments from stdin (add-claim)', async () => {
     const { stdout, stderr } = await wdTest('add-claim --batch --dry < ./test/assets/add_claim_batch')
     stdout.split('\n').should.deepEqual([
-      '{"id":"Q1111","property":"P95180","value":"bar"}',
-      '{"id":"Q1111","property":"P95226","value":{"time":"1800","precision":7}}',
+      '{"section":"claim","action":"add","args":[{"id":"Q1111","property":"P95180","value":"bar"}]}',
+      '{"section":"claim","action":"add","args":[{"id":"Q1111","property":"P95226","value":{"time":"1800","precision":7}}]}',
     ])
     formatProgression(stderr).should.deepEqual([
       'processing line 1: Q1111 P95180 bar',
@@ -18,8 +18,8 @@ describe('batch mode', () => {
   it('should take arguments from stdin (edit-entity)', async () => {
     const { stdout, stderr } = await wdTest('edit-entity --batch --dry < ./test/assets/edit_entity_batch')
     stdout.split('\n').should.deepEqual([
-      '{"id":"Q1111","claims":{"P95180":"foo"}}',
-      '{"id":"Q1111","claims":{"P95228":456}}'
+      '{"section":"entity","action":"edit","args":[{"id":"Q1111","claims":{"P95180":"foo"}}]}',
+      '{"section":"entity","action":"edit","args":[{"id":"Q1111","claims":{"P95228":456}}]}'
     ])
     formatProgression(stderr).should.deepEqual([
       'processing line 1: {"id":"Q1111", "claims":{ "P95180": "foo" }}',
@@ -31,9 +31,9 @@ describe('batch mode', () => {
   it('should take some arguments inline and complete with stdin', async () => {
     const { stdout, stderr } = await wdTest('edit-entity ./test/assets/template.js --batch --dry < ./test/assets/batch_ids')
     stdout.split('\n').should.deepEqual([
-      '{"id":"Q210421","aliases":{"fr":"test"}}',
-      '{"id":"Q210422","aliases":{"fr":"test"}}',
-      '{"id":"Q210423","aliases":{"fr":"test"}}'
+      '{"section":"entity","action":"edit","args":[{"id":"Q210421","aliases":{"fr":"test"}}]}',
+      '{"section":"entity","action":"edit","args":[{"id":"Q210422","aliases":{"fr":"test"}}]}',
+      '{"section":"entity","action":"edit","args":[{"id":"Q210423","aliases":{"fr":"test"}}]}'
     ])
     formatProgression(stderr).should.deepEqual([
       'processing line 1: Q210421',
@@ -45,8 +45,8 @@ describe('batch mode', () => {
 
   it('should accept quoted arguments', async () => {
     const { stdout } = await wdTest('update-claim --batch --dry < ./test/assets/update_claim_batch')
-    JSON.parse(stdout.split('\n')[0]).newValue.should.equal("Thuja occidentalis 'Smaragd'")
-    JSON.parse(stdout.split('\n')[1]).newValue.should.equal('Syringa vulgaris ʽAlba’')
+    JSON.parse(stdout.split('\n')[0]).args[0].newValue.should.equal("Thuja occidentalis 'Smaragd'")
+    JSON.parse(stdout.split('\n')[1]).args[0].newValue.should.equal('Syringa vulgaris ʽAlba’')
   })
 
   it('should not exit if requested', async () => {

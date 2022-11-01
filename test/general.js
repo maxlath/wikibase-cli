@@ -18,7 +18,12 @@ describe('general', () => {
   describe('dry mode', () => {
     it('should not require credentials', async () => {
       const { stdout } = await shellExec('./bin/wb add-claim Q1 P1 123 --instance http://fake.instance --dry')
-      JSON.parse(stdout).should.deepEqual({ id: 'Q1', property: 'P1', value: '123' })
+      const { section, action, args } = JSON.parse(stdout)
+      section.should.equal('claim')
+      action.should.equal('add')
+      args.should.deepEqual([
+        { id: 'Q1', property: 'P1', value: '123' }
+      ])
     })
   })
 })
