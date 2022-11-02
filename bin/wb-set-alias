@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 const program = require('commander')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
-const inlineArgsParser = require('../lib/term_command_args_parser')('alias')
+const { termCommandArgsParser } = require('../lib/common_command_args_parser')
+const inlineArgsParser = termCommandArgsParser('alias')
 program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('alias', 'set')
