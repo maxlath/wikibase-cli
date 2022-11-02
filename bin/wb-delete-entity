@@ -2,6 +2,6 @@
 const program = require('commander')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
 const inlineArgsParser = args => [ { id: args[0] } ]
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({ inlineArgsParser })
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('entity', 'delete')

@@ -6,6 +6,6 @@ const inlineArgsParser = ([ id, property, value ]) => {
   if (program.rank) data.rank = program.rank
   return [ data ]
 }
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({ inlineArgsParser })
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('claim', 'add')

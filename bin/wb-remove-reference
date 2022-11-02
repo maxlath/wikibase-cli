@@ -7,6 +7,6 @@ const inlineArgsParser = ([ guid, hash ]) => {
   hash = hash.split('|')
   return [ { guid, hash } ]
 }
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({ inlineArgsParser })
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('reference', 'remove')

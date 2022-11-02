@@ -2,7 +2,8 @@
 const program = require('commander')
 const { badgesCommandArgsParser } = require('../lib/common_command_args_parser')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
-const inlineArgsParser = badgesCommandArgsParser
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({
+  inlineArgsParser: badgesCommandArgsParser
+})
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('badge', 'remove')

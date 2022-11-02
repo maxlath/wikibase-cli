@@ -2,7 +2,8 @@
 const program = require('commander')
 const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_parser')
 const { termCommandArgsParser } = require('../lib/common_command_args_parser')
-const inlineArgsParser = termCommandArgsParser('alias')
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({
+  inlineArgsParser: termCommandArgsParser('alias')
+})
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('alias', 'remove')

@@ -12,6 +12,6 @@ const inlineArgsParser = args => {
     return [ { guid, id, property } ]
   }
 }
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({ inlineArgsParser })
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('claim', 'move')

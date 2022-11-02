@@ -19,6 +19,6 @@ const getSortedEntitiesIds = args => {
 
 const getNumericId = id => parseInt(id.replace(/^[A-Z]+/i, ''))
 
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({ inlineArgsParser })
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')('entity', 'merge')

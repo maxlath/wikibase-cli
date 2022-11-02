@@ -4,7 +4,7 @@ const polymorphicCommandArgsParser = require('../lib/polymorphic_command_args_pa
 const inlineArgsParser = ([ id, site ]) => {
   return [ { id, site, title: null } ]
 }
-program.customArgsParser = polymorphicCommandArgsParser(inlineArgsParser)
+program.customArgsParser = polymorphicCommandArgsParser({ inlineArgsParser })
 program.customHelpOption = require('../lib/command_with_template_custom_help')
 require('../lib/edit/edit_command')({
   name: 'remove-sitelink',
