@@ -55,6 +55,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [open a specific revision's page](#open-a-specific-revisions-page)
 - [wb hub](#wb-hub)
 - [wb lang](#wb-lang)
+- [wb badges](#wb-badges)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -1032,4 +1033,14 @@ Both commands return the following data:
   "native": "Akana",
   "wd": "Q28026"
 }
+```
+
+### wb badges
+List sitelink badges available on a Wikibase instance
+```sh
+# List badges on the Wikibase instance set in config
+wb badges
+
+# List badges on an explicit Wikibase instance
+wb badges --instance https://test.wikidata.org
 ```

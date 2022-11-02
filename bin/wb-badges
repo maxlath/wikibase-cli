@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+const program = require('../lib/program')
+const { get } = require('../lib/request')
+const errors_ = require('../lib/errors')
+const entityAttributeCommand = require('../lib/entity_attribute_command')
+
+program
+.process('badges')
+
+const { instance } = program
+
+if (!instance) throw new Error('no instance set')
+
+get(`${instance}/w/api.php?action=wbavailablebadges&format=json`)
+.then(({ badges: badgesIds }) => {
+  return entityAttributeCommand('label', { ids: badgesIds })
+})
+.catch(errors_.exit)
