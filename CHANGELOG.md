@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 16.3.0 - 2022-11-02
+* Added [`wb badges`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-badges)
+* Added [`wb add-badge`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-add-badge)
+* Added [`wb remove-badge`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-badge)
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql) / [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): added `--log-response-headers`  option
+
 ## 16.2.0 - 2022-11-01
 * Added [`wb remove-label`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-label)
 * Added [`wb remove-description`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-description)
