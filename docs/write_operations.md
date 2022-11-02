@@ -46,6 +46,9 @@ The following documentation often assumes that the Wikibase instance we work wit
 - [sitelinks](#sitelinks)
   - [wb set-sitelink](#wb-set-sitelink)
   - [wb remove-sitelink](#wb-remove-sitelink)
+- [badges](#badges)
+  - [wb add-badge](#wb-add-badge)
+  - [wb remove-badge](#wb-remove-badge)
 - [entity](#entity)
   - [wb create-entity](#wb-create-entity)
   - [wb edit-entity](#wb-edit-entity)
@@ -610,6 +613,34 @@ Example:
 ```sh
 # Remove the link from Q4115189 to any article in the English Wikiquote
 wb set-sitelink Q4115189 enwikiquote
+```
+
+### badges
+#### wb add-badge
+Add badges on an existing sitelink, without removing other badges that might already have been set
+```sh
+wb add-badge <entity-id> <site> <badges>
+# Alias:
+wb ab <entity-id> <site> <badges>
+```
+
+Example:
+```sh
+# Add Q17437796 and Q17437798 badges on Q4115189 enwikiquote sitelink
+wb add-badge Q4115189 enwikiquote Q17437796,Q17437798
+```
+#### wb remove-badge
+Remove badges on an existing sitelink
+```sh
+wb remove-badge <entity-id> <site> <badges>
+# Alias:
+wb rb <entity-id> <site> <badges>
+```
+
+Example:
+```sh
+# Remove Q17437796 and Q17437798 badges on Q4115189 enwikiquote sitelink
+wb remove-badge Q4115189 enwikiquote Q17437796,Q17437798
 ```
 
 ### entity
