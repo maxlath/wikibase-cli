@@ -703,7 +703,7 @@ Taking our JSON data from a file can be much more convenient than the inline opt
 wb edit-entity ./existing_entity_data.json
 ```
 
-This `./existing_entity_data.json` file could be generated in different ways, but the easiest is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wd-generate-template):
+This `./existing_entity_data.json` file could be generated in different ways, but the easiest is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-generate-template):
 ```sh
 wd generate-template Q4115189 --format json > Q4115189.edit-template.json
 # Do your modifications, and then
