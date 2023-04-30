@@ -19,7 +19,7 @@ if (!(/s(ite)?=/.test(argsString))) argsString += ' site=wikidata'
 if (!(open || urlOnly)) argsString += ' format=json'
 
 const query = encodeURIComponent(argsString)
-const url = `https://tools.wmflabs.org/hub/query?q=${query}`
+const url = `https://hub.toolforge.org/query?q=${query}`
 
 const errors_ = require('../lib/errors')
 
