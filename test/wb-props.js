@@ -20,6 +20,13 @@ describe('wb props', () => {
     data.P6.type.should.equal('WikibaseItem')
   })
 
+  it('should filter by types', async () => {
+    const { stdout } = await shellExec('./bin/wd props --type CommonsMedia -l en')
+    const data = JSON.parse(stdout)
+    Object.keys(data).length.should.be.below(1000)
+    data.P18.type.should.equal('CommonsMedia')
+  })
+
   it('should be able to query a custom SPARQL endpoint', async () => {
     const { stdout } = await shellExec('./bin/wb props --sparql-endpoint https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql -l en')
     const data = JSON.parse(stdout)
