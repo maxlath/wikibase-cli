@@ -35,7 +35,6 @@
     "nonblock-statement-body-position": [ "error", "beside" ],
     "object-curly-spacing": [ "error", "always" ],
     "object-shorthand": [ "error", "properties" ],
-    "prefer-arrow/prefer-arrow-functions": [ "error" ],
     "prefer-arrow-callback": [ "error" ],
     "prefer-const": [ "error" ]
   },
