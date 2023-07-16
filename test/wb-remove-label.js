@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb remove-label', () => {
   it('should accept an id, and a language', async () => {
@@ -13,7 +13,7 @@ describe('wb remove-label', () => {
         id: 'Q4115189',
         language: 'fr',
         value: null,
-      }
+      },
     ])
   })
 })

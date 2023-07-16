@@ -1,7 +1,12 @@
-require('should')
-const { wdTest } = require('./lib/utils')
-const editDataJson = require('./assets/edit_data.json')
-const editDataJs = require('./assets/edit_data.js')
+import 'should'
+import { resolve } from 'node:path'
+import { getDirname } from '#lib/fs'
+import { readJsonFile } from '#lib/json'
+import { wdTest } from '#test/lib/utils'
+import editDataJs from './assets/edit_data.js'
+
+const dirname = getDirname(import.meta.url)
+const editDataJson = readJsonFile(resolve(dirname, './assets/edit_data.json'))
 
 describe('wb edit-entity', () => {
   it('should accept a path to a JSON file', async () => {
@@ -17,7 +22,7 @@ describe('wb edit-entity', () => {
   })
 
   it('should accept a path to a JS function file', async () => {
-    const { stdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function.js Q1 123')
+    const { stdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function.cjs Q1 123')
     const data = JSON.parse(stdout).args[0]
     data.id.should.equal('Q1')
     data.claims.P95228.value.should.equal(123)
@@ -46,28 +51,28 @@ describe('wb edit-entity', () => {
 
   describe('meta data', () => {
     it('should support exporting an object with a template function and metadata', async () => {
-      const templateModule = require('./assets/edit_data_function.js')
+      const { default: templateModule } = await import('./assets/edit_data_function.cjs')
       templateModule.template.should.be.a.Function()
       templateModule.args.should.be.an.Array()
       templateModule.description.should.be.a.String()
       templateModule.examples.should.be.an.Array()
-      const { stdout } = await wdTest('edit-entity --help ./test/assets/edit_data_function.js')
+      const { stdout } = await wdTest('edit-entity --help ./test/assets/edit_data_function.cjs')
       stdout.should.containEql('Usage:')
       stdout.should.containEql('Add a P95228 statement')
-      const { stdout: dryStdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function.js Q1 123')
+      const { stdout: dryStdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function.cjs Q1 123')
       JSON.parse(dryStdout).args[0].id.should.equal('Q1')
     })
 
     it('should support adding metadata to the template function when main module export', async () => {
-      const templateModule = require('./assets/edit_data_function_deprecated.js')
+      const { default: templateModule } = await import('./assets/edit_data_function_deprecated.cjs')
       templateModule.should.be.a.Function()
       templateModule.args.should.be.an.Array()
       templateModule.description.should.be.a.String()
       templateModule.examples.should.be.an.Array()
-      const { stdout } = await wdTest('edit-entity --help ./test/assets/edit_data_function_deprecated.js')
+      const { stdout } = await wdTest('edit-entity --help ./test/assets/edit_data_function_deprecated.cjs')
       stdout.should.containEql('Usage:')
       stdout.should.containEql('Add a P95228 statement')
-      const { stdout: dryStdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function_deprecated.js Q1 123')
+      const { stdout: dryStdout } = await wdTest('edit-entity --dry ./test/assets/edit_data_function_deprecated.cjs Q1 123')
       JSON.parse(dryStdout).args[0].id.should.equal('Q1')
     })
   })

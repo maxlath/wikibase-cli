@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   alias: 'q',
   args: '',
   description: "generate and run a simple SPARQL query by passing a statement's subject, property, or object, or a couple of those",
@@ -8,7 +8,7 @@ module.exports = {
     clipboard: false,
     json: true,
     instance: false,
-    sparqlEndpoint: true
+    sparqlEndpoint: true,
   },
   examples: [
     { args: '--property P2002 --object timberners_lee', comment: 'find out which entity as the twitter username (P2002) "timberners_lee"' },
@@ -26,5 +26,5 @@ module.exports = {
     { args: '-p P31 -o Q44559 --limit 5 --open', comment: 'open the query in the Query Service GUI' },
     { args: '--sample --sparql-endpoint https://bnb.data.bl.uk/sparql --format table', comment: 'Get a sample of triples from a triple store' },
     { args: '--sparql-endpoint https://bnb.data.bl.uk/sparql --describe http://bnb.data.bl.uk/id/person/OBrienJim1950- --format table', comment: 'make a DESCRIBE request' },
-  ]
+  ],
 }

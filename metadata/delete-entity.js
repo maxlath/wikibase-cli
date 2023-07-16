@@ -1,18 +1,18 @@
-const { editCommands } = require('../lib/common_options')
+import { editCommandsOptions } from '#lib/common_options'
 
-module.exports = {
+export default {
   alias: 'de',
   args: '<id>',
   description: 'Delete an entity',
-  options: editCommands,
+  options: editCommandsOptions,
   examples: [
     {
       args: 'Q1',
-      comment: 'delete an item'
+      comment: 'delete an item',
     },
     {
       args: 'P1',
-      comment: 'delete a property'
-    }
-  ]
+      comment: 'delete a property',
+    },
+  ],
 }

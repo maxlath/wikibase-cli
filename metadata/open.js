@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   alias: 'o',
   args: '<entity>',
   description: "open the entity's page on Wikidata website",
@@ -8,7 +8,7 @@ module.exports = {
     clipboard: true,
     json: false,
     instance: true,
-    sparqlEndpoint: false
+    sparqlEndpoint: false,
   },
   examples: [
     { args: 'Q44559', comment: 'open https://www.wikidata.org/entity/Q44559 in your default browser' },
@@ -21,6 +21,6 @@ module.exports = {
     { args: 'Q44559 --wikipedia', comment: 'open the article on Exoplanets in Wikipedia' },
     { args: 'Q44559 --wikipedia --lang pt', comment: 'open the article on Exoplanets in the Portugese Wikipedia' },
     { args: 'Q44559 --url', comment: 'outputs the URL without opening the browser' },
-    { args: 'Q44559 L525 P123', comment: 'open several pages at once' }
-  ]
+    { args: 'Q44559 L525 P123', comment: 'open several pages at once' },
+  ],
 }

@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb remove-claim', () => {
   it('should accept a guid', async () => {
@@ -11,7 +11,7 @@ describe('wb remove-claim', () => {
     args.should.deepEqual([
       {
         guid: [ 'Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F' ],
-      }
+      },
     ])
   })
 
@@ -24,7 +24,7 @@ describe('wb remove-claim', () => {
     args.should.deepEqual([
       {
         guid: [ 'Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F' ],
-      }
+      },
     ])
   })
 })

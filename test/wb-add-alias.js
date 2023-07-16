@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb add-alias', () => {
   it('should accept an id, a lang, and a value', async () => {
@@ -12,8 +12,8 @@ describe('wb add-alias', () => {
       {
         id: 'Q4115189',
         language: 'fr',
-        value: [ 'foo' ]
-      }
+        value: [ 'foo' ],
+      },
     ])
   })
 
@@ -27,8 +27,8 @@ describe('wb add-alias', () => {
       {
         id: 'Q4115189',
         language: 'fr',
-        value: [ 'foo', 'bar', 'buzz' ]
-      }
+        value: [ 'foo', 'bar', 'buzz' ],
+      },
     ])
   })
 })

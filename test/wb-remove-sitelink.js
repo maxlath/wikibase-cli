@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb remove-sitelink', () => {
   it('should accept an id, and a site', async () => {
@@ -13,7 +13,7 @@ describe('wb remove-sitelink', () => {
         id: 'Q4115189',
         site: 'frwiki',
         title: null,
-      }
+      },
     ])
   })
 })

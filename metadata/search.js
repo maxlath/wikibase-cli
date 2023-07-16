@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   alias: 'f',
   args: '<search>',
   description: 'search entities',
@@ -8,7 +8,7 @@ module.exports = {
     clipboard: false,
     json: true,
     instance: true,
-    sparqlEndpoint: false
+    sparqlEndpoint: false,
   },
   examples: [
     { args: 'Ligo', comment: 'displays a list of entities matching "Ligo"' },
@@ -20,5 +20,5 @@ module.exports = {
     { args: 'code --type form', comment: 'Search forms' },
     { args: 'test --type sense', comment: "Searching senses doesn't seem to work currently (2020-04-17)" },
     { args: '--cirrus "porte haswbstatement:P31=Q5"', comment: 'Use Cirrus search to find humans (Q5) matching "porte"' },
-  ]
+  ],
 }

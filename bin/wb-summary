@@ -1,9 +1,0 @@
-#!/usr/bin/env node
-const entityDataParser = require('../lib/entity_data_parser')
-const summaryParser = require('../lib/summary_parser')
-
-const programOptions = [
-  [ '-p, --properties <properties>', 'override default summary properties (separated by a comma)' ]
-]
-
-entityDataParser({ commandName: 'summary', parser: summaryParser, programOptions })

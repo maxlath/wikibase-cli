@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb set-sitelink', () => {
   it('should accept an id, a site, and a title', async () => {
@@ -13,8 +13,8 @@ describe('wb set-sitelink', () => {
         id: 'Q4115189',
         site: 'frwiki',
         title: 'foo',
-        badges: []
-      }
+        badges: [],
+      },
     ])
   })
 
@@ -29,8 +29,8 @@ describe('wb set-sitelink', () => {
         id: 'Q4115189',
         site: 'frwiki',
         title: 'foo',
-        badges: [ 'Q123', 'Q512' ]
-      }
+        badges: [ 'Q123', 'Q512' ],
+      },
     ])
   })
 })

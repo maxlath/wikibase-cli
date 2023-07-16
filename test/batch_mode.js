@@ -1,5 +1,5 @@
-require('should')
-const { wdTest } = require('./lib/utils')
+import 'should'
+import { wdTest } from '#test/lib/utils'
 
 describe('batch mode', () => {
   it('should take arguments from stdin (add-claim)', async () => {
@@ -11,7 +11,7 @@ describe('batch mode', () => {
     formatProgression(stderr).should.deepEqual([
       'processing line 1: Q1111 P95180 bar',
       'processing line 2: [ "Q1111", "P95226", {"time":"1800","precision":7} ]',
-      'done processing 2 lines: successes=2 errors=0'
+      'done processing 2 lines: successes=2 errors=0',
     ])
   })
 
@@ -19,12 +19,12 @@ describe('batch mode', () => {
     const { stdout, stderr } = await wdTest('edit-entity --batch --dry < ./test/assets/edit_entity_batch')
     stdout.split('\n').should.deepEqual([
       '{"section":"entity","action":"edit","args":[{"id":"Q1111","claims":{"P95180":"foo"}}]}',
-      '{"section":"entity","action":"edit","args":[{"id":"Q1111","claims":{"P95228":456}}]}'
+      '{"section":"entity","action":"edit","args":[{"id":"Q1111","claims":{"P95228":456}}]}',
     ])
     formatProgression(stderr).should.deepEqual([
       'processing line 1: {"id":"Q1111", "claims":{ "P95180": "foo" }}',
       'processing line 2: {"id":"Q1111", "claims":{ "P95228": 456 }}',
-      'done processing 2 lines: successes=2 errors=0'
+      'done processing 2 lines: successes=2 errors=0',
     ])
   })
 
@@ -33,13 +33,13 @@ describe('batch mode', () => {
     stdout.split('\n').should.deepEqual([
       '{"section":"entity","action":"edit","args":[{"id":"Q210421","aliases":{"fr":"test"}}]}',
       '{"section":"entity","action":"edit","args":[{"id":"Q210422","aliases":{"fr":"test"}}]}',
-      '{"section":"entity","action":"edit","args":[{"id":"Q210423","aliases":{"fr":"test"}}]}'
+      '{"section":"entity","action":"edit","args":[{"id":"Q210423","aliases":{"fr":"test"}}]}',
     ])
     formatProgression(stderr).should.deepEqual([
       'processing line 1: Q210421',
       'processing line 2: Q210422',
       'processing line 3: Q210423',
-      'done processing 3 lines: successes=3 errors=0'
+      'done processing 3 lines: successes=3 errors=0',
     ])
   })
 

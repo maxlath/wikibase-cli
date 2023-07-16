@@ -159,7 +159,7 @@ wb query --property P2002 --object timberners_lee
 Alternatively to using `wb config`, you can set environment variables. Priority is given to the command line options, then environment variables, then config values.
 
 ```sh
-export WB_INSTANCE=https://wikibase-registry.wmflabs.org/w/api.php ; wb label Q2
+export WB_INSTANCE=https://wikibase.world/w/api.php ; wb label Q2
 # => Wikibase
 export WB_INSTANCE=https://www.wikidata.org/w/api.php ; wb label Q2
 # => Earth

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   alias: 'p',
   args: '',
   description: 'output the list of all Wikidata properties',
@@ -8,7 +8,7 @@ module.exports = {
     clipboard: true,
     json: true,
     instance: true,
-    sparqlEndpoint: true
+    sparqlEndpoint: true,
   },
   examples: [
     { args: '', comment: 'output all the properties and their labels' },
@@ -19,6 +19,6 @@ module.exports = {
     { args: '--type Url ref', comment: 'filter the properties to keep only those of type Url matching the pattern "ref"' },
     { args: '--lang sv', comment: 'output all the properties with their label in Swedish' },
     { args: '--no-cache', comment: 'ignore properties cache: fetch properties from the SPARQL endpoint, even if already cached' },
-    { args: '--reset', comment: 'delete all the cached properties files to get fresh versions on the next execution' }
-  ]
+    { args: '--reset', comment: 'delete all the cached properties files to get fresh versions on the next execution' },
+  ],
 }

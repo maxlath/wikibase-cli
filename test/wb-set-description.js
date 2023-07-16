@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb set-description', () => {
   it('should accept an id, a lang, and a value', async () => {
@@ -12,8 +12,8 @@ describe('wb set-description', () => {
       {
         id: 'Q4115189',
         language: 'fr',
-        value: 'foo'
-      }
+        value: 'foo',
+      },
     ])
   })
 })

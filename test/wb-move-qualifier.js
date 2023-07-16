@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb move-qualifier', () => {
   it('should accept a guid, and two properties', async () => {
@@ -12,8 +12,8 @@ describe('wb move-qualifier', () => {
       {
         guid: 'Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F',
         oldProperty: 'P2310',
-        newProperty: 'P2311'
-      }
+        newProperty: 'P2311',
+      },
     ])
   })
 
@@ -27,8 +27,8 @@ describe('wb move-qualifier', () => {
       {
         guid: 'Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F',
         oldProperty: 'P2310',
-        newProperty: 'P2311'
-      }
+        newProperty: 'P2311',
+      },
     ])
   })
 
@@ -43,8 +43,8 @@ describe('wb move-qualifier', () => {
         guid: 'Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F',
         hash: '90b9b567dc01112e7d9dee98eb5f5ad50ae803bb',
         oldProperty: 'P2310',
-        newProperty: 'P2311'
-      }
+        newProperty: 'P2311',
+      },
     ])
   })
 })

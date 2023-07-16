@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   description: 'Query items with a certain author as author (P50)',
 
   args: [ '<author-id>' ],
@@ -9,5 +9,5 @@ module.exports = {
 
   template: async authorId => {
     return `SELECT ?work WHERE { ?work wdt:P50 wd:${authorId} . }`
-  }
+  },
 }

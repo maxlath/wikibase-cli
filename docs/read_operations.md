@@ -76,7 +76,7 @@ wd summary Q27477672
 wd summary Q18120925 L525 P123
 
 # With custom properties on an other Wikibase instance
-wb summary Q5 -l en -p P2,P12 -i https://wikibase-registry.wmflabs.org -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
+wb summary Q5 -l en -p P2,P12 -i https://wikibase.world -e https://wikibase.world/query/sparql
 ```
 
 Options:
@@ -103,7 +103,7 @@ wd search Ligo
 # Q785105    Ligonier, Pennsylvania — borough of Pennsylvania
 # Q1781427   Ligorio López — Mexican footballer
 
-wb search eagle -i https://wikibase-registry.wmflabs.org
+wb search eagle -i https://wikibase.world
 # Q5         EAGLE Wikibase wikibase instance created for the Europeana Ancient Greek and Latin Epigraphy project
 ```
 
@@ -143,7 +143,7 @@ wd label Q1103345
 # => The Cluetrain Manifesto
 wd label Q18120925 Q22117436 Q22117437
 
-wb label Q7 -i https://wikibase-registry.wmflabs.org
+wb label Q7 -i https://wikibase.world
 # => PlantData
 ```
 
@@ -224,8 +224,8 @@ wd claims Q2001 library
 # or website, etc
 wd claims Q2001 website
 
-# all https://wikibase-registry.wmflabs.org/entity/Q7 claims
-wb claims Q7 -i https://wikibase-registry.wmflabs.org -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
+# all https://wikibase.world/entity/Q7 claims
+wb claims Q7 -i https://wikibase.world -e https://wikibase.world/query/sparql
 ```
 
 Options:
@@ -274,7 +274,7 @@ You can also request several entities at once by passing several ids.
 This outputs newline delimited JSON: one entity per-line, each line being valid JSON, but not the whole file as a whole.
 ```sh
 wd data Q1 Q2 Q3 L57332 P2114
-wb data Q5 Q6 Q7 -i https://wikibase-registry.wmflabs.org
+wb data Q5 Q6 Q7 -i https://wikibase.world
 ```
 Alternatively, you can pass ids from stdin:
 ```sh
@@ -338,7 +338,7 @@ Entities can be requested in [Turtle](https://en.wikipedia.org/wiki/Turtle_(synt
 
 ```sh
 wd data --format ttl Q123 Q3548931 Q515168
-wb data --format ttl Q5 Q6 Q7 -i https://wikibase-registry.wmflabs.org
+wb data --format ttl Q5 Q6 Q7 -i https://wikibase.world
 ```
 
 Fetch many entities from a SPARQL request, using [`wb sparql`](#wb-sparql):
@@ -748,7 +748,7 @@ echo 'SELECT * { ?s ?p ?o } LIMIT 5' > ./get_some_triples.rq
 # On Wikidata
 wd sparql ./get_some_triples.rq
 # On another Wikibase
-wb sparql ./get_some_triples.rq -e https://wikibase-registry-query.wmflabs.org/proxy/wdqs/bigdata/namespace/wdq/sparql
+wb sparql ./get_some_triples.rq -e https://wikibase.world/query/sparql
 # On a non-Wikibase SPARQL endpoint
 wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
 ```

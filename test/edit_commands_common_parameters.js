@@ -1,5 +1,5 @@
-require('should')
-const { wdTest, randomString, shouldNotBeCalled } = require('./lib/utils')
+import 'should'
+import { wdTest, randomString, shouldNotBeCalled } from '#test/lib/utils'
 
 describe('edit commands common parameters', () => {
   describe('summary', () => {

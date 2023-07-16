@@ -1,6 +1,6 @@
-module.exports = id => ({
+export default id => ({
   id,
   aliases: {
-    fr: 'test'
-  }
+    fr: 'test',
+  },
 })

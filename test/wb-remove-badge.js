@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb remove-badge', () => {
   it('should accept an id, a site, and badges ids', async () => {
@@ -12,8 +12,8 @@ describe('wb remove-badge', () => {
       {
         id: 'Q4115189',
         site: 'frwiki',
-        badges: [ 'Q608', 'Q609' ]
-      }
+        badges: [ 'Q608', 'Q609' ],
+      },
     ])
   })
 })

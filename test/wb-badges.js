@@ -1,5 +1,5 @@
-require('should')
-const { wdTest } = require('./lib/utils')
+import 'should'
+import { wdTest } from '#test/lib/utils'
 
 describe('wb badge', () => {
   it('should accept an id, a site, and badges ids', async () => {

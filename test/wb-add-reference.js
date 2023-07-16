@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb add-reference', () => {
   it('should accept a guid, a property and a value', async () => {
@@ -12,8 +12,8 @@ describe('wb add-reference', () => {
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
         property: 'P854',
-        value: 'https://example.org/rise-and-box-of-the-holy-sand-box'
-      }
+        value: 'https://example.org/rise-and-box-of-the-holy-sand-box',
+      },
     ])
   })
 
@@ -27,12 +27,12 @@ describe('wb add-reference', () => {
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
         property: 'P854',
-        value: 'https://example.org/rise-and-box-of-the-holy-sand-box'
-      }
+        value: 'https://example.org/rise-and-box-of-the-holy-sand-box',
+      },
     ])
   })
 
-  it('should an inline JSON object', async () => {
+  it('should accept an inline JSON object', async () => {
     const guid = 'Q4115189$c885b63e-46f9-3f51-5736-d3ed09a58acf'
     const { stdout, stderr } = await wbDry(`add-reference '{"guid":"${guid}","snaks":{"P248":"Q1150348","P1157":"S001191","P813":"2021-01-28"}}'`)
     stderr.should.equal('')
@@ -45,9 +45,9 @@ describe('wb add-reference', () => {
         snaks: {
           P248: 'Q1150348',
           P1157: 'S001191',
-          P813: '2021-01-28'
-        }
-      }
+          P813: '2021-01-28',
+        },
+      },
     ])
   })
 
@@ -63,9 +63,9 @@ describe('wb add-reference', () => {
         snaks: {
           P248: 'Q1150348',
           P1157: 'S001191',
-          P813: '2021-01-28'
-        }
-      }
+          P813: '2021-01-28',
+        },
+      },
     ])
   })
 
@@ -81,9 +81,9 @@ describe('wb add-reference', () => {
         snaks: {
           P248: 'Q1150348',
           P1157: 'S001191',
-          P813: new Date().toISOString().split('T')[0]
-        }
-      }
+          P813: new Date().toISOString().split('T')[0],
+        },
+      },
     ])
   })
 })

@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb add-claim', () => {
   it('should add a claim', async () => {
@@ -12,8 +12,8 @@ describe('wb add-claim', () => {
       {
         id: 'Q1111',
         property: 'P95180',
-        value: 'add-claim test'
-      }
+        value: 'add-claim test',
+      },
     ])
   })
 })

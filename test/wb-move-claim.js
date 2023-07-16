@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb move-claim', () => {
   it('should accept a guid, a target id, and a target property', async () => {
@@ -12,8 +12,8 @@ describe('wb move-claim', () => {
       {
         guid: 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d',
         id: 'Q4115189',
-        property: 'P20'
-      }
+        property: 'P20',
+      },
     ])
   })
 
@@ -27,8 +27,8 @@ describe('wb move-claim', () => {
       {
         guid: 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d',
         id: 'Q4115189',
-        property: 'P20'
-      }
+        property: 'P20',
+      },
     ])
   })
 
@@ -42,8 +42,8 @@ describe('wb move-claim', () => {
       {
         propertyClaimsId: 'Q4115189#P19',
         id: 'Q4115189',
-        property: 'P20'
-      }
+        property: 'P20',
+      },
     ])
   })
 })

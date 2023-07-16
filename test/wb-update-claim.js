@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb update-claim', () => {
   it('should accept a guid and a value', async () => {
@@ -11,8 +11,8 @@ describe('wb update-claim', () => {
     args.should.deepEqual([
       {
         guid: 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d',
-        newValue: 'Bulgroz'
-      }
+        newValue: 'Bulgroz',
+      },
     ])
   })
 
@@ -25,8 +25,8 @@ describe('wb update-claim', () => {
     args.should.deepEqual([
       {
         guid: 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d',
-        newValue: 'Bulgroz'
-      }
+        newValue: 'Bulgroz',
+      },
     ])
   })
 
@@ -41,8 +41,8 @@ describe('wb update-claim', () => {
         id: 'Q4115189',
         property: 'P2002',
         oldValue: 'Zorglub',
-        newValue: 'Bulgroz'
-      }
+        newValue: 'Bulgroz',
+      },
     ])
   })
 
@@ -55,8 +55,8 @@ describe('wb update-claim', () => {
     args.should.deepEqual([
       {
         guid: 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d',
-        rank: 'preferred'
-      }
+        rank: 'preferred',
+      },
     ])
   })
 
@@ -69,8 +69,8 @@ describe('wb update-claim', () => {
     args.should.deepEqual([
       {
         guid: 'Q4115189$bc43ae33-7525-42cb-ad31-b1e1cf3cb72d',
-        rank: 'preferred'
-      }
+        rank: 'preferred',
+      },
     ])
   })
 })

@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   args: '',
   description: 'list sitelink badges available on a Wikibase instance',
   options: {
@@ -7,10 +7,10 @@ module.exports = {
     clipboard: true,
     json: true,
     instance: true,
-    sparqlEndpoint: false
+    sparqlEndpoint: false,
   },
   examples: [
     { args: '', comment: 'List badges on the Wikibase instance set in config' },
     { args: '--instance https://test.wikidata.org', comment: 'List badges on an explicit Wikibase instance' },
-  ]
+  ],
 }

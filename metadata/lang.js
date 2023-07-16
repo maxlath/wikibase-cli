@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   args: '<language code or wikidata id>',
   description: 'identify language code and return associated data',
   options: {
@@ -7,10 +7,10 @@ module.exports = {
     clipboard: true,
     json: true,
     instance: false,
-    sparqlEndpoint: false
+    sparqlEndpoint: false,
   },
   examples: [
     { args: 'ak', comment: 'find data associated with the Akan language from its language code' },
-    { args: 'Q28026', comment: 'find data associated with the Akan language from its Wikidata item id' }
-  ]
+    { args: 'Q28026', comment: 'find data associated with the Akan language from its Wikidata item id' },
+  ],
 }

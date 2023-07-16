@@ -1,6 +1,6 @@
-const should = require('should')
-const { shellExec, wdTest } = require('./lib/utils')
-const _ = require('lodash')
+import { values } from 'lodash-es'
+import should from 'should'
+import { shellExec, wdTest } from '#test/lib/utils'
 
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
@@ -10,12 +10,12 @@ describe('wb data', () => {
   // and no other way to detect a stdin input was found
 
   // it('should display help', async () => {
-  //   const { stdout } = await shellExec('./bin/wd data')
+  //   const { stdout } = await shellExec('./bin/wd.js data')
   //   stdout.should.containEql('Usage:')
   // })
 
   it('<entity>', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q123456')
+    const { stdout } = await shellExec('./bin/wd.js data Q123456')
     stdout.startsWith('{').should.be.true()
     const data = JSON.parse(stdout)
     const dataAttrs = Object.keys(data)
@@ -24,7 +24,7 @@ describe('wb data', () => {
   })
 
   it('should accept several ids', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q123456 Q123')
+    const { stdout } = await shellExec('./bin/wd.js data Q123456 Q123')
     const lines = stdout.split('\n')
     lines.length.should.equal(2)
     lines.forEach(line => {
@@ -35,12 +35,12 @@ describe('wb data', () => {
   })
 
   it('should output entities as ndjson', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q123456 Q1512522')
+    const { stdout } = await shellExec('./bin/wd.js data Q123456 Q1512522')
     stdout.split('\n').length.should.equal(2)
   })
 
   it('should simplify entity when requested', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q1512522 --simplify')
+    const { stdout } = await shellExec('./bin/wd.js data Q1512522 --simplify')
     const entity = JSON.parse(stdout)
     entity.labels.de.should.be.a.String()
     entity.descriptions.de.should.be.a.String()
@@ -49,7 +49,7 @@ describe('wb data', () => {
   })
 
   it('should simplify entities when requested', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q1512522 Q123456 --simplify')
+    const { stdout } = await shellExec('./bin/wd.js data Q1512522 Q123456 --simplify')
     const entity = JSON.parse(stdout.split('\n')[0])
     entity.labels.de.should.be.a.String()
     entity.descriptions.de.should.be.a.String()
@@ -58,7 +58,7 @@ describe('wb data', () => {
   })
 
   it('should return only the desired props when requested', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q1512522 --props labels,aliases')
+    const { stdout } = await shellExec('./bin/wd.js data Q1512522 --props labels,aliases')
     const entity = JSON.parse(stdout)
     should(entity.labels).be.an.Object()
     should(entity.descriptions).not.be.ok()
@@ -70,7 +70,7 @@ describe('wb data', () => {
   // Known to fail due to inconsistencies in the Wikibase API
   // which doesn't recognizes lexemes, forms, and senses as valid props
   xit('should support lexemes', async () => {
-    const { stdout } = await shellExec('./bin/wd data L525 --props lexemes,forms')
+    const { stdout } = await shellExec('./bin/wd.js data L525 --props lexemes,forms')
     const entity = JSON.parse(stdout)
     should(entity.lexemes).be.an.Object()
     should(entity.senses).not.be.ok()
@@ -78,7 +78,7 @@ describe('wb data', () => {
   })
 
   it('should accept ids on stdin', async () => {
-    const { stdout } = await shellExec('echo "Q123456 Q123" | ./bin/wd data --props labels --simplify')
+    const { stdout } = await shellExec('echo "Q123456 Q123" | ./bin/wd.js data --props labels --simplify')
     const lines = stdout.split('\n')
     lines.length.should.equal(2)
     const entities = lines.map(JSON.parse.bind(JSON))
@@ -86,7 +86,7 @@ describe('wb data', () => {
     entities[1].id.should.equal('Q123')
     entities.forEach(entity => {
       should(entity.labels).be.an.Object()
-      _.values(entity.labels).forEach(label => {
+      values(entity.labels).forEach(label => {
         label.should.be.a.String()
       })
       should(entity.descriptions).not.be.ok()
@@ -97,14 +97,14 @@ describe('wb data', () => {
   })
 
   it('should return ttl when requested', async () => {
-    const { stdout } = await shellExec('./bin/wd data Q1512522 --format ttl')
+    const { stdout } = await shellExec('./bin/wd.js data Q1512522 --format ttl')
     stdout.should.startWith('@prefix rdf:')
   })
 
   describe('property claims data', () => {
     it('should get property claims data provided a property claims id', async () => {
       const propertyClaimsId = 'Q2#P31'
-      const { stdout } = await shellExec(`./bin/wd data '${propertyClaimsId}'`)
+      const { stdout } = await shellExec(`./bin/wd.js data '${propertyClaimsId}'`)
       const propertyClaims = JSON.parse(stdout)
       propertyClaims.should.be.an.Array()
       propertyClaims[0].id.should.startWith('Q2$')
@@ -116,27 +116,27 @@ describe('wb data', () => {
 
   it('should fetch a specific revision', async () => {
     const revisionId = 1257590478
-    const { stdout } = await shellExec(`./bin/wd data Q1345582 --revision ${revisionId}`)
+    const { stdout } = await shellExec(`./bin/wd.js data Q1345582 --revision ${revisionId}`)
     const entity = JSON.parse(stdout)
     entity.lastrevid.should.equal(revisionId)
   })
 
   it('should simplify a specific revision', async () => {
     const revisionId = 1257590478
-    const { stdout } = await shellExec(`./bin/wd data Q1345582 --revision ${revisionId} --simplify`)
+    const { stdout } = await shellExec(`./bin/wd.js data Q1345582 --revision ${revisionId} --simplify`)
     const entity = JSON.parse(stdout)
     entity.labels.fr.should.equal('Gilbert Simondon')
   })
 
   it('should return entities schema text', async () => {
-    const { stdout } = await shellExec('./bin/wd data E233')
+    const { stdout } = await shellExec('./bin/wd.js data E233')
     stdout.should.containEql('PREFIX wd:')
   })
 
   describe('claim data', () => {
     it('should get a claim data provided a claim guid', async () => {
       const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-      const { stdout } = await shellExec(`./bin/wd data '${guid}'`)
+      const { stdout } = await shellExec(`./bin/wd.js data '${guid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal(guid)
       claim.mainsnak.property.should.equal('P31')
@@ -145,7 +145,7 @@ describe('wb data', () => {
 
     it('should accept prefixed claim GUIDs', async () => {
       const prefixedGuid = 'wds:Q2-50fad68d-4f91-f878-6f29-e655af54690e'
-      const { stdout } = await shellExec(`./bin/wd data '${prefixedGuid}'`)
+      const { stdout } = await shellExec(`./bin/wd.js data '${prefixedGuid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
       claim.mainsnak.property.should.equal('P31')
@@ -154,7 +154,7 @@ describe('wb data', () => {
 
     it('should accept claim GUIDs with an - in place of a $', async () => {
       const hyphenedGuid = 'Q2-50fad68d-4f91-f878-6f29-e655af54690e'
-      const { stdout } = await shellExec(`./bin/wd data '${hyphenedGuid}'`)
+      const { stdout } = await shellExec(`./bin/wd.js data '${hyphenedGuid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
       claim.mainsnak.property.should.equal('P31')
@@ -162,13 +162,13 @@ describe('wb data', () => {
     })
 
     it('should get a simplified claim', async () => {
-      const { stdout } = await shellExec('./bin/wd data --simplify \'Q2$50fad68d-4f91-f878-6f29-e655af54690e\'')
+      const { stdout } = await shellExec('./bin/wd.js data --simplify \'Q2$50fad68d-4f91-f878-6f29-e655af54690e\'')
       stdout.should.equal('Q128207')
     })
 
     it('should keep the requested simplified claim data', async () => {
       const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-      const { stdout } = await shellExec(`./bin/wd data --simplify --keep ids,references,qualifiers '${guid}'`)
+      const { stdout } = await shellExec(`./bin/wd.js data --simplify --keep ids,references,qualifiers '${guid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal(guid)
       claim.value.should.equal('Q128207')
@@ -184,7 +184,7 @@ describe('wb data', () => {
     })
 
     it('should use specified time-converter', async () => {
-      const { stdout } = await shellExec('./bin/wd data --simplify --time-converter simple-day Q52#P571')
+      const { stdout } = await shellExec('./bin/wd.js data --simplify --time-converter simple-day Q52#P571')
       stdout.should.equal('2001-01-15')
     })
   })

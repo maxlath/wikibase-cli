@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb delete-entity', () => {
   it('should accept an id', async () => {
@@ -9,7 +9,7 @@ describe('wb delete-entity', () => {
     section.should.equal('entity')
     action.should.equal('delete')
     args.should.deepEqual([
-      { id: 'Q1111' }
+      { id: 'Q1111' },
     ])
   })
 })

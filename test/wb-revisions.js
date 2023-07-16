@@ -1,9 +1,9 @@
-require('should')
-const { shellExec } = require('./lib/utils')
+import 'should'
+import { shellExec } from '#test/lib/utils'
 
 describe('wb revisions', () => {
   it('should display help', async () => {
-    const { stdout } = await shellExec('./bin/wb revisions')
+    const { stdout } = await shellExec('./bin/wb.js revisions')
     stdout.should.containEql('Usage:')
   })
 })

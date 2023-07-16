@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   args: '<title>',
   description: 'get a Wikidata id from a Wikipedia article title',
   options: {
@@ -7,10 +7,10 @@ module.exports = {
     clipboard: true,
     json: false,
     instance: true,
-    sparqlEndpoint: false
+    sparqlEndpoint: false,
   },
   examples: [
     { args: 'Cantabria', comment: 'get the Wikidata id corresponding to the article "Cantabria" in Wikipedia' },
-    { args: 'science politique --lang fr', comment: 'get the Wikidata id corresponding to the article "science politique" in the French Wikipedia' }
-  ]
+    { args: 'science politique --lang fr', comment: 'get the Wikidata id corresponding to the article "science politique" in the French Wikipedia' },
+  ],
 }

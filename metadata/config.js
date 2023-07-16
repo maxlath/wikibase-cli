@@ -1,6 +1,6 @@
-const { grey } = require('chalk')
+import { grey } from '#lib/chalk'
 
-module.exports = {
+export default {
   args: '<key> [value]',
   description: 'get and set configuration parameters',
   options: {
@@ -9,7 +9,7 @@ module.exports = {
     clipboard: false,
     json: true,
     instance: false,
-    sparqlEndpoint: false
+    sparqlEndpoint: false,
   },
   examples: [
     { args: 'clipboard true', comment: 'always copy results to the clipboard when possible' },
@@ -20,7 +20,7 @@ module.exports = {
     { args: 'credentials http://localhost:8181 test', comment: 'test the validity of your credentials for an instance' },
     { args: 'path', comment: 'get configuration path' },
     { args: 'reset', comment: 'reset configuration' },
-    { args: `--json > config.json.backup\n  ${grey('# to restore it, simply override the current config file')}\n  cp config.json.backup $(wb config path)`, comment: 'can be used to backup the config' }
+    { args: `--json > config.json.backup\n  ${grey('# to restore it, simply override the current config file')}\n  cp config.json.backup $(wb config path)`, comment: 'can be used to backup the config' },
   ],
-  doc: 'https://github.com/maxlath/wikibase-cli/blob/main/docs/config.md#config'
+  doc: 'https://github.com/maxlath/wikibase-cli/blob/main/docs/config.md#config',
 }

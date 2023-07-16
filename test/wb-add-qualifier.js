@@ -1,5 +1,5 @@
-require('should')
-const { wbDry } = require('./lib/utils')
+import 'should'
+import { wbDry } from '#test/lib/utils'
 
 describe('wb add-qualifier', () => {
   it('should accept a guid, a property, and value', async () => {
@@ -12,8 +12,8 @@ describe('wb add-qualifier', () => {
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
         property: 'P155',
-        value: 'Q13406268'
-      }
+        value: 'Q13406268',
+      },
     ])
   })
 
@@ -27,8 +27,8 @@ describe('wb add-qualifier', () => {
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
         property: 'P155',
-        value: 'Q13406268'
-      }
+        value: 'Q13406268',
+      },
     ])
   })
 
@@ -42,8 +42,8 @@ describe('wb add-qualifier', () => {
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
         property: 'P155',
-        value: 'amount=123&unit=Q4916'
-      }
+        value: 'amount=123&unit=Q4916',
+      },
     ])
   })
 
@@ -57,8 +57,8 @@ describe('wb add-qualifier', () => {
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
         property: 'P155',
-        value: '{"amount":123,"unit":"Q4916"}'
-      }
+        value: '{"amount":123,"unit":"Q4916"}',
+      },
     ])
   })
 })

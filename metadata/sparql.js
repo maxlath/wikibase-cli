@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   alias: 's',
   args: '<file.rq>',
   description: 'run a SPARQL query and get its JSON output',
@@ -8,7 +8,7 @@ module.exports = {
     clipboard: true,
     json: true,
     instance: false,
-    sparqlEndpoint: true
+    sparqlEndpoint: true,
   },
   examples: [
     { args: './path/to/query.rq', comment: 'make a SPARQL request from a file' },
@@ -18,6 +18,6 @@ module.exports = {
     { args: './path/to/query.rq --format csv', comment: "set an alternative output format: json, xml, tsv, csv, binrdf, table. Default: 'table' when 1 value is selected, 'json' otherwise" },
     { args: './path/to/query.rq --index someVariableName', comment: 'get the results indexed by one of the SELECTed variables' },
     { args: './path/to/query.rq --dry', comment: 'output the SPARQL without running the query' },
-    { args: './path/to/query.rq --open', comment: 'open the query in the Query Service GUI' }
-  ]
+    { args: './path/to/query.rq --open', comment: 'open the query in the Query Service GUI' },
+  ],
 }

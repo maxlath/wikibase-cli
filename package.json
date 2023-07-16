@@ -2,14 +2,17 @@
   "name": "wikibase-cli",
   "version": "16.3.3",
   "description": "A command-line interface to Wikibase",
+  "type": "module",
   "main": "index.js",
   "bin": {
-    "wb": "./bin/wb",
-    "wd": "./bin/wd"
+    "wb": "./bin/wb.js",
+    "wd": "./bin/wd.js"
   },
   "scripts": {
     "docker:publish": "./scripts/docker_publish",
-    "lint": "eslint -c .eslintrc bin/wb* lib/* lib/*/* test/* test/lib/*",
+    "git-pre-commit": "./scripts/githooks/pre-commit",
+    "lint": "eslint -c .eslintrc.cjs bin/wb* lib/* lib/*/* test/* test/lib/*",
+    "lint-fix": "eslint -c .eslintrc.cjs --fix bin/wb* lib/* lib/*/* test/* test/lib/*",
     "lint-staged": "./scripts/lint_staged",
     "prepublishOnly": "npm run lint && npm test",
     "postpublish": "npm run docker:publish && git push --tags",
@@ -25,6 +28,11 @@
     "lib",
     "metadata"
   ],
+  "imports": {
+    "#lib/*": "./lib/*.js",
+    "#metadata/*": "./metadata/*.js",
+    "#test/*": "./test/*.js"
+  },
   "keywords": [
     "wikidata",
     "wikibase",
@@ -42,7 +50,7 @@
     "chalk": "^2.4.2",
     "commander": "^6.0.0",
     "copy-paste": "^1.3.0",
-    "lodash": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "mkdirp": "^0.5.1",
     "node-fetch": "^2.6.0",
     "open": "^7.0.4",
@@ -51,22 +59,22 @@
     "split": "^1.0.1",
     "through": "^2.3.8",
     "wikibase-edit": "^5.3.3",
-    "wikibase-sdk": "^8.1.0",
+    "wikibase-sdk": "^9.1.3",
     "wikidata-lang": "^2.0.11"
   },
   "devDependencies": {
-    "eslint": "^7.10.0",
-    "eslint-config-standard": "^14.1.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prefer-arrow": "^1.2.2",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
-    "git-hooks": "^1.1.10",
+    "@types/lodash-es": "^4.17.8",
+    "@types/node": "^20.4.2",
+    "@vercel/git-hooks": "^1.0.0",
+    "eslint": "^8.45.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-promise": "^6.1.1",
     "mocha": "^9.1.3",
     "should": "^13.2.3"
   },
   "engines": {
-    "node": ">= 10.0.0"
+    "node": ">= 14.0.0"
   }
 }

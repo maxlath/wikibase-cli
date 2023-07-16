@@ -1,1 +1,1 @@
-module.exports = id => {}
+export default id => {}
