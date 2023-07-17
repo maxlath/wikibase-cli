@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { getStatementsKey } from 'wikibase-edit/lib/parse_instance.js'
 import { isPropertyId, simplifyClaims, simplifyPropertyClaims } from 'wikibase-sdk'
 import { yellow } from '#lib/chalk'
 import errors_ from '#lib/errors'
@@ -47,9 +48,10 @@ const run = async () => {
     errors_.exitMessage(`entity not found: ${program.instance}/entity/${id}`)
   }
 
+  const statementsKey = getStatementsKey(program.instance)
   const keepNonTruthy = program.all === true
   if (isPropertyId(prop) && value != null) {
-    const propClaims = entity.claims[prop]
+    const propClaims = entity[statementsKey][prop]
     if (!propClaims) throw new Error(`no claims found for this property: ${prop}`)
     const ids = simplifyPropertyClaims(propClaims, { keepIds: true, keepNonTruthy })
       .filter(simplifyClaim => simplifyClaim.value === value)
@@ -57,7 +59,7 @@ const run = async () => {
     return output(ids)
   }
 
-  const simplifiedClaims = simplifyClaims(entity.claims, { keepNonTruthy })
+  const simplifiedClaims = simplifyClaims(entity[statementsKey], { keepNonTruthy })
   if (!prop) return logClaims({ program, simplifiedClaims, pattern, resort: true })
 
   value = simplifiedClaims[prop]

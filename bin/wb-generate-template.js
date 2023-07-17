@@ -2,7 +2,7 @@
 import { isEntityId } from 'wikibase-sdk'
 import { exitOnMissingInstance } from '#lib/exit_on_missing'
 import { getEntitiesByBatches } from '#lib/get_entities_by_batches'
-import outputTemplates from '#lib/output_templates'
+import { outputTemplatesFactory } from '#lib/output_templates'
 import parseProps from '#lib/parse_props'
 import program from '#lib/program'
 import { readIdsFromStdin } from '#lib/read_ids_from_stdin'
@@ -34,8 +34,11 @@ const requestedProps = Object.keys(requestedPropsAndSubProps)
 const requiredKeys = [ 'id', 'type', 'datatype', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
 let propsToPick
-if (revision && requestedProps.length > 0) propsToPick = [ 'id' ].concat(requestedProps)
-else propsToPick = requiredKeys
+if (revision && requestedProps.length > 0) {
+  propsToPick = [ 'id' ].concat(requestedProps)
+} else {
+  propsToPick = requiredKeys
+}
 
 const handleIds = async ids => {
   ids.forEach(id => {
@@ -60,7 +63,7 @@ const handleIds = async ids => {
 
   return getEntitiesByBatches({
     urls,
-    onResponse: outputTemplates({ batchMode, format, propsToPick, requestedPropsAndSubProps, minimize }),
+    onResponse: outputTemplatesFactory({ batchMode, format, propsToPick, requestedPropsAndSubProps, minimize }),
   })
 }
 
