@@ -11,8 +11,8 @@
   "scripts": {
     "docker:publish": "./scripts/docker_publish",
     "git-pre-commit": "./scripts/githooks/pre-commit",
-    "lint": "eslint -c .eslintrc.cjs bin/wb* lib/* lib/*/* test/* test/lib/*",
-    "lint-fix": "eslint -c .eslintrc.cjs --fix bin/wb* lib/* lib/*/* test/* test/lib/*",
+    "lint": "eslint --config .eslintrc.cjs bin/* lib test",
+    "lint-fix": "eslint --config .eslintrc.cjs --fix bin/* lib test",
     "lint-staged": "./scripts/lint_staged",
     "prepublishOnly": "npm run lint && npm test",
     "postpublish": "npm run docker:publish && git push --tags",
