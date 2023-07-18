@@ -54,7 +54,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version info
 ## Dependencies
 
 ### General
-* [NodeJs](https://nodejs.org) **>= v10** (recommended way to install it: use the awesome [NVM](https://github.com/creationix/nvm) to install the latest LTS version `nvm install --lts`)
+* [NodeJs](https://nodejs.org) **>= v14** (recommended way to install it: use the awesome [NVM](https://github.com/creationix/nvm) to install the latest LTS version `nvm install --lts`)
 * [Git](https://git-scm.com/)
 
 ### Per feature

@@ -159,11 +159,19 @@ wb query --property P2002 --object timberners_lee
 Alternatively to using `wb config`, you can set environment variables. Priority is given to the command line options, then environment variables, then config values.
 
 ```sh
-export WB_INSTANCE=https://wikibase.world/w/api.php ; wb label Q2
-# => Wikibase
-export WB_INSTANCE=https://www.wikidata.org/w/api.php ; wb label Q2
-# => Earth
+export WB_INSTANCE=https://wikibase.world ; wb label Q3
+# => Wikibase World
+export WB_INSTANCE=https://www.wikidata.org ; wb label Q3
+# => life
+export WB_INSTANCE=https://commons.wikimedia.org ; wb label M83175040
 ```
+Thos are equivalent to the `--instance` parameter
+```sh
+wb label Q3 --instance https://wikibase.world ;
+wb label Q3 --instance https://www.wikidata.org
+wb label M83175040 --instance https://commons.wikimedia.org
+```
+but can be useful in different contexts, such as when writting shell scripts.
 
 Available variables:
 * `WB_BOT`
