@@ -7,7 +7,7 @@ import parseEntityType from '#lib/parse_entity_type'
 import program from '#lib/program'
 import { get } from '#lib/request'
 import { isValidLang } from '#lib/validate'
-import wbk from '#lib/wbk'
+import { getWbk } from '#lib/wbk'
 
 await program
 .option('-p, --properties <properties>', 'request additional properties (separated by a comma) (implies verbose mode)')
@@ -33,7 +33,7 @@ if (!isValidLang(language)) {
 }
 exitOnMissingInstance(program.instance)
 
-const { searchEntities, cirrusSearchPages } = wbk(program)
+const { searchEntities, cirrusSearchPages } = getWbk(program)
 
 type = parseEntityType(type)
 

@@ -7,7 +7,7 @@ import logNdjson from '#lib/log_ndjson'
 import program from '#lib/program'
 import { get } from '#lib/request'
 import { isPositiveIntegerString } from '#lib/types'
-import wbk from '#lib/wbk'
+import { getWbk } from '#lib/wbk'
 
 await program
 .option('-s, --start <date>', 'start date')
@@ -17,7 +17,7 @@ await program
 
 exitOnMissingInstance(program.instance)
 
-const { getRevisions } = wbk(program)
+const { getRevisions } = getWbk(program)
 
 // Not parsing the ids with ../lib/tolerant_id_parser as that would
 // remove prefixes which are required for entities out of the main namespace

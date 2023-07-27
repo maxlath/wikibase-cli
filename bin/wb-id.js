@@ -6,13 +6,13 @@ import getRedirectedSitelinkTitle from '#lib/get_redirected_sitelink_title'
 import { outputFactory } from '#lib/output'
 import program from '#lib/program'
 import { get } from '#lib/request'
-import wbk from '#lib/wbk'
+import { getWbk } from '#lib/wbk'
 
 await program.process('id')
 
 exitOnMissingInstance(program.instance)
 
-const { getEntitiesFromSitelinks } = wbk(program)
+const { getEntitiesFromSitelinks } = getWbk(program)
 
 let { lang } = program
 const output = outputFactory(program)

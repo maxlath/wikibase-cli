@@ -7,7 +7,7 @@ import parseProps from '#lib/parse_props'
 import program from '#lib/program'
 import { readIdsFromStdin } from '#lib/read_ids_from_stdin'
 import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
-import wbk from '#lib/wbk'
+import { getWbk } from '#lib/wbk'
 
 await program
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
@@ -22,7 +22,7 @@ const parseId = tolerantIdParserFactory()
 const ids = program.args.map(parseId)
 exitOnMissingInstance(program.instance)
 
-const { getEntityRevision, getManyEntities } = wbk(program)
+const { getEntityRevision, getManyEntities } = getWbk(program)
 
 const { revision, minimize } = program
 let { format, json } = program
