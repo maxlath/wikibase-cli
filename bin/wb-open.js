@@ -1,8 +1,9 @@
 #!/usr/bin/env node
-import { isPropertyId } from 'wikibase-sdk'
+import { isMediaInfoId, isPropertyId } from 'wikibase-sdk'
 import errors_ from '#lib/errors'
 import { exitOnMissingInstance } from '#lib/exit_on_missing'
 import { getSitelinkUrlFactory } from '#lib/get_sitelink_url'
+import { getMediaInfoEntityTitle } from '#lib/mediainfo'
 import { openUrl } from '#lib/open'
 import program from '#lib/program'
 import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
@@ -52,6 +53,9 @@ if (!ids || ids.length === 0) {
     } else if (program.history) {
       if (isPropertyId(id)) {
         openUrl(`${instance}/w/index.php?title=Property:${id}&action=history`)
+      } else if (isMediaInfoId(id)) {
+        const title = await getMediaInfoEntityTitle(id)
+        openUrl(`${instance}/w/index.php?title=${title}&action=history`)
       } else {
         // Will be redirected to title=${id} if Item is the main namespace
         openUrl(`${instance}/w/index.php?title=Item:${id}&action=history`)
