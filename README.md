@@ -112,8 +112,10 @@ See [Config](docs/config.md)
 ## Debug
 To get debugging informations, set the `DEBUG` environment variable:
 ```sh
-# Print all debugging information
+# Print all wikibase-cli-specific debugging information
 export DEBUG=wikibase-cli ; wb
+# Also print wikibase-edit debugging information
+export DEBUG=wikibase-* ; wb
 # Print only request debugging information
 export DEBUG=wikibase-cli:request ; wd label Q1
 ```
