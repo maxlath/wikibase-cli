@@ -44,6 +44,7 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
   - [Read operations](docs/read_operations.md)
   - [Write operations](docs/write_operations.md)
   - [Config](docs/config.md)
+- [Debug](#debug)
 - [See Also](#see-also)
 - [You may also like](#you-may-also-like)
 - [License](#license)
@@ -107,6 +108,15 @@ See [Write operations](docs/write_operations.md)
 Allows to persist options
 
 See [Config](docs/config.md)
+
+## Debug
+To get debugging informations, set the `DEBUG` environment variable:
+```sh
+# Print all debugging information
+export DEBUG=wikibase-cli ; wb
+# Print only request debugging information
+export DEBUG=wikibase-cli:request ; wd label Q1
+```
 
 ## See Also
 * [wikibase-sdk](https://www.npmjs.com/package/wikibase-sdk): A javascript tool suite to query and work with Wikibase data, heavily used by wikibase-cli

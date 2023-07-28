@@ -2,6 +2,7 @@
 import fs from 'node:fs'
 import path, { resolve } from 'node:path'
 import program from 'commander'
+import { debug } from '#lib/debug'
 import { getDirname } from '#lib/fs'
 import { readJsonFile } from '#lib/json'
 
@@ -10,6 +11,8 @@ const pkg = readJsonFile(resolve(dirname, '../package.json'))
 
 program.version(pkg.version)
 program.description(pkg.description)
+
+debug('program:metadata', { name: pkg.name, version: pkg.version })
 
 // To add a new command, create a file in ../metadata/${new-command-name}
 // and add an executable at ./wb-${new-command-name}

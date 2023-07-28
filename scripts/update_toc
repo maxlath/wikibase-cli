@@ -5,4 +5,5 @@ which doctoc > /dev/null || {
   exit 1
 }
 
+echo '/!\ README.md ToC is manually maintained'
 doctoc docs/*.md
