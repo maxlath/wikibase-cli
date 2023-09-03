@@ -2,7 +2,7 @@
 *versions follow [SemVer](http://semver.org)*
 
 ## 17.0.0 - 2023-07-17
-**BREAKING CHANGE**: updated NodeJS minimal version `>= v14.0.0` to be able to convert the code from CommonJS to [ES modules}(https://nodejs.org/api/esm.html)
+**BREAKING CHANGE**: updated NodeJS minimal version `>= v14.0.0` to be able to convert the code from CommonJS to [ES modules](https://nodejs.org/api/esm.html)
 * Added support for `entity.statements` as an alias for `entity.claims`, to support Wikibase-ish instances such as https://commons.wikimedia.org. For more on this oddity, see https://phabricator.wikimedia.org/T149410.
 * [`wb summary`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-summary): include an extract from the corresponding Wikipedia article when available
 
