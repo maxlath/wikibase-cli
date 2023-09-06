@@ -32,7 +32,7 @@ if (program.reset) {
   getLangProps(program)
   .then(formatPropertiesData(pattern, filter, includeAllDetails, includeTypes))
   .then(output => {
-    if (filter && filter.regex) return output.replace(filter.regex, red(pattern))
+    if (filter && filter.regex) return output.replace(filter.regex, red('$1'))
     return output
   })
   .then(console.log)
