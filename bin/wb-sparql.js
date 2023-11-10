@@ -29,7 +29,7 @@ const main = async () => {
   // Allow to pass a JS module that exports a function
   // to which is passed the remaining arguments
   // and from which the SPARQL request is generated
-  if (extension === 'js') {
+  if (extension.endsWith('js')) {
     absoluePath = resolve(process.cwd(), path)
   // or pass the name of one of the wellknown queries
   } else if (wellknownQueries.list.includes(path)) {
