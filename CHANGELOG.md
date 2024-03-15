@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 18.0.0 - 2024-03-15
+**BREAKING CHANGE**: updated NodeJS minimal version to `>= v18` to be able to use the native [`fetch`](https://nodejs.org/dist/latest/docs/api/globals.html#fetch)
+
 ## 17.0.0 - 2023-07-17
 **BREAKING CHANGE**: updated NodeJS minimal version `>= v14.0.0` to be able to convert the code from CommonJS to [ES modules](https://nodejs.org/api/esm.html)
 * Added support for `entity.statements` as an alias for `entity.claims`, to support Wikibase-ish instances such as https://commons.wikimedia.org. For more on this oddity, see https://phabricator.wikimedia.org/T149410.
