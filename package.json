@@ -52,7 +52,6 @@
     "copy-paste": "^1.5.0",
     "lodash-es": "^4.17.21",
     "mkdirp": "^3.0.1",
-    "node-fetch": "^2.6.0",
     "open": "^9.1.0",
     "read": "^2.1.0",
     "shell-quote": "^1.8.1",
@@ -75,6 +74,6 @@
     "should": "^13.2.3"
   },
   "engines": {
-    "node": ">= 14.17.0"
+    "node": ">= 18"
   }
 }
