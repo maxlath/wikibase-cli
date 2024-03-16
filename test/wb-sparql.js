@@ -54,4 +54,12 @@ describe('wb sparql', () => {
       headers['x-served-by'][0].should.startWith('wdqs')
     })
   })
+
+  describe('csv', () => {
+    it('should return csv format results', async () => {
+      const { stdout, stderr } = await shellExec('./bin/wd.js sparql ./test/assets/query.js Q46409471 --format csv')
+      stdout.should.equal('subject\nhttp://www.wikidata.org/entity/Q52260106\nhttp://www.wikidata.org/entity/Q124857319')
+      stderr.should.equal('')
+    })
+  })
 })
