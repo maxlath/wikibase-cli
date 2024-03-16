@@ -14,7 +14,7 @@
     "lint": "eslint --config .eslintrc.cjs bin/* lib test",
     "lint-fix": "eslint --config .eslintrc.cjs --fix bin/* lib test",
     "lint-staged": "./scripts/lint_staged",
-    "prepublishOnly": "npm run lint && npm test",
+    "prepublishOnly": "export MOCHA_OPTIONS='--bail'; npm run lint && npm test",
     "postpublish": "npm run docker:publish && git push --tags",
     "test": "mocha --exit --timeout 20000 $MOCHA_OPTIONS",
     "update-toc": "./scripts/update_toc"
