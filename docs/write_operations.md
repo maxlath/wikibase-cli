@@ -31,6 +31,7 @@ The following documentation often assumes that the Wikibase instance we work wit
   - [wb update-claim](#wb-update-claim)
     - [update claim in batch mode](#update-claim-in-batch-mode)
   - [wb move-claim](#wb-move-claim)
+    - [move claim in batch mode](#move-claim-in-batch-mode)
   - [wb remove-claim](#wb-remove-claim)
 - [qualifiers](#qualifiers)
   - [wb add-qualifier](#wb-add-qualifier)
@@ -298,14 +299,14 @@ echo '
 { "guid": "Q1$63ef3ef4-4499-110a-3f66-33b352b61520", "newValue": "bar" }
 { "guid": "Q1$aaa3162d-4faa-6761-a8e6-f5e6a639afd5", "rank": "deprecated" }
 { "guid": "Q1$b1a0d905-4f20-065d-4aa7-787ea29c5af1", "rank": "normal" }
-' | wb uc -b
+' | wb uc -b --summary 'update claim demo'
 ```
 or as inline values (but then you can't set the rank)
 ```sh
 echo '
 Q1$d941fe74-4a76-a143-6766-a24d2ef2ddad foo
 Q1$63ef3ef4-4499-110a-3f66-33b352b61520 bar
-' | wb uc -b
+' | wb uc -b --summary 'update claim demo'
 ```
 
 #### wb move-claim
@@ -336,6 +337,24 @@ wb mc Q4115189#P19 Q13406268 P20
 ```
 
 Certain claims can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
+
+##### move claim in batch mode
+Arguments can either be passed in object mode
+```sh
+echo '
+{ "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q4115189", "property": "P20" }
+{ "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P19" }
+{ "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P20" }
+' | wb mc -b --summary 'move claim demo'
+```
+or as inline values (but then you can't set the rank)
+```sh
+echo '
+Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q4115189 P20
+Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P19
+Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P20
+' | wb mc -b --summary 'move claim demo'
+```
 
 #### wb remove-claim
 Remove a claim
