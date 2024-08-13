@@ -312,9 +312,9 @@ Q1$63ef3ef4-4499-110a-3f66-33b352b61520 bar
 #### wb move-claim
 Move claims from an entity to another and/or from a property to another
 ```sh
-wb move-claim <guid|property-claims-id> <target-entity-id> <target-property-id>
+wb move-claim <guid|property-claims-id> <target-entity-id> <target-property-id> [new-claim-value]
 # Alias
-wb mc <guid|property-claims-id> <target-entity-id> <target-property-id>
+wb mc <guid|property-claims-id> <target-entity-id> <target-property-id> [new-claim-value]
 ```
 
 Examples:
@@ -327,6 +327,8 @@ wb mc $Q4115189_P19_claim_guid Q4115189 P20
 wb mc $Q4115189_P19_claim_guid Q13406268 P19
 # move the claim to another entity and another property
 wb mc $Q4115189_P19_claim_guid Q13406268 P20
+# move the claim to another entity and another property, and change the value (while still preserving the other claim attributes: rank, qualifiers, references)
+wb mc $Q4115189_P19_claim_guid Q13406268 P20 Q15397819
 
 # move all Q4115189 P19 claims to P20 (without changing entity)'
 wb mc Q4115189#P19 Q4115189 P20
@@ -334,6 +336,8 @@ wb mc Q4115189#P19 Q4115189 P20
 wb mc Q4115189#P19 Q13406268 P19
 # move all Q4115189 P19 claims to Q13406268 P20'
 wb mc Q4115189#P19 Q13406268 P20
+# move the claim to another entity and another property, and change the value (while still preserving the other claim attributes: rank, qualifiers, references)
+wb mc Q4115189#P19 Q13406268 P20 Q15397819
 ```
 
 Certain claims can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
@@ -345,6 +349,7 @@ echo '
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q4115189", "property": "P20" }
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P19" }
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P20" }
+{ "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P20", "newValue": "Q15397819" }
 ' | wb mc -b --summary 'move claim demo'
 ```
 or as inline values (but then you can't set the rank)
@@ -353,6 +358,7 @@ echo '
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q4115189 P20
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P19
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P20
+Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P20 Q15397819
 ' | wb mc -b --summary 'move claim demo'
 ```
 
