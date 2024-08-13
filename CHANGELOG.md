@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 18.1.0 - 2024-08-13
+* [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-move-claim): Allow to change the moved claim value
+
 ## 18.0.0 - 2024-03-15
 **BREAKING CHANGE**: updated NodeJS minimal version to `>= v18` to be able to use the native [`fetch`](https://nodejs.org/dist/latest/docs/api/globals.html#fetch)
 
