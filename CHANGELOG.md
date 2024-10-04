@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 18.2.0 - 2024-10-05
+* [`wd revisions`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-revisions): now accepts ids on stdin and `--props`
+
 ## 18.1.0 - 2024-08-13
 * [`wb move-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-move-claim): Allow to change the moved claim value
 
