@@ -5,6 +5,8 @@ import { exitOnMissingInstance } from '#lib/exit_on_missing'
 import program from '#lib/program'
 import { get } from '#lib/request'
 
+program.canHaveZeroArguments = true
+
 await program.process('badges')
 
 const { instance } = program

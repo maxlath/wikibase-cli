@@ -7,6 +7,8 @@ import getPatternFilter from '#lib/get_pattern_filter'
 import program from '#lib/program'
 import resetProperties from '#lib/reset_properties'
 
+program.canHaveZeroArguments = true
+
 await program
 .option('-d, --details', 'include properties labels, types, descriptions, and aliases')
 .option('-t, --type [type]', 'include properties types, or if a type is specified, keep only properties with that type')

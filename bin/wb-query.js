@@ -7,6 +7,9 @@ import { outputFactory } from '#lib/output'
 import program from '#lib/program'
 import { sparqlQueryCommand } from '#lib/sparql_query_command'
 
+// All arguments are passed as options values making program.args.length === 0 likely
+program.canHaveZeroArguments = true
+
 await program
 .option('-s, --subject <subject>', 'set a subject')
 .option('-p, --property <property>', 'set a property')

@@ -5,6 +5,8 @@ import { configurateCredentials } from '#lib/config/credentials_config'
 import fileOps from '#lib/config/file_operations'
 import program from '#lib/program'
 
+program.canHaveZeroArguments = true
+
 await program.process('config')
 
 const { args, json } = program

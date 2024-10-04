@@ -4,6 +4,8 @@ import { parseGuid } from '#lib/parse_command_utils'
 import program from '#lib/program'
 import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
 
+program.acceptsArgsOnStdin = true
+
 await program
 .option('-s, --simplify', 'get simplified entities data')
 .option('-k, --keep <props>', 'data to keep when simplifying claims (ids,richvalues,types,references,qualifiers,hashes,nontruthy,nondeprecated,ranks)')

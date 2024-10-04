@@ -9,6 +9,8 @@ import { readIdsFromStdin } from '#lib/read_ids_from_stdin'
 import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
 import { getWbk } from '#lib/wbk'
 
+program.acceptsArgsOnStdin = true
+
 await program
 .option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
 .option('-r, --revision <id>', 'request a specific revision')

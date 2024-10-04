@@ -5,6 +5,8 @@ import errors_ from '#lib/errors'
 import { getStdinInput } from '#lib/get_stdin_input'
 import program from '#lib/program'
 
+program.canHaveZeroArguments = true
+
 await program
 .option('-s, --subjects [subjects...]', 'set a subject')
 .option('-p, --property <property>', 'set a property')
