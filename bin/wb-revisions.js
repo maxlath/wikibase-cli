@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { values } from 'lodash-es'
+import { chunk, values } from 'lodash-es'
 import { isEntityId } from 'wikibase-sdk'
 import errors_ from '#lib/errors'
 import { exitOnMissingInstance } from '#lib/exit_on_missing'
@@ -22,7 +22,7 @@ exitOnMissingInstance(program.instance)
 
 const { getRevisions } = getWbk(program)
 
-function fetchAndLogRevisions (ids) {
+async function fetchAndLogRevisions (ids) {
   ids.forEach(id => {
     let [ prefix, entityId ] = id.split(':')
     if (entityId) {
@@ -40,28 +40,37 @@ function fetchAndLogRevisions (ids) {
   if (isPositiveIntegerString(start)) start = parseInt(start)
   if (isPositiveIntegerString(end)) end = parseInt(end)
 
-  query.start = start
-  query.end = end
-  query.limit = limit
-  if (props) query.prop = props?.split(/[,|]/)
+  if (start != null) query.start = start
+  if (end != null) query.end = end
+  if (limit != null) query.limit = limit
+  if (props != null) query.prop = props?.split(/[,|]/)
 
-  const getAndLogRevisions = id => {
-    const url = getRevisions({ ids: [ id ], ...query })
-    if (verbose) console.log(`revision query: ${id}`, url)
-    return get(url)
-    .then(body => values(body.query.pages)[0])
+  // Prevent error "titles, pageids or a generator was used to supply multiple pages, but the rvlimit, rvstartid, rvendid, rvdir=newer, rvuser, rvexcludeuser, rvstart, and rvend parameters may only be used on a single page. "
+  const usesSinglePageParam = limit != null || start != null || end != null
+
+  async function getAndLogRevisions (ids) {
+    const url = getRevisions({ ids, ...query })
+    if (verbose) console.log(`revision query: ${ids}`, url)
+    const body = await get(url)
+    return values(body.query.pages)
   }
 
-  if (ids.length === 1) {
-    getAndLogRevisions(ids[0])
-    .then(data => console.log(JSON.stringify(data)))
-    .catch(errors_.exit)
+  if (usesSinglePageParam) {
+    const idsBatches = chunk(ids, 10)
+    for (const batch of idsBatches) {
+      // Getting revisisions data individually to be able to pass parameters
+      // cf https://github.com/maxlath/wikibase-sdk/blob/master/docs/get_revisions.md
+      await Promise.all(batch.map(getAndLogRevisions))
+      .then(logNdjson)
+      .catch(errors_.exit)
+    }
   } else {
-    // Getting revisisions data individually to be able to pass parameters
-    // cf https://github.com/maxlath/wikibase-sdk/blob/master/docs/get_revisions.md
-    Promise.all(ids.map(getAndLogRevisions))
-    .then(logNdjson)
-    .catch(errors_.exit)
+    const idsBatches = chunk(ids, 50)
+    for (const batch of idsBatches) {
+      await getAndLogRevisions(batch)
+      .then(logNdjson)
+      .catch(errors_.exit)
+    }
   }
 }
 
