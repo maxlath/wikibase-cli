@@ -551,6 +551,7 @@ Options:
 * `-s, --start <time>`: specify a start time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
 * `-e, --end <time>`: specify an end time ([date format](https://github.com/maxlath/wikidata-sdk/blob/master/docs/get_revisions.md#get-revisions))
 * `-l, --limit <time>`: specify a limit number of revision (default and max = 500)
+* `-p, --props <props>`: requested props, separated by a comma. Available props: https://www.mediawiki.org/wiki/API:Revisions#query+revisions:rvprop
 
 ### wb id
 This one is kind of the inverse of `wb label`: pass it the title of a Wikipedia article and it will return the corresponding Wikidata id

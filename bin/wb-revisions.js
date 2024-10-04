@@ -13,6 +13,7 @@ await program
 .option('-s, --start <date>', 'start date')
 .option('-e, --end <date>', 'end date')
 .option('-n, --limit <num>', 'maximum number of revisions')
+.option('-p, --props <props>', 'requested props, separated by a comma. Available props: https://www.mediawiki.org/wiki/API:Revisions#query+revisions:rvprop')
 .process('revisions')
 
 exitOnMissingInstance(program.instance)
@@ -38,13 +39,14 @@ ids.forEach(id => {
 })
 
 const query = {}
-let { start, end, limit, verbose } = program
+let { start, end, limit, props, verbose } = program
 if (isPositiveIntegerString(start)) start = parseInt(start)
 if (isPositiveIntegerString(end)) end = parseInt(end)
 
 query.start = start
 query.end = end
 query.limit = limit
+if (props) query.prop = props?.split(',')
 
 const getAndLogRevisions = id => {
   const url = getRevisions({ ids: [ id ], ...query })
