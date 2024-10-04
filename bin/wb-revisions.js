@@ -9,6 +9,8 @@ import { get } from '#lib/request'
 import { isPositiveIntegerString } from '#lib/types'
 import { getWbk } from '#lib/wbk'
 
+program.acceptsArgsOnStdin = true
+
 await program
 .option('-s, --start <date>', 'start date')
 .option('-e, --end <date>', 'end date')
@@ -20,49 +22,60 @@ exitOnMissingInstance(program.instance)
 
 const { getRevisions } = getWbk(program)
 
-// Not parsing the ids with ../lib/tolerant_id_parser as that would
-// remove prefixes which are required for entities out of the main namespace
-// Ex: Property:P570
-const ids = program.args
-if (!(ids && ids.length > 0)) program.helpAndExit(0)
-
-ids.forEach(id => {
-  let [ prefix, entityId ] = id.split(':')
-  if (entityId) {
-    if (prefix !== 'Property' && prefix !== 'Item') {
-      throw new Error(`invalid entity prefix: ${prefix}`)
+function fetchAndLogRevisions (ids) {
+  ids.forEach(id => {
+    let [ prefix, entityId ] = id.split(':')
+    if (entityId) {
+      if (prefix !== 'Property' && prefix !== 'Item') {
+        throw new Error(`invalid entity prefix: ${prefix}`)
+      }
+    } else {
+      entityId = prefix
     }
-  } else {
-    entityId = prefix
+    if (!isEntityId(entityId)) throw new Error(`invalid entity id: ${id}`)
+  })
+
+  const query = {}
+  let { start, end, limit, props, verbose } = program
+  if (isPositiveIntegerString(start)) start = parseInt(start)
+  if (isPositiveIntegerString(end)) end = parseInt(end)
+
+  query.start = start
+  query.end = end
+  query.limit = limit
+  if (props) query.prop = props?.split(/[,|]/)
+
+  const getAndLogRevisions = id => {
+    const url = getRevisions({ ids: [ id ], ...query })
+    if (verbose) console.log(`revision query: ${id}`, url)
+    return get(url)
+    .then(body => values(body.query.pages)[0])
   }
-  if (!isEntityId(entityId)) throw new Error(`invalid entity id: ${id}`)
-})
 
-const query = {}
-let { start, end, limit, props, verbose } = program
-if (isPositiveIntegerString(start)) start = parseInt(start)
-if (isPositiveIntegerString(end)) end = parseInt(end)
-
-query.start = start
-query.end = end
-query.limit = limit
-if (props) query.prop = props?.split(',')
-
-const getAndLogRevisions = id => {
-  const url = getRevisions({ ids: [ id ], ...query })
-  if (verbose) console.log(`revision query: ${id}`, url)
-  return get(url)
-  .then(body => values(body.query.pages)[0])
+  if (ids.length === 1) {
+    getAndLogRevisions(ids[0])
+    .then(data => console.log(JSON.stringify(data)))
+    .catch(errors_.exit)
+  } else {
+    // Getting revisisions data individually to be able to pass parameters
+    // cf https://github.com/maxlath/wikibase-sdk/blob/master/docs/get_revisions.md
+    Promise.all(ids.map(getAndLogRevisions))
+    .then(logNdjson)
+    .catch(errors_.exit)
+  }
 }
 
-if (ids.length === 1) {
-  getAndLogRevisions(ids[0])
-  .then(data => console.log(JSON.stringify(data)))
-  .catch(errors_.exit)
+// process.stdin.isTTY will be undefined if the process is receiving
+// its stdin from another process
+if (program.args.length === 0 && process.stdin.isTTY) {
+  program.helpAndExit(0)
+} else if (program.args.length > 0) {
+  // Not parsing the ids with ../lib/tolerant_id_parser as that would
+  // remove prefixes which are required for entities out of the main namespace
+  // Ex: Property:P570
+  const ids = program.args
+  fetchAndLogRevisions(ids)
 } else {
-  // Getting revisisions data individually to be able to pass parameters
-  // cf https://github.com/maxlath/wikibase-sdk/blob/master/docs/get_revisions.md
-  Promise.all(ids.map(getAndLogRevisions))
-  .then(logNdjson)
-  .catch(errors_.exit)
+  const { readIdsFromStdin } = await import('#lib/read_ids_from_stdin')
+  readIdsFromStdin(fetchAndLogRevisions)
 }

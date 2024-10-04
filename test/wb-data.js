@@ -5,14 +5,10 @@ import { shellExec, wdTest } from '#test/lib/utils'
 const attributes = [ 'pageid', 'ns', 'title', 'lastrevid', 'modified', 'type', 'id', 'labels', 'descriptions', 'aliases', 'claims', 'sitelinks' ]
 
 describe('wb data', () => {
-  // This test fails when run from a script as process.stdin.isTTY is undefined
-  // and the script thus will listen for stdin. But it works when run manually,
-  // and no other way to detect a stdin input was found
-
-  // it('should display help', async () => {
-  //   const { stdout } = await shellExec('./bin/wd.js data')
-  //   stdout.should.containEql('Usage:')
-  // })
+  it('should display help', async () => {
+    const { stdout } = await shellExec('./bin/wd.js data')
+    stdout.should.containEql('Usage:')
+  })
 
   it('<entity>', async () => {
     const { stdout } = await shellExec('./bin/wd.js data Q123456')

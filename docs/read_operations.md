@@ -545,6 +545,12 @@ wb r <entities ids>
 ```sh
 wd revisions Q3548931
 wd r Q3548931
+wd r Property:P31
+
+# The requested ids can also be passed from stdin
+echo 'Q1032158
+Q2665313
+Q5420639' | wd r
 ```
 
 Options:
