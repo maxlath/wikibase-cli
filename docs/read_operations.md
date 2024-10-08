@@ -401,10 +401,10 @@ wb generate-template <entity-id>
 wb gt <entity-id>
 
 # Get Q123 pre-formatted data
-wd generate-template Q4115189 > Q4115189.edit-template.js
+wd generate-template Q4115189 > Q4115189.edit-template.cjs
 # Then the typical workflow would be to edit the generated file as you please,
 # before passing it back to the `wb edit-entity` command
-wd edit-entity ./Q4115189.edit-template.js
+wd edit-entity ./Q4115189.edit-template.cjs
 
 # Working with a JS file allows a lighter syntax, and to add entities labels
 # but if you prefer to work with JSON, that's possible:
@@ -412,12 +412,12 @@ wd generate-template Q4115189 --format json > Q4115189.edit-template.json
 
 # If your goal is to use an entity as a base to create a new entity,
 # you should use --create-mode
-wd generate-template Q4115189 --create-mode > Q4115189.create-template.js
+wd generate-template Q4115189 --create-mode > Q4115189.create-template.cjs
 # This is typically fit to be used in preparation for the `wb create-entity` command
-wd create-entity ./Q4115189.create-template.js
+wd create-entity ./Q4115189.create-template.cjs
 # But that id- and guid-less template can be turned back into an addition-only edit template
 # by setting an `id` in the returned object
-wd edit-entity ./Q4115189.create-template.js Q123
+wd edit-entity ./Q4115189.create-template.cjs Q123
 
 # For reference,
 wd generate-template --format json Q4115189
@@ -426,7 +426,7 @@ wd data --simplify --keep ids,references,qualifiers,hashes,snaktypes Q4115189
 ```
 
 Options:
-* `-f, --format <json|js>`: output template in the desired format. When requesting only one entity, defaults to `js`. Defaults to `json` when requesting several entities.
+* `-f, --format <json|js|mjs>`: output template in the desired format. When requesting only one entity, defaults to `js`. Defaults to `json` when requesting several entities.
 * `-m, --create-mode`: optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template
 
 #### Tailored templates
