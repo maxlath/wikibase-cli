@@ -17,6 +17,7 @@ wb config <key> [value]
   - [path](#path)
   - [reset](#reset)
 - [options](#options)
+  - [config](#config)
   - [credentials](#credentials)
   - [bot](#bot)
   - [maxlag](#maxlag)
@@ -39,12 +40,17 @@ wb config <key> [value]
 wb config
 # Output the config value for the key 'clipboard'
 wb config clipboard
-# For wb config credentials
+# Output the config value for a specific config file
+wb config clipboard --config ./custom_config.json
+# Same but specifying the config path via the `WB_CONFIG` environment variable
+export WB_CONFIG=./custom_config.json ; wb config clipboard
 ```
 
 ### set
 ```sh
 wb config clipboard true
+# Set the `clipboard` in a specific config file
+wb config clipboard true --config ./custom_config.json
 ```
 
 ### path
@@ -64,6 +70,13 @@ wb config reset
 ```
 
 ## options
+
+### config
+The `--config` option, just like the `WB_CONFIG` environment variable, works for every command, including `wb config`:
+```sh
+wb config lang es --config ./custom_config.json
+wb label Q1 --config ./custom_config.json
+```
 
 ### credentials
 Required for [write operations](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md)
