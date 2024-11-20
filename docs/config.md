@@ -174,6 +174,7 @@ wb label M83175040 --instance https://commons.wikimedia.org
 but can be useful in different contexts, such as when writting shell scripts.
 
 Available variables:
+* `WB_CONFIG`
 * `WB_BOT`
 * `WB_CLIPBOARD`
 * `WB_INSTANCE`
