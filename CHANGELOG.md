@@ -2,7 +2,7 @@
 *versions follow [SemVer](http://semver.org)*
 
 ## 18.3.0 - 2024-11-20
-* Added global `--config` option and `WB_CONFIG` environment variable, to allow customizing the config used
+* Added global [`--config` option](https://github.com/maxlath/wikibase-cli/blob/main/docs/config.md#config-1) and `WB_CONFIG` environment variable, to allow customizing the config used
 
 ## 18.2.0 - 2024-10-05
 * [`wd revisions`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-revisions): now accepts ids on stdin and `--props`
