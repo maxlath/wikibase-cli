@@ -57,7 +57,7 @@
     "shell-quote": "^1.8.1",
     "split": "^1.0.1",
     "through": "^2.3.8",
-    "wikibase-edit": "^7.1.2",
+    "wikibase-edit": "^7.2.1",
     "wikibase-sdk": "^10.1.0",
     "wikidata-lang": "^2.0.11"
   },
