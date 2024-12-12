@@ -764,25 +764,36 @@ wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
 Alernatively, you can pass the path from a javascript file exporting a function, the remaining arguments will be passed to the function:
 ```js
 // author_works.js
-module.exports = function (authorId) {
+export default function (authorId) {
   return `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
 }
 ```
-Note that this function can also be async:
+That function can also be async:
 ```js
 // author_works_from_external_id.js
-module.exports = async function (externalIdProperty, externalIdValue) {
+export default async function (externalIdProperty, externalIdValue) {
   const authorId = await getAuthorIdFromWorkId(externalIdProperty, externalIdValue)
   return `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
+}
+```
+Or use named export:
+```js
+// author_roles_works.js
+export function getAuthor (authorId) {
+  return `SELECT ?item { ?item wdt:P50 wd:${authorId} . }`
+}
+export function getIllustrator (illustratorId) {
+  return `SELECT ?item { ?item wdt:P110 wd:${illustratorId} . }`
 }
 ```
 
 ```sh
 wd sparql ./path/to/author_works.js Q535 --json > ./Q535_works.json
 wd sparql ./path/to/author_works_from_external_id.js P268 11907966z --json > ./P268_11907966z_works.json
-# This simple query could actually have been done using the `wd query` command
-wd query --property P50 --object Q5879
-# but, meh, let's keep it simple for the demo
+wd sparql ./path/to/author_roles_works.js getIllustrator Q1524522 --json > ./Q1524522_works_as_illustrator.json
+
+# Btw, this simple query could actually have been done using the `wd query` command
+wd query --property P110 --object Q1524522
 ```
 
 You can use it to build [alias commands](https://en.wikipedia.org/wiki/Alias_%28command%29) for the requests you use often: the above can then be written
