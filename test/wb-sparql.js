@@ -22,6 +22,11 @@ describe('wb sparql', () => {
     stdout.should.containEql('wdt:P50 wd:Q2 .')
   })
 
+  it('should take a JS module path and a function name', async () => {
+    const { stdout } = await shellExec('./bin/wd.js sparql ./test/assets/query.js someOtherQuery Q1 --dry')
+    stdout.should.containEql('wdt:P110 wd:Q1 .')
+  })
+
   describe('dry', () => {
     it('should return the generated SPARQL', async () => {
       const { stdout } = await shellExec('./bin/wd.js sparql ./test/assets/query.rq --dry')
