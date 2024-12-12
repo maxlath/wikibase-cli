@@ -7,6 +7,17 @@ version=$(node -p "require('./package.json').version")
 cp package.json ./docker
 
 cd ./docker
+
+node_minimum_major_version_number=$(cat ./package.json | jq .engines.node -cr | sed -E 's/.* ([0-9]{2}).*/\1/')
+echo "node_minimum_major_version_number=$node_minimum_major_version_number"
+node_image_major_version_number=$(docker run --rm node:lts-alpine --version | sed -E 's/v([0-9]{2}).*/\1/')
+echo "node_image_major_version_number=$node_image_major_version_number"
+
+if (("$node_minimum_major_version_number" >= "$node_image_major_version_number")) ; then
+  echo "Pulling image node:lts-alpine"
+  docker pull node:lts-alpine
+fi
+
 docker build -t wikibase-cli .
 docker tag wikibase-cli "maxlath/wikibase-cli:${version}"
 docker push "maxlath/wikibase-cli:${version}"
