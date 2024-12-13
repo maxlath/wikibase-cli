@@ -23,7 +23,7 @@ This project received [a Wikimedia Project Grant](https://meta.wikimedia.org/wik
 [![DockerHub Badge](https://dockeri.co/image/maxlath/wikibase-cli)](https://hub.docker.com/r/maxlath/wikibase-cli/)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Node](https://img.shields.io/badge/node-%3E=%20v6.4.0-brightgreen.svg)](http://nodejs.org)
+[![Node](https://img.shields.io/badge/node-%3E=%20v18-brightgreen.svg)](http://nodejs.org)
 [![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
 
 [Download stats](https://npm-stat.com/charts.html?package=wikibase-cli)
@@ -55,7 +55,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version info
 ## Dependencies
 
 ### General
-* [NodeJs](https://nodejs.org) **>= v14** (recommended way to install it: use the awesome [NVM](https://github.com/creationix/nvm) to install the latest LTS version `nvm install --lts`)
+* [NodeJs](https://nodejs.org) **>= v18** (recommended way to install it: use [NVM](https://github.com/creationix/nvm) to install the latest LTS version `nvm install --lts`)
 * [Git](https://git-scm.com/)
 
 ### Per feature
