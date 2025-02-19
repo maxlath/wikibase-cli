@@ -59,11 +59,13 @@ const run = async () => {
     return output(ids)
   }
 
-  const simplifiedClaims = simplifyClaims(entity[statementsKey], { keepNonTruthy })
+  const simplifiedClaims = simplifyClaims(entity[statementsKey], { keepNonTruthy, keepTypes: true })
   if (!prop) return logClaims({ program, simplifiedClaims, pattern, resort: true })
 
-  value = simplifiedClaims[prop]
-  if (value != null) return output(simplifiedClaims[prop])
+  if (simplifiedClaims[prop] != null) {
+    const values = simplifiedClaims[prop].map(({ value }) => value)
+    return output(values)
+  }
 
   const label = await getEntityLabel(prop)
   console.log(yellow('no statement found'), label)
