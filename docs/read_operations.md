@@ -377,14 +377,14 @@ wd data --simplify --keep ids,references,qualifiers,hashes 'Q2#P31'
 #### single claim
 The command also support finding a single claim from a claim GUID. (If you have a use case where you would need to fetch several claims at once this way, feel welcome to open an issue)
 ```sh
-wd data 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-wd data --simplify 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
-wd data --simplify --keep ids,references,qualifiers,hashes 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+wd data 'Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1'
+wd data --simplify 'Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1'
+wd data --simplify --keep ids,references,qualifiers,hashes 'Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1'
 ```
 
 To avoid having to quote the claim GUID, you can also use the hyphenated format
 ```sh
-wd data Q2-50fad68d-4f91-f878-6f29-e655af54690e
+wd data Q1345582-EF038A46-C46B-4058-8514-A6EB5897A9E1
 ```
 
 #### entities schema

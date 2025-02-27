@@ -131,43 +131,43 @@ describe('wb data', () => {
 
   describe('claim data', () => {
     it('should get a claim data provided a claim guid', async () => {
-      const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+      const guid = 'Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1'
       const { stdout } = await shellExec(`./bin/wd.js data '${guid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal(guid)
       claim.mainsnak.property.should.equal('P31')
-      claim.mainsnak.datavalue.value.id.should.equal('Q128207')
+      claim.mainsnak.datavalue.value.id.should.equal('Q5')
     })
 
     it('should accept prefixed claim GUIDs', async () => {
-      const prefixedGuid = 'wds:Q2-50fad68d-4f91-f878-6f29-e655af54690e'
+      const prefixedGuid = 'wds:Q1345582-EF038A46-C46B-4058-8514-A6EB5897A9E1'
       const { stdout } = await shellExec(`./bin/wd.js data '${prefixedGuid}'`)
       const claim = JSON.parse(stdout)
-      claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
+      claim.id.should.equal('Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1')
       claim.mainsnak.property.should.equal('P31')
-      claim.mainsnak.datavalue.value.id.should.equal('Q128207')
+      claim.mainsnak.datavalue.value.id.should.equal('Q5')
     })
 
     it('should accept claim GUIDs with an - in place of a $', async () => {
-      const hyphenedGuid = 'Q2-50fad68d-4f91-f878-6f29-e655af54690e'
+      const hyphenedGuid = 'Q1345582-EF038A46-C46B-4058-8514-A6EB5897A9E1'
       const { stdout } = await shellExec(`./bin/wd.js data '${hyphenedGuid}'`)
       const claim = JSON.parse(stdout)
-      claim.id.should.equal('Q2$50fad68d-4f91-f878-6f29-e655af54690e')
+      claim.id.should.equal('Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1')
       claim.mainsnak.property.should.equal('P31')
-      claim.mainsnak.datavalue.value.id.should.equal('Q128207')
+      claim.mainsnak.datavalue.value.id.should.equal('Q5')
     })
 
     it('should get a simplified claim', async () => {
-      const { stdout } = await shellExec('./bin/wd.js data --simplify \'Q2$50fad68d-4f91-f878-6f29-e655af54690e\'')
-      stdout.should.equal('Q128207')
+      const { stdout } = await shellExec('./bin/wd.js data --simplify \'Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1\'')
+      stdout.should.equal('Q5')
     })
 
     it('should keep the requested simplified claim data', async () => {
-      const guid = 'Q2$50fad68d-4f91-f878-6f29-e655af54690e'
+      const guid = 'Q1345582$EF038A46-C46B-4058-8514-A6EB5897A9E1'
       const { stdout } = await shellExec(`./bin/wd.js data --simplify --keep ids,references,qualifiers '${guid}'`)
       const claim = JSON.parse(stdout)
       claim.id.should.equal(guid)
-      claim.value.should.equal('Q128207')
+      claim.value.should.equal('Q5')
       claim.references.should.be.an.Array()
       claim.qualifiers.should.be.an.Object()
     })
