@@ -686,9 +686,9 @@ wb create-entity ./new_entity_data.json
 wb ce <entity-data>
 ```
 
-Assuming that you have the proper authorization, **creating a property** can as simple as:
+Assuming that you have the proper authorization, **creating a property** can be as simple as:
 ```sh
-wb create-entity '{ "datatype": "string", "labels": { "en": "some new string property" } }'
+wb create-entity '{ "type": "property", "datatype": "string", "labels": { "en": "some new string property" } }'
 ```
 
 Other that the `datatype` and the absence of `id`, the `create-entity` command is identical to the [`edit-entity` command](#wb-edit-entity).
