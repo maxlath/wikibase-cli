@@ -184,4 +184,20 @@ describe('wb data', () => {
       stdout.should.equal('2001-01-15')
     })
   })
+
+  describe('lexemes', () => {
+    it('should parse forms', async () => {
+      const id = 'L525-F2'
+      const { stdout } = await shellExec(`./bin/wd.js data --simplify ${id}`)
+      const form = JSON.parse(stdout)
+      form.id.should.equal(id)
+    })
+
+    it('should parse senses', async () => {
+      const id = 'L525-S1'
+      const { stdout } = await shellExec(`./bin/wd.js data --simplify ${id}`)
+      const sense = JSON.parse(stdout)
+      sense.id.should.equal(id)
+    })
+  })
 })

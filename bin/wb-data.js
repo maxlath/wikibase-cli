@@ -27,7 +27,7 @@ if (program.args.length === 1 && guid) {
   const { fetchAndLogPropertyClaimsData } = await import('#lib/fetch_and_log_property_claims_data')
   fetchAndLogPropertyClaimsData(firstArg)
 } else {
-  const parseId = tolerantIdParserFactory({ allowEntitiesSchemasIds: true })
+  const parseId = tolerantIdParserFactory({ allowNestedIds: true, allowEntitiesSchemasIds: true })
   const ids = program.args.map(parseId)
   const { revision } = program
 
