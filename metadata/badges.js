@@ -1,4 +1,5 @@
 export default {
+  alias: 'b',
   args: '',
   description: 'list sitelink badges available on a Wikibase instance',
   options: {

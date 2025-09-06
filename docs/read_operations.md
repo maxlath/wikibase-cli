@@ -1061,4 +1061,7 @@ wb badges
 
 # List badges on an explicit Wikibase instance
 wb badges --instance https://test.wikidata.org
+
+# Alias
+wb b
 ```
