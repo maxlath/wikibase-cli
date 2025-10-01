@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 import { readFileSync } from 'node:fs'
-import { resolve } from 'node:path'
 import { commandWithTemplateCustomHelp } from '#lib/command_with_template_custom_help'
 import errors_ from '#lib/errors'
 import { executeFunction } from '#lib/execute_function'
 import program from '#lib/program'
 import { sparqlQueryCommand } from '#lib/sparql_query_command'
+import { getAbsoluteFileUrl } from '#lib/utils'
 import wellknownQueries from '#lib/wellknown_queries'
 
 program.customHelpOption = commandWithTemplateCustomHelp
@@ -30,7 +30,7 @@ const main = async () => {
   // to which is passed the remaining arguments
   // and from which the SPARQL request is generated
   if (extension.endsWith('js')) {
-    absoluePath = resolve(process.cwd(), path)
+    absoluePath = getAbsoluteFileUrl(path)
   // or pass the name of one of the wellknown queries
   } else if (wellknownQueries.list.includes(path)) {
     absoluePath = wellknownQueries.getAbsolutePath(path)
