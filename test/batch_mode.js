@@ -5,8 +5,8 @@ describe('batch mode', () => {
   it('should take arguments from stdin (add-claim)', async () => {
     const { stdout, stderr } = await wdTest('add-claim --batch --dry < ./test/assets/add_claim_batch')
     stdout.split('\n').should.deepEqual([
-      '{"section":"claim","action":"add","args":[{"id":"Q1111","property":"P95180","value":"bar"}]}',
-      '{"section":"claim","action":"add","args":[{"id":"Q1111","property":"P95226","value":{"time":"1800","precision":7}}]}',
+      '{"section":"claim","action":"create","args":[{"id":"Q1111","property":"P95180","value":"bar"}]}',
+      '{"section":"claim","action":"create","args":[{"id":"Q1111","property":"P95226","value":{"time":"1800","precision":7}}]}',
     ])
     formatProgression(stderr).should.deepEqual([
       'processing line 1: Q1111 P95180 bar',
