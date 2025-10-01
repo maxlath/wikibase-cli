@@ -1,6 +1,5 @@
 #!/usr/bin/env node
-import { getStatementsKey } from 'wikibase-edit/lib/parse_instance.js'
-import { isPropertyId, simplifyClaims, simplifyPropertyClaims } from 'wikibase-sdk'
+import { isPropertyId, simplifyClaims, simplifyPropertyClaims, getStatementsKey } from 'wikibase-sdk'
 import { yellow } from '#lib/chalk'
 import errors_ from '#lib/errors'
 import { exitOnMissingInstance } from '#lib/exit_on_missing'
