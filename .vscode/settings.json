@@ -1,0 +1,5 @@
+{
+  "editor.formatOnSave": true,
+  "javascript.preferences.importModuleSpecifier": "shortest",
+  "javascript.preferences.importModuleSpecifierEnding": "js"
+}
