@@ -20,7 +20,7 @@ describe('general', () => {
       const { stdout } = await shellExec('./bin/wb.js add-claim Q1 P1 123 --instance http://fake.instance --dry')
       const { section, action, args } = JSON.parse(stdout)
       section.should.equal('claim')
-      action.should.equal('add')
+      action.should.equal('create')
       args.should.deepEqual([
         { id: 'Q1', property: 'P1', value: '123' },
       ])
