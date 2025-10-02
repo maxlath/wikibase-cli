@@ -7,7 +7,7 @@ describe('wb add-reference', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('reference')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
@@ -22,7 +22,7 @@ describe('wb add-reference', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('reference')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
@@ -38,7 +38,7 @@ describe('wb add-reference', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('reference')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid,
@@ -56,7 +56,7 @@ describe('wb add-reference', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('reference')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$c885b63e-46f9-3f51-5736-d3ed09a58acf',
@@ -74,7 +74,7 @@ describe('wb add-reference', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('reference')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$c885b63e-46f9-3f51-5736-d3ed09a58acf',

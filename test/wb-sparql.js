@@ -53,7 +53,7 @@ describe('wb sparql', () => {
   describe('log response header', () => {
     it('should log the requested response headers', async () => {
       const { stdout, stderr } = await shellExec('./bin/wd.js sparql ./test/assets/query.rq --log-response-headers x-served-by')
-      stdout.should.containEql('Q18120925')
+      stdout.should.containEql('Q22117440')
       const reqData = JSON.parse(stderr)
       const { headers } = reqData.response
       headers['x-served-by'][0].should.startWith('wdqs')

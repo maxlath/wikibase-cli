@@ -3,13 +3,13 @@ import { shellExec } from '#test/lib/utils'
 
 describe('wb generate-template', () => {
   it('should generate a template from an item id', async () => {
-    const { stdout } = await shellExec('./bin/wd.js gt Q123456 --props labels.de --format json')
+    const { stdout } = await shellExec('./bin/wd.js gt Q24835 --props labels.de --format json')
     JSON.parse(stdout)
     .should.deepEqual({
-      id: 'Q123456',
+      id: 'Q24835',
       type: 'item',
       labels: {
-        de: 'Friedrichshafen',
+        de: 'Jastrząb',
       },
     })
   })

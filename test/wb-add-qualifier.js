@@ -7,7 +7,7 @@ describe('wb add-qualifier', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('qualifier')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
@@ -22,7 +22,7 @@ describe('wb add-qualifier', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('qualifier')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
@@ -37,7 +37,7 @@ describe('wb add-qualifier', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('qualifier')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',
@@ -52,7 +52,7 @@ describe('wb add-qualifier', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('qualifier')
-    action.should.equal('add')
+    action.should.equal('set')
     args.should.deepEqual([
       {
         guid: 'Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F',

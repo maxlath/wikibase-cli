@@ -11,7 +11,7 @@ describe('wb data', () => {
   })
 
   it('<entity>', async () => {
-    const { stdout } = await shellExec('./bin/wd.js data Q123456')
+    const { stdout } = await shellExec('./bin/wd.js data Q24835')
     stdout.startsWith('{').should.be.true()
     const data = JSON.parse(stdout)
     const dataAttrs = Object.keys(data)
@@ -20,7 +20,7 @@ describe('wb data', () => {
   })
 
   it('should accept several ids', async () => {
-    const { stdout } = await shellExec('./bin/wd.js data Q123456 Q123')
+    const { stdout } = await shellExec('./bin/wd.js data Q24835 Q123')
     const lines = stdout.split('\n')
     lines.length.should.equal(2)
     lines.forEach(line => {
@@ -31,7 +31,7 @@ describe('wb data', () => {
   })
 
   it('should output entities as ndjson', async () => {
-    const { stdout } = await shellExec('./bin/wd.js data Q123456 Q1512522')
+    const { stdout } = await shellExec('./bin/wd.js data Q24835 Q1512522')
     stdout.split('\n').length.should.equal(2)
   })
 
@@ -45,7 +45,7 @@ describe('wb data', () => {
   })
 
   it('should simplify entities when requested', async () => {
-    const { stdout } = await shellExec('./bin/wd.js data Q1512522 Q123456 --simplify')
+    const { stdout } = await shellExec('./bin/wd.js data Q1512522 Q24835 --simplify')
     const entity = JSON.parse(stdout.split('\n')[0])
     entity.labels.de.should.be.a.String()
     entity.descriptions.de.should.be.a.String()
@@ -74,11 +74,11 @@ describe('wb data', () => {
   })
 
   it('should accept ids on stdin', async () => {
-    const { stdout } = await shellExec('echo "Q123456 Q123" | ./bin/wd.js data --props labels --simplify')
+    const { stdout } = await shellExec('echo "Q24835 Q123" | ./bin/wd.js data --props labels --simplify')
     const lines = stdout.split('\n')
     lines.length.should.equal(2)
     const entities = lines.map(JSON.parse.bind(JSON))
-    entities[0].id.should.equal('Q123456')
+    entities[0].id.should.equal('Q24835')
     entities[1].id.should.equal('Q123')
     entities.forEach(entity => {
       should(entity.labels).be.an.Object()

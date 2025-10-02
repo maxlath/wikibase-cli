@@ -7,7 +7,7 @@ describe('wb add-claim', () => {
     stderr.should.equal('')
     const { section, action, args } = JSON.parse(stdout)
     section.should.equal('claim')
-    action.should.equal('add')
+    action.should.equal('create')
     args.should.deepEqual([
       {
         id: 'Q1111',

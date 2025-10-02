@@ -8,13 +8,13 @@ describe('wb search', () => {
   })
 
   it('should find an item', async () => {
-    const { stdout } = await shellExec('./bin/wd.js search september --lang en --limit 1')
-    stdout.should.startWith('Q123')
+    const { stdout } = await shellExec('./bin/wd.js search "gilbert simondon" --lang en --limit 1')
+    stdout.should.startWith('Q1345582')
   })
 
   it('should find an item in verbose mode', async () => {
-    const { stdout } = await shellExec('./bin/wd.js search september --lang en --verbose --limit 1')
-    stdout.should.startWith('id Q123')
+    const { stdout } = await shellExec('./bin/wd.js search "gilbert simondon" --lang en --verbose --limit 1')
+    stdout.should.startWith('id Q1345582')
   })
 
   it('should find a property', async () => {

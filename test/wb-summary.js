@@ -1,8 +1,8 @@
 import 'should'
 import { shellExec } from '#test/lib/utils'
 
-const Q123456EnglishSummary = `id Q123456
-Label Friedrichshafen
+const Q24835EnglishSummaryStart = `id Q24835
+Label Jastrząb
 Description Wikimedia disambiguation page
 instance of (P31): Wikimedia disambiguation page (Q4167410)`
 
@@ -13,12 +13,12 @@ describe('wb summary', () => {
   })
 
   it('<entity>', async () => {
-    const { stdout } = await shellExec('./bin/wd.js summary Q123456 -l en')
-    stdout.should.startWith(Q123456EnglishSummary)
+    const { stdout } = await shellExec('./bin/wd.js summary Q24835 -l en')
+    stdout.should.startWith(Q24835EnglishSummaryStart)
   })
 
   it('<entity> should be tolerant on input', async () => {
-    const { stdout } = await shellExec('./bin/wd.js summary -l en azfzafzafazQ123456fazafazfz')
-    stdout.should.startWith(Q123456EnglishSummary)
+    const { stdout } = await shellExec('./bin/wd.js summary -l en azfzafzafazQ24835fazafazfz')
+    stdout.should.startWith(Q24835EnglishSummaryStart)
   })
 })

@@ -8,8 +8,8 @@ describe('wb label', () => {
   })
 
   it("should find an entity's label", async () => {
-    const { stdout } = await shellExec('./bin/wd.js label Q123456')
-    stdout.should.equal('Friedrichshafen')
+    const { stdout } = await shellExec('./bin/wd.js label Q24835')
+    stdout.should.equal('Jastrząb')
   })
 
   it('should not fallback on another language if a language is explicitly specificed', async () => {
@@ -21,17 +21,17 @@ describe('wb label', () => {
   })
 
   it('should accept an id within a string', async () => {
-    const { stdout } = await shellExec('./bin/wd.js label azfzafzafazQ123456fazafazfz')
-    stdout.should.equal('Friedrichshafen')
+    const { stdout } = await shellExec('./bin/wd.js label azfzafzafazQ24835fazafazfz')
+    stdout.should.equal('Jastrząb')
   })
 
   it('should accept a uri', async () => {
-    const { stdout } = await shellExec('./bin/wd.js label wd:Q123456')
-    stdout.should.equal('Friedrichshafen')
+    const { stdout } = await shellExec('./bin/wd.js label wd:Q24835')
+    stdout.should.equal('Jastrząb')
   })
 
   it('should accept a lowercased id', async () => {
-    const { stdout } = await shellExec('./bin/wd.js label q123456')
-    stdout.should.equal('Friedrichshafen')
+    const { stdout } = await shellExec('./bin/wd.js label q24835')
+    stdout.should.equal('Jastrząb')
   })
 })
