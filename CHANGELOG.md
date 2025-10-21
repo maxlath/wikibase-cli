@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 19.1.0 - 2025-10-21
+* [`wb open`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-open): added support for opening entity pages and scroll to a specific statement, by passing a statement id
+
 ## 19.0.0 - 2025-10-01
 **BREAKING CHANGE**: * In simplified claims (as returned by commands such as `wb data --simplify`), the `simplifiedClaim.type` attribute was renamed to `simplifiedClaim.datatype`, for consistency with the raw entities' naming
 * [`wb data`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-data): improved support for lexemes, forms and senses
