@@ -6,7 +6,7 @@ import { getSitelinkUrlFactory } from '#lib/get_sitelink_url'
 import { getMediaInfoEntityTitle } from '#lib/mediainfo'
 import { openUrl } from '#lib/open'
 import program from '#lib/program'
-import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
+import { guidPattern, tolerantIdParserFactory } from '#lib/tolerant_id_parser'
 
 await program
 .option('-p, --wikipedia', 'open the Wikipedia article')
@@ -17,7 +17,11 @@ await program
 .process('open')
 
 const getSitelinkUrl = getSitelinkUrlFactory(program)
-const parseId = tolerantIdParserFactory()
+const parseId = tolerantIdParserFactory({
+  allowStatementsIds: true,
+  allowEntitiesSchemasIds: true,
+  allowNestedIds: true,
+})
 
 const { instance, args, lang } = program
 exitOnMissingInstance(instance)
@@ -68,6 +72,9 @@ if (!ids || ids.length === 0) {
       }
     } else if (program.revision) {
       openUrl(`${instance}/w/index.php?title=${id}&oldid=${program.revision}`)
+    } else if (guidPattern.test(id)) {
+      const urlStatementId = id.replace('$', '-')
+      openUrl(`${instance}/entity/statement/${urlStatementId}`)
     } else {
       openUrl(`${instance}/entity/${id}`)
     }

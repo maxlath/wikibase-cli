@@ -50,7 +50,7 @@ The following documentation assumes that the Wikibase instance we work with is W
 - [wb query](#wb-query)
 - [wb convert](#wb-convert)
 - [wb open](#wb-open)
-  - [open entities and properties pages](#open-entities-and-properties-pages)
+  - [open entities pages](#open-entities-pages)
   - [open a search page](#open-a-search-page)
   - [open a specific revision's page](#open-a-specific-revisions-page)
 - [wb hub](#wb-hub)
@@ -926,14 +926,14 @@ Other options:
 
 ### wb open
 ```sh
-wb open <entities ids>
+wb open <entities or statements ids>
 # Alias:
-wb o <entities ids>
+wb o <entities or statements ids>
 ```
 
 A command to open a pages on Wikibase in a browser from the command line (yep, you can be that lazy). For more sophisticated queries, see the [`wb hub`](#wb-hub)
 
-#### open entities and properties pages
+#### open entities pages
 ```sh
 wd open Q123
 # opens https://wikidata.org/entity/Q123 in your default browser
@@ -949,6 +949,11 @@ wd open L525-F1
 
 wd open L525-S1
 # opens https://www.wikidata.org/entity/L525-S1
+
+wd open wds:Q10964102-bc771daf-4fd7-d0cc-72b9-adcca6e08833
+# or
+wd open 'Q10964102$bc771daf-4fd7-d0cc-72b9-adcca6e08833'
+# opens https://www.wikidata.org/entity/statement/Q10964102-bc771daf-4fd7-d0cc-72b9-adcca6e08833
 
 # also working with any string that contains an entity id
 wd open https://inventaire.io/entity/wd:Q33977
