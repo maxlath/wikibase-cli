@@ -11,8 +11,8 @@
   "scripts": {
     "docker:publish": "./scripts/docker_publish",
     "git-pre-commit": "./scripts/githooks/pre-commit",
-    "lint": "eslint --config .eslintrc.cjs bin/* lib tests",
-    "lint-fix": "eslint --config .eslintrc.cjs --fix bin/* lib tests",
+    "lint": "eslint",
+    "lint-fix": "eslint --fix",
     "lint-staged": "./scripts/lint_staged",
     "prepublishOnly": "export MOCHA_OPTIONS='--bail'; npm run lint && npm test",
     "postpublish": "npm run docker:publish && git push --tags",
@@ -62,14 +62,15 @@
     "wikidata-lang": "^2.0.11"
   },
   "devDependencies": {
+    "@eslint/config-helpers": "^0.4.1",
+    "@eslint/js": "^9.38.0",
+    "@stylistic/eslint-plugin": "^5.5.0",
     "@types/lodash-es": "^4.17.8",
     "@types/node": "^20.4.2",
     "@vercel/git-hooks": "^1.0.0",
-    "eslint": "^8.57.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-promise": "^6.1.1",
+    "eslint": "^9.38.0",
+    "eslint-plugin-import-x": "^4.16.1",
+    "eslint-plugin-n": "^17.23.1",
     "mocha": "^9.1.3",
     "should": "^13.2.3"
   },
