@@ -1,1 +1,1 @@
-export default id => {}
+export default () => {}

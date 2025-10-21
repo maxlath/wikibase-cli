@@ -51,7 +51,7 @@ describe('wb query', () => {
     it('should support tsv format', async () => {
       const { stdout } = await shellExec('./bin/wd.js q -p P921 -n 2 --format tsv')
       const lines = stdout.split('\n')
-      // eslint-disable-next-line no-tabs
+      // eslint-disable-next-line @stylistic/no-tabs
       lines[0].trim().should.equal('?subject	?object')
       lines.slice(1).length.should.equal(2)
       lines.slice(1).forEach(url => url.should.startWith('<http://www.wikidata.org/entity/Q'))

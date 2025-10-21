@@ -29,6 +29,7 @@ exitOnMissingInstance(instance)
 let ids
 try {
   ids = args.map(parseId).filter(id => id != null)
+// eslint-disable-next-line no-unused-vars
 } catch (err) {
   // invalid ids: trigger a search
 }
