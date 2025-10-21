@@ -79,7 +79,7 @@
 
 ## 15.7.0 - 2020-12-01
 * [`wb move-qualifier`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-move-qualifier) / [`wb remove-qualifier`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-remove-qualifier): accept statement uri in place of a statement guid
-* [template help menu](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#template-help-menu): added a [new recommended template syntax](https://github.com/maxlath/wikibase-cli/blob/15c824e/test/assets/edit_data_function.js)
+* [template help menu](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#template-help-menu): added a [new recommended template syntax](https://github.com/maxlath/wikibase-cli/blob/15c824e/tests/assets/edit_data_function.js)
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql) / [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): add support for xml, tsv, csv, and rdfbin formats
 
 ## 15.6.0 - 2020-11-30

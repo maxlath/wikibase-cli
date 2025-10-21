@@ -811,9 +811,9 @@ wb sparql ./path/to/query_template.js --dry > ./query.rq
 See [wikibase-cli request template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/request) for some examples.
 
 ##### request template help menu
-If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/main/test/assets/query_with_metadata.js)
+If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/main/tests/assets/query_with_metadata.js)
 ```sh
-wd sparql ./test/assets/query_with_metadata.js --help
+wd sparql ./tests/assets/query_with_metadata.js --help
 ```
 
 #### output format

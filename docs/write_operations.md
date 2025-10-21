@@ -900,9 +900,9 @@ wb ee ./template.js Q1 abc 123 --dry
 ```
 
 ###### template help menu
-If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/main/test/assets/edit_data_function.js)
+If you end up using a template often, it can be useful to be able to easily remember how to use it; this can be done by setting metadata in the template to allow the generation of a help menu: see [example](https://github.com/maxlath/wikibase-cli/blob/main/tests/assets/edit_data_function.js)
 ```sh
-wd ee ./test/assets/edit_data_function.js --help
+wd ee ./tests/assets/edit_data_function.js --help
 ```
 
 #### wb merge-entity
