@@ -1,12 +1,13 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
-import { yellow } from '#lib/chalk'
+import { grey, yellow } from '#lib/chalk'
 
 const execAsync = promisify(exec)
 
 const testsEnv = 'export WB_CLIPBOARD=false WB_LANG=en WB_MAXLAG=100'
 
 export async function shellExec (cmd, options = {}) {
+  console.log(grey('shellExec command:'), cmd)
   // Overwrite local config
   cmd = `${testsEnv} ; ${cmd}`
   let { stdout, stderr } = await execAsync(cmd)
