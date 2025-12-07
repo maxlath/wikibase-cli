@@ -67,4 +67,14 @@ describe('wb sparql', () => {
       stderr.should.equal('')
     })
   })
+
+  describe('engine', () => {
+    it('should infer the engine from the sparql endpoint', async () => {
+      const { stdout, stderr } = await shellExec('./bin/wb.js sparql ./tests/assets/query.js Q46409471 --format csv --sparql-endpoint https://qlever.dev/wikidata')
+      stdout.should.startWith('subject\n')
+      const normalizedResults = stdout.split('\n').slice(1).sort().join('\n')
+      normalizedResults.should.equal('http://www.wikidata.org/entity/Q124857319\nhttp://www.wikidata.org/entity/Q52260106')
+      stderr.should.equal('')
+    })
+  })
 })

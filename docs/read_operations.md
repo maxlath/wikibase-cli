@@ -749,7 +749,7 @@ wb sparql ./path/to/query.rq --format table > ./results_table
 wb sparql ./path/to/query.rq --format tsv > ./results.tsv
 ```
 
-This command can actually be used on any SPARQL endpoint:
+This command can actually be used on different kinds of SPARQL endpoint:
 ```sh
 echo 'SELECT * { ?s ?p ?o } LIMIT 5' > ./get_some_triples.rq
 # On Wikidata
@@ -758,6 +758,8 @@ wd sparql ./get_some_triples.rq
 wb sparql ./get_some_triples.rq -e https://wikibase.world/query/sparql
 # On a non-Wikibase SPARQL endpoint
 wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
+# On a QLever engine https://github.com/ad-freiburg/qlever
+wb sparql ./get_some_triples.rq -e https://qlever.dev/wikidata
 ```
 
 #### dynamic request from a JS template
