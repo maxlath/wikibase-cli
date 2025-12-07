@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 19.2.0 - 2025-12-07
+* [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql) / [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): added support for the [QLever SPARQL engine](https://qlever.dev/)
+
 ## 19.1.0 - 2025-10-21
 * [`wb open`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-open): added support for opening entity pages and scroll to a specific statement, by passing a statement id
 
