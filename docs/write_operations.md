@@ -269,7 +269,7 @@ echo '
 { "id": "Q4115189", "property": "P578", "value": { "time": "2025-12-01", "precision": 10 } }
 ' | wb ac -b --summary 'add claim demo'
 ```
-or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc) or ranks
+or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc), ranks, or reconciliation mode
 ```sh
 echo '
 Q4115189 P370 foo
@@ -279,6 +279,24 @@ Q4115189 P578 2025-12
 ```
 
 *NB*: To add claims with qualifiers and references, rather use [`wb edit-entity`](#wb-edit-entity).
+
+##### add claim unless already existing
+A.k.a *reconciliation*, see [`wikibase-edit` docs for more details on reconciliation modes](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation))
+
+```sh
+wb ac Q4115189 P370 bulgroz --reconciliation skip-on-any-value
+wb ac Q4115189 P370 bulgroz --reconciliation skip-on-value-match
+wb ac Q4115189 P370 bulgroz --reconciliation '{"mode":"merge","matchingQualifiers":["P580:any","P582:all"],"matchingReferences":["P854","P813"]}'
+```
+
+It is also possible to set a different strategy per claim:
+```sh
+echo '
+{ "id": "Q4115189", "property": "P370", "value": "test" }
+{ "id": "Q4115189", "property": "P370", "value": "test", "reconciliation": { "mode": "skip-on-any-value" } }
+{ "id": "Q4115189", "property": "P370", "value": "test", "reconciliation": { "mode": "skip-on-value-match" } }
+' | wb ac -b --summary 'add claim demo'
+```
 
 #### wb update-claim
 Update a claim value while keeping its qualifiers and references
@@ -323,7 +341,7 @@ echo '
 { "guid": "Q1$b1a0d905-4f20-065d-4aa7-787ea29c5af1", "rank": "normal" }
 ' | wb uc -b --summary 'update claim demo'
 ```
-or as inline values (but then you can't set the rank)
+or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc) or ranks
 ```sh
 echo '
 Q1$d941fe74-4a76-a143-6766-a24d2ef2ddad foo
@@ -374,7 +392,7 @@ echo '
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P20", "newValue": "Q15397819" }
 ' | wb mc -b --summary 'move claim demo'
 ```
-or as inline values (but then you can't set the rank)
+or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc) or ranks
 ```sh
 echo '
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q4115189 P20
@@ -766,7 +784,7 @@ The JavaScript object notation is very similar to JSON (thus the name of the lat
 wb edit-entity ./existing_entity_data.js
 ```
 
-This `./existing_entity_data.js` could be something like:
+This `./existing_entity_data.js` could be something like the following:
 ```js
 module.exports = {
   id: 'Q4115189',
@@ -802,8 +820,15 @@ module.exports = {
           { P370: 'another reference value', P813: '2022-10-28' },
         ]
       },
-    ]
+    ],
+    P1106: {
+      value: 123,
+      // Per-claim reconciliation strategy, see https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation
+      reconciliation: { mode: 'skip-on-any-value' },
+    }
   },
+  // Global reconciliation strategy, see https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation
+  reconciliation: { mode: 'merge' },
   sitelinks: {
     // Set a sitelink without badges
     eswiki: 'Wikipedia:Wikidata/Zona de pruebas',
