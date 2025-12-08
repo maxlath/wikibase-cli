@@ -258,6 +258,28 @@ wd ac Q4115189 P1106 '{"snaktype":"novalue"}'
 wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
 ```
 
+##### add claim in batch mode
+
+Arguments can either be passed in object mode
+```sh
+echo '
+{ "id": "Q4115189", "property": "P370", "value": "foo" }
+{ "id": "Q4115189", "property": "P370", "value": "bar", "rank": "preferred" }
+{ "id": "Q4115189", "property": "P1450", "value": { "language": "fr", "text": "hello" } }
+{ "id": "Q4115189", "property": "P578", "value": { "time": "2025-12-01", "precision": 10 } }
+' | wb ac -b --summary 'add claim demo'
+```
+or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc) or ranks
+```sh
+echo '
+Q4115189 P370 foo
+Q4115189 P370 bar
+Q4115189 P578 2025-12
+' | wb ac -b --summary 'add claim demo'
+```
+
+*NB*: To add claims with qualifiers and references, rather use [`wb edit-entity`](#wb-edit-entity).
+
 #### wb update-claim
 Update a claim value while keeping its qualifiers and references
 ```sh
