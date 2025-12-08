@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 19.3.0 - 2025-12-08
+* [`wb add-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-add-claim): add support for claim reconciliation
+
 ## 19.2.0 - 2025-12-07
 * [`wb sparql`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-sparql) / [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): added support for the [QLever SPARQL engine](https://qlever.dev/)
 
