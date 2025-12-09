@@ -719,6 +719,11 @@ A command to run a SPARQL query and get its JSON output
 wb sparql <sparql or javascript file path>
 ```
 
+#### static request from inline SPARQL
+```sh
+wb sparql 'SELECT * { ?s ?p ?o } LIMIT 1'
+```
+
 #### static request from a SPARQL file
 
 From this SPARQL query file:

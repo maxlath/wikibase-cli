@@ -19,31 +19,37 @@ await program
 .option('--log-response-headers [comma-separated headers names]', 'request to output all or some HTTP header fields from the server response on stderr')
 .process('sparql')
 
-const path = program.args[0]
+const input = program.args[0]
+
+const sparqlStartKeywordPattern = /(SELECT|DESCRIBE|CONSTRUCT|ASK)/i
 
 const main = async () => {
-  const extension = path.split('.').slice(-1)[0]
-
   let sparql, absoluePath
-
-  // Allow to pass a JS module that exports a function
-  // to which is passed the remaining arguments
-  // and from which the SPARQL request is generated
-  if (extension.endsWith('js')) {
-    absoluePath = getAbsoluteFileUrl(path)
-  // or pass the name of one of the wellknown queries
-  } else if (wellknownQueries.list.includes(path)) {
-    absoluePath = wellknownQueries.getAbsolutePath(path)
-  }
-
-  if (absoluePath != null) {
-    const fnArgs = program.args.slice(1)
-    sparql = await executeFunction(absoluePath, fnArgs)
+  if (typeof input === 'string' && input.match(sparqlStartKeywordPattern) && input.match(/\{.*\}/m)) {
+    sparql = input
   } else {
-    sparql = readFileSync(path, { encoding: 'utf-8' })
+    const path = input
+    const extension = path.split('.').slice(-1)[0]
+
+    // Allow to pass a JS module that exports a function
+    // to which is passed the remaining arguments
+    // and from which the SPARQL request is generated
+    if (extension.endsWith('js')) {
+      absoluePath = getAbsoluteFileUrl(path)
+      // or pass the name of one of the wellknown queries
+    } else if (wellknownQueries.list.includes(path)) {
+      absoluePath = wellknownQueries.getAbsolutePath(path)
+    }
+
+    if (absoluePath != null) {
+      const fnArgs = program.args.slice(1)
+      sparql = await executeFunction(absoluePath, fnArgs)
+    } else {
+      sparql = readFileSync(path, { encoding: 'utf-8' })
+    }
   }
 
-  if (!sparql.replace('\n', ' ').match(/(SELECT|DESCRIBE|CONSTRUCT|ASK)/i)) {
+  if (!sparql.replace('\n', ' ').match(sparqlStartKeywordPattern)) {
     errors_.bundle("this doesn't look like SPARQL", { sparql })
   }
 

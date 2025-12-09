@@ -7,6 +7,12 @@ describe('wb sparql', () => {
     stdout.should.containEql('Usage:')
   })
 
+  it('should take inline SPARQL', async () => {
+    const sparql = 'select * { ?s ?p ?o } limit 1'
+    const { stdout } = await shellExec(`./bin/wd.js sparql '${sparql}' --dry`)
+    stdout.should.equal(sparql)
+  })
+
   it('should take a file path', async () => {
     const { stdout } = await shellExec('./bin/wd.js sparql ./tests/assets/query.rq --dry')
     stdout.should.containEql('wdt:P50 wd:Q1345582 .')
