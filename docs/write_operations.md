@@ -4,7 +4,7 @@ Those command modify Wikibase so you will need to first **setup credentials** to
 
 Those credentials will be **saved in clear text** (Run `wb config path` to know where). This allows not having to re-enter credentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
-The following documentation often assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
+The following documentation often assumes that the Wikibase instance we work with is Wikidata (using the `wd` command, which is just an alias of the `wb` command bound to the Wikidata config), unless specified otherwise (using the `wb` command and custom instance host (`-i`) and SPARQL endpoint (`-e`).
 
 ## Summary
 
@@ -91,7 +91,7 @@ wb sl <entity> <language> <label>
 Example:
 ```sh
 # Set the label 'lorem ipsum' to the item Q4115189 in French
-wb set-label Q4115189 fr "lorem ipsum"
+wd set-label Q4115189 fr "lorem ipsum"
 ```
 
 For more advanced use cases (such as setting multiple labels on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
@@ -107,7 +107,7 @@ wb rl <entity> <language>
 Example:
 ```sh
 # Remove Q4115189 French label
-wb remove-label Q4115189 fr
+wd remove-label Q4115189 fr
 ```
 
 ### descriptions
@@ -124,7 +124,7 @@ wb sd <entity> <language> <description>
 Examples:
 ```sh
 # Set the description "lorem ipsum" to the item Q4115189 in French
-wb set-description Q4115189 fr "lorem ipsum"
+wd set-description Q4115189 fr "lorem ipsum"
 ```
 
 For more advanced use cases (such as setting multiple descriptions on a single entity at once) you should rather use [`edit-entity`](#wb-edit-entity).
@@ -140,7 +140,7 @@ wb rd <entity> <language>
 Example:
 ```sh
 # Remove Q4115189 French description
-wb remove-description Q4115189 fr
+wd remove-description Q4115189 fr
 ```
 
 ### aliases
@@ -156,9 +156,9 @@ wb aa <entity> <language> <alias>
 
 ```sh
 # Add an alias
-wb add-alias Q4115189 fr foo
+wd add-alias Q4115189 fr foo
 # Add several aliases separated by a pipe
-wb add-alias Q4115189 fr "foo|bar"
+wd add-alias Q4115189 fr "foo|bar"
 ```
 
 For more advanced use cases, you should rather use [`edit-entity`](#wb-edit-entity).
@@ -173,9 +173,9 @@ wb ra <entity> <language> <alias>
 
 ```sh
 # Remove an alias
-wb remove-alias Q4115189 fr foo
+wd remove-alias Q4115189 fr foo
 # Remove several aliases separated by a pipe
-wb remove-alias Q4115189 fr "foo|bar"
+wd remove-alias Q4115189 fr "foo|bar"
 ```
 
 For more advanced use cases, you should rather use [`edit-entity`](#wb-edit-entity).
@@ -217,10 +217,10 @@ Examples:
 # Add the Twitter account (P2002) 'bulgroz' to the Sandbox (Q4115189) entity
 wd add-claim Q4115189 P2002 bulgroz
 # The same but using the command alias
-wd ac Q4115189 P2002 bulgroz
+wd add-claim Q4115189 P2002 bulgroz
 # Add the statement that the Sandbox (Q4115189) has for part (P527) the sand (Q34679)
 # with a preferred rank
-wd ac Q4115189 P527 Q34679 --rank preferred
+wd add-claim Q4115189 P527 Q34679 --rank preferred
 ```
 
 For more advanced use cases, such as adding a claim with qualifiers and references, you should rather use [`edit-entity`](#wb-edit-entity).
@@ -230,25 +230,25 @@ Some values like monolingual text, quatities with a unit, or time with a precisi
 
 ###### JSON format
 ```sh
-wd ac Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
-wd ac Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
+wd add-claim Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
+wd add-claim Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
 # On precision and calendar, see wikibase-edit documentation https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#time
-wd ac Q4115189 P578 '{"time":"1800","precision":7,"calendar":"julian"}'
+wd add-claim Q4115189 P578 '{"time":"1800","precision":7,"calendar":"julian"}'
 # Set a coordinate on another celestial body than Earth (here, Mars (Q111))
-wd ac Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
+wd add-claim Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
 ```
 
 ###### query string format
 ```sh
-wd ac Q4115189 P1476 'text=bac à sable&language=fr'
-wd ac Q4115189 P1106 'amount=123&unit=Q4916'
-wd ac Q4115189 P578 'time=1800&precision=7'
+wd add-claim Q4115189 P1476 'text=bac à sable&language=fr'
+wd add-claim Q4115189 P1106 'amount=123&unit=Q4916'
+wd add-claim Q4115189 P578 'time=1800&precision=7'
 ```
 
 ##### with a reference
 Workflow example to add a claim with a reference, using [jq](https://stedolan.github.io/jq/). See [`wb add-reference`](#wb-add-reference) for more details.
 ``` sh
-claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jq -r .claim.id)
+claim_guid=$(wd add-claim Q4115189 P369 Q34679 | jq --raw-output .claim.id)
 # Add the reference that this claim is imported from (P143) Wikipedia in Uyghur (Q60856)
 wd add-reference $claim_guid P143 Q60856
 ```
@@ -256,8 +256,8 @@ wd add-reference $claim_guid P143 Q60856
 ##### special claim snaktypes
 You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) claims by passing the desired snaktype in a JSON object as values:
 ```sh
-wd ac Q4115189 P1106 '{"snaktype":"novalue"}'
-wd ac Q4115189 P1106 '{"snaktype":"somevalue"}'
+wd add-claim Q4115189 P1106 '{"snaktype":"novalue"}'
+wd add-claim Q4115189 P1106 '{"snaktype":"somevalue"}'
 ```
 
 ##### add claim in batch mode
@@ -269,7 +269,7 @@ echo '
 { "id": "Q4115189", "property": "P370", "value": "bar", "rank": "preferred" }
 { "id": "Q4115189", "property": "P1450", "value": { "language": "fr", "text": "hello" } }
 { "id": "Q4115189", "property": "P578", "value": { "time": "2025-12-01", "precision": 10 } }
-' | wb ac -b --summary 'add claim demo'
+' | wd add-claim --batch --summary 'add claim demo'
 ```
 or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc), ranks, or reconciliation mode
 ```sh
@@ -277,18 +277,18 @@ echo '
 Q4115189 P370 foo
 Q4115189 P370 bar
 Q4115189 P578 2025-12
-' | wb ac -b --summary 'add claim demo'
+' | wd add-claim --batch --summary 'add claim demo'
 ```
 
 *NB*: To add claims with qualifiers and references, rather use [`wb edit-entity`](#wb-edit-entity).
 
 ##### add claim unless it already exists
-A.k.a *reconciliation*, see [`wikibase-edit` docs for more details on reconciliation modes](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation))
+A.k.a *reconciliation*, see [`wikibase-edit` docs for more details on reconciliation modes](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation)
 
 ```sh
-wb ac Q4115189 P370 bulgroz --reconciliation skip-on-any-value
-wb ac '{"id":"Q4115189","property":"P626","value":{"latitude":45.7675,"longitude":4.835}}' --reconciliation skip-on-value-match
-wb ac Q4115189 P370 bulgroz --reconciliation '{"mode":"merge","matchingQualifiers":["P580:any","P582:all"],"matchingReferences":["P854","P813"]}'
+wd add-claim Q4115189 P370 bulgroz --reconciliation skip-on-any-value
+wd add-claim '{"id":"Q4115189","property":"P626","value":{"latitude":45.7675,"longitude":4.835}}' --reconciliation skip-on-value-match
+wd add-claim Q4115189 P370 bulgroz --reconciliation '{"mode":"merge","matchingQualifiers":["P580:any","P582:all"],"matchingReferences":["P854","P813"]}'
 ```
 
 In batch mode, the reconciliation parameter will be applied to all entries by default, but can also be customized per entry:
@@ -296,7 +296,7 @@ In batch mode, the reconciliation parameter will be applied to all entries by de
 echo '
 { "id": "Q4115189", "property": "P370", "value": "test" }
 { "id": "Q4115189", "property": "P370", "value": "test", "reconciliation": { "mode": "skip-on-value-match" } }
-' | wb ac -b --summary 'add claim demo' --reconciliation skip-on-any-value
+' | wd add-claim --batch --summary 'add claim demo' --reconciliation skip-on-any-value
 ```
 
 #### wb update-claim
@@ -317,18 +317,18 @@ Examples:
 # Change the the Sandbox (Q4115189) Twitter account (P2002) from 'Zorglub' to 'Bulgroz'
 wd update-claim Q4115189 P2002 Zorglub Bulgroz
 # or using the claim's guid
-wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
+wd update-claim 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz
 # Update both the claim rank and value
-wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz --rank preferred
+wd update-claim 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' Bulgroz --rank preferred
 # Only update the rank
-wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' --rank preferred
+wd update-claim 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' --rank preferred
 # This can also be written using the object interface
 wb uc '{ "guid": "Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3", "rank": "preferred" }'
 
 # Change a coordinate from Mars (Q112) to Venus (Q313)
-wd uc Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+wd update-claim Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 # or using the claim's guid: that's generally the preferred way to do it
-wd uc 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
+wd update-claim 'Q4115189$F00E22C2-AEF7-4145-A743-2AB6292ABFA3' '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q313" }'
 ```
 
 ##### update claim in batch mode
@@ -340,14 +340,14 @@ echo '
 { "guid": "Q1$63ef3ef4-4499-110a-3f66-33b352b61520", "newValue": "bar" }
 { "guid": "Q1$aaa3162d-4faa-6761-a8e6-f5e6a639afd5", "rank": "deprecated" }
 { "guid": "Q1$b1a0d905-4f20-065d-4aa7-787ea29c5af1", "rank": "normal" }
-' | wb uc -b --summary 'update claim demo'
+' | wb uc --batch --summary 'update claim demo'
 ```
 or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc) or ranks
 ```sh
 echo '
 Q1$d941fe74-4a76-a143-6766-a24d2ef2ddad foo
 Q1$63ef3ef4-4499-110a-3f66-33b352b61520 bar
-' | wb uc -b --summary 'update claim demo'
+' | wb uc --batch --summary 'update claim demo'
 ```
 
 #### wb move-claim
@@ -363,22 +363,22 @@ Examples:
 Q4115189_P19_claim_guid='Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F'
 
 # change the property of a claim (without changing entity)
-wb mc $Q4115189_P19_claim_guid Q4115189 P20
+wd move-claim $Q4115189_P19_claim_guid Q4115189 P20
 # move the claim to another entity (without changing the property)
-wb mc $Q4115189_P19_claim_guid Q13406268 P19
+wd move-claim $Q4115189_P19_claim_guid Q13406268 P19
 # move the claim to another entity and another property
-wb mc $Q4115189_P19_claim_guid Q13406268 P20
+wd move-claim $Q4115189_P19_claim_guid Q13406268 P20
 # move the claim to another entity and another property, and change the value (while still preserving the other claim attributes: rank, qualifiers, references)
-wb mc $Q4115189_P19_claim_guid Q13406268 P20 Q15397819
+wd move-claim $Q4115189_P19_claim_guid Q13406268 P20 Q15397819
 
 # move all Q4115189 P19 claims to P20 (without changing entity)'
-wb mc Q4115189#P19 Q4115189 P20
+wd move-claim Q4115189#P19 Q4115189 P20
 # move all Q4115189 P19 claims to Q13406268 (without changing the property)'
-wb mc Q4115189#P19 Q13406268 P19
+wd move-claim Q4115189#P19 Q13406268 P19
 # move all Q4115189 P19 claims to Q13406268 P20'
-wb mc Q4115189#P19 Q13406268 P20
+wd move-claim Q4115189#P19 Q13406268 P20
 # move the claim to another entity and another property, and change the value (while still preserving the other claim attributes: rank, qualifiers, references)
-wb mc Q4115189#P19 Q13406268 P20 Q15397819
+wd move-claim Q4115189#P19 Q13406268 P20 Q15397819
 ```
 
 Certain claims can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
@@ -391,7 +391,7 @@ echo '
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P19" }
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P20" }
 { "guid": "Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F", "id": "Q13406268", "property": "P20", "newValue": "Q15397819" }
-' | wb mc -b --summary 'move claim demo'
+' | wd move-claim --batch --summary 'move claim demo'
 ```
 or as inline values, but then you can't set rich values (monolingual text, geo coordinates, etc) or ranks
 ```sh
@@ -400,7 +400,7 @@ Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q4115189 P20
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P19
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P20
 Q4115189$13681798-47F7-4D51-B3B4-BA8C7E044E1F Q13406268 P20 Q15397819
-' | wb mc -b --summary 'move claim demo'
+' | wd move-claim --batch --summary 'move claim demo'
 ```
 
 #### wb remove-claim
@@ -442,27 +442,27 @@ claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 wd add-qualifier $claim_guid P155 'Q13406268'
 
 # string qualifier
-wd aq $claim_guid P1545 'A-123'
+wd add-qualifier $claim_guid P1545 'A-123'
 
 # time qualifier
-wd aq $claim_guid P580 '1802-02-26'
+wd add-qualifier $claim_guid P580 '1802-02-26'
 
 # quantity qualifier
-wd aq $claim_guid P2130 123
+wd add-qualifier $claim_guid P2130 123
 
 # quantity qualifier with a unit
-wd aq $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
+wd add-qualifier $claim_guid P2130 '{"amount":123,"unit":"Q4916"}'
 
 # monolingualtext qualifier
-wd aq $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
+wd add-qualifier $claim_guid P3132 "text=les sanglots long des violons de l'automne&language=fr"
 ```
 
 ##### special qualifier snaktypes
 You can add [`novalue` and `somevalue`](https://www.wikidata.org/wiki/Help:Statements/en#Unknown_or_no_values) qualifiers by passing the desired snaktype in a JSON object as values:
 ```sh
 claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
-wd aq $claim_guid P1106 '{"snaktype":"novalue"}'
-wd aq $claim_guid P1106 '{"snaktype":"somevalue"}'
+wd add-qualifier $claim_guid P1106 '{"snaktype":"novalue"}'
+wd add-qualifier $claim_guid P1106 '{"snaktype":"somevalue"}'
 ```
 
 #### wb update-qualifier
@@ -483,19 +483,19 @@ claim_guid='Q4115189$E66DBC80-CCC1-4899-90D4-510C9922A04F'
 wd update-qualifier $claim_guid P155 'Q13406268' 'Q3576110'
 
 # string qualifier
-wd uq $claim_guid P1545 'A-123' 'B-123'
+wd update-qualifier $claim_guid P1545 'A-123' 'B-123'
 
 # time qualifier
-wd uq $claim_guid P580 '1802-02-26' '1802-02-27'
+wd update-qualifier $claim_guid P580 '1802-02-26' '1802-02-27'
 
 # quantity qualifier
-wd uq $claim_guid P2130 123 124
+wd update-qualifier $claim_guid P2130 123 124
 
 # quantity qualifier with a unit
-wd uq $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
+wd update-qualifier $claim_guid P2130 'amount=123&unit=Q4916' 'amount=124&unit=Q4916'
 
 # monolingualtext qualifier
-wd uq $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
+wd update-qualifier $claim_guid P3132 'text=aaah&language=fr' 'text=ach sooo&language=de'
 ```
 
 #### wb move-qualifier
@@ -517,11 +517,11 @@ claim_guid='s:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 claim_guid='Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 
 # move all P2310 qualifiers of this claim to P2311
-wb mq $claim_guid P2310 P2311
+wd move-qualifier $claim_guid P2310 P2311
 
 # move only the first P2310 qualifier to P2311
-qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq -r '.qualifiers.P2310[0].hash')
-wb mq $claim_guid $qualifier_hash P2310 P2311
+qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq --raw-output '.qualifiers.P2310[0].hash')
+wd move-qualifier $claim_guid $qualifier_hash P2310 P2311
 ```
 
 Just like for `move-claim`, certain qualifiers can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
@@ -545,9 +545,9 @@ claim_guid='s:Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 claim_guid='Q4115189-E66DBC80-CCC1-4899-90D4-510C9922A04F'
 
 # Remove a qualifier from this claim
-wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
+wd remove-qualifier $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14'
 # Remove several qualifiers from this claim by passing the qualifier hashes as one argument made of several pipe-separated hashes
-wd rq $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
+wd remove-qualifier $claim_guid '24aa18192de7051f81d88d1ab514826002d51c14|f6c14e4eebb3d4f7595f0952c1ece0a34d85368b'}
 ```
 
 ### references
@@ -603,7 +603,7 @@ module.exports = {
 ```
 Could then be passed like this
 ```sh
-wb ar ./reference.js
+wb add-reference ./reference.js
 ```
 
 In case you need to add a similar kind of reference to several claims, you might want to use a JS function instead:
@@ -623,7 +623,7 @@ module.exports = function (guid, statedIn, BLnumber) {
 ```
 Could then be passed like this
 ```sh
-wb ar ./reference.js 'Q63313825$A42967A6-CA5B-41AD-9F1F-3DAEF10DDBB5' Q53556514 000011361
+wb add-reference ./reference.js 'Q63313825$A42967A6-CA5B-41AD-9F1F-3DAEF10DDBB5' Q53556514 000011361
 ```
 
 #### wb remove-reference
@@ -1078,9 +1078,9 @@ wb create-entity --batch < ./create_entity_newline_separated_command_args
 wb edit-entity --batch < ./edit_entity_newline_separated_command_args
 
 # Or using the short command and option names
-wb ac -b < ./add_claim_newline_separated_command_args
-wb ce -b < ./create_entity_newline_separated_command_args
-wb ee -b < ./edit_entity_newline_separated_command_args
+wb add-claim --batch < ./add_claim_newline_separated_command_args
+wb ce --batch < ./create_entity_newline_separated_command_args
+wb ee --batch < ./edit_entity_newline_separated_command_args
 ```
 
 #### Request parameters in batch mode
@@ -1098,9 +1098,9 @@ echo '
 The command output (`stdout`) will be made of one Wikibase API response per line, while `stderr` will be used for both progression logs and error messages. For long lists of commands, you could write those outputs to files to keep track of what was done, and, if need be, where the process exited if an error happened. This can be done this way:
 ```sh
 # Redirect stdout and stderr to files
-wb ac -b < ./args_list > ./args_list.log 2> ./args_list.err
+wb add-claim --batch < ./args_list > ./batch.logs 2> ./batch.errors
 # In another terminal, start a `tail` process at any time to see the progression. This process can be interrupted without stoppping the batch process
-tail -f ./args_list.log ./args_list.err
+tail -f ./batch.logs ./batch.errors
 ```
 
 #### Handle batch errors
@@ -1108,7 +1108,7 @@ If one of the batch operation encounters an error, the default behavior is to st
 
 In case you would prefer to continue to process the batch rather than exiting, you can set the `--no-exit-on-error` option:
 ```sh
-wb add-claim --batch --no-exit-on-error < ./args_list > ./args_list.log 2> ./args_list.err
+wb add-claim --batch --no-exit-on-error < ./args_list > ./batch.logs 2> ./batch.errors
 ```
 This can come handy for long batches, where you might encounter errors such as edit conflicts.
 

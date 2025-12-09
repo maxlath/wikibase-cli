@@ -76,7 +76,9 @@ wd summary Q27477672
 wd summary Q18120925 L525 P123
 
 # With custom properties on an other Wikibase instance
-wb summary Q5 -l en -p P2,P12 -i https://wikibase.world -e https://wikibase.world/query/sparql
+wb summary Q5 --lang en --properties P2,P12 --instance https://wikibase.world --sparql-endpoint https://wikibase.world/query/sparql
+# or for short
+wb u Q5 -l en -p P2,P12 -i https://wikibase.world -e https://wikibase.world/query/sparql
 ```
 
 Options:
@@ -103,7 +105,7 @@ wd search Ligo
 # Q785105    Ligonier, Pennsylvania — borough of Pennsylvania
 # Q1781427   Ligorio López — Mexican footballer
 
-wb search eagle -i https://wikibase.world
+wb search eagle --instance https://wikibase.world
 # Q5         EAGLE Wikibase wikibase instance created for the Europeana Ancient Greek and Latin Epigraphy project
 ```
 
@@ -143,7 +145,7 @@ wd label Q1103345
 # => The Cluetrain Manifesto
 wd label Q18120925 Q22117436 Q22117437
 
-wb label Q7 -i https://wikibase.world
+wb label Q7 --instance https://wikibase.world
 # => PlantData
 ```
 
@@ -152,9 +154,9 @@ Options:
 * `-l, --lang <lang>`: specify the label's language
 
 ```sh
-wb label Q1103345 -l de
+wb label Q1103345 --lang de
 # => Cluetrain-Manifest
-wb label Q123 -l zh
+wb label Q123 --lang zh
 # => 9月
 ```
 
@@ -162,7 +164,7 @@ wb label Q123 -l zh
 
 Alternatively, if you were wanting to get labels in a csv format, a combination of `wb data` and `jq` might suit you better:
 ```sh
-echo Q12377508 Q193943 | wd data --props labels --simplify | jq -r '[.id, .labels.en // first(.labels[])] | @csv'
+echo Q12377508 Q193943 | wd data --props labels --simplify | jq --raw-output '[.id, .labels.en // first(.labels[])] | @csv'
 ```
 
 ### wb description
@@ -225,7 +227,7 @@ wd claims Q2001 library
 wd claims Q2001 website
 
 # all https://wikibase.world/entity/Q7 claims
-wb claims Q7 -i https://wikibase.world -e https://wikibase.world/query/sparql
+wb claims Q7 --instance https://wikibase.world --sparql-endpoint https://wikibase.world/query/sparql
 ```
 
 Options:
@@ -274,7 +276,7 @@ You can also request several entities at once by passing several ids.
 This outputs newline delimited JSON: one entity per-line, each line being valid JSON, but not the whole file as a whole.
 ```sh
 wd data Q1 Q2 Q3 L57332 P2114
-wb data Q5 Q6 Q7 -i https://wikibase.world
+wb data Q5 Q6 Q7 --instance https://wikibase.world
 ```
 Alternatively, you can pass ids from stdin:
 ```sh
@@ -338,7 +340,7 @@ Entities can be requested in [Turtle](https://en.wikipedia.org/wiki/Turtle_(synt
 
 ```sh
 wd data --format ttl Q123 Q3548931 Q515168
-wb data --format ttl Q5 Q6 Q7 -i https://wikibase.world
+wb data --format ttl Q5 Q6 Q7 --instance https://wikibase.world
 ```
 
 Fetch many entities from a SPARQL request, using [`wb sparql`](#wb-sparql):
@@ -361,9 +363,9 @@ This can be used to generated partial Turtle dumps, if [Wikibase full dump](http
 `wb data` does not return csv natively, you are instead invited to combine it with a tool such as [jq](https://stedolan.github.io/jq/) to build an array of values and format it as csv. Example:
 ```sh
 # Get entities English labels as csv
-echo Q12377508 Q193943 | wd data --props labels.en --simplify | jq -r '[.id, .labels.en] | @csv'
+echo Q12377508 Q193943 | wd data --props labels.en --simplify | jq --raw-output '[.id, .labels.en] | @csv'
 # Get entities English labels as csv, and fallback on any other language if the English label is missing
-echo Q12377508 Q193943 | wd data --props labels --simplify | jq -r '[.id, .labels.en // first(.labels[])] | @csv'
+echo Q12377508 Q193943 | wd data --props labels --simplify | jq --raw-output '[.id, .labels.en // first(.labels[])] | @csv'
 ```
 
 #### property claims
@@ -749,7 +751,7 @@ wb sparql ./path/to/query.rq --format table > ./results_table
 wb sparql ./path/to/query.rq --format tsv > ./results.tsv
 ```
 
-This command can actually be used on different kinds of SPARQL endpoint:
+This command defaults to querying https://query.wikidata.org/sparql, but can actually be used on different kinds of SPARQL endpoint:
 ```sh
 echo 'SELECT * { ?s ?p ?o } LIMIT 5' > ./get_some_triples.rq
 # On Wikidata
@@ -757,7 +759,8 @@ wd sparql ./get_some_triples.rq
 # On another Wikibase
 wb sparql ./get_some_triples.rq -e https://wikibase.world/query/sparql
 # On a non-Wikibase SPARQL endpoint
-wb sparql ./get_some_triples.rq -e http://data.bibliotheken.nl/sparql
+wb sparql ./get_some_triples.rq --sparql-endpoint http://data.bibliotheken.nl/sparql
+
 # On a QLever engine https://github.com/ad-freiburg/qlever
 wb sparql ./get_some_triples.rq -e https://qlever.dev/wikidata
 ```
@@ -962,7 +965,7 @@ wd open https://inventaire.io/entity/wd:Q33977
 # opens https://wikidata.org/wiki/Q33977
 
 # on a Custom wikibase instance
-wb open Q123 -i http://localhost:8181
+wb open Q123 --instance http://localhost:8181
 # opens http://localhost:8181/entity/Q123
 ```
 
