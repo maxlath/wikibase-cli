@@ -757,12 +757,20 @@ echo 'SELECT * { ?s ?p ?o } LIMIT 5' > ./get_some_triples.rq
 # On Wikidata
 wd sparql ./get_some_triples.rq
 # On another Wikibase
-wb sparql ./get_some_triples.rq -e https://wikibase.world/query/sparql
+wb sparql ./get_some_triples.rq --sparql-endpoint https://wikibase.world/query/sparql
+
+# On the Wikimedia Commons Query Service
+wb sparql ./get_some_triples.rq --sparql-endpoint https://commons-query.wikimedia.org/sparql
+# Same but using the SPARQL endpoint alias
+wb sparql ./get_some_triples.rq --sparql-endpoint wcqs
+
 # On a non-Wikibase SPARQL endpoint
 wb sparql ./get_some_triples.rq --sparql-endpoint http://data.bibliotheken.nl/sparql
 
 # On a QLever engine https://github.com/ad-freiburg/qlever
-wb sparql ./get_some_triples.rq -e https://qlever.dev/wikidata
+wb sparql ./get_some_triples.rq --sparql-endpoint https://qlever.dev/wikidata
+# Same but using the SPARQL endpoint alias
+wb sparql ./get_some_triples.rq --sparql-endpoint qlever
 ```
 
 #### dynamic request from a JS template
