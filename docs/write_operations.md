@@ -28,6 +28,8 @@ The following documentation often assumes that the Wikibase instance we work wit
       - [query string format](#query-string-format)
     - [with a reference](#with-a-reference)
     - [special claim snaktypes](#special-claim-snaktypes)
+    - [add claim in batch mode](#add-claim-in-batch-mode)
+    - [add claim unless it already exists](#add-claim-unless-it-already-exists)
   - [wb update-claim](#wb-update-claim)
     - [update claim in batch mode](#update-claim-in-batch-mode)
   - [wb move-claim](#wb-move-claim)
@@ -280,22 +282,21 @@ Q4115189 P578 2025-12
 
 *NB*: To add claims with qualifiers and references, rather use [`wb edit-entity`](#wb-edit-entity).
 
-##### add claim unless already existing
+##### add claim unless it already exists
 A.k.a *reconciliation*, see [`wikibase-edit` docs for more details on reconciliation modes](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation))
 
 ```sh
 wb ac Q4115189 P370 bulgroz --reconciliation skip-on-any-value
-wb ac Q4115189 P370 bulgroz --reconciliation skip-on-value-match
+wb ac '{"id":"Q4115189","property":"P626","value":{"latitude":45.7675,"longitude":4.835}}' --reconciliation skip-on-value-match
 wb ac Q4115189 P370 bulgroz --reconciliation '{"mode":"merge","matchingQualifiers":["P580:any","P582:all"],"matchingReferences":["P854","P813"]}'
 ```
 
-It is also possible to set a different strategy per claim:
+In batch mode, the reconciliation parameter will be applied to all entries by default, but can also be customized per entry:
 ```sh
 echo '
 { "id": "Q4115189", "property": "P370", "value": "test" }
-{ "id": "Q4115189", "property": "P370", "value": "test", "reconciliation": { "mode": "skip-on-any-value" } }
 { "id": "Q4115189", "property": "P370", "value": "test", "reconciliation": { "mode": "skip-on-value-match" } }
-' | wb ac -b --summary 'add claim demo'
+' | wb ac -b --summary 'add claim demo' --reconciliation skip-on-any-value
 ```
 
 #### wb update-claim
