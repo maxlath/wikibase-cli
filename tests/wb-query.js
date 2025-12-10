@@ -8,7 +8,7 @@ describe('wb query', () => {
     stdout.should.containEql('Usage:')
   })
 
-  it('-p [prop] -o [obj] -t [limit]', async () => {
+  it('-p [prop] -o [obj]', async () => {
     const { stdout } = await shellExec('./bin/wd.js query -p P50 -o Q1345582')
     stdout.split(/\s/).includes('Q22117440').should.be.true()
   })
@@ -16,6 +16,18 @@ describe('wb query', () => {
   it('should work for URL values', async () => {
     const { stdout } = await shellExec("./bin/wd.js query -p P973 -o '<https://www.fileformat.info/format/gif/egff.htm>'")
     stdout.split(/\s/).includes('Q2192').should.be.true()
+  })
+
+  it('should allow to set a statement property', async () => {
+    const { stdout } = await shellExec('./bin/wd.js query -ps P973 --dry')
+    stdout.should.equal(`SELECT ?subject ?object WHERE {
+  ?subject ps:P973 ?object .
+}`)
+  })
+
+  it('should apply a limit', async () => {
+    const { stdout } = await shellExec('./bin/wd.js query -ps P973 -n 100 --dry')
+    stdout.should.containEql('LIMIT 100')
   })
 
   describe('format', () => {

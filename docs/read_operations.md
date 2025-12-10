@@ -861,17 +861,29 @@ wb query <options>
 wb q <options>
 ```
 
-A command to generate and run a simple SPARQL query, passing one or two of the elements that make a statement:
+A command to generate and run a simple SPARQL query, passing one or more of the elements that make a statement:
 * `-s, --subject`
 * `-p, --property`
 * `-o, --object`
+* `-ps, --statement-property <property>` : set a statement property, as in PREFIX ps: <http://www.wikidata.org/prop/statement/>
+* `-qp, --qualifier-property <property>` : set a qualifier property
+* `-qo, --qualifier-object <object>` : set a qualifier value
 
 ```sh
-# what is the entity id matching the twitter username (P2002) "timberners_lee"?
+# What is the entity id matching the twitter username (P2002) "timberners_lee"?
 wd query --property P2002 --object timberners_lee
-# which works have exoplanets (Q44559) for main subject (P921)?
+# Runs `SELECT ?subject WHERE { ?subject wdt:P2002 "timberners_lee" . }`
+
+# Which works have exoplanets (Q44559) for main subject (P921)?
 wd query --property P921 --object Q44559 --labels
-# or with the short options syntax
+# Runs `SELECT ?subject ?subjectLabel WHERE {
+#   ?subject wdt:P921 wd:Q44559 .
+#   SERVICE wikibase:label {
+#     bd:serviceParam wikibase:language "en,[AUTO_LANGUAGE]" .
+#   }
+# }`
+
+# Same query but with the short options syntax
 wd query -p P921 -o Q44559 -a
 ```
 
@@ -879,15 +891,25 @@ This can also be used to get all the uses of a property
 ```sh
 # Get all the subjects and objects linked by the property P2586
 wd query --property P2586
+# Runs `SELECT ?subject ?object WHERE { ?subject wdt:P2586 ?object . }`
 ```
 
 **NB**: if the `--object` value could be interpreted as a number (`123.456`) but should be a string, make sure to pass it between quotes:
 ```sh
 # Doesn't find anything
 wd query --property P2448 --object 2217527
+# Runs `SELECT ?subject WHERE { ?subject wdt:P2448 2217527 . }`
 
 # Finds Q138172
 wd query --property P2448 --object '"2217527"'
+# Runs `SELECT ?subject WHERE { ?subject wdt:P2448 "2217527" . }`
+```
+
+If instead of the subject entity ids, you want to get statement ids (a.k.a. `guid`) matching a property and an object, you can use `-ps, --statement-property <property>`:
+```sh
+wd query --statement-property P2448 --object '"2217527"'
+# Runs `SELECT ?subject WHERE { ?subject ps:P2448 "2217527" . }`
+# Returns `Q138172$0bb4ae7f-4064-57c0-6e54-8344242d3d23`
 ```
 
 Other options:

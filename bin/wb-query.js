@@ -14,6 +14,7 @@ await program
 .option('-s, --subject <subject>', 'set a subject')
 .option('-p, --property <property>', 'set a property')
 .option('-o, --object <object>', 'set an object')
+.option('-ps, --statement-property <property>', 'set a statement property, as in PREFIX ps: <http://www.wikidata.org/prop/statement/>')
 .option('-qp, --qualifier-property <property>', 'set a qualifier property')
 .option('-qo, --qualifier-object <object>', 'set a qualifier value')
 .option('--describe <node>', 'make a DESCRIBE request')
@@ -30,7 +31,7 @@ await program
 .option('--log-response-headers [comma-separated headers names]', 'request to output all or some HTTP header fields from the server response on stderr')
 .process('query')
 
-if (!(program.subject || program.property || program.object || program.describe || program.sample)) {
+if (!(program.subject || program.property || program.object || program.describe || program.sample || program.statementProperty)) {
   program.helpAndExit(0)
 }
 const output = outputFactory(program)
