@@ -33,6 +33,13 @@ describe('wb sparql', () => {
     stdout.should.containEql('wdt:P110 wd:Q1 .')
   })
 
+  it('should not add an empty line when there are no results', async () => {
+    // Query with a non existing property
+    const { stdout, stderr } = await shellExec(`./bin/wd.js sparql 'SELECT * { ?s wdt:P1 ?o } LIMIT 1'`, { trim: false })
+    stdout.should.equal('')
+    stderr.should.equal('')
+  })
+
   describe('dry', () => {
     it('should return the generated SPARQL', async () => {
       const { stdout } = await shellExec('./bin/wd.js sparql ./tests/assets/query.rq --dry')
