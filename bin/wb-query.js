@@ -28,7 +28,6 @@ await program
 .option('-f, --format <format>', "set output format: json, xml, tsv, csv, binrdf, table. Default: 'table' when 1 value is selected, 'json' otherwise")
 .option('-n, --limit <num>', 'set the request results limit')
 .option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
-.option('--log-response-headers [comma-separated headers names]', 'request to output all or some HTTP header fields from the server response on stderr')
 .process('query')
 
 if (!(program.subject || program.property || program.object || program.describe || program.sample || program.statementProperty)) {
