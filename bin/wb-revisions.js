@@ -16,6 +16,7 @@ await program
 .option('-e, --end <date>', 'end date')
 .option('-n, --limit <num>', 'maximum number of revisions')
 .option('-p, --props <props>', 'requested props, separated by a comma. Available props: https://www.mediawiki.org/wiki/API:Revisions#query+revisions:rvprop')
+.option('-u, --user <username>', 'user that made the revision')
 .process('revisions')
 
 exitOnMissingInstance(program.instance)
@@ -36,7 +37,7 @@ async function fetchAndLogRevisions (ids) {
   })
 
   const query = {}
-  let { start, end, limit, props, verbose } = program
+  let { start, end, limit, props, user, verbose } = program
   if (isPositiveIntegerString(start)) start = parseInt(start)
   if (isPositiveIntegerString(end)) end = parseInt(end)
 
@@ -44,9 +45,10 @@ async function fetchAndLogRevisions (ids) {
   if (end != null) query.end = end
   if (limit != null) query.limit = limit
   if (props != null) query.prop = props?.split(/[,|]/)
+  if (user != null) query.user = user
 
   // Prevent error "titles, pageids or a generator was used to supply multiple pages, but the rvlimit, rvstartid, rvendid, rvdir=newer, rvuser, rvexcludeuser, rvstart, and rvend parameters may only be used on a single page. "
-  const usesSinglePageParam = limit != null || start != null || end != null
+  const usesSinglePageParam = limit != null || start != null || end != null || user != null
 
   async function getAndLogRevisions (ids) {
     const url = getRevisions({ ids, ...query })
