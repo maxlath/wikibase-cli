@@ -773,9 +773,11 @@ wb sparql ./get_some_triples.rq --sparql-endpoint wcqs
 wb sparql ./get_some_triples.rq --sparql-endpoint http://data.bibliotheken.nl/sparql
 
 # On a QLever engine https://github.com/ad-freiburg/qlever
-wb sparql ./get_some_triples.rq --sparql-endpoint https://qlever.dev/wikidata
+wb sparql ./get_some_triples.rq --sparql-endpoint https://qlever.dev/api/wikidata
 # Same but using the SPARQL endpoint alias
 wb sparql ./get_some_triples.rq --sparql-endpoint qlever
+# SPARQL endpoint containing "/api/" will also be considered to be using the QLever engine
+wb sparql ./get_some_triples.rq --sparql-endpoint https://sparql.dnb.de/api/gnd
 ```
 
 #### dynamic request from a JS template
