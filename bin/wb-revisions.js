@@ -58,11 +58,10 @@ async function fetchAndLogRevisions (ids) {
   }
 
   if (usesSinglePageParam) {
-    const idsBatches = chunk(ids, 10)
-    for (const batch of idsBatches) {
+    for (const id of ids) {
       // Getting revisisions data individually to be able to pass parameters
       // cf https://github.com/maxlath/wikibase-sdk/blob/master/docs/get_revisions.md
-      await Promise.all(batch.map(getAndLogRevisions))
+      await Promise.all([ getAndLogRevisions(id) ])
       .then(logNdjson)
       .catch(errors_.exit)
     }
