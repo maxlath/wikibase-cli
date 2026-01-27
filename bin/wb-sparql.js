@@ -11,11 +11,11 @@ import wellknownQueries from '#lib/wellknown_queries'
 program.customHelpOption = commandWithTemplateCustomHelp
 
 await program
-.option('-r, --raw', 'get raw, non-simplified JSON results')
-.option('-d, --dry', 'output the SPARQL without running the query')
-.option('-o, --open', 'open the query in the Query Service GUI')
-.option('-f, --format <format>', "set output format: json, xml, tsv, csv, binrdf, table. Default: 'table' when 1 value is selected, 'json' otherwise")
-.option('-x, --index <variable>', "return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
+.option('-r, --raw', 'Get raw, non-simplified JSON results')
+.option('-d, --dry', 'Output the SPARQL without running the query')
+.option('-o, --open', 'Open the query in the Query Service GUI')
+.option('-f, --format <format>', "Set output format: json, xml, tsv, csv, binrdf, table. Default: 'table' when 1 value is selected, 'json' otherwise")
+.option('-x, --index <variable>', "Return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('sparql')
 
 const input = program.args[0]

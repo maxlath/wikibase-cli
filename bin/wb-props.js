@@ -10,10 +10,10 @@ import resetProperties from '#lib/reset_properties'
 program.canHaveZeroArguments = true
 
 await program
-.option('-d, --details', 'include properties labels, types, descriptions, and aliases')
-.option('-t, --type [type]', 'include properties types, or if a type is specified, keep only properties with that type')
-.option('--no-cache', 'ignore properties cache')
-.option('-r, --reset', 'clear properties cache')
+.option('-d, --details', 'Include properties labels, types, descriptions, and aliases')
+.option('-t, --type [type]', 'Include properties types, or if a type is specified, keep only properties with that type')
+.option('--no-cache', 'Ignore properties cache')
+.option('-r, --reset', 'Clear properties cache')
 .process('props')
 
 // commander converts the no-cache option to a cache boolean

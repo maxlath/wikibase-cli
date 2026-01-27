@@ -11,7 +11,7 @@ import program from '#lib/program'
 import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
 
 await program
-.option('-a, --all', 'include all claims, not only the truthy ones')
+.option('-a, --all', 'Include all claims, not only the truthy ones')
 .option('-t, --type <type>', 'Keep only claims with the specified datatype')
 .process('claims')
 

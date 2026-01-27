@@ -6,8 +6,8 @@ import program from '#lib/program'
 import { get } from '#lib/request'
 
 await program
-.option('-o, --open', 'open the found URL in a web browser')
-.option('-u, --url', 'simply generate the url')
+.option('-o, --open', 'Open the found URL in a web browser')
+.option('-u, --url', 'Simply generate the url')
 .process('hub')
 
 const { args, lang, json, open, url: urlOnly } = program

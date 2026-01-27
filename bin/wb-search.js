@@ -10,10 +10,10 @@ import { isValidLang } from '#lib/validate'
 import { getWbk } from '#lib/wbk'
 
 await program
-.option('-p, --properties <properties>', 'request additional properties (separated by a comma) (implies verbose mode)')
-.option('-t, --type <type>', 'customize type: i|item, p|property, l|lexeme, f|form, s|sense (Default: item)')
-.option('-n, --limit <num>', 'set a custom limit (defaults to 10)')
-.option('--cirrus', 'use Cirrus search')
+.option('-p, --properties <properties>', 'Request additional properties (separated by a comma) (implies verbose mode)')
+.option('-t, --type <type>', 'Customize type: i|item, p|property, l|lexeme, f|form, s|sense (Default: item)')
+.option('-n, --limit <num>', 'Set a custom limit (defaults to 10)')
+.option('--cirrus', 'Use Cirrus search')
 .process('search')
 
 // Accept several words without requiring those to be joined by quotes

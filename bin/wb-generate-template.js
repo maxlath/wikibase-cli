@@ -12,11 +12,11 @@ import { getWbk } from '#lib/wbk'
 program.acceptsArgsOnStdin = true
 
 await program
-.option('-p, --props <props>', 'request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
-.option('-r, --revision <id>', 'request a specific revision')
+.option('-p, --props <props>', 'Request only certain properties (info, sitelinks, aliases, labels, descriptions, claims, datatype)')
+.option('-r, --revision <id>', 'Request a specific revision')
 .option('-f, --format <format>', 'Options: js, json, mjs. Default: js when fetching a single entity, json otherwise. Note that the -j, --json option is equivalent to "--format json"')
-.option('-m, --create-mode', 'optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template')
-.option('-z, --no-minimize', 'disable claims minimization, making the output format more predictable; i.e. single claims will still be in arrays')
+.option('-m, --create-mode', 'Optimize for creating an entity from a previously existing one, namely dropping ids from the existing entity used as template')
+.option('-z, --no-minimize', 'Disable claims minimization, making the output format more predictable; i.e. single claims will still be in arrays')
 .process('generate-template')
 
 const parseId = tolerantIdParserFactory()

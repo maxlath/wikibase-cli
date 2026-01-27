@@ -9,11 +9,11 @@ import program from '#lib/program'
 import { guidPattern, tolerantIdParserFactory } from '#lib/tolerant_id_parser'
 
 await program
-.option('-p, --wikipedia', 'open the Wikipedia article')
-.option('-y, --history', 'open the Wikidata history')
-.option('-t, --talk', 'open the Talk page')
-.option('-u, --url', 'simply generate the url')
-.option('-r, --revision <id>', 'open a specific revision')
+.option('-p, --wikipedia', 'Open the Wikipedia article')
+.option('-y, --history', 'Open the Wikidata history')
+.option('-t, --talk', 'Open the Talk page')
+.option('-u, --url', 'Simply generate the url')
+.option('-r, --revision <id>', 'Open a specific revision')
 .process('open')
 
 const getSitelinkUrl = getSitelinkUrlFactory(program)

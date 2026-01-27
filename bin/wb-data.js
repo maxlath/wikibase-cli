@@ -7,11 +7,11 @@ import { tolerantIdParserFactory } from '#lib/tolerant_id_parser'
 program.acceptsArgsOnStdin = true
 
 await program
-.option('-s, --simplify', 'get simplified entities data')
-.option('-k, --keep <props>', 'data to keep when simplifying claims (ids,richvalues,types,references,qualifiers,hashes,nontruthy,nondeprecated,ranks)')
-.option('--time-converter <converter>', 'specify which time format should be used when simplifying')
-.option('-p, --props <props>', 'request only certain properties (info,sitelinks,aliases,labels,descriptions,claims,datatype)')
-.option('-r, --revision <id>', 'request a specific revision')
+.option('-s, --simplify', 'Get simplified entities data')
+.option('-k, --keep <props>', 'Data to keep when simplifying claims (ids,richvalues,types,references,qualifiers,hashes,nontruthy,nondeprecated,ranks)')
+.option('--time-converter <converter>', 'Specify which time format should be used when simplifying')
+.option('-p, --props <props>', 'Request only certain properties (info,sitelinks,aliases,labels,descriptions,claims,datatype)')
+.option('-r, --revision <id>', 'Request a specific revision')
 .option('-f, --format <format>', 'Default: ndjson. Alternatives: ttl')
 .process('data')
 

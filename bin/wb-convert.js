@@ -8,9 +8,9 @@ import program from '#lib/program'
 program.canHaveZeroArguments = true
 
 await program
-.option('-s, --subjects [subjects...]', 'set a subject')
-.option('-p, --property <property>', 'set a property')
-.option('-o, --objects [objects...]', 'set an object')
+.option('-s, --subjects [subjects...]', 'Set a subject')
+.option('-p, --property <property>', 'Set a property')
+.option('-o, --objects [objects...]', 'Set an object')
 // --dry and --open options aren't trivial to implement
 // as several requests might be run sequentially (instead of just one
 // for commands implementing those options)

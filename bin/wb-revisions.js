@@ -12,11 +12,11 @@ import { getWbk } from '#lib/wbk'
 program.acceptsArgsOnStdin = true
 
 await program
-.option('-s, --start <date>', 'start date')
-.option('-e, --end <date>', 'end date')
-.option('-n, --limit <num>', 'maximum number of revisions')
-.option('-p, --props <props>', 'requested props, separated by a comma. Available props: https://www.mediawiki.org/wiki/API:Revisions#query+revisions:rvprop')
-.option('-u, --user <username>', 'user that made the revision')
+.option('-s, --start <date>', 'Start date')
+.option('-e, --end <date>', 'End date')
+.option('-n, --limit <num>', 'Maximum number of revisions')
+.option('-p, --props <props>', 'Requested props, separated by a comma. Available props: https://www.mediawiki.org/wiki/API:Revisions#query+revisions:rvprop')
+.option('-u, --user <username>', 'User that made the revision')
 .process('revisions')
 
 exitOnMissingInstance(program.instance)
