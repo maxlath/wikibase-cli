@@ -1,6 +1,12 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 19.4.0 - 2026-01-27
+* Added a `--user-agent` a global option, to customize requests user agent header
+* Make `--log-response-headers` a global option
+* [`wb query`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-query): added `--statement-property` to set a statement property
+* Extend the [QLever](https://qlever.dev/) support to other hosts containing "/api/". Example:  `wb query --sample --sparql-endpoint https://sparql.dnb.de/api/gnd`
+
 ## 19.3.0 - 2025-12-08
 * [`wb add-claim`](https://github.com/maxlath/wikibase-cli/blob/main/docs/write_operations.md#wb-add-claim): add support for claim reconciliation
 
