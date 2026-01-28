@@ -42,6 +42,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [Get the list of all Wikibase properties with their labels, types, descriptions, and aliases](#get-the-list-of-all-wikibase-properties-with-their-labels-types-descriptions-and-aliases)
   - [Reset properties](#reset-properties)
 - [wb sparql](#wb-sparql)
+  - [static request from inline SPARQL](#static-request-from-inline-sparql)
   - [static request from a SPARQL file](#static-request-from-a-sparql-file)
   - [dynamic request from a JS template](#dynamic-request-from-a-js-template)
     - [request template help menu](#request-template-help-menu)

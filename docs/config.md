@@ -21,6 +21,7 @@ wb config <key> [value]
   - [credentials](#credentials)
   - [bot](#bot)
   - [maxlag](#maxlag)
+  - [user-agent](#user-agent)
   - [lang](#lang)
   - [json](#json)
   - [clipboard](#clipboard)
