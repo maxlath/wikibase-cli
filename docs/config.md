@@ -116,7 +116,7 @@ wb config maxlag 10
 ```
 
 ### user-agent
-Set HTTP requests user agent (same as `--user-agent`)
+Set HTTP requests user agent (same as `--user-agent`).
 See https://foundation.wikimedia.org/wiki/Policy:Wikimedia_Foundation_User-Agent_Policy
 ```sh
 # Default: wikibase-cli/v{package version number} (https://github.com/maxlath/wikibase-cli)
