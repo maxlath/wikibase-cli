@@ -1,6 +1,6 @@
 import { exec } from 'node:child_process'
 import { promisify } from 'node:util'
-import { grey, yellow } from '#lib/chalk'
+import { grey, yellow } from 'tiny-chalk'
 
 const execAsync = promisify(exec)
 

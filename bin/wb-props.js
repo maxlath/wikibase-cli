@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { red } from '#lib/chalk'
+import { red } from 'tiny-chalk'
 import errors_ from '#lib/errors'
 import formatPropertiesData from '#lib/format_properties_data'
 import getLangProps from '#lib/get_lang_props'

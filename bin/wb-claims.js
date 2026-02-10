@@ -1,6 +1,6 @@
 #!/usr/bin/env node
+import { yellow } from 'tiny-chalk'
 import { isPropertyId, simplifyClaims, simplifyPropertyClaims, getStatementsKey } from 'wikibase-sdk'
-import { yellow } from '#lib/chalk'
 import errors_ from '#lib/errors'
 import { exitOnMissingInstance } from '#lib/exit_on_missing'
 import getEntities from '#lib/get_entities'

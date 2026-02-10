@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { grey } from '#lib/chalk'
+import { grey } from 'tiny-chalk'
 import { generateDescribeSparqlQuery } from '#lib/generate_describe_sparql_query'
 import { generateSampleSparqlQuery } from '#lib/generate_sample_sparql_query'
 import { generateSelectSparqlQuery } from '#lib/generate_select_sparql_query'

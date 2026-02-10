@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { padEnd } from 'lodash-es'
-import { red, grey } from '#lib/chalk'
+import { red, grey } from 'tiny-chalk'
 import { entityDataParser } from '#lib/entity_data_parser'
 import { exitOnMissingInstance } from '#lib/exit_on_missing'
 import parseEntityType from '#lib/parse_entity_type'

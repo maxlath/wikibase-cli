@@ -1,4 +1,4 @@
-import { grey } from '#lib/chalk'
+import { grey } from 'tiny-chalk'
 
 export default {
   args: '<key> [value]',

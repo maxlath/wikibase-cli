@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { green } from '#lib/chalk'
+import { green } from 'tiny-chalk'
 import { checkConfigFileExistance } from '#lib/config/check_config_file_existance'
 import { config } from '#lib/config/config'
 import { configurateCredentials } from '#lib/config/credentials_config'

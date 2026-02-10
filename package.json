@@ -47,7 +47,6 @@
   },
   "homepage": "https://github.com/maxlath/wikibase-cli#readme",
   "dependencies": {
-    "chalk": "^5.4.1",
     "commander": "^6.0.0",
     "copy-paste": "^1.5.0",
     "lodash-es": "^4.17.21",
@@ -57,6 +56,7 @@
     "shell-quote": "^1.8.1",
     "split": "^1.0.1",
     "through": "^2.3.8",
+    "tiny-chalk": "^4.0.0",
     "wikibase-edit": "^8.0.6",
     "wikibase-sdk": "^11.2.5",
     "wikidata-lang": "^2.0.11"
@@ -75,6 +75,6 @@
     "should": "^13.2.3"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20.12.0"
   }
 }
