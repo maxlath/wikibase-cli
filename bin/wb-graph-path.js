@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-import { map, partition, uniq } from 'lodash-es'
+import { map, partition, uniq, without } from 'lodash-es'
+import { grey } from 'tiny-chalk'
 import { isEntityId, isPropertyId } from 'wikibase-sdk'
 import errors_ from '#lib/errors'
 import { getEntitiesLabels } from '#lib/get_entities_labels'
@@ -10,19 +11,24 @@ await program
 .process('graph-path')
 
 const { args } = program
-const [ subject, property, object ] = args
+const [ subject, property, joinedObjects ] = args
 
-if (!(subject && property && object)) {
+if (!(subject && property && joinedObjects)) {
   program.helpAndExit(0)
 }
 
+const objects = joinedObjects.split(',')
+
 if (!isEntityId(subject)) throw new Error(`invalid subject id: ${subject}`)
 if (!isPropertyId(property)) throw new Error(`invalid property id: ${property}`)
-if (!isEntityId(object)) throw new Error(`invalid object id: ${object}`)
+objects.forEach(object => {
+  if (!isEntityId(object)) throw new Error(`invalid object id: ${object}`)
+})
 
-const rows = await makeSparqlQuery(`SELECT ?intermediary ?next {
+const rows = await makeSparqlQuery(`SELECT DISTINCT ?intermediary ?next {
+  VALUES (?object) { ${objects.map(object => `(wd:${object})`).join(' ')} }
   wd:${subject} wdt:${property}* ?intermediary .
-  wd:${object} ^wdt:${property}* ?intermediary .
+  ?object ^wdt:${property}* ?intermediary .
   OPTIONAL {
     ?intermediary wdt:${property} ?next .
   }
@@ -38,6 +44,7 @@ const relevantRows = rows.filter(row => intermediaries.includes(row.next))
 let remainingRows = relevantRows
 let nextSubjects = [ subject ]
 let paths = [ subject ]
+const replacedPaths = []
 
 while (remainingRows.length > 0) {
   const newPaths = []
@@ -52,15 +59,17 @@ while (remainingRows.length > 0) {
       return pathParts.at(-1) === intermediary
     })
     const updatedPaths = relevantPaths.map(path => `${path}.${next}`)
+    // Leave the relevantPaths in paths, to let other rows fork them if needed
+    replacedPaths.push(...relevantPaths)
     newPaths.push(...updatedPaths)
   })
   nextSubjects = uniq(map(nextRows, 'next'))
-  paths = newPaths
+  paths = [ ...without(paths, ...replacedPaths), ...newPaths ]
 }
 
 const allParts = uniq(paths.flatMap(path => path.split('.')))
 const labels = await getEntitiesLabels(allParts, program.lang)
 
 for (const path of paths) {
-  console.log(path.split('.').map(part => `${labels[part]} (${part})`).join(' → '))
+  console.log(path.split('.').map(part => `${labels[part]} ${grey(`(${part})`)}`).join(' → '))
 }
