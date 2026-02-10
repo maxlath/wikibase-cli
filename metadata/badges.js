@@ -1,7 +1,7 @@
 export default {
   alias: 'b',
   args: '',
-  description: 'list sitelink badges available on a Wikibase instance',
+  description: 'List sitelink badges available on a Wikibase instance',
   options: {
     lang: false,
     verbose: false,

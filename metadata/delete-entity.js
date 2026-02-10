@@ -8,11 +8,11 @@ export default {
   examples: [
     {
       args: 'Q1',
-      comment: 'delete an item',
+      comment: 'Delete an item',
     },
     {
       args: 'P1',
-      comment: 'delete a property',
+      comment: 'Delete a property',
     },
   ],
 }

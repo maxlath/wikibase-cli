@@ -1,7 +1,7 @@
 export default {
   alias: 'f',
   args: '<search>',
-  description: 'search entities',
+  description: 'Search entities',
   options: {
     lang: true,
     verbose: true,
@@ -11,10 +11,10 @@ export default {
     sparqlEndpoint: false,
   },
   examples: [
-    { args: 'Ligo', comment: 'displays a list of entities matching "Ligo"' },
-    { args: 'Harry Potter --limit 25', comment: 'displays up to 25 results matching "Harry Potter"' },
-    { args: 'Harry Potter --verbose', comment: 'display rich results (aka summaries)' },
-    { args: 'Harry Potter --properties P577,P935', comment: 'request additional properties (separated by a comma) to be added to the results summaries' },
+    { args: 'Ligo', comment: 'Displays a list of entities matching "Ligo"' },
+    { args: 'Harry Potter --limit 25', comment: 'Displays up to 25 results matching "Harry Potter"' },
+    { args: 'Harry Potter --verbose', comment: 'Display rich results (aka summaries)' },
+    { args: 'Harry Potter --properties P577,P935', comment: 'Request additional properties (separated by a comma) to be added to the results summaries' },
     { args: 'date --type property', comment: 'Search properties (but `wb props` might be doing a better job)' },
     { args: 'date --type lexeme', comment: 'Search lexemes' },
     { args: 'code --type form', comment: 'Search forms' },

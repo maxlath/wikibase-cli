@@ -8,7 +8,7 @@ export default {
   examples: [
     {
       args: 'Q1 Q2',
-      comment: 'merge Q1 into Q2',
+      comment: 'Merge Q1 into Q2',
     },
   ],
 }
