@@ -4,6 +4,7 @@ import stylistic from '@stylistic/eslint-plugin'
 import { defineConfig } from 'eslint/config'
 import importxPlugin from 'eslint-plugin-import-x'
 import globals from 'globals'
+import { customPlugin } from './eslint/custom_eslint_plugin.js'
 
 // Inspect the generated config:
 //    npx eslint --inspect-config
@@ -22,10 +23,15 @@ export default defineConfig([
     languageOptions: {
       globals: globals.node,
     },
+    plugins: {
+      'custom-plugin': customPlugin,
+    },
     rules: {
       'array-callback-return': 'off',
       eqeqeq: [ 'error', 'smart' ],
       'implicit-arrow-linebreak': [ 'error', 'beside' ],
+
+      'custom-plugin/aliased-import-paths-extensions': 'error',
 
       // See https://github.com/un-ts/eslint-plugin-import-x#rules
       'import-x/newline-after-import': 'error',
