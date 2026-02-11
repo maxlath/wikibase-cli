@@ -1,7 +1,7 @@
 export default {
   alias: 'gp',
   args: '<subject> <property> <object>',
-  description: 'Find the path between a subject and an object on the entity relations graph',
+  description: 'Find the path between a subject and an object via a given property, on the entities relations graph',
   options: {
     lang: true,
     verbose: true,

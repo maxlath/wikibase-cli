@@ -933,7 +933,7 @@ Other options:
 
 ### wb graph-path
 
-Find the path between a subject and an object on the entity relations graph
+Find the path between a subject and an object via a given property, on the entities relations graph
 
 ```sh
 wb graph-path <subject> <property> <object>
