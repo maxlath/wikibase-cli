@@ -49,6 +49,7 @@ The following documentation assumes that the Wikibase instance we work with is W
   - [output format](#output-format)
   - [custom SPARQL endpoint](#custom-sparql-endpoint)
 - [wb query](#wb-query)
+- [wb graph-path](#wb-graph-path)
 - [wb convert](#wb-convert)
 - [wb open](#wb-open)
   - [open entities pages](#open-entities-pages)
@@ -929,6 +930,24 @@ Other options:
 * `-o, --open`: open the query in the Query Service GUI
 * `--describe <node>`: make a `DESCRIBE` request
 * `--sample`: get a sample of triples from a triple store
+
+### wb graph-path
+
+Find the path between a subject and an object on the entity relations graph
+
+```sh
+wb graph-path <subject> <property> <object>
+# Alias
+wb gp <subject> <property> <object>
+```
+
+```sh
+# Find by which path science (Q336) is a subclass of (P279) philosophy (Q5891)
+wd graph-path Q336 P279 Q5891
+
+# Find by which path science (Q336) is a subclass of (P279) either philosophy (Q5891), literary movement (Q3326717), or art movement (Q968159)
+wd graph-path Q336 P279 Q5891,Q2198855,Q3326717,Q968159
+```
 
 ### wb convert
 Convert batches of external ids to Wikibase ids and vice versa
