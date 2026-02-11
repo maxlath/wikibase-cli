@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import { grey } from 'tiny-chalk'
+import errors_ from '#lib/errors'
 import { generateDescribeSparqlQuery } from '#lib/generate_describe_sparql_query'
 import { generateSampleSparqlQuery } from '#lib/generate_sample_sparql_query'
 import { generateSelectSparqlQuery } from '#lib/generate_select_sparql_query'
@@ -29,6 +30,10 @@ await program
 .option('-n, --limit <num>', 'Set the request results limit')
 .option('-x, --index <variable>', "Return the result as an index, instead of a list, using the passed variable as key (can't be used with the 'raw' option)")
 .process('query')
+
+if (program.args.length > 0) {
+  errors_.exitMessage('wb query can not have positional arguments', `found positional arguments: ${program.args}`)
+}
 
 if (!(program.subject || program.property || program.object || program.describe || program.sample || program.statementProperty)) {
   program.helpAndExit(0)
