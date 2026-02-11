@@ -949,6 +949,8 @@ wd graph-path Q336 P279 Q5891
 wd graph-path Q336 P279 Q5891,Q2198855,Q3326717,Q968159
 ```
 
+For a command dedicated to Wikidata subclasses, see [wikidata-taxonomy](https://www.npmjs.com/package/wikidata-taxonomy)
+
 ### wb convert
 Convert batches of external ids to Wikibase ids and vice versa
 
