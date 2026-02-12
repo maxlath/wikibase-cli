@@ -1,6 +1,9 @@
 # CHANGELOG
 *versions follow [SemVer](http://semver.org)*
 
+## 20.1.0 - 2026-02-11
+* [`wb graph-path`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-graph-path): added `--format=mermaid` option (See mermaid graph format)
+
 ## 20.0.0 - 2026-02-11
 * **BREAKING CHANGE**: updated NodeJS minimal version to `>= v20.12.0` to be able to use the native [`styleText`](https://nodejs.org/api/util.html#utilstyletextformat-text-options) via `tiny-chalk`
 * Added [`wb graph-path`](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wb-graph-path): a command to find the path between a subject and an object on the entity relations graph
