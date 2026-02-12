@@ -55,7 +55,7 @@ See [CHANGELOG.md](CHANGELOG.md) for version info
 ## Dependencies
 
 ### General
-* [NodeJs](https://nodejs.org) **>= v18** (recommended way to install it: use [NVM](https://github.com/creationix/nvm) to install the latest LTS version `nvm install --lts`)
+* [NodeJS](https://nodejs.org) **>= v20.12.0** (Older NodeJS versions can be used for older wikibase-cli version, see [changelogs](./CHANGELOG.md). Recommendable way to install NodeJS: you may use [NVM](https://github.com/creationix/nvm) to install the latest LTS version `nvm install --lts`)
 * [Git](https://git-scm.com/)
 
 ### Per feature
