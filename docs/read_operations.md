@@ -947,6 +947,9 @@ wd graph-path Q336 P279 Q5891
 
 # Find by which path science (Q336) is a subclass of (P279) either philosophy (Q5891), literary movement (Q3326717), or art movement (Q968159)
 wd graph-path Q336 P279 Q5891,Q2198855,Q3326717,Q968159
+
+# Output graph in the [mermaid format](https://mermaid.js.org/) and pipe it to [mermaid-ascii](https://github.com/AlexanderGrooff/mermaid-ascii) to visualize the graph in the terminal
+wd graph-path Q506259 P279 Q2509280 --format mermaid | mermaid-ascii -f -
 ```
 
 For a command dedicated to Wikidata subclasses, see [wikidata-taxonomy](https://www.npmjs.com/package/wikidata-taxonomy)

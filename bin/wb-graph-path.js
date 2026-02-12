@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { map, partition, uniq, without } from 'lodash-es'
+import { map, partition, uniq, values, without } from 'lodash-es'
 import { grey } from 'tiny-chalk'
 import { isEntityId, isPropertyId } from 'wikibase-sdk'
 import errors_ from '#lib/errors'
@@ -8,9 +8,10 @@ import { makeSparqlQuery } from '#lib/make_sparql_query'
 import program from '#lib/program'
 
 await program
+.option('-f, --format <format>', 'Available alternative formats: mermaid')
 .process('graph-path')
 
-const { args } = program
+const { args, format } = program
 const [ subject, property, joinedObjects ] = args
 
 if (!(subject && property && joinedObjects)) {
@@ -41,35 +42,44 @@ if (rows.length === 0) {
 const intermediaries = uniq(map(rows, 'intermediary'))
 const relevantRows = rows.filter(row => intermediaries.includes(row.next))
 
-let remainingRows = relevantRows
-let nextSubjects = [ subject ]
-let paths = [ subject ]
-const replacedPaths = []
+const allEntityIds = uniq(relevantRows.flatMap(row => values(row)))
+const labels = await getEntitiesLabels(allEntityIds, program.lang)
 
-while (remainingRows.length > 0) {
-  const newPaths = []
-  const [ nextRows, rest ] = partition(remainingRows, ({ intermediary }) => {
-    return nextSubjects.includes(intermediary)
-  })
-  if (rest.length === remainingRows.length) throw new Error('stuck')
-  remainingRows = rest
-  nextRows.forEach(({ intermediary, next }) => {
-    const relevantPaths = paths.filter(path => {
-      const pathParts = path.split('.')
-      return pathParts.at(-1) === intermediary
+if (format === 'mermaid') {
+  let output = 'graph LR\n'
+  const getNodeLabel = id => `${labels[id]} (${id})`
+  for (const { intermediary, next } of relevantRows) {
+    output += `${getNodeLabel(intermediary)} --> ${getNodeLabel(next)}\n`
+  }
+  console.log(output.trim())
+} else {
+  let remainingRows = relevantRows
+  let nextSubjects = [ subject ]
+  let paths = [ subject ]
+  const replacedPaths = []
+
+  while (remainingRows.length > 0) {
+    const newPaths = []
+    const [ nextRows, rest ] = partition(remainingRows, ({ intermediary }) => {
+      return nextSubjects.includes(intermediary)
     })
-    const updatedPaths = relevantPaths.map(path => `${path}.${next}`)
-    // Leave the relevantPaths in paths, to let other rows fork them if needed
-    replacedPaths.push(...relevantPaths)
-    newPaths.push(...updatedPaths)
-  })
-  nextSubjects = uniq(map(nextRows, 'next'))
-  paths = [ ...without(paths, ...replacedPaths), ...newPaths ]
-}
+    if (rest.length === remainingRows.length) throw new Error('stuck')
+    remainingRows = rest
+    nextRows.forEach(({ intermediary, next }) => {
+      const relevantPaths = paths.filter(path => {
+        const pathParts = path.split('.')
+        return pathParts.at(-1) === intermediary
+      })
+      const updatedPaths = relevantPaths.map(path => `${path}.${next}`)
+      // Leave the relevantPaths in paths, to let other rows fork them if needed
+      replacedPaths.push(...relevantPaths)
+      newPaths.push(...updatedPaths)
+    })
+    nextSubjects = uniq(map(nextRows, 'next'))
+    paths = [ ...without(paths, ...replacedPaths), ...newPaths ]
+  }
 
-const allParts = uniq(paths.flatMap(path => path.split('.')))
-const labels = await getEntitiesLabels(allParts, program.lang)
-
-for (const path of paths) {
-  console.log(path.split('.').map(part => `${labels[part]} ${grey(`(${part})`)}`).join(' → '))
+  for (const path of paths) {
+    console.log(path.split('.').map(part => `${labels[part]} ${grey(`(${part})`)}`).join(' → '))
+  }
 }

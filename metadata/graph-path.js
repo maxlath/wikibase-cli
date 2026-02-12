@@ -13,5 +13,6 @@ export default {
   examples: [
     { args: 'Q336 P279 Q5891', comment: 'Find by which path science (Q336) is a subclass of (P279) philosophy (Q5891)' },
     { args: 'Q336 P279 Q5891,Q2198855,Q3326717,Q968159', comment: 'Find by which path science (Q336) is a subclass of (P279) either philosophy (Q5891), literary movement (Q3326717), or art movement (Q968159)' },
+    { args: 'wd gp Q506259 P279 Q2509280 --format mermaid | mermaid-ascii -f -', comment: 'Output graph in the [mermaid format](https://mermaid.js.org/) and pipe it to [mermaid-ascii](https://github.com/AlexanderGrooff/mermaid-ascii) to visualize the graph in the terminal' },
   ],
 }
