@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/maxlath/wikibase-cli.git"
+    "url": "https://codeberg.org/maxlath/wikibase-cli"
   },
   "files": [
     "bin",
@@ -43,9 +43,9 @@
   "author": "maxlath",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/maxlath/wikibase-cli/issues"
+    "url": "https://codeberg.org/maxlath/wikibase-cli/issues"
   },
-  "homepage": "https://github.com/maxlath/wikibase-cli#readme",
+  "homepage": "https://codeberg.org/maxlath/wikibase-cli#readme",
   "dependencies": {
     "commander": "^6.0.0",
     "copy-paste": "^1.5.0",
