@@ -131,7 +131,7 @@ export DEBUG=wikibase-cli:request ; wd label Q1
 
 [![inventaire banner](https://inventaire.io/public/images/inventaire-brittanystevens-13947832357-CC-BY-lighter-blue-4-banner-500px.png)](https://inventaire.io)
 
-Do you know [Inventaire](https://inventaire.io/)? It's a web app to share books with your friends, built on top of Wikidata! And its [libre software](http://github.com/inventaire/inventaire) too.
+Do you know [Inventaire](https://inventaire.io/)? It's a web app to share books with your friends, built on top of Wikidata! And its [libre software](http://codeberg.org/inventaire/inventaire) too.
 
 ## License
 [MIT](LICENSE.md)
