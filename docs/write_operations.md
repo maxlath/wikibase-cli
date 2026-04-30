@@ -1,6 +1,6 @@
 # Write operations
 
-Those command modify Wikibase so you will need to first **setup credentials** to use them: you will get a prompt requesting those credentials when required, but if you want to setup those credentials ahead, you can run `wb config credentials https://www.wikidata.org test` (Replace `https://www.wikidata.org` by your Wikibase instance url if necessary). For more documentation on the different options to setup credentials, see [`wikibase-edit` single-user credentials setup](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#single-user-setup) (`wikibase-edit` is the lib on which wikibase-cli relies for all write operations).
+Those command modify Wikibase so you will need to first **setup credentials** to use them: you will get a prompt requesting those credentials when required, but if you want to setup those credentials ahead, you can run `wb config credentials https://www.wikidata.org test` (Replace `https://www.wikidata.org` by your Wikibase instance url if necessary). For more documentation on the different options to setup credentials, see [`wikibase-edit` single-user credentials setup](https://codeberg.org/maxlath/wikibase-edit/src/branch/main/docs/how_to.md#single-user-setup) (`wikibase-edit` is the lib on which wikibase-cli relies for all write operations).
 
 Those credentials will be **saved in clear text** (Run `wb config path` to know where). This allows not having to re-enter credentials everytimes, but it can problematic on a non-personal computer: in such a case, make sure to run `wb config clear` once you're done.
 
@@ -232,7 +232,7 @@ Some values like monolingual text, quatities with a unit, or time with a precisi
 ```sh
 wd add-claim Q4115189 P1476 '{"text":"bac à sable","language":"fr"}'
 wd add-claim Q4115189 P1106 '{"amount":123,"unit":"Q4916"}'
-# On precision and calendar, see wikibase-edit documentation https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#time
+# On precision and calendar, see wikibase-edit documentation https://codeberg.org/maxlath/wikibase-edit/src/branch/main/docs/how_to.md#time
 wd add-claim Q4115189 P578 '{"time":"1800","precision":7,"calendar":"julian"}'
 # Set a coordinate on another celestial body than Earth (here, Mars (Q111))
 wd add-claim Q4115189 P626 '{ "latitude": 18.65, "longitude": 226.2, "precision": 0.01, "globe": "http://www.wikidata.org/entity/Q111" }'
@@ -381,7 +381,7 @@ wd move-claim Q4115189#P19 Q13406268 P20
 wd move-claim Q4115189#P19 Q13406268 P20 Q15397819
 ```
 
-Certain claims can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
+Certain claims can be moved between properties of different datatypes, see [wikibase-edit documentation](https://codeberg.org/maxlath/wikibase-edit/src/branch/main/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
 
 ##### move claim in batch mode
 Arguments can either be passed in object mode
@@ -524,7 +524,7 @@ qualifier_hash=$(wb data 'Q549$3EDF7856-5BE5-445A-BC60-FB2CDDCDA44F' | jq --raw-
 wd move-qualifier $claim_guid $qualifier_hash P2310 P2311
 ```
 
-Just like for `move-claim`, certain qualifiers can be moved between properties of different datatypes, see [wikibase-edit documentation](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
+Just like for `move-claim`, certain qualifiers can be moved between properties of different datatypes, see [wikibase-edit documentation](https://codeberg.org/maxlath/wikibase-edit/src/branch/main/docs/how_to.md#move-claims-between-properties-of-different-datatypes)
 
 #### wb remove-qualifier
 
@@ -734,14 +734,14 @@ wb create-entity '{ "type": "property", "datatype": "string", "labels": { "en": 
 
 Other that the `datatype` and the absence of `id`, the `create-entity` command is identical to the [`edit-entity` command](#wb-edit-entity).
 
-See [`wikibase-edit` documentation on `entity.create`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#create-entity) for details on the input format.
+See [`wikibase-edit` documentation on `entity.create`](https://codeberg.org/maxlath/wikibase-edit/src/branch/main/docs/how_to.md#create-entity) for details on the input format.
 
 **Demos**:
 * [Create a new person item](https://github.com/maxlath/wikibase-cli/blob/main/docs/examples/new_person.js)
 * [Create a new property](https://github.com/maxlath/wikibase-cli/blob/main/docs/examples/new_property.js)
 * [Create a new item with the same references being used multiple times](https://github.com/maxlath/wikibase-cli/blob/main/docs/examples/new_item_with_the_same_references_being_used_multiple_times.js)
 
-See also [wikibase-cli create template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/edit) for some examples.
+See also [wikibase-cli create template collection](https://github.com/maxlath/wikibase-cli-template-collection/src/branch/main/edit) for some examples.
 
 #### wb edit-entity
 
@@ -753,7 +753,7 @@ wb edit-entity <inline-entity-json|file-path>
 wb ee <inline-entity-json|file-path>
 ```
 
-See [`wikibase-edit` documentation on `entity.edit`](https://github.com/maxlath/wikibase-edit/blob/master/docs/how_to.md#edit-entity) for details on the expected input format, especially on how to set complex values, qualifiers and references, or remove existing data. See also the section on [claim reconciliation](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation).
+See [`wikibase-edit` documentation on `entity.edit`](https://codeberg.org/maxlath/wikibase-edit/src/branch/main/docs/how_to.md#edit-entity) for details on the expected input format, especially on how to set complex values, qualifiers and references, or remove existing data. See also the section on [claim reconciliation](https://github.com/maxlath/wikibase-edit/blob/main/docs/how_to.md#reconciliation).
 
 ##### Pass data as inline JSON
 Pass data as inline JSON.
@@ -869,7 +869,7 @@ wb edit-entity ./add_P1449_and_P1106.js Q2 def 456
 wb edit-entity ./add_P1449_and_P1106.js Q3 ghi 789
 ```
 
-This way, you can generate infinitely flexible templates. See [wikibase-cli edit template collection](https://github.com/maxlath/wikibase-cli-template-collection/tree/master/edit) for some examples.
+This way, you can generate infinitely flexible templates. See [wikibase-cli edit template collection](https://github.com/maxlath/wikibase-cli-template-collection/src/branch/main/edit) for some examples.
 
 A good way to start writting a template function starting from an existing entity is to use the [`generate-template` command](https://github.com/maxlath/wikibase-cli/blob/main/docs/read_operations.md#wd-generate-template):
 ```sh
@@ -907,7 +907,7 @@ module.exports = function (id, quantity) {
 }
 ```
 
-**Demo**: See how this principle was applied to create many items from a single JS template file: [Create missing HTTP Status Codes items on Wikidata](https://github.com/maxlath/wikidata-scripting/tree/master/http_status_codes)
+**Demo**: See how this principle was applied to create many items from a single JS template file: [Create missing HTTP Status Codes items on Wikidata](https://codeberg.org/maxlath/wikidata-scripting/src/branch/main/http_status_codes)
 
 ###### fetch additional data
 The exported function can be an async function, so you could fetch data during the transformation process:
@@ -1132,4 +1132,4 @@ wb add-claim Q4115189 P1106 123 --maxlag 100
 
 ### Demos
 * [wikibase-cli-template-collection](https://github.com/maxlath/wikibase-cli-template-collection)
-* [wikidata-scripting](https://github.com/maxlath/wikidata-scripting)
+* [wikidata-scripting](https://codeberg.org/maxlath/wikidata-scripting)

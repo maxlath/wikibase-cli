@@ -349,7 +349,7 @@ npm install -g wikibase-cli@14
 ## 4.8.0 - 2017-03-31
 * Added multiple entities mode to [`wd data`](https://codeberg.org/maxlath/wikibase-cli/src/branch/main/docs/read_operations.md#wb-data)
 * Added `simplify` option to [`wd data`](https://codeberg.org/maxlath/wikibase-cli/src/branch/main/docs/read_operations.md#wb-data)
-* Output [`wd data`](https://codeberg.org/maxlath/wikibase-cli/src/branch/main/docs/read_operations.md#wb-data) data as Wikidata-Dump-style line delimited JSON to make filterable by [`wikidata-filter`](https://github.com/maxlath/wikidata-filter)
+* Output [`wd data`](https://codeberg.org/maxlath/wikibase-cli/src/branch/main/docs/read_operations.md#wb-data) data as Wikidata-Dump-style line delimited JSON to make filterable by [`wikidata-filter`](https://codeberg.org/maxlath/wikibase-dump-filter)
 
 ## 4.7.0 - 2017-03-30
 * Added [`wd summary`](https://codeberg.org/maxlath/wikibase-cli/src/branch/main/docs/read_operations.md#wb-summary)
